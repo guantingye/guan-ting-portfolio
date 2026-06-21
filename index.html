@@ -626,6 +626,144 @@ footer a { color: var(--teal); text-decoration: none; }
 .proj-nav-link:hover .proj-nav-name { color: var(--teal); }
 
 
+
+/* ── V4 Responsive / Recognition polish ── */
+:root {
+  --container-max: 1180px;
+  --ease-out: cubic-bezier(.16,1,.3,1);
+}
+.container { max-width: var(--container-max); }
+.section-title { margin-bottom: clamp(44px, 7vw, 78px); }
+.awards-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.award-card {
+  min-height: 310px;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+}
+.award-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 0% 0%, rgba(0,229,192,.12), transparent 42%);
+  opacity: 0;
+  transition: opacity .32s var(--ease-out);
+  z-index: -1;
+}
+.award-card:hover::after { opacity: 1; }
+.award-icon {
+  width: 42px;
+  height: 42px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 14px;
+  color: var(--teal);
+  background: linear-gradient(135deg, rgba(0,229,192,.14), rgba(255,179,71,.08));
+  border: 1px solid rgba(0,229,192,.18);
+  box-shadow: inset 0 0 18px rgba(0,229,192,.04);
+}
+.icon-svg { width: 21px; height: 21px; stroke-width: 1.85; }
+.award-card-top { gap: 16px; }
+.award-period {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--gray-dim);
+  letter-spacing: .08em;
+  margin-bottom: 14px;
+}
+.award-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; padding-top: 18px; }
+.award-tag {
+  padding: 4px 9px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--gray);
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.07);
+}
+.award-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  color: var(--teal);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+}
+.award-link:hover { color: var(--amber); }
+.proj-award .award-badge-icon {
+  width: 40px;
+  height: 40px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 12px;
+  color: var(--amber);
+  background: rgba(255,179,71,.10);
+  border: 1px solid rgba(255,179,71,.18);
+}
+.proj-award .award-badge-icon .icon-svg { width: 20px; height: 20px; }
+.project-card, .skill-group, .award-card, .tech-item, .contact-link {
+  transition-timing-function: var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover, .award-card:hover, .skill-group:hover { transform: translateY(-6px); }
+}
+@media (max-width: 1120px) {
+  .awards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero-left { padding-left: 42px; padding-right: 42px; }
+  .hero-img-wrap { width: 340px; height: 445px; }
+}
+@media (max-width: 768px) {
+  html { font-size: 16px; }
+  body { overflow-x: hidden; }
+  .container { padding: 0 20px; }
+  .hero { min-height: auto; }
+  .hero-left { padding: 112px 22px 72px; }
+  .hero-status { gap: 10px; flex-wrap: wrap; margin-bottom: 22px; }
+  .status-sep { display: none; }
+  .hero-title { font-size: clamp(2.42rem, 13.5vw, 3.55rem); line-height: 1.04; letter-spacing: -.03em; }
+  .hero-sub { font-size: 13px; line-height: 1.85; max-width: 100%; margin-bottom: 34px; }
+  .hero-actions { gap: 12px; }
+  .btn-primary, .btn-ghost { width: 100%; justify-content: center; min-height: 46px; }
+  .hero-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 40px; }
+  .hero-stat + .hero-stat::before { display: none; }
+  .stat-num { font-size: 2.35rem; }
+  .story, .work, .skills, .awards-section, .contact-section { padding: 88px 0; }
+  .section-label { font-size: 11px; margin-bottom: 16px; }
+  .section-title { font-size: clamp(2.05rem, 10vw, 2.95rem); margin-bottom: 44px; }
+  .timeline { padding-left: 30px; }
+  .timeline-dot { left: -38px; }
+  .timeline-item[data-type="industry"] .timeline-dot,
+  .timeline-item[data-type="product"] .timeline-dot { left: -35px; }
+  .timeline-head { font-size: 1.35rem; }
+  .timeline-body { font-size: 13px; line-height: 1.85; }
+  .work-grid, .skills-grid, .awards-grid, .contact-grid { grid-template-columns: 1fr; gap: 16px; }
+  .project-card, .skill-group, .award-card { padding: 24px; }
+  .award-card { min-height: auto; }
+  .featured-inner { grid-template-columns: 1fr; }
+  .card-title { font-size: 1.45rem; }
+  .card-desc, .card-outcomes li { font-size: 12.5px; line-height: 1.82; }
+  .contact-ghost { display: none; }
+  .proj-hero { padding: 128px 0 70px; }
+  .proj-title { font-size: clamp(2.35rem, 12vw, 3.45rem); }
+  .proj-meta { grid-template-columns: 1fr; }
+  .proj-body { padding: 72px 0 96px; }
+  .proj-body-text, .proj-outcomes li { font-size: 13px; }
+  .proj-outcomes li { grid-template-columns: 30px 1fr; padding: 16px 12px; }
+}
+@media (max-width: 420px) {
+  nav { padding-left: 18px; padding-right: 18px; }
+  nav.scrolled { padding-left: 18px; padding-right: 18px; }
+  .mobile-menu { padding: 20px; }
+  .hero-left { padding-left: 18px; padding-right: 18px; }
+  .hero-stats { grid-template-columns: 1fr; }
+  .card-num { font-size: 42px; }
+  footer { padding: 22px 18px; }
+  footer::before { left: 18px; right: 18px; }
+}
+
 /* ── Performance & Media Handling Patch ── */
 img { max-width: 100%; height: auto; }
 .story, .work, .skills, .awards-section, .contact-section {
@@ -654,10 +792,14 @@ img { max-width: 100%; height: auto; }
 <canvas id="neural-canvas"></canvas>
 <div id="root"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
-<script>
-const { useState, useEffect, useRef, useCallback, createContext, useContext } = React;
+<script type="module">
+import React, { useState, useEffect, useRef, useCallback, createContext, useContext } from "https://esm.sh/react@18.2.0";
+import { createRoot } from "https://esm.sh/react-dom@18.2.0/client";
+import {
+  FiAward, FiTarget, FiGlobe, FiCpu, FiMap, FiDatabase, FiActivity, FiShield,
+  FiBriefcase, FiZap, FiHeart, FiBarChart2, FiLayers, FiMonitor, FiTrendingUp,
+  FiBookOpen, FiCheckCircle
+} from "https://esm.sh/react-icons@5/fi?deps=react@18.2.0";
 /* ═══════════════════════════════
    TRANSLATIONS
 ═══════════════════════════════ */
@@ -690,15 +832,19 @@ const T = {
         skillsLabel: 'Capabilities', skillsTitle1: 'The full', skillsTitleEm: 'stack', skillsTitle2: '.',
         skillDomain: 'Domain', skillTech: 'Technical', skillLang: 'Languages & Soft Skills',
         awardsLabel: 'Awards & Recognition',
-        awardsTitle1: 'Four accolades,', awardsTitleEm: 'one year.',
-        award1Title: 'Silver Medal', award1Inst: '2025 AI Interdisciplinary Sustainability Innovation Contest',
-        award1Desc: 'Emobot+ Multimodal Emotional Companion System — integrating emotion recognition with generative AI dialogue.',
-        award2Title: 'Best Thesis Award', award2Inst: '2025 TSCN Annual Conference (Taiwan Cognitive Neuroscience Society)',
-        award2Desc: 'Graduate thesis: psychometric validation research on emotional intelligence measurement in Taiwanese context.',
-        award3Title: 'Research Grant Selected', award3Inst: '2025 AI Interdisciplinary Research Proposal Program',
-        award3Desc: 'Cross-domain AI research proposal selected for national funding among competitive applicants.',
-        award4Title: 'International Presentation', award4Inst: '2025 OHBM Annual Meeting — Brisbane, Australia',
-        award4Desc: 'Neuroimaging research presented at the Organization for Human Brain Mapping — top global venue.',
+        awardsTitle1: 'Signals of proof,', awardsTitleEm: 'across research and product.' ,
+        award1Title: 'Silver Medal · AI Sustainability Innovation Contest', award1Inst: '2025 AI Interdisciplinary Sustainability Innovation Contest',
+        award1Desc: 'Led Emobot+ as an AI mental-health product prototype, translating psychology, UX research, risk detection, persona matching, and full-stack prototyping into a competition-ready system.' ,
+        award2Title: 'The Excellent Award · TSCN Annual Meeting', award2Inst: 'Taiwan Society of Cognitive Neuroscience · 2025',
+        award2Desc: 'Presented thesis research integrating behavioral data, learning outcomes, and fMRI functional connectivity to examine instructor presence and online learning effects.' ,
+        award3Title: 'AI Interdisciplinary Research Proposal Selected', award3Inst: 'NCCU AI Center · 2025',
+        award3Desc: 'Designed a proposal for an affect-adaptive therapeutic companion system, connecting digital mental-health service design, HCI, LLM interaction, and psychologist handoff pathways.' ,
+        award4Title: 'International Neuroimaging Presentation', award4Inst: 'OHBM Annual Meeting · Brisbane · 2025',
+        award4Desc: 'Presented research on online lecture instructor presence, learning outcomes, and FPN–SN connectivity at an international neuroimaging venue.' ,
+        award5Title: 'Youth Tech Innovation International Program', award5Inst: 'Global Pathfinders Initiative · Berlin',
+        award5Desc: 'Selected for an international AI innovation program in Berlin, focusing on AI adoption, creative technology, digital transformation, governance, and cross-national ecosystem learning.',
+        award6Title: 'ITRI Star Program · Seed Cultivator', award6Inst: 'ITRI / ISTI · 2025',
+        award6Desc: 'Joined the Star Program training track for startup industry research, technology trend analysis, data platform development, go-to-market strategy, and commercialization thinking.',
         contactLabel: 'Get in Touch',
         contactTitle1: "Let's build something", contactTitleEm: 'worth remembering', contactTitle2: '.',
         contactNote: "I'm open to product roles, research collaborations, and ecosystem strategy work. If you're building something ambitious at the frontier of deep tech — let's talk.",
@@ -738,15 +884,19 @@ const T = {
         skillsLabel: '能力地圖', skillsTitle1: '完整的', skillsTitleEm: '技能堆疊', skillsTitle2: '。',
         skillDomain: '領域', skillTech: '技術', skillLang: '語言與軟實力',
         awardsLabel: '獎項與認可',
-        awardsTitle1: '四項殊榮，', awardsTitleEm: '同一年。',
-        award1Title: '銀獎', award1Inst: '2025 AI 跨域永續創新競賽',
-        award1Desc: 'Emobot+ 多模態情緒陪伴系統——整合情緒辨識模型與生成式 AI 對話功能。',
-        award2Title: '碩士論文優等獎', award2Inst: '2025 台灣認知神經科學學會（TSCN）年會',
-        award2Desc: '碩士論文：在台灣情境下針對情緒智力測量的心理計量學驗證研究。',
-        award3Title: '研究構想計畫獲選補助', award3Inst: '2025 AI 跨域研究構想計畫',
-        award3Desc: '跨領域 AI 研究提案從競爭申請者中脫穎而出，獲選國家補助。',
-        award4Title: '國際論文發表', award4Inst: '2025 國際人腦圖譜學會年會 · 澳洲布里斯本',
-        award4Desc: '於全球頂尖神經科學盛會——人腦圖譜組織年會——發表神經影像研究。',
+        awardsTitle1: '從研究到產品，', awardsTitleEm: '可被驗證的成果。',
+        award1Title: '銀獎 · AI 跨域永續創新競賽', award1Inst: '2025 AI 跨域永續創新競賽',
+        award1Desc: '以 Emobot+：AI 數位心理支持與情緒陪伴系統參賽，將心理學、UX Research、風險偵測、人格媒合與全端原型整合成可展示的產品系統。',
+        award2Title: '碩士論文優等獎 · TSCN 年會', award2Inst: '2025 台灣認知神經科學學會年會',
+        award2Desc: '以口頭報告形式發表研究，整合行為資料、學習表現與 fMRI 功能性連結，分析講師臨場感、學習成效與神經網絡變化。',
+        award3Title: 'AI 跨域研究構想計畫獲選', award3Inst: '2025 政治大學 AI 中心',
+        award3Desc: '提出情緒適應型輔療陪伴機器人與數位心理支持整合系統，涵蓋 HCI、LLM 互動、情緒調節、真人心理師轉介與匿名互動空間設計。',
+        award4Title: '國際神經影像學術發表', award4Inst: 'OHBM Annual Meeting 2025 · Brisbane',
+        award4Desc: '發表 Instructor presence enhanced learning and strengthened FPN-SN connectivity during online lecture，聚焦線上教學、學習成效與大腦功能性連結。',
+        award5Title: '青年科技創新國際 · 德國柏林', award5Inst: '青年百億海外圓夢計畫',
+        award5Desc: '獲選赴德國柏林進行科技創新、AI 應用、國際新創生態、智慧製造與數位轉型研習，強化 AI Product Strategy、UX Research、HCI 與跨文化創新判讀能力。',
+        award6Title: '工研院產科國際所 · 育星計畫', award6Inst: 'ITRI / ISTI · 2025',
+        award6Desc: '參與新創產業研究、科技趨勢分析、資料平台建構、go-to-market 商情平台設計與技術商業化訓練，將分散資訊轉化為策略洞察。',
         contactLabel: '取得聯繫',
         contactTitle1: '讓我們打造', contactTitleEm: '值得被記住', contactTitle2: '的事物。',
         contactNote: '歡迎洽談產品職位、研究合作或生態系策略工作。若你正在深科技前沿打造有野心的東西——我們來談談。',
@@ -763,11 +913,37 @@ const T = {
    AWARDS DATA
 ═══════════════════════════════ */
 const AWARDS_DATA = [
-    { icon: '🥈', year: '2025', titleKey: 'award1Title', instKey: 'award1Inst', descKey: 'award1Desc' },
-    { icon: '🏅', year: '2025', titleKey: 'award2Title', instKey: 'award2Inst', descKey: 'award2Desc' },
-    { icon: '🎯', year: '2025', titleKey: 'award3Title', instKey: 'award3Inst', descKey: 'award3Desc' },
-    { icon: '🌏', year: '2025', titleKey: 'award4Title', instKey: 'award4Inst', descKey: 'award4Desc' },
+    { iconKey: 'award', year: '2025', period: '2025/03–2025/12', titleKey: 'award1Title', instKey: 'award1Inst', descKey: 'award1Desc', tags: ['AI Product', 'UX Research', 'Full-stack Prototype'], link: 'https://iaic.nccu.edu.tw/achievements/60' },
+    { iconKey: 'book', year: '2025', period: '2025/10–2025/11', titleKey: 'award2Title', instKey: 'award2Inst', descKey: 'award2Desc', tags: ['fMRI', 'Learning Science', 'Research Presentation'] },
+    { iconKey: 'target', year: '2025', period: '2025/03–2025/12', titleKey: 'award3Title', instKey: 'award3Inst', descKey: 'award3Desc', tags: ['Digital Health', 'Human-AI Interaction', 'Service Design'] },
+    { iconKey: 'globe', year: '2025', period: '2025/06', titleKey: 'award4Title', instKey: 'award4Inst', descKey: 'award4Desc', tags: ['OHBM', 'Neuroimaging', 'FPN–SN Connectivity'] },
+    { iconKey: 'map', year: '2026', period: '2026/08', titleKey: 'award5Title', instKey: 'award5Inst', descKey: 'award5Desc', tags: ['Berlin', 'AI Governance', 'Innovation Ecosystem'] },
+    { iconKey: 'database', year: '2025', period: '2025/07–2025/08', titleKey: 'award6Title', instKey: 'award6Inst', descKey: 'award6Desc', tags: ['Industry Research', 'Data Platform', 'Go-to-market'] },
 ];
+
+const ICONS = {
+    award: FiAward,
+    target: FiTarget,
+    globe: FiGlobe,
+    cpu: FiCpu,
+    map: FiMap,
+    database: FiDatabase,
+    activity: FiActivity,
+    shield: FiShield,
+    briefcase: FiBriefcase,
+    zap: FiZap,
+    heart: FiHeart,
+    chart: FiBarChart2,
+    layers: FiLayers,
+    monitor: FiMonitor,
+    trend: FiTrendingUp,
+    book: FiBookOpen,
+    check: FiCheckCircle,
+};
+function Icon({ name, className = '' }) {
+    const Component = ICONS[name] || FiAward;
+    return React.createElement(Component, { className: `icon-svg ${className}`, 'aria-hidden': 'true', focusable: 'false' });
+}
 /* ═══════════════════════════════
    PROJECTS DATA
 ═══════════════════════════════ */
@@ -788,7 +964,7 @@ const PROJECTS = [
         outcomes: ['Designed 4-persona onboarding using psychological trait matching (WLEIS-based)', 'Built multi-mode interaction: text / audio / avatar (Wave2Lip) + PDF report pipeline', 'Implemented safety & risk detection with clinical escalation pathways', 'Won Silver Medal — 2025 AI Interdisciplinary Sustainability Innovation Contest', 'Presented system architecture at TSCN 2025 Annual Conference'],
         zhOutcomes: ['設計基於心理特質配對的四人設引導流程', '打造多模式互動：文字/語音/虛擬形象 + PDF 對話報告管線', '實作具備臨床升級路徑的安全與風險偵測機制', '榮獲 2025 AI 跨域永續創新競賽銀獎', '於 2025 TSCN 年會發表系統架構'],
         tech: [{ label: 'Frontend', val: 'React 18, TailwindCSS, custom avatar renderer' }, { label: 'Backend', val: 'FastAPI, Python, async task queues' }, { label: 'AI Layer', val: 'OpenAI GPT-4o, prompt-chained persona system' }, { label: 'Video', val: 'Wave2Lip lip-sync pipeline (open-source)' }, { label: 'Safety', val: 'Multi-layer risk classifier, escalation routing' }, { label: 'Data', val: 'GDPR-ready session logging, anonymized analytics' }],
-        awards: [{ icon: '🥈', title: 'Silver Medal', desc: '2025 AI Interdisciplinary Sustainability Innovation Contest (AI 跨域永續創新競賽)' }],
+        awards: [{ iconKey: 'award', title: 'Silver Medal', desc: '2025 AI Interdisciplinary Sustainability Innovation Contest (AI 跨域永續創新競賽)' }],
     },
     {
         slug: 'deeptech-database', num: '02',
@@ -824,7 +1000,7 @@ const PROJECTS = [
         outcomes: ['Confirmed 4-factor structure with acceptable fit indices (CFI > .95, RMSEA < .06)', 'Demonstrated metric invariance across gender groups with chi-square difference tests', 'Established convergent validity via Big Five Agreeableness and Emotional Stability', 'Awarded Best Thesis at 2025 TSCN Annual Conference', 'Methodology documented for future cross-cultural adaptation studies'],
         zhOutcomes: ['確認四因子結構，達可接受的模型適配指標（CFI > .95，RMSEA < .06）', '以卡方差異檢定驗證跨性別組別的測量不變性', '透過大五人格親和性和情緒穩定性確立聚合效度', '榮獲 2025 TSCN 年會碩士論文優等獎', '記錄方法論以供未來跨文化適用性研究參考'],
         tech: [{ label: 'Statistics', val: 'R (lavaan, psych, semTools), JASP, SPSS 27' }, { label: 'Models', val: 'CFA, SEM, Measurement Invariance Testing' }, { label: 'Sample', val: 'N = 342, Taiwanese university students' }, { label: 'Criteria', val: 'Big Five (BFI), PANAS, Academic Performance' }, { label: 'Visualization', val: 'ggplot2, semPlot, Python Matplotlib' }, { label: 'Reporting', val: 'APA 7th style, R Markdown, academic paper draft' }],
-        awards: [{ icon: '🏅', title: 'Best Thesis Award', desc: '2025 台灣認知神經科學學會 (TSCN) 年會 · 碩士論文優等獎' }],
+        awards: [{ iconKey: 'book', title: 'Best Thesis Award', desc: '2025 台灣認知神經科學學會 (TSCN) 年會 · 碩士論文優等獎' }],
     },
     {
         slug: 'ai-news-intelligence', num: '04',
@@ -896,7 +1072,7 @@ const PROJECTS = [
         outcomes: ['Independently designed and built full-stack architecture (Python backend + JS frontend)', 'Automated web crawler collects fresh startup baseline data on schedule', 'ETL pipeline processes, normalizes, and loads data into SQL database', 'Interactive visualization dashboard enables team data-driven decision-making', 'Selected as 2025 ITRI Star Program seed cultivator following platform recognition'],
         zhOutcomes: ['獨立設計並建構全端架構（Python 後端 + JS 前端）', '自動化網路爬蟲定期抓取最新新創基盤數據', 'ETL 管線處理、標準化數據並載入 SQL 資料庫', '互動式視覺化儀表板支援團隊數據驅動決策', '平台影響力受認可，獲選 2025 年工研院育星計畫種子培育'],
         tech: [{ label: 'Backend', val: 'Python, SQL database management & maintenance' }, { label: 'Frontend', val: 'JavaScript, interactive data visualization' }, { label: 'Crawler', val: 'Automated web scraper for startup ecosystem data' }, { label: 'Pipeline', val: 'ETL (Extract, Transform, Load) workflow' }, { label: 'Database', val: 'SQL with automated refresh cycle' }, { label: 'Context', val: 'Internal platform at ITRI/ISTI Innovation Division' }],
-        awards: [{ icon: '🌱', title: '2025 ITRI Star Program', desc: 'Selected as seed cultivator — outstanding platform contribution and data engineering excellence at ITRI/ISTI.' }],
+        awards: [{ iconKey: 'database', title: '2025 ITRI Star Program', desc: 'Selected as seed cultivator — outstanding platform contribution and data engineering excellence at ITRI/ISTI.' }],
     },
     { slug: 'coming-soon-2', num: '08', comingSoon: true, title: 'Coming Soon', zhTitle: '即將推出', category: 'Next Project', zhCategory: '下一個專案', stack: [] },
 ];
@@ -1242,11 +1418,14 @@ function AwardsSection() {
                 React.createElement("em", null, t('awardsTitleEm'))),
             React.createElement("div", { className: "awards-grid" }, AWARDS_DATA.map((a, i) => (React.createElement("div", { key: i, className: `award-card reveal reveal-delay-${i + 1}`, role: "article", "aria-label": t(a.titleKey) },
                 React.createElement("div", { className: "award-card-top" },
-                    React.createElement("span", { className: "award-icon" }, a.icon),
+                    React.createElement("span", { className: "award-icon" }, React.createElement(Icon, { name: a.iconKey })),
                     React.createElement("span", { className: "award-year" }, a.year)),
+                React.createElement("div", { className: "award-period" }, a.period),
                 React.createElement("div", { className: "award-title-text" }, t(a.titleKey)),
                 React.createElement("div", { className: "award-inst" }, t(a.instKey)),
-                React.createElement("div", { className: "award-desc" }, t(a.descKey)))))))));
+                React.createElement("div", { className: "award-desc" }, t(a.descKey)),
+                a.link && React.createElement("a", { className: "award-link", href: a.link, target: "_blank", rel: "noopener noreferrer" }, "VIEW SOURCE ", React.createElement("span", null, "→")),
+                React.createElement("div", { className: "award-tags" }, a.tags.map(tag => React.createElement("span", { key: tag, className: "award-tag" }, tag))))))))));
 }
 /* ═══════════════════════════════
    HOME PAGE
@@ -1482,7 +1661,7 @@ function ProjectPage({ slug, navigate }) {
                 p.awards && p.awards.length > 0 && (React.createElement("div", { className: "proj-section reveal" },
                     React.createElement("div", { className: "proj-section-title" }, t('projAwards')),
                     p.awards.map((a, i) => (React.createElement("div", { className: "proj-award", key: i },
-                        React.createElement("span", { className: "award-badge-icon" }, a.icon),
+                        React.createElement("span", { className: "award-badge-icon" }, React.createElement(Icon, { name: a.iconKey || a.icon || "award" })),
                         React.createElement("div", { className: "award-badge-text" },
                             React.createElement("div", { className: "award-badge-title" }, a.title),
                             a.desc)))))),
@@ -1509,7 +1688,7 @@ function App() {
             : React.createElement(HomePage, { key: "home", navigate: navigate }),
         React.createElement(Footer, { navigate: navigate })));
 }
-ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App, null));
+createRoot(document.getElementById('root')).render(React.createElement(App, null));
 
 </script>
 </body>
