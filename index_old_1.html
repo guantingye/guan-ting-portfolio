@@ -783,261 +783,6 @@ img { max-width: 100%; height: auto; }
   #neural-canvas, #cursor-dot, #cursor-ring { display: none !important; }
 }
 
-
-/* ── V5: Resume Button ── */
-.btn-resume {
-  padding: 13px 24px; border: 1px solid rgba(0,229,192,0.4); color: var(--teal);
-  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em;
-  text-transform: uppercase; text-decoration: none; border-radius: 4px; background: none;
-  transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
-  display: inline-flex; align-items: center; gap: 8px;
-}
-.btn-resume:hover { background: var(--teal-dim); box-shadow: 0 0 20px rgba(0,229,192,0.2); transform: translateY(-2px); }
-.nav-resume {
-  padding: 6px 16px; border: 1px solid rgba(0,229,192,0.35); color: var(--teal);
-  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em;
-  border-radius: 4px; text-decoration: none; background: none;
-  transition: background 0.25s, border-color 0.25s; white-space: nowrap;
-}
-.nav-resume:hover { background: var(--teal-dim); border-color: var(--teal); }
-@media (max-width: 768px) { .nav-resume { display: none; } }
-
-/* ── V5: Skills Bars ── */
-.skills-v5 { padding: 120px 0; background: var(--bg-2); }
-.skills-v5-grid { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 36px; margin-top: 60px; }
-@media (max-width: 1100px) { .skills-v5-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 768px) { .skills-v5-grid { grid-template-columns: 1fr; gap: 24px; } }
-
-.skill-panel {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 32px; position: relative; overflow: hidden;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-.skill-panel::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  opacity: 0; transition: opacity 0.3s;
-}
-.skill-panel.panel-domain::before { background: linear-gradient(90deg,#a78bfa,#00e5c0); }
-.skill-panel.panel-tech::before   { background: linear-gradient(90deg,#00e5c0,#ffb347); }
-.skill-panel.panel-certs::before  { background: linear-gradient(90deg,#ffb347,#fb7185); }
-.skill-panel:hover::before { opacity: 1; }
-.skill-panel:hover { border-color: rgba(255,255,255,0.12); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
-.skill-panel-title {
-  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em;
-  text-transform: uppercase; margin-bottom: 28px; display: flex; align-items: center; gap: 10px;
-}
-.panel-domain .skill-panel-title { color: #a78bfa; }
-.panel-tech   .skill-panel-title { color: var(--teal); }
-.panel-certs  .skill-panel-title { color: var(--amber); }
-.skill-panel-title-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
-.panel-domain .skill-panel-title-dot { background: #a78bfa; box-shadow: 0 0 8px #a78bfa; }
-.panel-tech   .skill-panel-title-dot { background: var(--teal); box-shadow: 0 0 8px var(--teal); }
-.panel-certs  .skill-panel-title-dot { background: var(--amber); box-shadow: 0 0 8px var(--amber); }
-
-/* Domain: dot-rated items */
-.domain-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); }
-.domain-item:last-child { border-bottom: none; }
-.domain-name { font-family: var(--font-mono); font-size: 12px; color: var(--gray); }
-.domain-dots { display: flex; gap: 4px; }
-.domain-dot { width: 7px; height: 7px; border-radius: 50%; border: 1px solid rgba(167,139,250,0.4); }
-.domain-dot.filled { background: #a78bfa; border-color: #a78bfa; box-shadow: 0 0 6px #a78bfa60; }
-
-/* Tech: animated bars */
-.bar-item { margin-bottom: 18px; }
-.bar-item:last-child { margin-bottom: 0; }
-.bar-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
-.bar-name { font-family: var(--font-mono); font-size: 12px; color: var(--gray); }
-.bar-pct  { font-family: var(--font-mono); font-size: 11px; color: var(--teal); }
-.bar-track { height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
-.bar-fill {
-  height: 100%; border-radius: 2px; width: 0%;
-  background: linear-gradient(90deg, var(--teal), var(--amber));
-  transition: width 1.2s cubic-bezier(0.25,0.46,0.45,0.94);
-}
-
-/* Certs: compact cards */
-.cert-item {
-  display: flex; align-items: center; gap: 14px; padding: 14px 0;
-  border-bottom: 1px solid var(--border); transition: opacity 0.2s;
-}
-.cert-item:last-child { border-bottom: none; }
-.cert-item:hover { opacity: 0.8; }
-.cert-logo {
-  width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px; font-weight: 800; font-family: var(--font-mono);
-}
-.cert-info { min-width: 0; }
-.cert-name { font-family: var(--font-mono); font-size: 11px; color: var(--white); line-height: 1.35; margin-bottom: 2px; }
-.cert-issuer { font-family: var(--font-mono); font-size: 10px; color: var(--gray-dim); letter-spacing: 0.06em; }
-
-/* ── V5: Per-Project Themes ── */
-.proj-page[data-theme="emobot"]   { --proj-accent: #a78bfa; --proj-dim: rgba(167,139,250,0.12); }
-.proj-page[data-theme="data"]     { --proj-accent: #00e5c0; --proj-dim: rgba(0,229,192,0.12); }
-.proj-page[data-theme="research"] { --proj-accent: #38bdf8; --proj-dim: rgba(56,189,248,0.12); }
-.proj-page[data-theme="ai"]       { --proj-accent: #fbbf24; --proj-dim: rgba(251,191,36,0.12); }
-.proj-page[data-theme="safety"]   { --proj-accent: #fb7185; --proj-dim: rgba(251,113,133,0.12); }
-.proj-page[data-theme="map"]      { --proj-accent: #34d399; --proj-dim: rgba(52,211,153,0.12); }
-.proj-page[data-theme="platform"] { --proj-accent: #fb923c; --proj-dim: rgba(251,146,60,0.12); }
-.proj-page { --proj-accent: var(--teal); --proj-dim: var(--teal-dim); }
-
-.proj-hero .proj-category { color: var(--proj-accent); }
-.proj-section-title { color: var(--proj-accent); }
-.proj-section-title::before { background: var(--proj-accent); }
-.outcome-num { color: var(--proj-accent); }
-.tech-item-label { color: var(--proj-accent); }
-.proj-hero::before { background: radial-gradient(ellipse at 30% 50%, var(--proj-dim) 0%, transparent 60%); }
-.stack-tag { background: var(--proj-dim); color: var(--proj-accent); }
-
-/* Accent pulse on project page progress */
-.proj-page #progress { background: linear-gradient(90deg, var(--proj-accent), var(--amber)); }
-
-/* ── V5: Emobot+ Case Study ── */
-.case-problem {
-  max-width: 720px; margin-bottom: 80px;
-  padding: 28px 32px; background: var(--proj-dim);
-  border: 1px solid rgba(167,139,250,0.2); border-radius: var(--radius);
-  border-left: 3px solid var(--proj-accent);
-}
-.case-problem-label {
-  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em;
-  text-transform: uppercase; color: var(--proj-accent); margin-bottom: 12px;
-}
-.case-problem-text {
-  font-family: var(--font-mono); font-size: 14px; line-height: 1.85; color: var(--gray);
-}
-.pain-points { list-style: none; margin-top: 16px; display: flex; flex-direction: column; gap: 8px; }
-.pain-points li {
-  font-family: var(--font-mono); font-size: 12px; color: var(--gray);
-  display: flex; gap: 10px; align-items: flex-start;
-}
-.pain-points li::before { content: '!'; color: var(--proj-accent); flex-shrink: 0; font-weight: 700; }
-
-/* Process Stepper */
-.process-stepper { display: flex; gap: 0; margin-bottom: 80px; max-width: 720px; }
-@media (max-width: 768px) { .process-stepper { flex-direction: column; gap: 16px; } }
-.process-step {
-  flex: 1; padding: 24px; background: var(--surface);
-  border: 1px solid var(--border); position: relative;
-  transition: border-color 0.3s;
-}
-.process-step:first-child { border-radius: var(--radius) 0 0 var(--radius); }
-.process-step:last-child  { border-radius: 0 var(--radius) var(--radius) 0; }
-.process-step:not(:last-child) { border-right: none; }
-.process-step:hover { border-color: rgba(167,139,250,0.3); }
-@media (max-width: 768px) {
-  .process-step { border-radius: 8px !important; border-right: 1px solid var(--border) !important; }
-}
-.process-num {
-  font-family: var(--font-mono); font-size: 28px; color: var(--proj-accent);
-  opacity: 0.3; line-height: 1; margin-bottom: 10px;
-}
-.process-name {
-  font-family: var(--font-sans); font-size: 14px; font-weight: 700;
-  color: var(--white); margin-bottom: 8px;
-}
-.process-desc {
-  font-family: var(--font-mono); font-size: 11px; color: var(--gray-dim);
-  line-height: 1.7;
-}
-.process-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
-.process-tag {
-  padding: 2px 8px; border-radius: 3px; font-family: var(--font-mono); font-size: 10px;
-  background: var(--proj-dim); color: var(--proj-accent);
-}
-
-/* Persona Cards */
-.persona-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; max-width: 720px; margin-bottom: 80px; }
-@media (max-width: 900px) { .persona-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 500px) { .persona-grid { grid-template-columns: 1fr; } }
-.persona-card {
-  padding: 20px 18px; background: var(--surface);
-  border: 1px solid var(--border); border-radius: 10px;
-  transition: transform 0.3s, border-color 0.3s;
-}
-.persona-card:hover { transform: translateY(-4px); border-color: rgba(167,139,250,0.3); }
-.persona-avatar {
-  width: 40px; height: 40px; border-radius: 50%; margin-bottom: 12px;
-  display: flex; align-items: center; justify-content: center; font-size: 20px;
-}
-.persona-name { font-family: var(--font-sans); font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
-.persona-trait { font-family: var(--font-mono); font-size: 10px; color: var(--proj-accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
-.persona-desc  { font-family: var(--font-mono); font-size: 11px; color: var(--gray-dim); line-height: 1.6; }
-
-/* Impact Metrics Grid */
-.impact-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; max-width: 720px; }
-@media (max-width: 600px) { .impact-grid { grid-template-columns: 1fr 1fr; } }
-.impact-card {
-  padding: 24px; background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); text-align: center;
-}
-.impact-num { font-family: var(--font-serif); font-size: 2rem; color: var(--proj-accent); line-height: 1; margin-bottom: 8px; }
-.impact-label { font-family: var(--font-mono); font-size: 10px; color: var(--gray-dim); letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.5; }
-
-/* ── V5: Project Page unique decorative headers ── */
-.proj-hero-deco {
-  position: absolute; right: 0; top: 0; bottom: 0; width: 40%; pointer-events: none;
-  opacity: 0.06; overflow: hidden;
-}
-.proj-hero-deco svg { width: 100%; height: 100%; }
-
-/* ── V5: Pipeline viz (DeepTech DB) ── */
-.pipeline-viz { display: flex; align-items: center; gap: 0; max-width: 720px; margin-bottom: 48px; flex-wrap: wrap; gap: 4px; }
-.pipeline-node {
-  padding: 10px 16px; background: var(--proj-dim);
-  border: 1px solid rgba(0,229,192,0.2); border-radius: 4px;
-  font-family: var(--font-mono); font-size: 11px; color: var(--proj-accent);
-  white-space: nowrap;
-}
-.pipeline-arrow { font-family: var(--font-mono); font-size: 12px; color: var(--gray-dim); padding: 0 4px; }
-
-/* ── V5: Stats bar (WLEIS) ── */
-.stats-bar { display: flex; gap: 0; max-width: 720px; margin-bottom: 48px; background: var(--border); border-radius: var(--radius); overflow: hidden; }
-.stats-bar-item { flex: 1; padding: 20px 16px; background: var(--surface); border-right: 1px solid var(--border); text-align: center; }
-.stats-bar-item:last-child { border-right: none; }
-.stats-bar-num { font-family: var(--font-serif); font-size: 1.8rem; color: var(--proj-accent); line-height: 1; }
-.stats-bar-label { font-family: var(--font-mono); font-size: 10px; color: var(--gray-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
-
-/* ── V5: News source cards (AI News) ── */
-.source-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; max-width: 720px; margin-bottom: 48px; }
-@media (max-width: 600px) { .source-grid { grid-template-columns: 1fr 1fr; } }
-.source-card {
-  padding: 14px 16px; background: var(--surface); border: 1px solid var(--border);
-  border-radius: 8px; font-family: var(--font-mono); font-size: 11px; color: var(--gray);
-  display: flex; align-items: center; gap: 8px;
-}
-.source-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--proj-accent); flex-shrink: 0; }
-
-/* ── V5: Feature blocks (LoveGuard) ── */
-.feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 720px; margin-bottom: 48px; }
-@media (max-width: 600px) { .feature-grid { grid-template-columns: 1fr; } }
-.feature-card {
-  padding: 22px; background: var(--proj-dim); border: 1px solid rgba(251,113,133,0.15);
-  border-radius: var(--radius);
-}
-.feature-icon { font-size: 22px; margin-bottom: 10px; }
-.feature-name { font-family: var(--font-sans); font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
-.feature-desc { font-family: var(--font-mono); font-size: 11px; color: var(--gray-dim); line-height: 1.65; }
-
-/* ── V5: Value chain (Ecosystem Map) ── */
-.chain-flow { display: flex; flex-direction: column; gap: 10px; max-width: 720px; margin-bottom: 48px; }
-.chain-row {
-  display: flex; align-items: center; gap: 12px; padding: 16px 20px;
-  background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-}
-.chain-num { font-family: var(--font-mono); font-size: 10px; color: var(--proj-accent); min-width: 24px; }
-.chain-name { font-family: var(--font-sans); font-size: 13px; color: var(--white); flex: 1; }
-.chain-tag { font-family: var(--font-mono); font-size: 10px; color: var(--proj-accent); background: var(--proj-dim); padding: 3px 10px; border-radius: 20px; }
-
-/* ── V5: Metric cards (Startup Platform) ── */
-.metric-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; max-width: 720px; margin-bottom: 48px; }
-@media (max-width: 600px) { .metric-row { grid-template-columns: 1fr 1fr; } }
-.metric-card {
-  padding: 20px; background: var(--proj-dim);
-  border: 1px solid rgba(251,146,60,0.2); border-radius: 10px;
-}
-.metric-val { font-family: var(--font-serif); font-size: 1.8rem; color: var(--proj-accent); line-height: 1; margin-bottom: 6px; }
-.metric-desc { font-family: var(--font-mono); font-size: 10px; color: var(--gray-dim); letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.5; }
 </style>
 </head>
 <body>
@@ -1104,7 +849,7 @@ const T = {
         contactTitle1: "Let's build something", contactTitleEm: 'worth remembering', contactTitle2: '.',
         contactNote: "I'm open to product roles, research collaborations, and ecosystem strategy work. If you're building something ambitious at the frontier of deep tech — let's talk.",
         contactEmail: 'EMAIL', contactPhone: 'PHONE', contactLang: 'LANGUAGES',
-        footerCopy: '© 2026 Guan-Ting Ye', footerTag: 'Neural Signal OS · v5',
+        footerCopy: '© 2026 Guan-Ting Ye', footerTag: 'Neural Signal OS · v3',
         projBack: '← All Projects',
         projRole: 'ROLE', projTimeline: 'TIMELINE', projStatus: 'STATUS', projImpact: 'IMPACT',
         projOverview: 'Overview', projOutcomes: 'Key Outcomes', projTech: 'Technical Approach', projAwards: 'Awards & Recognition',
@@ -1156,7 +901,7 @@ const T = {
         contactTitle1: '讓我們打造', contactTitleEm: '值得被記住', contactTitle2: '的事物。',
         contactNote: '歡迎洽談產品職位、研究合作或生態系策略工作。若你正在深科技前沿打造有野心的東西——我們來談談。',
         contactEmail: '電子郵件', contactPhone: '電話', contactLang: '語言',
-        footerCopy: '© 2026 葉冠廷', footerTag: '神經信號 OS · v5',
+        footerCopy: '© 2026 葉冠廷', footerTag: '神經信號 OS · v3',
         projBack: '← 所有專案',
         projRole: '角色', projTimeline: '時程', projStatus: '狀態', projImpact: '成果',
         projOverview: '專案概述', projOutcomes: '關鍵成果', projTech: '技術方法', projAwards: '獎項與認可',
@@ -1629,7 +1374,6 @@ function Nav({ navigate }) {
                         React.createElement("a", { href: "#awards", onClick: e => { e.preventDefault(); go('awards'); } }, t('navAwards'))),
                     React.createElement("li", null,
                         React.createElement("a", { href: "#contact", onClick: e => { e.preventDefault(); go('contact'); } }, t('navContact')))),
-                React.createElement("a", { href: "Ye_Guan-Ting_CV.pdf", download: true, className: "nav-resume", title: "Download Resume PDF" }, "↓ CV"),
                 React.createElement(LangToggle, null),
                 React.createElement("button", { className: `hamburger${menuOpen ? ' open' : ''}`, onClick: () => setMenuOpen(!menuOpen), "aria-label": "Menu" },
                     React.createElement("span", null),
@@ -1767,8 +1511,25 @@ function HomePage({ navigate }) {
                     React.createElement("em", null, t('workTitleEm')),
                     t('workTitle2')),
                 React.createElement("div", { className: "work-grid" }, PROJECTS.map((p, i) => React.createElement(ProjectCard, { key: p.slug, project: p, index: i, navigate: navigate, lang: lang }))))),
-        React.createElement(SkillsSection, null),
-            React.createElement(AwardsSection, null),
+        React.createElement("section", { className: "skills", id: "skills" },
+            React.createElement("div", { className: "container" },
+                React.createElement("div", { className: "section-label reveal" }, t('skillsLabel')),
+                React.createElement("h2", { className: "section-title reveal reveal-delay-1" },
+                    t('skillsTitle1'),
+                    " ",
+                    React.createElement("em", null, t('skillsTitleEm')),
+                    t('skillsTitle2')),
+                React.createElement("div", { className: "skills-grid" },
+                    React.createElement("div", { className: "skill-group reveal" },
+                        React.createElement("div", { className: "skill-group-title" }, t('skillDomain')),
+                        React.createElement("div", { className: "skill-items" }, ['Cognitive Neuroscience', 'Deep Tech Strategy', 'AI / Machine Learning', 'UX Research', 'Digital Humanism', 'Psychometrics', 'Experiment Design', 'Ecosystem Mapping', 'Digital Mental Health'].map(s => React.createElement("span", { className: "skill-tag", key: s }, s)))),
+                    React.createElement("div", { className: "skill-group reveal reveal-delay-1" },
+                        React.createElement("div", { className: "skill-group-title" }, t('skillTech')),
+                        React.createElement("div", { className: "skill-items" }, ['Python', 'R · Matlab · SPSS', 'JavaScript · React · Vue', 'SQL · Database Design', 'FastAPI · Backend Dev', 'Playwright · Scrapy', 'Pandas · Scikit-learn', 'EEG / fMRI Analysis', 'ETL Pipelines', 'LLM APIs · Prompt Eng.', 'Notion API', 'Photoshop · Illustrator'].map(s => React.createElement("span", { className: "skill-tag", key: s }, s)))),
+                    React.createElement("div", { className: "skill-group reveal reveal-delay-2" },
+                        React.createElement("div", { className: "skill-group-title" }, t('skillLang')),
+                        React.createElement("div", { className: "skill-items" }, ['Mandarin Chinese (Native)', 'English (Professional)', 'Scientific Writing', 'Pitch Deck Design', 'A/B Experiment Design', 'Cross-disciplinary Facilitation', 'Data Storytelling', 'Business Model Design', 'Market Analysis'].map(s => React.createElement("span", { className: "skill-tag", key: s }, s))))))),
+        React.createElement(AwardsSection, null),
         React.createElement("section", { className: "contact-section", id: "contact" },
             React.createElement("div", { className: "contact-ghost", "aria-hidden": "true" }, "SIGNAL"),
             React.createElement("div", { className: "container" },
@@ -1843,7 +1604,7 @@ function ProjectPage({ slug, navigate }) {
     const idx = PROJECTS.findIndex(p => p.slug === slug);
     const p = PROJECTS[idx];
     if (!p || p.comingSoon)
-        return (React.createElement("div", { className: "proj-page page-enter", "data-theme": PROJECT_THEMES[slug] || "data" },
+        return (React.createElement("div", { className: "proj-page page-enter" },
             React.createElement("div", { className: "container", style: { paddingTop: 160, paddingBottom: 80 } },
                 React.createElement("a", { href: "#/", className: "proj-back", onClick: e => { e.preventDefault(); navigate('#/'); } }, t('projBack')),
                 React.createElement("p", { className: "proj-category" }, t('comingSoon')),
@@ -1912,347 +1673,6 @@ function ProjectPage({ slug, navigate }) {
                         React.createElement("span", { className: "proj-nav-dir" }, t('nextProj')),
                         React.createElement("span", { className: "proj-nav-name" }, lang === 'zh' ? nextP.zhTitle : nextP.title))) : React.createElement("span", null))))));
 }
-
-/* ═══════════════════════════════
-   PROJECT THEMES MAP
-═══════════════════════════════ */
-const PROJECT_THEMES = {
-  'emobot-plus':                 'emobot',
-  'deeptech-database':           'data',
-  'wleis-validation':            'research',
-  'ai-news-intelligence':        'ai',
-  'loveguard':                   'safety',
-  'semiconductor-map':           'map',
-  'startup-intelligence-platform': 'platform',
-};
-
-/* ═══════════════════════════════
-   SKILLS SECTION V5
-═══════════════════════════════ */
-function SkillsSection() {
-  const { t } = useLang();
-  const [animated, setAnimated] = useState(false);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const io = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) { setAnimated(true); io.disconnect(); }
-    }, { threshold: 0.2 });
-    if (ref.current) io.observe(ref.current);
-    return () => io.disconnect();
-  }, []);
-
-  const DOMAIN = [
-    { name: 'Cognitive Neuroscience',  level: 5 },
-    { name: 'AI Product Design',       level: 4 },
-    { name: 'UX Research',             level: 4 },
-    { name: 'Deep Tech Strategy',      level: 4 },
-    { name: 'Psychometrics',           level: 5 },
-    { name: 'Ecosystem Mapping',       level: 4 },
-    { name: 'Digital Mental Health',   level: 3 },
-    { name: 'Data Storytelling',       level: 4 },
-  ];
-
-  const TECH = [
-    { name: 'Python (Data / AI)',      pct: 90 },
-    { name: 'R · SPSS · JASP',         pct: 88 },
-    { name: 'JavaScript · React · Vue',pct: 78 },
-    { name: 'SQL · Database Design',   pct: 75 },
-    { name: 'LLM APIs · Prompt Eng.',  pct: 82 },
-    { name: 'Playwright · Web Scraping',pct: 85 },
-    { name: 'EEG / fMRI Analysis',     pct: 80 },
-    { name: 'ETL Pipelines',           pct: 83 },
-    { name: 'FastAPI · Backend Dev',   pct: 72 },
-    { name: 'Photoshop · Illustrator', pct: 68 },
-  ];
-
-  const CERTS = [
-    { logo: 'G', name: 'Google UX Design Professional Certificate',         issuer: 'Google · Coursera', color: '#4285f4', bg: 'rgba(66,133,244,0.1)' },
-    { logo: 'G', name: 'Google Advanced Data Analytics',                    issuer: 'Google · Coursera', color: '#34a853', bg: 'rgba(52,168,83,0.1)' },
-    { logo: 'G', name: 'Google Project Management',                         issuer: 'Google · Coursera', color: '#ea4335', bg: 'rgba(234,67,53,0.1)' },
-    { logo: 'M', name: 'Meta Full Stack Developer (Front-End & Back-End)',   issuer: 'Meta · Coursera',   color: '#1877f2', bg: 'rgba(24,119,242,0.1)' },
-    { logo: 'I', name: 'IBM AI Product Manager Professional Certificate',    issuer: 'IBM · Coursera',    color: '#006699', bg: 'rgba(0,102,153,0.1)' },
-    { logo: 'I', name: 'IBM Systems & Solutions Architect Certificate',      issuer: 'IBM · Coursera',    color: '#006699', bg: 'rgba(0,102,153,0.1)' },
-  ];
-
-  return React.createElement('section', { className: 'skills-v5', id: 'skills' },
-    React.createElement('div', { className: 'container' },
-      React.createElement('div', { className: 'section-label reveal' }, t('skillsLabel')),
-      React.createElement('h2', { className: 'section-title reveal reveal-delay-1' },
-        t('skillsTitle1'), ' ', React.createElement('em', null, t('skillsTitleEm')), t('skillsTitle2')
-      ),
-      React.createElement('div', { className: 'skills-v5-grid reveal', ref },
-        // Domain Panel
-        React.createElement('div', { className: 'skill-panel panel-domain' },
-          React.createElement('div', { className: 'skill-panel-title' },
-            React.createElement('span', { className: 'skill-panel-title-dot' }),
-            t('skillDomain')
-          ),
-          React.createElement('div', null,
-            ...DOMAIN.map(d =>
-              React.createElement('div', { className: 'domain-item', key: d.name },
-                React.createElement('span', { className: 'domain-name' }, d.name),
-                React.createElement('div', { className: 'domain-dots' },
-                  ...[1,2,3,4,5].map(i =>
-                    React.createElement('span', { className: `domain-dot${i <= d.level ? ' filled' : ''}`, key: i })
-                  )
-                )
-              )
-            )
-          )
-        ),
-        // Tech Panel
-        React.createElement('div', { className: 'skill-panel panel-tech' },
-          React.createElement('div', { className: 'skill-panel-title' },
-            React.createElement('span', { className: 'skill-panel-title-dot' }),
-            t('skillTech')
-          ),
-          React.createElement('div', null,
-            ...TECH.map(s =>
-              React.createElement('div', { className: 'bar-item', key: s.name },
-                React.createElement('div', { className: 'bar-header' },
-                  React.createElement('span', { className: 'bar-name' }, s.name),
-                  React.createElement('span', { className: 'bar-pct' }, `${s.pct}%`)
-                ),
-                React.createElement('div', { className: 'bar-track' },
-                  React.createElement('div', { className: 'bar-fill', style: { width: animated ? `${s.pct}%` : '0%' } })
-                )
-              )
-            )
-          )
-        ),
-        // Certs Panel
-        React.createElement('div', { className: 'skill-panel panel-certs' },
-          React.createElement('div', { className: 'skill-panel-title' },
-            React.createElement('span', { className: 'skill-panel-title-dot' }),
-            'Certifications'
-          ),
-          React.createElement('div', null,
-            ...CERTS.map(c =>
-              React.createElement('div', { className: 'cert-item', key: c.name },
-                React.createElement('div', { className: 'cert-logo', style: { color: c.color, background: c.bg } }, c.logo),
-                React.createElement('div', { className: 'cert-info' },
-                  React.createElement('div', { className: 'cert-name' }, c.name),
-                  React.createElement('div', { className: 'cert-issuer' }, c.issuer)
-                )
-              )
-            )
-          )
-        )
-      )
-    )
-  );
-}
-
-/* ═══════════════════════════════
-   EMOBOT+ EXTRA SECTIONS
-═══════════════════════════════ */
-function EmobotCaseStudy({ lang }) {
-  const PROCESS = [
-    { num: '01', name: 'Research', desc: 'User interviews, pain point mapping, psychological literature review on CBT & MI frameworks.', tags: ['User Interviews', 'Desk Research', 'CBT Literature'] },
-    { num: '02', name: 'Design',   desc: 'Persona matching system design, conversation flow architecture, Figma prototype of 4 AI personas.', tags: ['Figma', 'Persona Design', 'UX Flow'] },
-    { num: '03', name: 'Build',    desc: 'Full-stack implementation: FastAPI backend, React frontend, Wave2Lip avatar, risk detection classifier.', tags: ['FastAPI', 'React', 'Wave2Lip'] },
-    { num: '04', name: 'Validate', desc: 'Demo pitches, stakeholder feedback, competition presentation, TSCN conference showcase.', tags: ['Pitch', 'User Testing', 'TSCN 2025'] },
-  ];
-
-  const PERSONAS = [
-    { emoji: '🌟', name: 'Lumi',  trait: 'Warm & Radiant',   color: '#fbbf24', desc: 'Gentle encouragement, reflective listening, positive reframe.',   bg: 'rgba(251,191,36,0.12)' },
-    { emoji: '🌊', name: 'Solin', trait: 'Calm & Grounding', color: '#38bdf8', desc: 'Grounding techniques, breathing exercises, calm presence.',         bg: 'rgba(56,189,248,0.12)' },
-    { emoji: '⚡', name: 'Niko',  trait: 'Direct & Energetic',color: '#a78bfa', desc: 'Solution-focused, action-oriented, challenge-reframing.',          bg: 'rgba(167,139,250,0.12)' },
-    { emoji: '🌿', name: 'Clara', trait: 'Analytical & Clear',color: '#34d399', desc: 'Evidence-based insights, cognitive restructuring, logic-guided.',   bg: 'rgba(52,211,153,0.12)' },
-  ];
-
-  const IMPACT = [
-    { num: '🥈',   label: 'Silver Medal', desc: '2025 AI Contest' },
-    { num: '4',    label: 'AI Personas', desc: 'Trait-matched' },
-    { num: '3',    label: 'Input Modes', desc: 'Text · Audio · Avatar' },
-    { num: '∞',   label: 'Safety Rails', desc: 'Clinical escalation' },
-    { num: 'TSCN', label: 'Presented At', desc: '2025 Annual Meeting' },
-    { num: 'MVP',  label: 'Stage', desc: 'Validated prototype' },
-  ];
-
-  const PA = lang === 'zh';
-
-  return React.createElement(React.Fragment, null,
-    // PROBLEM
-    React.createElement('div', { className: 'proj-section reveal' },
-      React.createElement('div', { className: 'proj-section-title' }, PA ? '問題定義' : 'Problem'),
-      React.createElement('div', { className: 'case-problem' },
-        React.createElement('div', { className: 'case-problem-label' }, PA ? '使用者痛點' : 'User Pain Points'),
-        React.createElement('p', { className: 'case-problem-text' },
-          PA
-            ? '心理健康服務門檻高、服務量能有限，且現有 AI 工具缺乏個人化情緒適配——人們需要一個在「尋求正式協助之前」能夠安全傾訴的空間。'
-            : 'Mental health services have high access barriers and limited capacity. Existing AI tools lack personalized emotional calibration. People need a safe space to process emotions before they reach the threshold for formal help-seeking.'
-        ),
-        React.createElement('ul', { className: 'pain-points' },
-          ...([
-            PA ? '心理健康資源可近性不足，服務等候時間長' : 'Long wait times and low accessibility of mental health resources',
-            PA ? '現有 AI 聊天機器人缺乏情緒個人化與安全機制' : 'Existing AI chatbots lack emotional personalization and safety guardrails',
-            PA ? '用戶對 AI 心理支持的信任疑慮與隱私顧慮' : 'User distrust of AI mental health tools and privacy concerns',
-            PA ? '臨床過度承諾風險（AI 誤診或替代治療師）' : 'Risk of clinical overpromising — AI acting as a therapist substitute',
-          ].map((p, i) => React.createElement('li', { key: i }, p)))
-        )
-      )
-    ),
-    // PROCESS
-    React.createElement('div', { className: 'proj-section reveal' },
-      React.createElement('div', { className: 'proj-section-title' }, PA ? '設計流程' : 'Process'),
-      React.createElement('div', { className: 'process-stepper' },
-        ...PROCESS.map(step =>
-          React.createElement('div', { className: 'process-step', key: step.num },
-            React.createElement('div', { className: 'process-num' }, step.num),
-            React.createElement('div', { className: 'process-name' }, step.name),
-            React.createElement('div', { className: 'process-desc' }, step.desc),
-            React.createElement('div', { className: 'process-tags' },
-              ...step.tags.map(tag => React.createElement('span', { className: 'process-tag', key: tag }, tag))
-            )
-          )
-        )
-      )
-    ),
-    // PROTOTYPE
-    React.createElement('div', { className: 'proj-section reveal' },
-      React.createElement('div', { className: 'proj-section-title' }, PA ? '產品原型：四種 AI 人設' : 'Prototype: Four AI Personas'),
-      React.createElement('div', { className: 'persona-grid' },
-        ...PERSONAS.map(p =>
-          React.createElement('div', { className: 'persona-card', key: p.name },
-            React.createElement('div', { className: 'persona-avatar', style: { background: p.bg } }, p.emoji),
-            React.createElement('div', { className: 'persona-name' }, p.name),
-            React.createElement('div', { className: 'persona-trait', style: { color: p.color } }, p.trait),
-            React.createElement('div', { className: 'persona-desc' }, p.desc)
-          )
-        )
-      )
-    ),
-    // IMPACT
-    React.createElement('div', { className: 'proj-section reveal' },
-      React.createElement('div', { className: 'proj-section-title' }, PA ? '成果影響' : 'Impact'),
-      React.createElement('div', { className: 'impact-grid' },
-        ...IMPACT.map(item =>
-          React.createElement('div', { className: 'impact-card', key: item.label },
-            React.createElement('div', { className: 'impact-num' }, item.num),
-            React.createElement('div', { className: 'impact-label' },
-              React.createElement('strong', { style: { color: 'var(--white)', display: 'block', marginBottom: 2 } }, item.label),
-              item.desc
-            )
-          )
-        )
-      )
-    )
-  );
-}
-
-/* ═══════════════════════════════
-   PER-PROJECT UNIQUE SECTIONS
-═══════════════════════════════ */
-function ProjectExtraSection({ slug, lang }) {
-  const PA = lang === 'zh';
-
-  if (slug === 'emobot-plus') return React.createElement(EmobotCaseStudy, { lang });
-
-  if (slug === 'deeptech-database') return React.createElement('div', { className: 'proj-section reveal' },
-    React.createElement('div', { className: 'proj-section-title' }, PA ? '資料管線架構' : 'Pipeline Architecture'),
-    React.createElement('div', { className: 'pipeline-viz' },
-      ...['104.com.tw', '→', 'TSIA / SEMI.org', '→', 'MOPS API', '→', 'ETL Clean', '→', 'SQL Store', '→', 'Excel / Notion'].map((n, i) =>
-        n === '→'
-          ? React.createElement('span', { className: 'pipeline-arrow', key: i }, n)
-          : React.createElement('div', { className: 'pipeline-node', key: i }, n)
-      )
-    ),
-    React.createElement('div', { className: 'stats-bar' },
-      ...[
-        { num: '230+', label: PA ? '公司追蹤' : 'Companies' },
-        { num: '40+',  label: PA ? '資料維度' : 'Data Dims' },
-        { num: 'v9.2', label: PA ? '目前版本' : 'Version' },
-        { num: '9',    label: PA ? '整合來源' : 'Sources' },
-      ].map(s => React.createElement('div', { className: 'stats-bar-item', key: s.label },
-        React.createElement('div', { className: 'stats-bar-num' }, s.num),
-        React.createElement('div', { className: 'stats-bar-label' }, s.label)
-      ))
-    )
-  );
-
-  if (slug === 'wleis-validation') return React.createElement('div', { className: 'proj-section reveal' },
-    React.createElement('div', { className: 'proj-section-title' }, PA ? '研究統計摘要' : 'Statistical Summary'),
-    React.createElement('div', { className: 'stats-bar' },
-      ...[
-        { num: 'N=342', label: PA ? '樣本數' : 'Sample' },
-        { num: 'CFI >.95', label: PA ? '模型適配' : 'Model Fit' },
-        { num: 'RMSEA <.06', label: 'RMSEA' },
-        { num: '4-Factor', label: PA ? '驗證結構' : 'Structure' },
-      ].map(s => React.createElement('div', { className: 'stats-bar-item', key: s.label },
-        React.createElement('div', { className: 'stats-bar-num', style: { fontSize: '1.3rem' } }, s.num),
-        React.createElement('div', { className: 'stats-bar-label' }, s.label)
-      ))
-    )
-  );
-
-  if (slug === 'ai-news-intelligence') return React.createElement('div', { className: 'proj-section reveal' },
-    React.createElement('div', { className: 'proj-section-title' }, PA ? '資料來源矩陣' : 'Source Matrix'),
-    React.createElement('div', { className: 'source-grid' },
-      ...['TechCrunch', 'MIT Tech Review', 'TechNews 科技新報', 'INSIDE 硬塞', 'TechNewsWorld', '+ Domain Feeds'].map(s =>
-        React.createElement('div', { className: 'source-card', key: s },
-          React.createElement('span', { className: 'source-dot' }),
-          s
-        )
-      )
-    )
-  );
-
-  if (slug === 'loveguard') return React.createElement('div', { className: 'proj-section reveal' },
-    React.createElement('div', { className: 'proj-section-title' }, PA ? '核心功能設計' : 'Core Feature Design'),
-    React.createElement('div', { className: 'feature-grid' },
-      ...[
-        { icon: '🔍', name: PA ? '12 種操控模式辨識' : '12-Pattern Detection',     desc: PA ? '從心理學文獻提煉的煤氣燈效應、愛情轟炸、孤立戰術等模式分類體系' : 'Taxonomy of gaslighting, love-bombing, isolation tactics from coercive control literature.' },
-        { icon: '📚', name: PA ? '模式圖書館 UX 框架' : 'Pattern Library UX',       desc: PA ? '教育性而非診斷性——用戶自主探索模式，非接受標籤' : 'Educational, not diagnostic. Users explore patterns autonomously, never receive labels.' },
-        { icon: '🤖', name: PA ? 'NLP 分類器' : 'NLP Classifier',                  desc: PA ? '針對關係場景描述進行微調的 HuggingFace transformer 模型' : 'HuggingFace transformer fine-tuned on relationship scenario descriptions.' },
-        { icon: '🛡️', name: PA ? '倫理設計框架' : 'Ethics Framework',               desc: PA ? '具文件記錄的敏感 AI 主題設計原則，確保不過度承諾、不標籤化' : 'Documented design principles ensuring no over-clinical claims, no stigmatizing language.' },
-      ].map(f => React.createElement('div', { className: 'feature-card', key: f.name },
-        React.createElement('div', { className: 'feature-icon' }, f.icon),
-        React.createElement('div', { className: 'feature-name' }, f.name),
-        React.createElement('div', { className: 'feature-desc' }, f.desc)
-      ))
-    )
-  );
-
-  if (slug === 'semiconductor-map') return React.createElement('div', { className: 'proj-section reveal' },
-    React.createElement('div', { className: 'proj-section-title' }, PA ? '深科技價值鏈覆蓋' : 'Deep Tech Value Chain Coverage'),
-    React.createElement('div', { className: 'chain-flow' },
-      ...[
-        { num: '01', name: 'Semiconductor / IC Design', tag: '45+ companies' },
-        { num: '02', name: 'AI / Machine Learning',     tag: '62+ companies' },
-        { num: '03', name: 'Biotech / MedTech',         tag: '38+ companies' },
-        { num: '04', name: 'Cleantech / Energy',        tag: '29+ companies' },
-        { num: '05', name: 'Advanced Manufacturing',    tag: '41+ companies' },
-        { num: '06', name: 'Deep-Tech Enablers',        tag: '18+ companies' },
-      ].map(c => React.createElement('div', { className: 'chain-row', key: c.num },
-        React.createElement('span', { className: 'chain-num' }, c.num),
-        React.createElement('span', { className: 'chain-name' }, c.name),
-        React.createElement('span', { className: 'chain-tag' }, c.tag)
-      ))
-    )
-  );
-
-  if (slug === 'startup-intelligence-platform') return React.createElement('div', { className: 'proj-section reveal' },
-    React.createElement('div', { className: 'proj-section-title' }, PA ? '平台關鍵指標' : 'Platform Key Metrics'),
-    React.createElement('div', { className: 'metric-row' },
-      ...[
-        { val: '~80%', desc: PA ? '手動工作量減少' : 'Manual Work Reduced' },
-        { val: '100%', desc: PA ? '自動化資料更新' : 'Automated Data Refresh' },
-        { val: '1',    desc: PA ? '獨立開發' : 'Solo Built' },
-        { val: 'SQL',  desc: PA ? '後端資料庫' : 'Backend DB' },
-        { val: 'JS',   desc: PA ? '前端儀表板' : 'Frontend Dashboard' },
-        { val: '⭐',   desc: PA ? '育星計畫種子' : 'Star Program 2025' },
-      ].map(m => React.createElement('div', { className: 'metric-card', key: m.desc },
-        React.createElement('div', { className: 'metric-val' }, m.val),
-        React.createElement('div', { className: 'metric-desc' }, m.desc)
-      ))
-    )
-  );
-
-  return null;
-}
-
 /* ═══════════════════════════════
    APP
 ═══════════════════════════════ */
