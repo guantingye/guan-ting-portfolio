@@ -4,7 +4,6 @@ import Icon from '../ui/Icon.jsx';
 export default function EmobotCaseStudy({ lang }) {
   const PA = lang === 'zh';
   const [activePersona, setActivePersona] = useState(0);
-  const [videoLoaded, setVideoLoaded] = useState(false);
   const pick = (item, key) => {
     const zhKey = 'zh' + key.charAt(0).toUpperCase() + key.slice(1);
     return PA && item[zhKey] ? item[zhKey] : item[key];
@@ -295,33 +294,17 @@ export default function EmobotCaseStudy({ lang }) {
                 React.createElement('span', null),
                 React.createElement('span', null)
               ),
-              React.createElement('span', null, PA ? '得獎影片 / 點擊播放' : 'Award video / click to play')
+              React.createElement('span', null, PA ? '產品展示影片' : 'Product demo')
             ),
             React.createElement('div', { className: 'emobot-video-frame' },
-              !videoLoaded && React.createElement('button', {
-                className: 'emobot-video-poster',
-                type: 'button',
-                onClick: () => setVideoLoaded(true),
-                'aria-label': PA ? '播放 Emobot+ 得獎影片' : 'Play Emobot+ award video'
-              },
-                React.createElement('img', {
-                  src: 'https://img.youtube.com/vi/3wb-ZB9ALIg/hqdefault.jpg',
-                  alt: PA ? 'Emobot+ 得獎影片封面' : 'Emobot+ award video thumbnail',
-                  loading: 'lazy'
-                }),
-                React.createElement('span', { className: 'emobot-play-badge' }, React.createElement(Icon, { name: 'zap' })),
-                React.createElement('span', { className: 'emobot-video-poster-copy' },
-                  React.createElement('span', null, PA ? '先顯示可見封面，點擊後載入影片' : 'Visible poster first, iframe loads after click'),
-                  React.createElement('span', null, PA ? '銀獎佐證' : 'Silver Medal proof')
-                )
-              ),
-              videoLoaded && React.createElement('iframe', {
-                src: 'https://www.youtube.com/embed/3wb-ZB9ALIg?autoplay=1&rel=0&modestbranding=1&playsinline=1',
-                title: PA ? 'Emobot+ 得獎影片' : 'Emobot+ award video',
-                loading: 'lazy',
-                referrerPolicy: 'strict-origin-when-cross-origin',
-                allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share',
-                allowFullScreen: true
+              React.createElement('video', {
+                src: 'assets/demo_v1.mp4',
+                autoPlay: true,
+                muted: true,
+                loop: true,
+                playsInline: true,
+                controls: true,
+                preload: 'metadata'
               })
             ),
             React.createElement('div', { className: 'emobot-reference-grid' },
@@ -379,21 +362,27 @@ export default function EmobotCaseStudy({ lang }) {
             : 'The proposal becomes three product constraints: avoid making students feel diagnosed at entry, avoid adding burden to counseling teams, and avoid missing high-risk signals.'
         )
       ),
-      React.createElement('div', { className: 'emobot-swot-stage' },
-        ...swot.map(item => React.createElement('article', { className: 'emobot-swot-card', key: item.label },
-          React.createElement('div', { className: 'emobot-swot-label' },
-            React.createElement('strong', null, pick(item, 'label')),
-            React.createElement(Icon, { name: item.iconKey })
-          ),
-          React.createElement('ul', null,
-            ...(PA ? item.zhPoints : item.points).map(point => React.createElement('li', { key: point }, point))
-          )
-        )),
-        React.createElement('div', { className: 'emobot-swot-center' },
-          React.createElement('div', null,
-            React.createElement('strong', null, 'SWOT'),
-            React.createElement('span', null, PA ? '市場診斷' : 'Market diagnosis')
-          )
+      React.createElement('div', { className: 'emobot-swot-matrix' },
+        React.createElement('div', { className: 'emobot-swot-matrix-header' },
+          React.createElement('strong', null, 'SWOT'),
+          React.createElement('span', null, PA ? '市場診斷框架' : 'Market diagnosis framework')
+        ),
+        React.createElement('div', { className: 'emobot-swot-grid' },
+          ...swot.map((item, i) => {
+            const letters = ['S', 'W', 'O', 'T'];
+            const isNegative = i === 1 || i === 3;
+            return React.createElement('div', { className: `emobot-swot-quadrant${isNegative ? ' negative' : ''}`, key: item.label },
+              React.createElement('div', { className: 'emobot-swot-ghost-letter' }, letters[i]),
+              React.createElement('div', { className: 'emobot-swot-quad-header' },
+                React.createElement('div', { className: 'emobot-swot-quad-badge' }, letters[i]),
+                React.createElement('div', { className: 'emobot-swot-quad-title' }, PA ? item.zhLabel : item.label)
+              ),
+              React.createElement('div', { className: 'emobot-swot-quad-sep' }),
+              React.createElement('ul', null,
+                ...(PA ? item.zhPoints : item.points).map(point => React.createElement('li', { key: point }, point))
+              )
+            );
+          })
         )
       ),
       React.createElement('div', { className: 'emobot-problem-rhythm' },

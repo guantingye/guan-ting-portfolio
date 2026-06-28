@@ -13,7 +13,7 @@ export default function Cursor() {
         const interactiveSelector = 'a,button,.project-card';
         const onMove = event => {
             mx = event.clientX; my = event.clientY;
-            dot.style.transform = `translate(${mx - 4}px, ${my - 4}px)`;
+            dot.style.transform = `translate3d(${mx - 4}px, ${my - 4}px, 0)`;
         };
         const onPointerOver = event => {
             if (event.target.closest(interactiveSelector)) document.body.classList.add('cursor-hover');
@@ -23,7 +23,7 @@ export default function Cursor() {
         };
         const loop = () => {
             rx += (mx - rx) * LERP; ry += (my - ry) * LERP;
-            ring.style.transform = `translate(${Math.round(rx - 18)}px, ${Math.round(ry - 18)}px)`;
+            ring.style.transform = `translate3d(${Math.round(rx - 18)}px, ${Math.round(ry - 18)}px, 0)`;
             rafId = requestAnimationFrame(loop);
         };
         loop();

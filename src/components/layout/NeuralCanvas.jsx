@@ -13,9 +13,9 @@ const NeuralCanvas = React.memo(function NeuralCanvas() {
         }
         let width = 0, height = 0, nodes = [], resizeRaf = null, isRunning = true;
         const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-        const CONNECTION_DISTANCE = 112;
-        const SPEED = 0.22;
-        const getNodeCount = () => Math.max(26, Math.min(42, Math.round((window.innerWidth * window.innerHeight) / 52000)));
+        const CONNECTION_DISTANCE = 100;
+        const SPEED = 0.2;
+        const getNodeCount = () => Math.max(20, Math.min(30, Math.round((window.innerWidth * window.innerHeight) / 68000)));
         const createNodes = () => {
             const count = getNodeCount();
             nodes = Array.from({ length: count }, () => ({

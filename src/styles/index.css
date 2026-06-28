@@ -17,8 +17,8 @@
   --white:       #f0eff9;
   --gray:        rgba(240,239,249,0.58);
   --gray-dim:    rgba(240,239,249,0.25);
-  --font-sans:   'Syne', sans-serif;
-  --font-serif:  'Instrument Serif', Georgia, serif;
+  --font-sans:   'Plus Jakarta Sans', sans-serif;
+  --font-serif:  'Fraunces', Georgia, serif;
   --font-mono:   'JetBrains Mono', monospace;
   --radius-sm:   8px;
   --radius:      12px;
@@ -63,14 +63,16 @@ button:focus-visible,
   position: fixed; top: 0; left: 0; width: 8px; height: 8px;
   background: var(--teal); border-radius: 50%;
   pointer-events: none; z-index: 9999;
-  transform: translate(-50%,-50%);
+  transform: translate3d(-50%,-50%,0);
+  will-change: transform;
   transition: width 0.2s, height 0.2s, background 0.2s;
 }
 #cursor-ring {
   position: fixed; top: 0; left: 0; width: 36px; height: 36px;
   border: 1px solid rgba(0,229,192,0.5); border-radius: 50%;
   pointer-events: none; z-index: 9998;
-  transform: translate(-50%,-50%);
+  transform: translate3d(-50%,-50%,0);
+  will-change: transform;
   transition: width 0.3s, height 0.3s, border-color 0.3s;
 }
 .cursor-hover #cursor-dot { width: 14px; height: 14px; background: var(--amber); }
@@ -102,8 +104,8 @@ nav {
 }
 nav.scrolled {
   padding: 13px 48px;
-  background: rgba(7,7,16,0.94);
-  backdrop-filter: blur(24px);
+  background: rgba(7,7,16,0.96);
+  backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
 }
 .nav-brand {
@@ -169,7 +171,7 @@ nav.scrolled {
 
 .mobile-menu {
   display: none; position: fixed; top: 56px; left: 0; right: 0;
-  background: rgba(7,7,16,0.97); backdrop-filter: blur(24px);
+  background: rgba(7,7,16,0.98); backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border); z-index: 890;
   padding: 24px 32px; flex-direction: column; gap: 16px;
 }
@@ -1041,6 +1043,7 @@ img { max-width: 100%; height: auto; }
   border: 1px solid rgba(255,255,255,0.1);
 }
 .emobot-video-frame iframe { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; border: 0; }
+.emobot-video-frame video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }
 .emobot-video-poster {
   position: absolute; inset: 0; z-index: 1; display: grid; place-items: center; width: 100%; height: 100%;
   border: 0; padding: 0; cursor: pointer; overflow: hidden; color: var(--white);
@@ -1104,45 +1107,51 @@ img { max-width: 100%; height: auto; }
 .emobot-card-icon .icon-svg { width: 20px; height: 20px; }
 .emobot-card-title { color: var(--white); font-family: var(--font-sans); font-size: 15px; font-weight: 800; line-height: 1.35; margin-bottom: 10px; }
 .emobot-card-body { color: var(--gray); font-family: var(--font-mono); font-size: 12px; line-height: 1.75; }
-.emobot-swot-stage {
-  position: relative; min-height: 560px; margin-top: 20px; padding: clamp(18px,3vw,30px);
-  border-radius: 30px; overflow: hidden;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(167,139,250,0.2), transparent 30%),
-    linear-gradient(135deg, rgba(255,255,255,0.075), rgba(255,255,255,0.025));
-  border: 1px solid rgba(255,255,255,0.09);
+.emobot-swot-matrix {
+  margin-top: 20px; border: 1px solid var(--border-2); border-radius: var(--radius-lg); overflow: hidden;
 }
-.emobot-swot-stage::before {
-  content: ""; position: absolute; left: 50%; top: 8%; bottom: 8%; width: 1px; background: linear-gradient(transparent, rgba(255,255,255,0.14), transparent);
+.emobot-swot-matrix-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 22px; border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.035);
 }
-.emobot-swot-stage::after {
-  content: ""; position: absolute; top: 50%; left: 5%; right: 5%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent);
+.emobot-swot-matrix-header strong {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--white);
 }
-.emobot-swot-center {
-  position: absolute; left: 50%; top: 50%; z-index: 3; width: 170px; height: 170px; transform: translate(-50%,-50%);
-  display: grid; place-items: center; text-align: center; border-radius: 50%; color: var(--white);
-  background: rgba(7,9,20,0.86); border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 24px 90px rgba(0,0,0,0.34);
+.emobot-swot-matrix-header span {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--proj-accent);
 }
-.emobot-swot-center strong { display: block; font-family: var(--font-serif); font-size: 2.3rem; line-height: 0.95; }
-.emobot-swot-center span { font-family: var(--font-mono); color: var(--proj-accent); font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; }
-.emobot-swot-card {
-  position: absolute; z-index: 2; width: min(41%, 440px); min-height: 190px; padding: 22px 24px 24px;
-  border-radius: 28px; color: var(--gray);
-  background: rgba(255,255,255,0.055); border: 1px solid rgba(255,255,255,0.1);
-  backdrop-filter: blur(20px); box-shadow: 0 22px 70px rgba(0,0,0,0.22);
-  transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+.emobot-swot-grid { display: grid; grid-template-columns: 1fr 1fr; }
+.emobot-swot-quadrant {
+  position: relative; padding: 24px 26px 28px; overflow: hidden;
+  transition: background 0.25s ease;
 }
-.emobot-swot-card:hover, .emobot-swot-card.active { transform: translateY(-8px); border-color: rgba(0,229,192,0.28); background: rgba(255,255,255,0.08); }
-.emobot-swot-card:nth-child(1) { left: 0; top: 0; border-bottom-right-radius: 88px; }
-.emobot-swot-card:nth-child(2) { right: 0; top: 0; border-bottom-left-radius: 88px; }
-.emobot-swot-card:nth-child(3) { left: 0; bottom: 0; border-top-right-radius: 88px; }
-.emobot-swot-card:nth-child(4) { right: 0; bottom: 0; border-top-left-radius: 88px; }
-.emobot-swot-label { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 14px; }
-.emobot-swot-label strong { color: var(--white); font-family: var(--font-sans); font-size: 18px; }
-.emobot-swot-label .icon-svg { width: 20px; height: 20px; color: var(--proj-accent); }
-.emobot-swot-card ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-.emobot-swot-card li { display: grid; grid-template-columns: 18px minmax(0,1fr); gap: 8px; font-family: var(--font-mono); font-size: 11px; line-height: 1.62; }
-.emobot-swot-card li::before { content: ""; width: 7px; height: 7px; margin-top: 7px; border-radius: 50%; background: var(--proj-accent); box-shadow: 0 0 16px var(--proj-dim); }
+.emobot-swot-quadrant:nth-child(1) { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.emobot-swot-quadrant:nth-child(2) { border-bottom: 1px solid var(--border); }
+.emobot-swot-quadrant:nth-child(3) { border-right: 1px solid var(--border); }
+.emobot-swot-quadrant:hover { background: rgba(255,255,255,0.03); }
+.emobot-swot-ghost-letter {
+  position: absolute; right: 16px; top: 8px;
+  font-family: var(--font-serif); font-size: 86px; font-weight: 700; font-style: italic;
+  line-height: 1; color: var(--teal); opacity: 0.052;
+  pointer-events: none; user-select: none;
+}
+.emobot-swot-quadrant.negative .emobot-swot-ghost-letter { color: var(--amber); }
+.emobot-swot-quad-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.emobot-swot-quad-badge {
+  display: flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 7px;
+  background: var(--teal-dim); font-family: var(--font-mono);
+  font-size: 13px; font-weight: 500; color: var(--teal); flex-shrink: 0;
+}
+.emobot-swot-quadrant.negative .emobot-swot-quad-badge { background: var(--amber-dim); color: var(--amber); }
+.emobot-swot-quad-title { font-family: var(--font-sans); font-size: 13px; font-weight: 600; color: var(--white); }
+.emobot-swot-quad-sep { height: 1px; background: var(--border); margin-bottom: 14px; }
+.emobot-swot-quadrant ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+.emobot-swot-quadrant li { display: flex; gap: 10px; font-family: var(--font-mono); font-size: 11px; line-height: 1.62; color: var(--gray); }
+.emobot-swot-quadrant li::before { content: "–"; color: var(--teal); opacity: 0.45; flex-shrink: 0; font-size: 13px; line-height: 1.62; }
+.emobot-swot-quadrant.negative li::before { color: var(--amber); opacity: 0.4; }
 .emobot-problem-rhythm {
   display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px;
 }
@@ -1531,15 +1540,12 @@ img { max-width: 100%; height: auto; }
   .emobot-flow-board { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .emobot-flow-step:nth-child(2) { border-right: 0; }
   .emobot-video-panel { min-width: 0; }
-  .emobot-swot-stage { min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .emobot-swot-stage::before, .emobot-swot-stage::after, .emobot-swot-center { display: none; }
-  .emobot-swot-card { position: relative; width: auto; min-height: 0; left: auto !important; right: auto !important; top: auto !important; bottom: auto !important; border-radius: 24px !important; }
 }
 @media (max-width: 680px) {
   .emobot-case { margin-bottom: 68px; }
   .emobot-case-section { margin-top: 60px; }
   .emobot-case-hero { padding: 18px; border-radius: 18px; }
-  .emobot-proof-grid, .emobot-problem-grid, .emobot-solution-grid, .emobot-feature-grid, .emobot-validation-grid, .emobot-evidence-grid, .emobot-flow-board, .emobot-swot-stage, .emobot-flow-ribbon, .emobot-research-methods, .emobot-research-insights, .emobot-research-metrics { grid-template-columns: 1fr; }
+  .emobot-proof-grid, .emobot-problem-grid, .emobot-solution-grid, .emobot-feature-grid, .emobot-validation-grid, .emobot-evidence-grid, .emobot-flow-board, .emobot-swot-grid, .emobot-flow-ribbon, .emobot-research-methods, .emobot-research-insights, .emobot-research-metrics { grid-template-columns: 1fr; }
   .emobot-research-lab { border-radius: 20px; }
   .emobot-research-brief { padding: 20px; }
   .emobot-research-method-step { min-height: auto; padding: 20px; }
