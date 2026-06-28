@@ -4,6 +4,7 @@
 - `index.html`: deploy-ready portfolio. It can be opened directly in a browser and can be uploaded to GitHub Pages.
 - `assets/`: put optimized images here.
 - `src/main.optimized.jsx`: readable React source used to produce the deploy-ready inline script.
+- `assets/Ye_Guan Ting, CV.pdf`: resume download target used by the navigation and static fallback.
 
 ## Image convention
 Use paths such as:
@@ -11,7 +12,9 @@ Use paths such as:
 - `assets/projects/emobot-plus-cover.webp`
 - `assets/projects/startup-intelligence-platform-cover.webp`
 
-The current hero image tries `assets/cv_visual.webp` first and falls back to `cv_visual.png` if you keep the old image beside `index.html`.
+The current hero image uses `assets/cv_visual.webp`.
+
+The page includes a static fallback inside `#root`. If the external React ESM CDN is unavailable, visitors still see a useful portfolio summary with contact and CV links instead of a loading-only screen.
 
 ## Quick local test
 Double-click `index.html`, or run:

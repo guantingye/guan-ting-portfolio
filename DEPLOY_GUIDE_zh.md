@@ -6,6 +6,7 @@
 - `assets/`：圖片資料夾。
 - `.nojekyll`：避免 GitHub Pages 用 Jekyll 處理靜態檔案。
 - `src/main.optimized.jsx`：可讀版 React 原始碼，方便未來維護；部署時不是必要檔，但建議保留。
+- `assets/Ye_Guan Ting, CV.pdf`：導覽列與靜態 fallback 使用的履歷下載檔。
 
 ## 圖片放置方式
 
@@ -23,13 +24,9 @@ assets/projects/startup-intelligence-platform-cover.webp
 assets/cv_visual.webp
 ```
 
-如果找不到，會自動 fallback 到舊路徑：
-
-```text
-cv_visual.png
-```
-
 建議正式投遞履歷時只保留壓縮後的 `.webp` 或 `.avif`，不要把原始大圖、PSD、Figma 匯出原檔一起放進公開 GitHub repository。
+
+頁面在 `#root` 內保留靜態 fallback。若外部 React ESM CDN 暫時無法載入，訪客仍會看到作品集摘要、Email 與 CV 下載，不會停在 loading 畫面。
 
 ## 本機測試
 
