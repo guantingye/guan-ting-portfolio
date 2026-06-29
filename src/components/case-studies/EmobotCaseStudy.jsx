@@ -1,9 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Icon from '../ui/Icon.jsx';
 
 export default function EmobotCaseStudy({ lang }) {
   const PA = lang === 'zh';
   const [activePersona, setActivePersona] = useState(0);
+  const archWrapRef = useRef(null);
+  const [archScale, setArchScale] = useState(1);
+  useEffect(() => {
+    const el = archWrapRef.current;
+    if (!el) return;
+    const update = () => setArchScale(Math.min(1, el.getBoundingClientRect().width / 1260));
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
   const pick = (item, key) => {
     const zhKey = 'zh' + key.charAt(0).toUpperCase() + key.slice(1);
     return PA && item[zhKey] ? item[zhKey] : item[key];
@@ -42,6 +53,97 @@ export default function EmobotCaseStudy({ lang }) {
     { index: '01', iconKey: 'heart', title: 'Low-threshold Companion', zhTitle: '低門檻陪伴入口', body: 'A non-judgmental dialogue surface for self-disclosure, emotional labeling, grounding prompts, and self-awareness before the user is ready to seek formal help.', zhBody: '建立非評價式對話介面，支持自我揭露、情緒標記、穩定練習與自我覺察，讓使用者在正式求助前也有安全出口。', tags: ['Self-disclosure', 'CASA', 'Daily check-in'] },
     { index: '02', iconKey: 'target', title: 'Trait-matched AI Persona', zhTitle: '特質媒合 AI 人設', body: 'Psychological scales and conversation history become a need vector that selects a companion style, not a diagnosis. The match can adapt as user feedback and emotion patterns change.', zhBody: '心理量表與對話歷程轉為需求向量，用來媒合陪伴風格，而不是診斷。媒合結果可隨回饋與情緒模式動態調整。', tags: ['Attachment', 'DERS', 'Needs vector'] },
     { index: '03', iconKey: 'shield', title: 'Safety-aware Handoff', zhTitle: '風險感知銜接', body: 'Risk phrase detection, topic labels, and emotional trends feed a structured counselor summary when consent is granted, reducing the friction between AI support and human care.', zhBody: '風險語句偵測、議題標籤與情緒趨勢在使用者同意後整理成諮商摘要，降低 AI 支持與真人照護之間的銜接成本。', tags: ['Risk routing', 'Consent', 'Counselor report'] },
+  ];
+
+  const sysArchZones = [
+    {
+      id: 'client', zoneClass: 'zone-client',
+      tag: 'Client Interface', zhTag: '客戶端介面',
+      proto: 'HTTPS / WebSocket',
+      nodes: [
+        { iconKey: 'monitor', label: 'React Web App', zhLabel: 'React Web 應用', tech: 'TypeScript + Vite' },
+        { iconKey: 'globe', label: 'Mobile Client', zhLabel: '行動用戶端', tech: 'Responsive PWA' },
+        { iconKey: 'briefcase', label: 'Counselor Portal', zhLabel: '諮商師後台', tech: 'Role-based dashboard' },
+      ],
+    },
+    {
+      id: 'gateway', zoneClass: 'zone-gw',
+      tag: 'Gateway Layer', zhTag: '閘道器層',
+      proto: 'REST + JWT Auth',
+      nodes: [
+        { iconKey: 'shield', label: 'Nginx', zhLabel: 'Nginx', tech: 'TLS · rate limit · load balance' },
+      ],
+    },
+    {
+      id: 'core', zoneClass: 'zone-core',
+      tag: 'Core API Layer', zhTag: '核心 API 層',
+      proto: null,
+      nodes: [
+        { iconKey: 'zap', label: 'FastAPI Gateway', zhLabel: 'FastAPI 閘道', tech: 'Python async server' },
+        { iconKey: 'layers', label: 'Auth & Session', zhLabel: '認證與 Session', tech: 'JWT + Redis sessions' },
+        { iconKey: 'activity', label: 'Orchestrator', zhLabel: '請求協調器', tech: 'Persona routing logic' },
+      ],
+    },
+  ];
+
+  const sysArchServices = [
+    {
+      id: 'psych', colClass: 'svc-psych',
+      tag: 'Psychological Engine', zhTag: '心理推論引擎',
+      nodes: [
+        { iconKey: 'heart', name: 'MBTI + DERS + ERQ + BPNS', desc: 'Multi-scale trait signal capture', zhDesc: '多量表特質訊號擷取模組' },
+        { iconKey: 'target', name: 'Siamese Network', desc: 'Trait similarity matching model', zhDesc: '特質相似度比對模型' },
+        { iconKey: 'chart', name: 'Bayesian Inference', desc: 'Probabilistic persona matching', zhDesc: '機率式人設媒合推論演算' },
+        { iconKey: 'database', name: 'PostgreSQL', desc: 'User profile + psych data store', zhDesc: '使用者資料與心理量表數據庫' },
+      ],
+    },
+    {
+      id: 'ai', colClass: 'svc-ai',
+      tag: 'AI Interaction Module', zhTag: 'AI 互動模組',
+      nodes: [
+        { iconKey: 'cpu', name: 'LLM + Prompt Engine', desc: 'Persona-specific dialogue gen', zhDesc: '人設導向對話生成引擎' },
+        { iconKey: 'book', name: 'BERT + NRC Lexicon', desc: 'Real-time emotion classifier', zhDesc: '即時情緒分類與主題偵測' },
+        { iconKey: 'trend', name: 'TTS + Avatar API', desc: 'D-ID / HeyGen voice & avatar', zhDesc: 'D-ID / HeyGen 語音與虛擬形象' },
+        { iconKey: 'shield', name: 'Risk Detector', desc: 'High-risk phrase flagging', zhDesc: '高風險語句即時標記系統' },
+      ],
+    },
+    {
+      id: 'data', colClass: 'svc-data',
+      tag: 'Data Infrastructure', zhTag: '資料基礎設施',
+      nodes: [
+        { iconKey: 'zap', name: 'Redis Cache', desc: 'Session state + pub/sub', zhDesc: 'Session 狀態管理與 Pub/Sub' },
+        { iconKey: 'database', name: 'PostgreSQL', desc: 'Relational data + profiles', zhDesc: '關聯式資料庫 + 使用者資料' },
+        { iconKey: 'layers', name: 'S3 Object Store', desc: 'Media + model artifacts', zhDesc: '媒體儲存與模型 Artifacts' },
+        { iconKey: 'trend', name: 'ETL Pipeline', desc: 'Analytics export + ETL', zhDesc: '分析輸出與資料轉換流水線' },
+      ],
+    },
+  ];
+
+  const archPipeline = [
+    {
+      num: '1', title: 'Frontend Layer', zhTitle: '前端體驗層', sub: 'React + JavaScript',
+      nodes: [
+        { tech: 'Figma + Framer Motion', fn: 'UI wireframing, component design and micro-interaction prototyping', zhFn: '介面設計、元件規劃與微互動原型建立' },
+        { tech: 'React Router + Axios', fn: 'Route management, application state and API data-layer integration', zhFn: '路由架構、應用狀態管理與 API 資料層整合' },
+        { tech: 'Tailwind CSS + Styled Components', fn: 'Responsive design system and immersive dark-mode visual layer', zhFn: '響應式設計系統與沉浸式深色模式視覺體驗層' },
+      ],
+    },
+    {
+      num: '2', title: 'Backend & Data', zhTitle: '後端資料層', sub: 'Python + FastAPI',
+      nodes: [
+        { tech: 'MBTI + DERS + ERQ + BPNS', fn: 'Psychological scale integration as trait signal modules for support matching', zhFn: '心理量表整合為特質訊號模組，驅動個人化媒合邏輯' },
+        { tech: 'Siamese Net + Bayesian Inference', fn: 'Similarity-based trait-to-persona matching and recommendation algorithm', zhFn: '特質相似度運算與貝葉斯推論驅動的個人化媒合演算法' },
+        { tech: 'Pandas + NumPy + PyTorch', fn: 'Data vectorization, statistical modeling and model training pipeline', zhFn: '資料向量化、統計建模與 PyTorch 模型訓練流程' },
+      ],
+    },
+    {
+      num: '3', title: 'AI Interaction Module', zhTitle: 'AI 互動模組', sub: 'LLM + NLP Pipeline',
+      nodes: [
+        { tech: 'LLM + Prompt Engineering', fn: 'Persona-specific dialogue generation, tone control and support style pacing', zhFn: '依人設調整的對話生成、語氣節奏與支持風格控制' },
+        { tech: 'TTS + Avatar Animation API', fn: 'D-ID and HeyGen voice and dynamic avatar multimodal presence direction', zhFn: '語音合成與動態虛擬形象的多模態臨場感整合方向' },
+        { tech: 'BERT + NRC Emotion Lexicon', fn: 'Real-time emotion classification, issue tagging and risk phrase detection', zhFn: '即時情緒分類、議題標籤偵測與高風險語句辨識模型' },
+      ],
+    },
   ];
 
   const architectureColumns = [
@@ -207,10 +309,10 @@ export default function EmobotCaseStudy({ lang }) {
   ];
 
   const researchMethods = [
-    { label: '01 / Discovery', zhLabel: '01 / 探索', title: 'User interviews', zhTitle: '使用者質性訪談', body: 'Interviewed target users around help-seeking friction, disclosure comfort, AI trust, and the emotional language they naturally use before counseling.', zhBody: '針對求助阻力、自我揭露舒適度、AI 信任感，以及進入諮商前會自然使用的情緒語言進行使用者訪談。' },
-    { label: '02 / Instrument', zhLabel: '02 / 工具', title: 'Survey and construct design', zhTitle: '問卷與構念設計', body: 'Translated psychological constructs into measurable questionnaire dimensions, then connected responses back to persona matching and support-style design.', zhBody: '將心理構念轉成可測量的問卷維度，再把回應結果連回人設媒合與支持風格設計。' },
-    { label: '03 / Experiment', zhLabel: '03 / 實驗', title: 'Prototype response testing', zhTitle: '原型互動測試', body: 'Compared user responses to different companion tones, emotional prompts, and dialogue structures to identify which patterns improved perceived understanding.', zhBody: '比較使用者面對不同陪伴語氣、情緒提示與對話結構時的反應，找出能提升被理解感的互動模式。' },
-    { label: '04 / Analysis', zhLabel: '04 / 分析', title: 'Semantic and quantitative readout', zhTitle: '語意與量化讀出', body: 'Combined semantic dialogue analysis with questionnaire distributions, correlation patterns, and design implications for the next MVP iteration.', zhBody: '整合對話語意分析、問卷分布、相關模式與設計推論，回饋到下一輪 MVP 迭代。' },
+    { iconKey: 'heart', label: '01 / Discovery', zhLabel: '01 / 探索', title: 'User interviews', zhTitle: '使用者質性訪談', body: 'Interviewed target users around help-seeking friction, disclosure comfort, AI trust, and the emotional language they naturally use before counseling.', zhBody: '針對求助阻力、自我揭露舒適度、AI 信任感，以及進入諮商前會自然使用的情緒語言進行使用者訪談。' },
+    { iconKey: 'book', label: '02 / Instrument', zhLabel: '02 / 工具', title: 'Survey and construct design', zhTitle: '問卷與構念設計', body: 'Translated psychological constructs into measurable questionnaire dimensions, then connected responses back to persona matching and support-style design.', zhBody: '將心理構念轉成可測量的問卷維度，再把回應結果連回人設媒合與支持風格設計。' },
+    { iconKey: 'zap', label: '03 / Experiment', zhLabel: '03 / 實驗', title: 'Prototype response testing', zhTitle: '原型互動測試', body: 'Compared user responses to different companion tones, emotional prompts, and dialogue structures to identify which patterns improved perceived understanding.', zhBody: '比較使用者面對不同陪伴語氣、情緒提示與對話結構時的反應，找出能提升被理解感的互動模式。' },
+    { iconKey: 'chart', label: '04 / Analysis', zhLabel: '04 / 分析', title: 'Semantic and quantitative readout', zhTitle: '語意與量化讀出', body: 'Combined semantic dialogue analysis with questionnaire distributions, correlation patterns, and design implications for the next MVP iteration.', zhBody: '整合對話語意分析、問卷分布、相關模式與設計推論，回饋到下一輪 MVP 迭代。' },
   ];
 
   const researchArtifacts = [
@@ -258,6 +360,8 @@ export default function EmobotCaseStudy({ lang }) {
     { iconKey: 'book', title: 'Proposal PDF', zhTitle: '提案計畫書', body: 'Reserve for the final deck, problem analysis, market research, and SDG impact page.', zhBody: '預留放置完整提案書、問題分析、市場研究與 SDG 影響頁。' },
     { iconKey: 'monitor', title: 'MVP Screens', zhTitle: 'MVP 畫面', body: 'Reserve for onboarding, persona match, chat interface, report preview, and dashboard screenshots.', zhBody: '預留放置引導流程、人設媒合、對話介面、報告預覽與儀表板截圖。' },
   ];
+
+
 
   return React.createElement(React.Fragment, null,
     React.createElement('div', { className: 'proj-section reveal' },
@@ -362,27 +466,35 @@ export default function EmobotCaseStudy({ lang }) {
             : 'The proposal becomes three product constraints: avoid making students feel diagnosed at entry, avoid adding burden to counseling teams, and avoid missing high-risk signals.'
         )
       ),
-      React.createElement('div', { className: 'emobot-swot-matrix' },
-        React.createElement('div', { className: 'emobot-swot-matrix-header' },
-          React.createElement('strong', null, 'SWOT'),
-          React.createElement('span', null, PA ? '市場診斷框架' : 'Market diagnosis framework')
+      React.createElement('div', { className: 'emobot-swot-v3' },
+        React.createElement('div', { className: 'emobot-swot-v3-hdr' },
+          React.createElement('div', { className: 'emobot-swot-v3-hdr-title' }, 'SWOT'),
+          React.createElement('div', { className: 'emobot-swot-v3-hdr-tag' }, PA ? '策略診斷矩陣' : 'Strategic diagnosis matrix')
         ),
-        React.createElement('div', { className: 'emobot-swot-grid' },
-          ...swot.map((item, i) => {
-            const letters = ['S', 'W', 'O', 'T'];
-            const isNegative = i === 1 || i === 3;
-            return React.createElement('div', { className: `emobot-swot-quadrant${isNegative ? ' negative' : ''}`, key: item.label },
-              React.createElement('div', { className: 'emobot-swot-ghost-letter' }, letters[i]),
-              React.createElement('div', { className: 'emobot-swot-quad-header' },
-                React.createElement('div', { className: 'emobot-swot-quad-badge' }, letters[i]),
-                React.createElement('div', { className: 'emobot-swot-quad-title' }, PA ? item.zhLabel : item.label)
-              ),
-              React.createElement('div', { className: 'emobot-swot-quad-sep' }),
-              React.createElement('ul', null,
-                ...(PA ? item.zhPoints : item.points).map(point => React.createElement('li', { key: point }, point))
+        React.createElement('div', { className: 'emobot-swot-v3-col-hdrs' },
+          React.createElement('div', { className: 'emobot-swot-v3-col-hdrs-spacer' }),
+          React.createElement('div', { className: 'emobot-swot-v3-col-hdr positive' }, PA ? '優勢向量 — 可利用因素' : 'Positive — leverage factors'),
+          React.createElement('div', { className: 'emobot-swot-v3-col-hdr risk' }, PA ? '風險向量 — 需管理因素' : 'Risk — factors to manage')
+        ),
+        ...[[0, 1], [2, 3]].map(([posIdx, riskIdx], rowIdx) =>
+          React.createElement('div', { className: 'emobot-swot-v3-row', key: rowIdx },
+            React.createElement('div', { className: 'emobot-swot-v3-row-label' }, PA ? (rowIdx === 0 ? '內部' : '外部') : (rowIdx === 0 ? 'Internal' : 'External')),
+            ...([
+              { item: swot[posIdx], letter: ['S','O'][rowIdx], cls: 'positive-cell' },
+              { item: swot[riskIdx], letter: ['W','T'][rowIdx], cls: 'risk-cell' },
+            ].map(({ item, letter, cls }) =>
+              React.createElement('div', { className: `emobot-swot-v3-cell ${cls}`, key: letter },
+                React.createElement('div', { className: 'emobot-swot-v3-cell-head' },
+                  React.createElement('span', { className: 'emobot-swot-v3-cell-id' }, letter),
+                  React.createElement('span', { className: 'emobot-swot-v3-cell-title' }, PA ? item.zhLabel : item.label)
+                ),
+                React.createElement('div', { className: 'emobot-swot-v3-cell-sep' }),
+                React.createElement('ul', null,
+                  ...(PA ? item.zhPoints : item.points).map(p => React.createElement('li', { key: p }, p))
+                )
               )
-            );
-          })
+            ))
+          )
         )
       ),
       React.createElement('div', { className: 'emobot-problem-rhythm' },
@@ -468,59 +580,56 @@ export default function EmobotCaseStudy({ lang }) {
           React.createElement('p', null, PA ? item.zhBody : item.body)
         ))
       ),
-      React.createElement('div', { className: 'emobot-live-panel emobot-persona-lab' },
-        React.createElement('div', { className: 'emobot-persona-list', role: 'tablist', 'aria-label': PA ? '選擇 AI 人設' : 'Choose AI persona' },
-          ...personas.map((persona, i) => React.createElement('button', {
-            className: `emobot-persona-button ${i === activePersona ? 'active' : ''}`,
-            key: persona.name,
-            type: 'button',
-            role: 'tab',
-            'aria-selected': i === activePersona,
+      React.createElement('div', { className: 'persona-lab' },
+        React.createElement('div', { className: 'persona-tabs', role: 'tablist', 'aria-label': PA ? '選擇 AI 人設' : 'Choose AI persona' },
+          ...personas.map((p, i) => React.createElement('button', {
+            key: p.name, type: 'button', role: 'tab', 'aria-selected': i === activePersona,
+            className: `persona-tab ${i === activePersona ? 'active' : ''}`,
             onClick: () => setActivePersona(i)
           },
-            React.createElement('strong', null, persona.name),
-            React.createElement('span', null, pick(persona, 'trait'))
+            React.createElement('div', { className: 'persona-tab-avatar' },
+              React.createElement('img', { src: `assets/persona_${p.name.toLowerCase()}.png`, alt: p.name, loading: 'lazy' })
+            ),
+            React.createElement('div', { className: 'persona-tab-info' },
+              React.createElement('strong', null, p.name),
+              React.createElement('span', null, PA ? p.zhType : p.type)
+            )
           ))
         ),
-        React.createElement('div', { className: 'emobot-persona-stage' },
-          React.createElement('figure', { className: 'emobot-persona-visual' },
-            React.createElement('img', {
-              src: active.image,
-              alt: `${active.name} ${PA ? active.zhType : active.type}`,
-              loading: 'lazy',
-              decoding: 'async'
-            }),
-            React.createElement('figcaption', null,
-              React.createElement('strong', null, active.name),
-              React.createElement('span', null, PA ? active.zhType : active.type)
+        React.createElement('div', { className: 'persona-detail' },
+          React.createElement('div', { className: 'persona-detail-profile' },
+            React.createElement('div', { className: 'persona-detail-photo' },
+              React.createElement('img', { src: `assets/persona_${active.name.toLowerCase()}.png`, alt: active.name, loading: 'lazy' })
+            ),
+            React.createElement('div', { className: 'persona-detail-id' },
+              React.createElement('div', { className: 'persona-detail-type' }, PA ? active.zhType : active.type),
+              React.createElement('h4', { className: 'persona-detail-name' }, active.name),
+              React.createElement('div', { className: 'persona-detail-trait' }, PA ? active.zhTrait : active.trait),
+              React.createElement('p', { className: 'persona-detail-desc' }, PA ? active.zhDesc : active.desc)
             )
           ),
-          React.createElement('div', { className: 'emobot-persona-copy-stack' },
-            React.createElement('article', { className: 'emobot-persona-card' },
-              React.createElement('div', { className: 'emobot-persona-icon' }, React.createElement(Icon, { name: active.iconKey })),
-              React.createElement('div', { className: 'emobot-mini-label' }, PA ? '媒合支持模式' : 'Matched support mode'),
-              React.createElement('div', { className: 'emobot-persona-name' }, active.name),
-              React.createElement('div', { className: 'emobot-persona-trait' }, pick(active, 'trait')),
-              React.createElement('p', { className: 'emobot-persona-desc' }, pick(active, 'desc')),
-              React.createElement('div', { className: 'emobot-persona-stats' },
-                React.createElement('div', { className: 'emobot-persona-stat' },
-                  React.createElement('span', { className: 'emobot-persona-stat-label' }, PA ? '特色能力' : 'Core ability'),
-                  React.createElement('strong', null, pick(active, 'ability'))
-                ),
-                React.createElement('div', { className: 'emobot-persona-stat' },
-                  React.createElement('span', { className: 'emobot-persona-stat-label' }, PA ? '適合議題' : 'Best-fit topics'),
-                  React.createElement('strong', null, pick(active, 'topics'))
-                )
+          React.createElement('div', { className: 'persona-detail-content' },
+            React.createElement('div', { className: 'persona-detail-stats' },
+              React.createElement('div', { className: 'persona-stat-block' },
+                React.createElement('div', { className: 'persona-stat-label' }, PA ? '核心能力' : 'Core ability'),
+                React.createElement('p', { className: 'persona-stat-body' }, PA ? active.zhAbility : active.ability)
+              ),
+              React.createElement('div', { className: 'persona-stat-block' },
+                React.createElement('div', { className: 'persona-stat-label' }, PA ? '適合議題' : 'Best-fit topics'),
+                React.createElement('p', { className: 'persona-stat-body' }, PA ? active.zhTopics : active.topics)
               )
             ),
-            React.createElement('div', { className: 'emobot-chat-shell' },
-              React.createElement('div', { className: 'emobot-mini-label' }, PA ? '互動語氣樣本' : 'Sample interaction tone'),
-              React.createElement('div', { className: 'emobot-chat-row user' },
-                React.createElement('div', { className: 'emobot-chat-bubble' }, pick(active, 'prompt'))
+            React.createElement('div', { className: 'persona-chat-shell' },
+              React.createElement('div', { className: 'persona-chat-header' },
+                React.createElement('div', { className: 'persona-chat-dot' }, React.createElement(Icon, { name: active.iconKey })),
+                React.createElement('span', null, PA ? '對話語氣樣本' : 'Sample interaction')
               ),
-              React.createElement('div', { className: 'emobot-chat-row' },
-                React.createElement('div', { className: 'emobot-chat-dot' }, React.createElement(Icon, { name: active.iconKey })),
-                React.createElement('div', { className: 'emobot-chat-bubble' }, pick(active, 'response'))
+              React.createElement('div', { className: 'persona-chat-row user' },
+                React.createElement('div', { className: 'persona-chat-bubble' }, PA ? active.zhPrompt : active.prompt)
+              ),
+              React.createElement('div', { className: 'persona-chat-row' },
+                React.createElement('img', { src: `assets/persona_${active.name.toLowerCase()}.png`, alt: active.name, className: 'persona-chat-avatar', loading: 'lazy' }),
+                React.createElement('div', { className: 'persona-chat-bubble' }, PA ? active.zhResponse : active.response)
               )
             )
           )
@@ -531,34 +640,254 @@ export default function EmobotCaseStudy({ lang }) {
       React.createElement('div', { className: 'emobot-section-head' },
         React.createElement('div', null,
           React.createElement('div', { className: 'emobot-section-kicker' }, PA ? '05 / 系統架構' : '05 / System architecture'),
-          React.createElement('h3', { className: 'emobot-section-title' }, PA ? '把心理學、AI 與前端互動放進同一個可交付架構。' : 'A deliverable architecture across psychology, AI, and frontend interaction.')
+          React.createElement('h3', { className: 'emobot-section-title' },
+            PA ? '微服務架構，連結 AI 推論、資料持久化與安全轉介。' : 'Microservices architecture connecting AI reasoning, data persistence, and safe professional handoff.'
+          )
         ),
         React.createElement('p', { className: 'emobot-section-copy' },
           PA
-            ? '提案中的技術路線被整理成五層：體驗層、服務層、心理嵌入、情緒風險智慧，以及虛擬形象與語音方向。'
-            : 'The technical proposal is translated into five layers: experience, service, psychological embedding, emotion-risk intelligence, and avatar or voice direction.'
+            ? 'Kubernetes 編排的微服務設計：FastAPI 統一閘道、事件驅動 AI 服務網格、獨立資料庫策略，以及知情同意後的結構化轉介輸出。'
+            : 'Kubernetes-orchestrated microservices: a FastAPI unified gateway, event-driven AI service mesh, database-per-service strategy, and consent-based structured referral output.'
         )
       ),
-      React.createElement('div', { className: 'emobot-architecture' },
-        React.createElement('div', { className: 'emobot-arch-panel' },
-          React.createElement('div', { className: 'emobot-section-kicker' }, PA ? '產品架構' : 'Product architecture'),
-          React.createElement('p', { className: 'emobot-section-copy' },
-            PA
-              ? '此架構讓作品集讀者能看見我如何把心理學研究、UX 流程、AI 模組與前端實作拆成可被工程化的產品邊界。'
-              : 'This architecture shows how I translate psychology, UX flow, AI modules, and frontend implementation into product boundaries an engineering team can reason about.'
+      React.createElement('div', { className: 'arch-diagram-wrap' },
+
+        React.createElement('div', { className: 'arch-sketch-card' },
+          React.createElement('div', { className: 'arch-sketch-img-container' },
+            React.createElement('img', {
+              src: 'assets/System architecture wireframe.png',
+              alt: PA ? '系統架構草稿圖' : 'System architecture wireframe draft',
+              loading: 'lazy', decoding: 'async',
+            })
           ),
-          React.createElement('blockquote', { className: 'emobot-quote' },
-            PA ? 'AI 不應該假裝自己是心理師；它應該讓使用者更早被接住，讓專業者更快看見脈絡。' : 'AI should not pretend to be a therapist; it should help users be held earlier and help professionals see context faster.'
+          React.createElement('div', { className: 'arch-sketch-text' },
+            React.createElement('span', { className: 'arch-sketch-stamp' }, 'DRAFT WIREFRAME · 草稿圖'),
+            React.createElement('p', { className: 'arch-sketch-note' },
+              PA
+                ? '初期架構草稿，用於驗證服務邊界與資料流規劃。'
+                : 'Initial wireframe to validate service boundaries and data flow.'
+            )
           )
         ),
-        React.createElement('div', { className: 'emobot-arch-diagram' },
-          ...architecture.map(layer => React.createElement('div', { className: 'emobot-arch-layer', key: layer.name },
-            React.createElement(Icon, { name: layer.iconKey }),
-            React.createElement('div', null,
-              React.createElement('div', { className: 'emobot-arch-name' }, pick(layer, 'name')),
-              React.createElement('div', { className: 'emobot-arch-desc' }, pick(layer, 'desc'))
+
+        React.createElement('div', { className: 'arch-abs-wrap', ref: archWrapRef },
+          React.createElement('div', { className: 'arch-abs-outer', style: { zoom: archScale } },
+            React.createElement('div', { className: 'arch-abs-canvas' },
+              React.createElement('svg', {
+                viewBox: '0 0 1200 1064', width: '1200', height: '1064',
+                style: { position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, zIndex: 0 },
+                fill: 'none'
+              },
+                React.createElement('defs', null,
+                  React.createElement('marker', { id: 'ea-ah', markerWidth: 9, markerHeight: 9, refX: 7, refY: 4.5, orient: 'auto' },
+                    React.createElement('path', { d: 'M1 1L7 4.5L1 8', stroke: '#6E7C92', strokeWidth: '1.5', fill: 'none', strokeLinecap: 'round', strokeLinejoin: 'round' })
+                  ),
+                  React.createElement('marker', { id: 'ea-ahA', markerWidth: 9, markerHeight: 9, refX: 7, refY: 4.5, orient: 'auto' },
+                    React.createElement('path', { d: 'M1 1L7 4.5L1 8', stroke: '#E0A33A', strokeWidth: '1.6', fill: 'none', strokeLinecap: 'round', strokeLinejoin: 'round' })
+                  )
+                ),
+                React.createElement('g', { stroke: '#5D6B82', strokeWidth: '1.7', markerEnd: 'url(#ea-ah)' },
+                  React.createElement('path', { d: 'M238 358 L316 396' }),
+                  React.createElement('path', { d: 'M238 706 L316 714' }),
+                  React.createElement('path', { d: 'M536 396 L716 294' }),
+                  React.createElement('path', { d: 'M536 412 L716 450' }),
+                  React.createElement('path', { d: 'M536 428 L716 606' }),
+                  React.createElement('path', { d: 'M536 714 L716 762' }),
+                  React.createElement('path', { d: 'M916 294 L974 294' }),
+                  React.createElement('path', { d: 'M916 450 L974 450' }),
+                  React.createElement('path', { d: 'M916 606 L974 606' }),
+                  React.createElement('path', { d: 'M916 762 L974 762' })
+                ),
+                React.createElement('g', { stroke: '#7A5A2E', strokeWidth: '1.6', strokeDasharray: '5 5' },
+                  React.createElement('path', { d: 'M821 338 L821 406' }),
+                  React.createElement('path', { d: 'M821 494 L821 562' }),
+                  React.createElement('path', { d: 'M821 650 L821 718' })
+                ),
+                React.createElement('path', { d: 'M821 806 L821 907', stroke: '#E0A33A', strokeWidth: '1.7', strokeDasharray: '6 5', markerEnd: 'url(#ea-ahA)' })
+              ),
+              React.createElement('div', { style: { position: 'absolute', left: 70, top: 120, width: 168, textAlign: 'center', zIndex: 2, fontSize: 12, fontWeight: 600, letterSpacing: '.14em', color: '#6B7C92' } }, PA ? '前端層' : 'CLIENT TIER'),
+              React.createElement('div', { style: { position: 'absolute', left: 326, top: 120, width: 210, textAlign: 'center', zIndex: 2, fontSize: 12, fontWeight: 600, letterSpacing: '.14em', color: '#6B7C92' } }, PA ? '閘道層' : 'EDGE / GATEWAY'),
+              React.createElement('div', { style: { position: 'absolute', left: 726, top: 120, width: 190, textAlign: 'center', zIndex: 2, fontSize: 12, fontWeight: 600, letterSpacing: '.14em', color: '#6B7C92' } }, PA ? 'AI 服務網格' : 'AI SERVICE MESH'),
+              React.createElement('div', { style: { position: 'absolute', left: 980, top: 120, width: 190, textAlign: 'center', zIndex: 2, fontSize: 12, fontWeight: 600, letterSpacing: '.14em', color: '#6B7C92' } }, PA ? '資料層' : 'DATA TIER'),
+              React.createElement('div', { style: { position: 'absolute', left: 0, right: 0, top: 156, zIndex: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 11, fontSize: 12.5, color: '#94A1B2' } },
+                React.createElement('span', { style: { fontWeight: 600, color: '#7FD3E4' } }, PA ? '資料流' : 'Data Flow'),
+                ...[
+                  { n: '1', b: '#36B6CE', c: '#7FD3E4', en: 'Pre-test / chat', zh: '量表前測 / 對話' },
+                  { sep: true },
+                  { n: '2', b: '#36B6CE', c: '#7FD3E4', en: 'AI processing',   zh: 'AI 服務處理' },
+                  { sep: true },
+                  { n: '3', b: '#36B6CE', c: '#7FD3E4', en: 'Data R/W',        zh: '資料讀寫' },
+                  { sep: true },
+                  { n: '4', b: '#E0A33A', c: '#F0BD66', en: 'Risk referral',   zh: '風險轉介' },
+                ].map((s, i) => s.sep
+                  ? React.createElement('span', { key: `sp${i}`, style: { color: '#46566B' } }, '→')
+                  : React.createElement('span', { key: s.n, style: { display: 'flex', alignItems: 'center', gap: 6 } },
+                      React.createElement('b', { style: { display: 'inline-flex', width: 17, height: 17, borderRadius: '50%', border: `1px solid ${s.b}`, color: s.c, fontSize: 10, fontWeight: 700, alignItems: 'center', justifyContent: 'center' } }, s.n),
+                      PA ? s.zh : s.en
+                    )
+                )
+              ),
+              ...[
+                { left: 261, top: 357, n: '1', bg: '#0E1A2A', border: '#36B6CE', color: '#7FD3E4' },
+                { left: 606, top: 323, n: '2', bg: '#0E1A2A', border: '#36B6CE', color: '#7FD3E4' },
+                { left: 936, top: 272, n: '3', bg: '#0E1A2A', border: '#36B6CE', color: '#7FD3E4' },
+                { left: 810, top: 864, n: '4', bg: '#2A2008', border: '#E0A33A', color: '#F0BD66' },
+              ].map(m => React.createElement('div', { key: `fm${m.n}`, style: { position: 'absolute', left: m.left, top: m.top, width: 23, height: 23, zIndex: 4, borderRadius: '50%', background: m.bg, border: `1.5px solid ${m.border}`, color: m.color, fontSize: 12, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' } }, m.n)),
+              React.createElement('div', { style: { position: 'absolute', left: 486, top: 188, width: 694, height: 686, border: '1.6px dashed #2A9DB8', borderRadius: 14, zIndex: 1 } }),
+              React.createElement('div', { style: { position: 'absolute', left: 512, top: 200, zIndex: 2, display: 'flex', alignItems: 'center', gap: 7, fontSize: 14, fontWeight: 600, color: '#36B6CE', letterSpacing: '.03em' } },
+                React.createElement('svg', { width: 17, height: 17, viewBox: '0 0 24 24', fill: 'none' },
+                  React.createElement('path', { d: 'M12 2.6l8.2 4.7v9.4L12 21.4 3.8 16.7V7.3z', stroke: '#36B6CE', strokeWidth: '1.5', strokeLinejoin: 'round' }),
+                  React.createElement('path', { d: 'M12 7.5l4 2.3v4.4L12 16.5 8 14.2V9.8z', stroke: '#36B6CE', strokeWidth: '1.3', strokeLinejoin: 'round' })
+                ),
+                PA ? 'AI 互動核心模組 · Kubernetes Cluster' : 'AI Interaction Core · Kubernetes Cluster'
+              ),
+              React.createElement('div', { className: 'arch-abs-client', style: { position: 'absolute', left: 70, top: 312, width: 168, height: 92, zIndex: 2, border: '1.5px solid #2EB6CE', background: '#0A2530', borderRadius: 12, boxShadow: '0 0 20px rgba(46,182,206,.13)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6 } },
+                React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 8 } },
+                  React.createElement('svg', { width: 20, height: 20, viewBox: '0 0 24 24', fill: 'none' },
+                    React.createElement('rect', { x: 3, y: 4, width: 18, height: 13, rx: 1.8, stroke: '#48C8DD', strokeWidth: 1.7 }),
+                    React.createElement('path', { d: 'M3 8h18M9 20.5h6', stroke: '#48C8DD', strokeWidth: 1.7, strokeLinecap: 'round' })
+                  ),
+                  React.createElement('div', { style: { fontSize: 16, fontWeight: 700, color: '#F1F6F9' } }, PA ? 'Web 前端' : 'Web App')
+                ),
+                React.createElement('div', { style: { fontSize: 12, color: '#8FB7C2' } }, 'React SPA')
+              ),
+              React.createElement('div', { className: 'arch-abs-client', style: { position: 'absolute', left: 70, top: 660, width: 168, height: 92, zIndex: 2, border: '1.5px solid #2EB6CE', background: '#0A2530', borderRadius: 12, boxShadow: '0 0 20px rgba(46,182,206,.13)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6 } },
+                React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 8 } },
+                  React.createElement('svg', { width: 20, height: 20, viewBox: '0 0 24 24', fill: 'none' },
+                    React.createElement('rect', { x: 7, y: 2.5, width: 10, height: 19, rx: 2.2, stroke: '#48C8DD', strokeWidth: 1.7 }),
+                    React.createElement('path', { d: 'M10.5 18.5h3', stroke: '#48C8DD', strokeWidth: 1.7, strokeLinecap: 'round' })
+                  ),
+                  React.createElement('div', { style: { fontSize: 16, fontWeight: 700, color: '#F1F6F9' } }, PA ? '行動 App' : 'Mobile App')
+                ),
+                React.createElement('div', { style: { fontSize: 12, color: '#8FB7C2' } }, 'iOS / Android')
+              ),
+              React.createElement('div', { className: 'arch-abs-gw', style: { position: 'absolute', left: 326, top: 312, width: 210, height: 174, zIndex: 2, border: '1.5px solid #C0405A', background: '#240F18', borderRadius: 12, boxShadow: '0 0 22px rgba(192,64,90,.15)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8, textAlign: 'center' } },
+                React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 8 } },
+                  React.createElement('svg', { width: 22, height: 22, viewBox: '0 0 24 24', fill: 'none' },
+                    React.createElement('path', { d: 'M12 3l7 2.5v5c0 4-2.8 6.8-7 8.5-4.2-1.7-7-4.5-7-8.5v-5z', stroke: '#E97A90', strokeWidth: 1.6, strokeLinejoin: 'round' }),
+                    React.createElement('path', { d: 'M8.5 12l2.2 2.2 4.3-4.4', stroke: '#E97A90', strokeWidth: 1.7, strokeLinecap: 'round', strokeLinejoin: 'round' })
+                  ),
+                  React.createElement('div', { style: { fontSize: 16.5, fontWeight: 700, color: '#F6EDF0' } }, PA ? 'API 閘道' : 'API Gateway')
+                ),
+                React.createElement('div', { style: { fontSize: 12.5, color: '#C99AA6', lineHeight: 1.55 } },
+                  PA ? 'FastAPI · 路由' : 'FastAPI · Routing',
+                  React.createElement('br'),
+                  PA ? '三大模組協作 · 限流' : 'Module orchestration · rate limit'
+                ),
+                React.createElement('div', { style: { fontSize: 11, color: '#F2899E', fontWeight: 600, background: 'rgba(224,102,126,.13)', border: '1px solid rgba(224,102,126,.3)', borderRadius: 5, padding: '2px 10px' } }, ':443')
+              ),
+              React.createElement('div', { className: 'arch-abs-gw', style: { position: 'absolute', left: 326, top: 660, width: 210, height: 108, zIndex: 2, border: '1.5px solid #C0405A', background: '#240F18', borderRadius: 12, boxShadow: '0 0 22px rgba(192,64,90,.15)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 7, textAlign: 'center' } },
+                React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 8 } },
+                  React.createElement('svg', { width: 21, height: 21, viewBox: '0 0 24 24', fill: 'none' },
+                    React.createElement('rect', { x: 5, y: 10.5, width: 14, height: 9.5, rx: 2, stroke: '#E97A90', strokeWidth: 1.6 }),
+                    React.createElement('path', { d: 'M8 10.5V8a4 4 0 018 0v2.5', stroke: '#E97A90', strokeWidth: 1.6 }),
+                    React.createElement('circle', { cx: 12, cy: 15, r: 1.4, fill: '#E97A90' })
+                  ),
+                  React.createElement('div', { style: { fontSize: 15.5, fontWeight: 700, color: '#F6EDF0' } }, PA ? '認證服務' : 'Auth Service')
+                ),
+                React.createElement('div', { style: { fontSize: 12.5, color: '#C99AA6' } }, PA ? 'OAuth2 / JWT · 知情同意' : 'OAuth2 / JWT · Consent')
+              ),
+              ...[
+                { top: 250, en: 'Matching Service', zh: '智慧媒合服務', sub: 'Bayesian · DNN · Siamese', port: 'Python :8081', badge: '×2', ip: [['circle', { cx: 6, cy: 7, r: 2.2, stroke: '#43D79E', strokeWidth: 1.6 }], ['circle', { cx: 6, cy: 17, r: 2.2, stroke: '#43D79E', strokeWidth: 1.6 }], ['circle', { cx: 18, cy: 12, r: 2.2, stroke: '#43D79E', strokeWidth: 1.6 }], ['path', { d: 'M8 8l8 3M8 16l8-3', stroke: '#43D79E', strokeWidth: 1.4 }]] },
+                { top: 406, en: 'Emotion Chatbot',  zh: '情緒 Chatbot',  sub: 'fine-tuned BERT · NRC', port: 'Python :8082', badge: '×3', ip: [['path', { d: 'M4 5h16v11H9l-4 3v-3H4z', stroke: '#43D79E', strokeWidth: 1.6, strokeLinejoin: 'round' }], ['path', { d: 'M8 9.5h8M8 12.5h5', stroke: '#43D79E', strokeWidth: 1.5, strokeLinecap: 'round' }]] },
+                { top: 562, en: 'Avatar Engine',    zh: 'Avatar 引擎',   sub: 'D-ID / HeyGen · TTS',  port: 'Python :8083', badge: '×2', ip: [['circle', { cx: 12, cy: 8.5, r: 3.4, stroke: '#43D79E', strokeWidth: 1.6 }], ['path', { d: 'M5.5 19.5a6.5 6.5 0 0113 0', stroke: '#43D79E', strokeWidth: 1.6, strokeLinecap: 'round' }]] },
+                { top: 718, en: 'Risk & Referral',  zh: '風險感知／轉介', sub: 'LLM · risk threshold', port: 'Python :8084', badge: '×2', ip: [['path', { d: 'M12 4l9 16H3z', stroke: '#43D79E', strokeWidth: 1.6, strokeLinejoin: 'round' }], ['path', { d: 'M12 10v4.5M12 17.5h.01', stroke: '#43D79E', strokeWidth: 1.7, strokeLinecap: 'round' }]] },
+              ].map(svc => React.createElement('div', { key: svc.en, className: 'arch-abs-svc', style: { position: 'absolute', left: 726, top: svc.top, width: 190, height: 90, zIndex: 2, border: '1.5px solid #2BB984', background: '#0B231B', borderRadius: 11, boxShadow: '0 0 20px rgba(43,185,132,.13)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6, textAlign: 'center' } },
+                React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 8 } },
+                  React.createElement('svg', { width: 18, height: 18, viewBox: '0 0 24 24', fill: 'none' }, ...svc.ip.map(([t, p], i) => React.createElement(t, { ...p, key: i }))),
+                  React.createElement('div', { style: { fontSize: 15, fontWeight: 700, color: '#EAF7F1' } }, PA ? svc.zh : svc.en)
+                ),
+                React.createElement('div', { style: { fontSize: 11.5, color: '#62B596' } }, svc.sub),
+                React.createElement('div', { style: { fontSize: 10.5, color: '#7FCFB0', background: 'rgba(43,185,132,.12)', border: '1px solid rgba(43,185,132,.25)', borderRadius: 5, padding: '1px 8px' } }, svc.port),
+                React.createElement('div', { style: { position: 'absolute', top: -9, right: 9, fontSize: 9.5, fontWeight: 600, color: '#9FE0C6', background: '#0B231B', border: '1px solid #2BB984', borderRadius: 6, padding: '1px 7px', zIndex: 3 } }, svc.badge),
+                React.createElement('div', { style: { position: 'absolute', top: 9, left: 9, width: 7, height: 7, borderRadius: '50%', background: '#3FD79E', boxShadow: '0 0 7px #3FD79E' } })
+              )),
+              ...[
+                { top: 250, en: 'Vector · Milvus', enSub: 'Trait embeddings',         zhSub: '心理特質向量嵌入',   ip: [['ellipse', { cx: 12, cy: 6, rx: 7, ry: 2.8, stroke: '#B49BFA', strokeWidth: 1.5 }], ['path', { d: 'M5 6v12c0 1.6 3.1 2.8 7 2.8s7-1.2 7-2.8V6', stroke: '#B49BFA', strokeWidth: 1.5 }], ['circle', { cx: 9, cy: 13, r: 1, fill: '#B49BFA' }], ['circle', { cx: 15, cy: 13, r: 1, fill: '#B49BFA' }], ['circle', { cx: 12, cy: 16, r: 1, fill: '#B49BFA' }], ['path', { d: 'M9 13l3 3 3-3', stroke: '#B49BFA', strokeWidth: 1 }]] },
+                { top: 406, en: 'PostgreSQL',       enSub: 'Scales / chat history',    zhSub: '量表 / 對話歷程',    ip: [['ellipse', { cx: 12, cy: 6, rx: 7, ry: 2.8, stroke: '#B49BFA', strokeWidth: 1.5 }], ['path', { d: 'M5 6v12c0 1.6 3.1 2.8 7 2.8s7-1.2 7-2.8V6M5 12c0 1.6 3.1 2.8 7 2.8s7-1.2 7-2.8', stroke: '#B49BFA', strokeWidth: 1.5 }]] },
+                { top: 562, en: 'Redis',            enSub: 'Cache / media queue',      zhSub: '快取 / 媒體佇列',    ip: [['path', { d: 'M12 3l8 4-8 4-8-4z', stroke: '#B49BFA', strokeWidth: 1.5, strokeLinejoin: 'round' }], ['path', { d: 'M4 11l8 4 8-4M4 15l8 4 8-4', stroke: '#B49BFA', strokeWidth: 1.5, strokeLinejoin: 'round' }]] },
+                { top: 718, en: 'Elasticsearch',    enSub: 'Utterance / issue search',  zhSub: '語句 / 議題標籤檢索', ip: [['circle', { cx: 10.5, cy: 10.5, r: 6, stroke: '#B49BFA', strokeWidth: 1.6 }], ['path', { d: 'M15 15l5 5', stroke: '#B49BFA', strokeWidth: 1.6, strokeLinecap: 'round' }]] },
+              ].map(ds => React.createElement('div', { key: ds.en, className: 'arch-abs-data', style: { position: 'absolute', left: 980, top: ds.top, width: 190, height: 90, zIndex: 2, border: '1.5px solid #8B5CF6', background: '#170F2C', borderRadius: 11, boxShadow: '0 0 20px rgba(139,92,246,.15)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 5, textAlign: 'center' } },
+                React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 8 } },
+                  React.createElement('svg', { width: 18, height: 18, viewBox: '0 0 24 24', fill: 'none' }, ...ds.ip.map(([t, p], i) => React.createElement(t, { ...p, key: i }))),
+                  React.createElement('div', { style: { fontSize: 15, fontWeight: 700, color: '#EFEAFB' } }, ds.en)
+                ),
+                React.createElement('div', { style: { fontSize: 11.5, color: '#A593D6' } }, PA ? ds.zhSub : ds.enSub)
+              )),
+              ...[
+                { top: 364, en: 'Event Bus · trait vector', zh: 'Event Bus · 特質向量化' },
+                { top: 520, en: 'Event Bus · emotion',      zh: 'Event Bus · 情緒特徵' },
+                { top: 676, en: 'Event Bus · feedback',     zh: 'Event Bus · 歷程回饋' },
+              ].map(bus => React.createElement('div', { key: bus.en, style: { position: 'absolute', left: 736, top: bus.top, width: 170, height: 27, zIndex: 3, border: '1px solid #C77B3B', background: '#2A1B0E', borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, fontSize: 11, fontWeight: 600, color: '#E2A45E' } },
+                React.createElement('svg', { width: 14, height: 14, viewBox: '0 0 24 24', fill: 'none' },
+                  React.createElement('path', { d: 'M3 12h5l2-4 4 8 2-4h5', stroke: '#E2A45E', strokeWidth: 1.7, strokeLinecap: 'round', strokeLinejoin: 'round' })
+                ),
+                PA ? bus.zh : bus.en
+              )),
+              React.createElement('div', { style: { position: 'absolute', left: 696, top: 840, width: 250, height: 27, zIndex: 3, border: '1px solid #E0A33A', background: '#2A2008', borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, fontSize: 11, fontWeight: 600, color: '#F0BD66' } },
+                React.createElement('svg', { width: 14, height: 14, viewBox: '0 0 24 24', fill: 'none' },
+                  React.createElement('path', { d: 'M12 3l7 2.5v5c0 4-2.8 6.8-7 8.5-4.2-1.7-7-4.5-7-8.5v-5z', stroke: '#F0BD66', strokeWidth: 1.5, strokeLinejoin: 'round' }),
+                  React.createElement('path', { d: 'M9 12l2 2 4-4', stroke: '#F0BD66', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round' })
+                ),
+                PA ? '知情同意後轉介 · 結構化前測報告' : 'Consented referral · structured report'
+              ),
+              React.createElement('div', { style: { position: 'absolute', left: 691, top: 907, width: 260, height: 90, zIndex: 2, border: '1.5px solid #E0A33A', background: '#241B07', borderRadius: 12, boxShadow: '0 0 22px rgba(224,163,58,.16)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6, textAlign: 'center' } },
+                React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 8 } },
+                  React.createElement('svg', { width: 20, height: 20, viewBox: '0 0 24 24', fill: 'none' },
+                    React.createElement('path', { d: 'M4 21V8.5l8-4 8 4V21', stroke: '#F0BD66', strokeWidth: 1.6, strokeLinejoin: 'round' }),
+                    React.createElement('path', { d: 'M12 13.5c-1.4-1.3-3-.2-3 1.2 0 1 1 1.9 3 3 2-1.1 3-2 3-3 0-1.4-1.6-2.5-3-1.2z', stroke: '#F0BD66', strokeWidth: 1.3, strokeLinejoin: 'round' })
+                  ),
+                  React.createElement('div', { style: { fontSize: 15, fontWeight: 700, color: '#FBF1DC' } }, PA ? '校方身心健康中心' : 'Campus Counseling Center')
+                ),
+                React.createElement('div', { style: { fontSize: 11.5, color: '#C7A766' } }, PA ? '心理師工作台 · 優先介入個案' : 'Counselor console · priority cases')
+              ),
+              React.createElement('div', { style: { position: 'absolute', left: 0, right: 0, bottom: 22, zIndex: 3, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 24 } },
+                React.createElement('span', { style: { fontSize: 13, color: '#7C8AA0', fontWeight: 600 } }, PA ? '圖例' : 'Legend'),
+                ...[
+                  { border: '#2BB984', bg: '#0B231B', en: 'AI Service',   zh: 'AI 服務' },
+                  { border: '#8B5CF6', bg: '#170F2C', en: 'Database',      zh: '資料庫' },
+                  { border: '#C0405A', bg: '#240F18', en: 'Gateway',        zh: '閘道' },
+                  { border: '#C77B3B', bg: '#2A1B0E', en: 'Event Bus',     zh: '事件匯流排' },
+                  { border: '#E0A33A', bg: '#241B07', en: 'Referral',       zh: '轉介輸出' },
+                ].map(leg => React.createElement('span', { key: leg.en, style: { display: 'flex', alignItems: 'center', gap: 7, fontSize: 12.5, color: '#AEB9C8' } },
+                  React.createElement('span', { style: { width: 18, height: 13, borderRadius: 4, border: `1.5px solid ${leg.border}`, background: leg.bg, display: 'inline-block' } }),
+                  PA ? leg.zh : leg.en
+                ))
+              )
+            ),
+            React.createElement('div', { className: 'arch-abs-panels' },
+              ...[
+                {
+                  en: 'Client Applications', zh: '前端應用',
+                  enItems: ['React SPA (Web)', 'Pre-test scales (MBTI/DERS/AAS/BPNS)', 'Text / video chat UI', 'Progress dashboard'],
+                  zhItems: ['React SPA 網頁前端', '心理量表前測 (MBTI/DERS/AAS/BPNS)', '文字 / 影像對話介面', '心理歷程趨勢儀表板'],
+                  ip: [['rect', { x: 3, y: 4, width: 18, height: 13, rx: 1.8, stroke: '#2EB6CE', strokeWidth: 1.7 }], ['path', { d: 'M3 8h18M9 20.5h6', stroke: '#2EB6CE', strokeWidth: 1.7, strokeLinecap: 'round' }]],
+                },
+                {
+                  en: 'AI Microservices', zh: 'AI 微服務',
+                  enItems: ['Trait-vector matching', 'Emotion-adaptive dialogue (Gross)', 'Anthropomorphic Avatar sync', 'Event-driven · database per service'],
+                  zhItems: ['心理特質向量化媒合', '情緒適應性對話 (Gross 五策略)', '擬人化 Avatar 視覺/語音同步', '事件驅動 · 各服務專屬資料庫'],
+                  ip: [['circle', { cx: 6, cy: 7, r: 2.2, stroke: '#2BB984', strokeWidth: 1.6 }], ['circle', { cx: 6, cy: 17, r: 2.2, stroke: '#2BB984', strokeWidth: 1.6 }], ['circle', { cx: 18, cy: 12, r: 2.2, stroke: '#2BB984', strokeWidth: 1.6 }], ['path', { d: 'M8 8l8 3M8 16l8-3', stroke: '#2BB984', strokeWidth: 1.4 }]],
+                },
+                {
+                  en: 'Infrastructure (future)', zh: '基礎設施（未來擴充）',
+                  enItems: ['Kubernetes orchestration', 'FastAPI unified gateway', 'Kafka / RabbitMQ streaming', 'Prometheus monitoring · learning loop'],
+                  zhItems: ['Kubernetes 容器編排', 'FastAPI 統一閘道', 'Kafka / RabbitMQ 事件串流', 'Prometheus 監控 · 持續學習迴圈'],
+                  ip: [['path', { d: 'M12 2.6l8.2 4.7v9.4L12 21.4 3.8 16.7V7.3z', stroke: '#E05572', strokeWidth: 1.6, strokeLinejoin: 'round' }], ['circle', { cx: 12, cy: 12, r: 2.4, stroke: '#E05572', strokeWidth: 1.5 }]],
+                },
+              ].map(panel => React.createElement('div', { key: panel.en, className: 'arch-abs-panel' },
+                React.createElement('div', { className: 'arch-abs-panel-head' },
+                  React.createElement('svg', { width: 19, height: 19, viewBox: '0 0 24 24', fill: 'none' }, ...panel.ip.map(([t, p], i) => React.createElement(t, { ...p, key: i }))),
+                  React.createElement('span', { className: 'arch-abs-panel-title' }, PA ? panel.zh : panel.en)
+                ),
+                React.createElement('div', { className: 'arch-abs-panel-items' },
+                  ...(PA ? panel.zhItems : panel.enItems).map(item =>
+                    React.createElement('div', { key: item }, `· ${item}`)
+                  )
+                )
+              ))
             )
-          ))
+          )
         )
       )
     ),
@@ -595,29 +924,17 @@ export default function EmobotCaseStudy({ lang }) {
         )
       ),
       React.createElement('div', { className: 'emobot-research-lab' },
-        React.createElement('div', { className: 'emobot-research-brief' },
-          React.createElement('div', null,
-            React.createElement('div', { className: 'emobot-research-kicker' }, PA ? '研究作業系統' : 'Research operating system'),
-            React.createElement('h4', { className: 'emobot-research-title' }, PA ? '從訪談語句到量化結果，再回到產品介面。' : 'From interview language to quantitative readout, then back into the interface.'),
-            React.createElement('p', { className: 'emobot-research-lead' },
-              PA
-                ? '我將心理支持產品的研究流程拆成可追蹤的四個階段：先理解使用者如何描述壓力與求助阻力，再用問卷量化互動偏好與支持需求，最後把語意與量化結果轉成下一版產品決策。'
-                : 'I structured the research flow into four traceable stages: understand how users describe distress and help-seeking friction, quantify support needs and interaction preferences, then translate semantic and survey evidence into the next product iteration.'
+        React.createElement('div', { className: 'emobot-research-flow' },
+          ...researchMethods.map((step, i) =>
+            React.createElement('div', { className: 'emobot-research-flow-step', key: step.label },
+              React.createElement('div', { className: 'emobot-research-flow-num' }, `Step ${i + 1}`),
+              React.createElement('div', { className: 'emobot-research-flow-icon' },
+                React.createElement(Icon, { name: step.iconKey })
+              ),
+              React.createElement('div', { className: 'emobot-research-flow-badge' }, PA ? step.zhTitle : step.title),
+              React.createElement('div', { className: 'emobot-research-flow-desc' }, PA ? step.zhBody : step.body)
             )
-          ),
-          React.createElement('div', { className: 'emobot-research-metrics' },
-            ...researchMetrics.map(metric => React.createElement('div', { className: 'emobot-research-metric', key: metric.label },
-              React.createElement('div', { className: 'emobot-research-metric-num' }, metric.value),
-              React.createElement('div', { className: 'emobot-research-metric-label' }, PA ? metric.zhLabel : metric.label)
-            ))
           )
-        ),
-        React.createElement('div', { className: 'emobot-research-methods' },
-          ...researchMethods.map(step => React.createElement('article', { className: 'emobot-research-method-step', key: step.label },
-            React.createElement('span', null, PA ? step.zhLabel : step.label),
-            React.createElement('h4', null, PA ? step.zhTitle : step.title),
-            React.createElement('p', null, PA ? step.zhBody : step.body)
-          ))
         ),
         React.createElement('div', { className: 'emobot-research-artifacts' },
           ...researchArtifacts.map(item => React.createElement('figure', { className: `emobot-research-artifact${item.wide ? ' wide' : ''}`, key: item.src },
