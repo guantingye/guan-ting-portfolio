@@ -1,6 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Icon from '../ui/Icon.jsx';
 
+const publicAsset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
+
+const personaAvatarImages = {
+  Lumi: new URL('../../../assets/persona_lumi.png', import.meta.url).href,
+  Solin: new URL('../../../assets/persona_solin.png', import.meta.url).href,
+  Niko: new URL('../../../assets/persona_niko.png', import.meta.url).href,
+  Clara: new URL('../../../assets/persona_clara.png', import.meta.url).href,
+};
+
+const systemArchitectureWireframe = new URL('../../../assets/System architecture wireframe.png', import.meta.url).href;
+
 export default function EmobotCaseStudy({ lang }) {
   const PA = lang === 'zh';
   const [activePersona, setActivePersona] = useState(0);
@@ -207,7 +218,8 @@ export default function EmobotCaseStudy({ lang }) {
     {
       name: 'Lumi',
       iconKey: 'heart',
-      image: 'assets/emobot-persona-lumi.webp',
+      image: publicAsset('assets/emobot-persona-lumi.webp'),
+      avatarImage: personaAvatarImages.Lumi,
       type: 'Empathic listener',
       zhType: '同理型 AI',
       trait: 'Validation and warmth',
@@ -226,7 +238,8 @@ export default function EmobotCaseStudy({ lang }) {
     {
       name: 'Solin',
       iconKey: 'activity',
-      image: 'assets/emobot-persona-solin.webp',
+      image: publicAsset('assets/emobot-persona-solin.webp'),
+      avatarImage: personaAvatarImages.Solin,
       type: 'Insight companion',
       zhType: '洞察型 AI',
       trait: 'Depth and hidden motives',
@@ -245,7 +258,8 @@ export default function EmobotCaseStudy({ lang }) {
     {
       name: 'Niko',
       iconKey: 'zap',
-      image: 'assets/emobot-persona-niko.webp',
+      image: publicAsset('assets/emobot-persona-niko.webp'),
+      avatarImage: personaAvatarImages.Niko,
       type: 'Solution strategist',
       zhType: '解決型 AI',
       trait: 'Action planning and focus',
@@ -264,7 +278,8 @@ export default function EmobotCaseStudy({ lang }) {
     {
       name: 'Clara',
       iconKey: 'book',
-      image: 'assets/emobot-persona-clara.webp',
+      image: publicAsset('assets/emobot-persona-clara.webp'),
+      avatarImage: personaAvatarImages.Clara,
       type: 'Cognitive reframer',
       zhType: '認知型 AI',
       trait: 'Structure and cognitive clarity',
@@ -317,7 +332,7 @@ export default function EmobotCaseStudy({ lang }) {
 
   const researchArtifacts = [
     {
-      src: 'assets/p1.png',
+      src: publicAsset('assets/p1.png'),
       title: 'Dialogue Semantic Analysis',
       zhTitle: '對話語意分析結果',
       meta: 'Qualitative coding / semantic clustering',
@@ -327,7 +342,7 @@ export default function EmobotCaseStudy({ lang }) {
       badge: 'P1',
     },
     {
-      src: 'assets/p2.png',
+      src: publicAsset('assets/p2.png'),
       title: 'User Design Questionnaire',
       zhTitle: '使用者設計問卷量化分析',
       meta: 'Survey distribution / construct readout',
@@ -337,7 +352,7 @@ export default function EmobotCaseStudy({ lang }) {
       badge: 'P2',
     },
     {
-      src: 'assets/p3.png',
+      src: publicAsset('assets/p3.png'),
       title: 'Quantitative Pattern Comparison',
       zhTitle: '量化模式比較分析',
       meta: 'Comparative analysis / design implication',
@@ -402,7 +417,7 @@ export default function EmobotCaseStudy({ lang }) {
             ),
             React.createElement('div', { className: 'emobot-video-frame' },
               React.createElement('video', {
-                src: 'assets/demo_v1.mp4',
+                src: publicAsset('assets/demo_v1.mp4'),
                 autoPlay: true,
                 muted: true,
                 loop: true,
@@ -426,7 +441,7 @@ export default function EmobotCaseStudy({ lang }) {
             ),
             React.createElement('div', { className: 'emobot-live-preview' },
               React.createElement('img', {
-                src: 'assets/emobot-live-home.webp',
+                src: publicAsset('assets/emobot-live-home.webp'),
                 alt: PA ? 'Emobot+ 線上專案首頁截圖' : 'Emobot+ live project home screen',
                 loading: 'lazy',
                 decoding: 'async'
@@ -588,7 +603,7 @@ export default function EmobotCaseStudy({ lang }) {
             onClick: () => setActivePersona(i)
           },
             React.createElement('div', { className: 'persona-tab-avatar' },
-              React.createElement('img', { src: `assets/persona_${p.name.toLowerCase()}.png`, alt: p.name, loading: 'lazy' })
+              React.createElement('img', { src: p.avatarImage, alt: p.name, loading: 'lazy' })
             ),
             React.createElement('div', { className: 'persona-tab-info' },
               React.createElement('strong', null, p.name),
@@ -599,7 +614,7 @@ export default function EmobotCaseStudy({ lang }) {
         React.createElement('div', { className: 'persona-detail' },
           React.createElement('div', { className: 'persona-detail-profile' },
             React.createElement('div', { className: 'persona-detail-photo' },
-              React.createElement('img', { src: `assets/persona_${active.name.toLowerCase()}.png`, alt: active.name, loading: 'lazy' })
+              React.createElement('img', { src: active.avatarImage, alt: active.name, loading: 'lazy' })
             ),
             React.createElement('div', { className: 'persona-detail-id' },
               React.createElement('div', { className: 'persona-detail-type' }, PA ? active.zhType : active.type),
@@ -628,7 +643,7 @@ export default function EmobotCaseStudy({ lang }) {
                 React.createElement('div', { className: 'persona-chat-bubble' }, PA ? active.zhPrompt : active.prompt)
               ),
               React.createElement('div', { className: 'persona-chat-row' },
-                React.createElement('img', { src: `assets/persona_${active.name.toLowerCase()}.png`, alt: active.name, className: 'persona-chat-avatar', loading: 'lazy' }),
+                React.createElement('img', { src: active.avatarImage, alt: active.name, className: 'persona-chat-avatar', loading: 'lazy' }),
                 React.createElement('div', { className: 'persona-chat-bubble' }, PA ? active.zhResponse : active.response)
               )
             )
@@ -655,7 +670,7 @@ export default function EmobotCaseStudy({ lang }) {
         React.createElement('div', { className: 'arch-sketch-card' },
           React.createElement('div', { className: 'arch-sketch-img-container' },
             React.createElement('img', {
-              src: 'assets/System architecture wireframe.png',
+              src: systemArchitectureWireframe,
               alt: PA ? '系統架構草稿圖' : 'System architecture wireframe draft',
               loading: 'lazy', decoding: 'async',
             })
