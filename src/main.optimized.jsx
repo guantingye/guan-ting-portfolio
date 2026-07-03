@@ -1110,111 +1110,91 @@ function ProjectPage({ slug, navigate }) {
    SKILLS SECTION V5
 ═══════════════════════════════ */
 function SkillsSection() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
+  const PA = lang === 'zh';
   const [animated, setAnimated] = useState(false);
   const ref = useRef(null);
 
   useEffect(() => {
     const io = new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) { setAnimated(true); io.disconnect(); }
-    }, { threshold: 0.2 });
+    }, { threshold: 0.15 });
     if (ref.current) io.observe(ref.current);
     return () => io.disconnect();
   }, []);
 
   const DOMAIN = [
-    { name: 'Cognitive Neuroscience',  level: 5 },
-    { name: 'AI Product Design',       level: 4 },
-    { name: 'UX Research',             level: 4 },
-    { name: 'Deep Tech Strategy',      level: 4 },
-    { name: 'Psychometrics',           level: 5 },
-    { name: 'Ecosystem Mapping',       level: 4 },
-    { name: 'Digital Mental Health',   level: 3 },
-    { name: 'Data Storytelling',       level: 4 },
+    { name: 'Cognitive Neuroscience',  zhName: '認知神經科學',  level: 5 },
+    { name: 'AI Product Design',       zhName: 'AI 產品設計',   level: 4 },
+    { name: 'UX Research',             zhName: '用戶體驗研究',  level: 4 },
+    { name: 'Deep Tech Strategy',      zhName: '深科技策略',    level: 4 },
+    { name: 'Psychometrics',           zhName: '心理計量學',    level: 5 },
+    { name: 'Ecosystem Mapping',       zhName: '生態系統分析',  level: 4 },
+    { name: 'Digital Mental Health',   zhName: '數位心理健康',  level: 3 },
+    { name: 'Data Storytelling',       zhName: '資料敘事',      level: 4 },
   ];
 
   const TECH = [
-    { name: 'Python (Data / AI)',      pct: 90 },
-    { name: 'R · SPSS · JASP',         pct: 88 },
-    { name: 'JavaScript · React · Vue',pct: 78 },
-    { name: 'SQL · Database Design',   pct: 75 },
-    { name: 'LLM APIs · Prompt Eng.',  pct: 82 },
+    { name: 'Python (Data / AI)',       pct: 90 },
+    { name: 'R · SPSS · JASP',          pct: 88 },
     { name: 'Playwright · Web Scraping',pct: 85 },
-    { name: 'EEG / fMRI Analysis',     pct: 80 },
-    { name: 'ETL Pipelines',           pct: 83 },
-    { name: 'FastAPI · Backend Dev',   pct: 72 },
-    { name: 'Photoshop · Illustrator', pct: 68 },
+    { name: 'LLM APIs · Prompt Eng.',   pct: 82 },
+    { name: 'ETL Pipelines',            pct: 83 },
+    { name: 'EEG / fMRI Analysis',      pct: 80 },
+    { name: 'JavaScript · React · Vue', pct: 78 },
+    { name: 'SQL · Database Design',    pct: 75 },
+    { name: 'FastAPI · Backend Dev',    pct: 72 },
+    { name: 'Photoshop · Illustrator',  pct: 68 },
   ];
 
-  const CERTS = [
-    { logo: 'G', name: 'Google UX Design Professional Certificate',         issuer: 'Google · Coursera', color: '#4285f4', bg: 'rgba(66,133,244,0.1)' },
-    { logo: 'G', name: 'Google Advanced Data Analytics',                    issuer: 'Google · Coursera', color: '#34a853', bg: 'rgba(52,168,83,0.1)' },
-    { logo: 'G', name: 'Google Project Management',                         issuer: 'Google · Coursera', color: '#ea4335', bg: 'rgba(234,67,53,0.1)' },
-    { logo: 'M', name: 'Meta Full Stack Developer (Front-End & Back-End)',   issuer: 'Meta · Coursera',   color: '#1877f2', bg: 'rgba(24,119,242,0.1)' },
-    { logo: 'I', name: 'IBM AI Product Manager Professional Certificate',    issuer: 'IBM · Coursera',    color: '#006699', bg: 'rgba(0,102,153,0.1)' },
-    { logo: 'I', name: 'IBM Systems & Solutions Architect Certificate',      issuer: 'IBM · Coursera',    color: '#006699', bg: 'rgba(0,102,153,0.1)' },
+  const BAR_GRADS = [
+    'linear-gradient(90deg,#a78bfa,#c4b5fd)',
+    'linear-gradient(90deg,#a78bfa,#818cf8)',
+    'linear-gradient(90deg,#818cf8,#6366f1)',
+    'linear-gradient(90deg,#6366f1,#3b82f6)',
+    'linear-gradient(90deg,#3b82f6,#0ea5e9)',
+    'linear-gradient(90deg,#0ea5e9,#06b6d4)',
+    'linear-gradient(90deg,#06b6d4,#00e5c0)',
+    'linear-gradient(90deg,#00e5c0,#34d399)',
+    'linear-gradient(90deg,#34d399,#22d3ee)',
+    'linear-gradient(90deg,#22d3ee,#38bdf8)',
   ];
 
-  return React.createElement('section', { className: 'skills-v5', id: 'skills' },
+  return React.createElement('section', { className: 'skills-ng', id: 'skills' },
     React.createElement('div', { className: 'container' },
       React.createElement('div', { className: 'section-label reveal' }, t('skillsLabel')),
       React.createElement('h2', { className: 'section-title reveal reveal-delay-1' },
         t('skillsTitle1'), ' ', React.createElement('em', null, t('skillsTitleEm')), t('skillsTitle2')
       ),
-      React.createElement('div', { className: 'skills-v5-grid reveal', ref },
-        // Domain Panel
-        React.createElement('div', { className: 'skill-panel panel-domain' },
-          React.createElement('div', { className: 'skill-panel-title' },
-            React.createElement('span', { className: 'skill-panel-title-dot' }),
-            t('skillDomain')
-          ),
-          React.createElement('div', null,
-            ...DOMAIN.map(d =>
-              React.createElement('div', { className: 'domain-item', key: d.name },
-                React.createElement('span', { className: 'domain-name' }, d.name),
-                React.createElement('div', { className: 'domain-dots' },
-                  ...[1,2,3,4,5].map(i =>
-                    React.createElement('span', { className: `domain-dot${i <= d.level ? ' filled' : ''}`, key: i })
-                  )
-                )
-              )
-            )
+      React.createElement('div', { className: 'tech-ng-list reveal', ref },
+        ...TECH.map((s, i) =>
+          React.createElement('div', { className: 'tech-ng-row', key: s.name },
+            React.createElement('div', { className: 'tech-ng-meta' },
+              React.createElement('span', { className: 'tech-ng-idx' }, String(i + 1).padStart(2, '0')),
+              React.createElement('span', { className: 'tech-ng-name' }, s.name)
+            ),
+            React.createElement('div', { className: 'tech-ng-track' },
+              React.createElement('div', { className: 'tech-ng-fill', style: {
+                width: animated ? `${s.pct}%` : '0%',
+                background: BAR_GRADS[i],
+                transitionDelay: `${i * 0.06}s`,
+              }})
+            ),
+            React.createElement('span', { className: 'tech-ng-pct' }, `${s.pct}`)
           )
-        ),
-        // Tech Panel
-        React.createElement('div', { className: 'skill-panel panel-tech' },
-          React.createElement('div', { className: 'skill-panel-title' },
-            React.createElement('span', { className: 'skill-panel-title-dot' }),
-            t('skillTech')
-          ),
-          React.createElement('div', null,
-            ...TECH.map(s =>
-              React.createElement('div', { className: 'bar-item', key: s.name },
-                React.createElement('div', { className: 'bar-header' },
-                  React.createElement('span', { className: 'bar-name' }, s.name),
-                  React.createElement('span', { className: 'bar-pct' }, `${s.pct}%`)
-                ),
-                React.createElement('div', { className: 'bar-track' },
-                  React.createElement('div', { className: 'bar-fill', style: { width: animated ? `${s.pct}%` : '0%' } })
-                )
-              )
-            )
-          )
-        ),
-        // Certs Panel
-        React.createElement('div', { className: 'skill-panel panel-certs' },
-          React.createElement('div', { className: 'skill-panel-title' },
-            React.createElement('span', { className: 'skill-panel-title-dot' }),
-            t('certTitle')
-          ),
-          React.createElement('div', null,
-            ...CERTS.map(c =>
-              React.createElement('div', { className: 'cert-item', key: c.name },
-                React.createElement('div', { className: 'cert-logo', style: { color: c.color, background: c.bg } }, c.logo),
-                React.createElement('div', { className: 'cert-info' },
-                  React.createElement('div', { className: 'cert-name' }, c.name),
-                  React.createElement('div', { className: 'cert-issuer' }, c.issuer)
-                )
+        )
+      ),
+      React.createElement('hr', { className: 'skills-ng-sep' }),
+      React.createElement('div', { className: 'domain-ng-header' },
+        PA ? `領域專長 · ${DOMAIN.length} 領域` : `Domain Expertise · ${DOMAIN.length} Areas`
+      ),
+      React.createElement('div', { className: 'domain-ng-grid' },
+        ...DOMAIN.map(d =>
+          React.createElement('div', { className: 'domain-ng-chip', key: d.name },
+            React.createElement('span', { className: 'domain-ng-name' }, PA ? d.zhName : d.name),
+            React.createElement('div', { className: 'domain-ng-dots' },
+              ...[1,2,3,4,5].map(i =>
+                React.createElement('span', { className: `domain-ng-dot${i <= d.level ? ' on' : ''}`, key: i })
               )
             )
           )

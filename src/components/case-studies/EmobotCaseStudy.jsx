@@ -20,7 +20,7 @@ export default function EmobotCaseStudy({ lang }) {
   useEffect(() => {
     const el = archWrapRef.current;
     if (!el) return;
-    const update = () => setArchScale(Math.min(1, el.getBoundingClientRect().width / 1260));
+    const update = () => setArchScale(Math.min(1.2, el.getBoundingClientRect().width / 1120));
     update();
     const ro = new ResizeObserver(update);
     ro.observe(el);
@@ -689,7 +689,7 @@ export default function EmobotCaseStudy({ lang }) {
           React.createElement('div', { className: 'arch-abs-outer', style: { zoom: archScale } },
             React.createElement('div', { className: 'arch-abs-canvas' },
               React.createElement('svg', {
-                viewBox: '0 0 1200 1064', width: '1200', height: '1064',
+                viewBox: '0 0 1060 1064', width: '1060', height: '1064',
                 style: { position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, zIndex: 0 },
                 fill: 'none'
               },
@@ -702,28 +702,28 @@ export default function EmobotCaseStudy({ lang }) {
                   )
                 ),
                 React.createElement('g', { stroke: '#5D6B82', strokeWidth: '1.7', markerEnd: 'url(#ea-ah)' },
-                  React.createElement('path', { d: 'M238 358 L316 396' }),
-                  React.createElement('path', { d: 'M238 706 L316 714' }),
-                  React.createElement('path', { d: 'M536 396 L716 294' }),
-                  React.createElement('path', { d: 'M536 412 L716 450' }),
-                  React.createElement('path', { d: 'M536 428 L716 606' }),
-                  React.createElement('path', { d: 'M536 714 L716 762' }),
-                  React.createElement('path', { d: 'M916 294 L974 294' }),
-                  React.createElement('path', { d: 'M916 450 L974 450' }),
-                  React.createElement('path', { d: 'M916 606 L974 606' }),
-                  React.createElement('path', { d: 'M916 762 L974 762' })
+                  React.createElement('path', { d: 'M228 358 L271 396' }),
+                  React.createElement('path', { d: 'M228 706 L271 714' }),
+                  React.createElement('path', { d: 'M487 396 L611 294' }),
+                  React.createElement('path', { d: 'M487 412 L611 450' }),
+                  React.createElement('path', { d: 'M487 428 L611 606' }),
+                  React.createElement('path', { d: 'M487 714 L611 762' }),
+                  React.createElement('path', { d: 'M807 294 L834 294' }),
+                  React.createElement('path', { d: 'M807 450 L834 450' }),
+                  React.createElement('path', { d: 'M807 606 L834 606' }),
+                  React.createElement('path', { d: 'M807 762 L834 762' })
                 ),
                 React.createElement('g', { stroke: '#7A5A2E', strokeWidth: '1.6', strokeDasharray: '5 5' },
-                  React.createElement('path', { d: 'M821 338 L821 406' }),
-                  React.createElement('path', { d: 'M821 494 L821 562' }),
-                  React.createElement('path', { d: 'M821 650 L821 718' })
+                  React.createElement('path', { d: 'M712 338 L712 406' }),
+                  React.createElement('path', { d: 'M712 494 L712 562' }),
+                  React.createElement('path', { d: 'M712 650 L712 718' })
                 ),
-                React.createElement('path', { d: 'M821 806 L821 907', stroke: '#E0A33A', strokeWidth: '1.7', strokeDasharray: '6 5', markerEnd: 'url(#ea-ahA)' })
+                React.createElement('path', { d: 'M712 806 L712 907', stroke: '#E0A33A', strokeWidth: '1.7', strokeDasharray: '6 5', markerEnd: 'url(#ea-ahA)' })
               ),
-              React.createElement('div', { style: { position: 'absolute', left: 70, top: 120, width: 168, textAlign: 'center', zIndex: 2, fontSize: 12, fontWeight: 600, letterSpacing: '.14em', color: '#6B7C92' } }, PA ? '前端層' : 'CLIENT TIER'),
-              React.createElement('div', { style: { position: 'absolute', left: 326, top: 120, width: 210, textAlign: 'center', zIndex: 2, fontSize: 12, fontWeight: 600, letterSpacing: '.14em', color: '#6B7C92' } }, PA ? '閘道層' : 'EDGE / GATEWAY'),
-              React.createElement('div', { style: { position: 'absolute', left: 726, top: 120, width: 190, textAlign: 'center', zIndex: 2, fontSize: 12, fontWeight: 600, letterSpacing: '.14em', color: '#6B7C92' } }, PA ? 'AI 服務網格' : 'AI SERVICE MESH'),
-              React.createElement('div', { style: { position: 'absolute', left: 980, top: 120, width: 190, textAlign: 'center', zIndex: 2, fontSize: 12, fontWeight: 600, letterSpacing: '.14em', color: '#6B7C92' } }, PA ? '資料層' : 'DATA TIER'),
+              React.createElement('div', { style: { position: 'absolute', left: 60, top: 120, width: 168, textAlign: 'center', zIndex: 2, fontSize: 12, fontWeight: 600, letterSpacing: '.14em', color: '#6B7C92' } }, PA ? '前端層' : 'CLIENT TIER'),
+              React.createElement('div', { style: { position: 'absolute', left: 277, top: 120, width: 210, textAlign: 'center', zIndex: 2, fontSize: 12, fontWeight: 600, letterSpacing: '.14em', color: '#6B7C92' } }, PA ? '閘道層' : 'EDGE / GATEWAY'),
+              React.createElement('div', { style: { position: 'absolute', left: 617, top: 120, width: 190, textAlign: 'center', zIndex: 2, fontSize: 12, fontWeight: 600, letterSpacing: '.14em', color: '#6B7C92' } }, PA ? 'AI 服務網格' : 'AI SERVICE MESH'),
+              React.createElement('div', { style: { position: 'absolute', left: 840, top: 120, width: 190, textAlign: 'center', zIndex: 2, fontSize: 12, fontWeight: 600, letterSpacing: '.14em', color: '#6B7C92' } }, PA ? '資料層' : 'DATA TIER'),
               React.createElement('div', { style: { position: 'absolute', left: 0, right: 0, top: 156, zIndex: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 11, fontSize: 12.5, color: '#94A1B2' } },
                 React.createElement('span', { style: { fontWeight: 600, color: '#7FD3E4' } }, PA ? '資料流' : 'Data Flow'),
                 ...[
@@ -743,20 +743,20 @@ export default function EmobotCaseStudy({ lang }) {
                 )
               ),
               ...[
-                { left: 261, top: 357, n: '1', bg: '#0E1A2A', border: '#36B6CE', color: '#7FD3E4' },
-                { left: 606, top: 323, n: '2', bg: '#0E1A2A', border: '#36B6CE', color: '#7FD3E4' },
-                { left: 936, top: 272, n: '3', bg: '#0E1A2A', border: '#36B6CE', color: '#7FD3E4' },
-                { left: 810, top: 864, n: '4', bg: '#2A2008', border: '#E0A33A', color: '#F0BD66' },
+                { left: 222, top: 357, n: '1', bg: '#0E1A2A', border: '#36B6CE', color: '#7FD3E4' },
+                { left: 515, top: 323, n: '2', bg: '#0E1A2A', border: '#36B6CE', color: '#7FD3E4' },
+                { left: 820, top: 272, n: '3', bg: '#0E1A2A', border: '#36B6CE', color: '#7FD3E4' },
+                { left: 689, top: 864, n: '4', bg: '#2A2008', border: '#E0A33A', color: '#F0BD66' },
               ].map(m => React.createElement('div', { key: `fm${m.n}`, style: { position: 'absolute', left: m.left, top: m.top, width: 23, height: 23, zIndex: 4, borderRadius: '50%', background: m.bg, border: `1.5px solid ${m.border}`, color: m.color, fontSize: 12, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' } }, m.n)),
-              React.createElement('div', { style: { position: 'absolute', left: 486, top: 188, width: 694, height: 686, border: '1.6px dashed #2A9DB8', borderRadius: 14, zIndex: 1 } }),
-              React.createElement('div', { style: { position: 'absolute', left: 512, top: 200, zIndex: 2, display: 'flex', alignItems: 'center', gap: 7, fontSize: 14, fontWeight: 600, color: '#36B6CE', letterSpacing: '.03em' } },
+              React.createElement('div', { style: { position: 'absolute', left: 413, top: 188, width: 632, height: 686, border: '1.6px dashed #2A9DB8', borderRadius: 14, zIndex: 1 } }),
+              React.createElement('div', { style: { position: 'absolute', left: 435, top: 200, zIndex: 2, display: 'flex', alignItems: 'center', gap: 7, fontSize: 14, fontWeight: 600, color: '#36B6CE', letterSpacing: '.03em' } },
                 React.createElement('svg', { width: 17, height: 17, viewBox: '0 0 24 24', fill: 'none' },
                   React.createElement('path', { d: 'M12 2.6l8.2 4.7v9.4L12 21.4 3.8 16.7V7.3z', stroke: '#36B6CE', strokeWidth: '1.5', strokeLinejoin: 'round' }),
                   React.createElement('path', { d: 'M12 7.5l4 2.3v4.4L12 16.5 8 14.2V9.8z', stroke: '#36B6CE', strokeWidth: '1.3', strokeLinejoin: 'round' })
                 ),
                 PA ? 'AI 互動核心模組 · Kubernetes Cluster' : 'AI Interaction Core · Kubernetes Cluster'
               ),
-              React.createElement('div', { className: 'arch-abs-client', style: { position: 'absolute', left: 70, top: 312, width: 168, height: 92, zIndex: 2, border: '1.5px solid #2EB6CE', background: '#0A2530', borderRadius: 12, boxShadow: '0 0 20px rgba(46,182,206,.13)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6 } },
+              React.createElement('div', { className: 'arch-abs-client', style: { position: 'absolute', left: 60, top: 312, width: 168, height: 92, zIndex: 2, border: '1.5px solid #2EB6CE', background: '#0A2530', borderRadius: 12, boxShadow: '0 0 20px rgba(46,182,206,.13)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6 } },
                 React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 8 } },
                   React.createElement('svg', { width: 20, height: 20, viewBox: '0 0 24 24', fill: 'none' },
                     React.createElement('rect', { x: 3, y: 4, width: 18, height: 13, rx: 1.8, stroke: '#48C8DD', strokeWidth: 1.7 }),
@@ -766,7 +766,7 @@ export default function EmobotCaseStudy({ lang }) {
                 ),
                 React.createElement('div', { style: { fontSize: 12, color: '#8FB7C2' } }, 'React SPA')
               ),
-              React.createElement('div', { className: 'arch-abs-client', style: { position: 'absolute', left: 70, top: 660, width: 168, height: 92, zIndex: 2, border: '1.5px solid #2EB6CE', background: '#0A2530', borderRadius: 12, boxShadow: '0 0 20px rgba(46,182,206,.13)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6 } },
+              React.createElement('div', { className: 'arch-abs-client', style: { position: 'absolute', left: 60, top: 660, width: 168, height: 92, zIndex: 2, border: '1.5px solid #2EB6CE', background: '#0A2530', borderRadius: 12, boxShadow: '0 0 20px rgba(46,182,206,.13)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6 } },
                 React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 8 } },
                   React.createElement('svg', { width: 20, height: 20, viewBox: '0 0 24 24', fill: 'none' },
                     React.createElement('rect', { x: 7, y: 2.5, width: 10, height: 19, rx: 2.2, stroke: '#48C8DD', strokeWidth: 1.7 }),
@@ -776,7 +776,7 @@ export default function EmobotCaseStudy({ lang }) {
                 ),
                 React.createElement('div', { style: { fontSize: 12, color: '#8FB7C2' } }, 'iOS / Android')
               ),
-              React.createElement('div', { className: 'arch-abs-gw', style: { position: 'absolute', left: 326, top: 312, width: 210, height: 174, zIndex: 2, border: '1.5px solid #C0405A', background: '#240F18', borderRadius: 12, boxShadow: '0 0 22px rgba(192,64,90,.15)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8, textAlign: 'center' } },
+              React.createElement('div', { className: 'arch-abs-gw', style: { position: 'absolute', left: 277, top: 312, width: 210, height: 174, zIndex: 2, border: '1.5px solid #C0405A', background: '#240F18', borderRadius: 12, boxShadow: '0 0 22px rgba(192,64,90,.15)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8, textAlign: 'center' } },
                 React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 8 } },
                   React.createElement('svg', { width: 22, height: 22, viewBox: '0 0 24 24', fill: 'none' },
                     React.createElement('path', { d: 'M12 3l7 2.5v5c0 4-2.8 6.8-7 8.5-4.2-1.7-7-4.5-7-8.5v-5z', stroke: '#E97A90', strokeWidth: 1.6, strokeLinejoin: 'round' }),
@@ -791,7 +791,7 @@ export default function EmobotCaseStudy({ lang }) {
                 ),
                 React.createElement('div', { style: { fontSize: 11, color: '#F2899E', fontWeight: 600, background: 'rgba(224,102,126,.13)', border: '1px solid rgba(224,102,126,.3)', borderRadius: 5, padding: '2px 10px' } }, ':443')
               ),
-              React.createElement('div', { className: 'arch-abs-gw', style: { position: 'absolute', left: 326, top: 660, width: 210, height: 108, zIndex: 2, border: '1.5px solid #C0405A', background: '#240F18', borderRadius: 12, boxShadow: '0 0 22px rgba(192,64,90,.15)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 7, textAlign: 'center' } },
+              React.createElement('div', { className: 'arch-abs-gw', style: { position: 'absolute', left: 277, top: 660, width: 210, height: 108, zIndex: 2, border: '1.5px solid #C0405A', background: '#240F18', borderRadius: 12, boxShadow: '0 0 22px rgba(192,64,90,.15)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 7, textAlign: 'center' } },
                 React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 8 } },
                   React.createElement('svg', { width: 21, height: 21, viewBox: '0 0 24 24', fill: 'none' },
                     React.createElement('rect', { x: 5, y: 10.5, width: 14, height: 9.5, rx: 2, stroke: '#E97A90', strokeWidth: 1.6 }),
@@ -807,7 +807,7 @@ export default function EmobotCaseStudy({ lang }) {
                 { top: 406, en: 'Emotion Chatbot',  zh: '情緒 Chatbot',  sub: 'fine-tuned BERT · NRC', port: 'Python :8082', badge: '×3', ip: [['path', { d: 'M4 5h16v11H9l-4 3v-3H4z', stroke: '#43D79E', strokeWidth: 1.6, strokeLinejoin: 'round' }], ['path', { d: 'M8 9.5h8M8 12.5h5', stroke: '#43D79E', strokeWidth: 1.5, strokeLinecap: 'round' }]] },
                 { top: 562, en: 'Avatar Engine',    zh: 'Avatar 引擎',   sub: 'D-ID / HeyGen · TTS',  port: 'Python :8083', badge: '×2', ip: [['circle', { cx: 12, cy: 8.5, r: 3.4, stroke: '#43D79E', strokeWidth: 1.6 }], ['path', { d: 'M5.5 19.5a6.5 6.5 0 0113 0', stroke: '#43D79E', strokeWidth: 1.6, strokeLinecap: 'round' }]] },
                 { top: 718, en: 'Risk & Referral',  zh: '風險感知／轉介', sub: 'LLM · risk threshold', port: 'Python :8084', badge: '×2', ip: [['path', { d: 'M12 4l9 16H3z', stroke: '#43D79E', strokeWidth: 1.6, strokeLinejoin: 'round' }], ['path', { d: 'M12 10v4.5M12 17.5h.01', stroke: '#43D79E', strokeWidth: 1.7, strokeLinecap: 'round' }]] },
-              ].map(svc => React.createElement('div', { key: svc.en, className: 'arch-abs-svc', style: { position: 'absolute', left: 726, top: svc.top, width: 190, height: 90, zIndex: 2, border: '1.5px solid #2BB984', background: '#0B231B', borderRadius: 11, boxShadow: '0 0 20px rgba(43,185,132,.13)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6, textAlign: 'center' } },
+              ].map(svc => React.createElement('div', { key: svc.en, className: 'arch-abs-svc', style: { position: 'absolute', left: 617, top: svc.top, width: 190, height: 90, zIndex: 2, border: '1.5px solid #2BB984', background: '#0B231B', borderRadius: 11, boxShadow: '0 0 20px rgba(43,185,132,.13)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6, textAlign: 'center' } },
                 React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 8 } },
                   React.createElement('svg', { width: 18, height: 18, viewBox: '0 0 24 24', fill: 'none' }, ...svc.ip.map(([t, p], i) => React.createElement(t, { ...p, key: i }))),
                   React.createElement('div', { style: { fontSize: 15, fontWeight: 700, color: '#EAF7F1' } }, PA ? svc.zh : svc.en)
@@ -822,7 +822,7 @@ export default function EmobotCaseStudy({ lang }) {
                 { top: 406, en: 'PostgreSQL',       enSub: 'Scales / chat history',    zhSub: '量表 / 對話歷程',    ip: [['ellipse', { cx: 12, cy: 6, rx: 7, ry: 2.8, stroke: '#B49BFA', strokeWidth: 1.5 }], ['path', { d: 'M5 6v12c0 1.6 3.1 2.8 7 2.8s7-1.2 7-2.8V6M5 12c0 1.6 3.1 2.8 7 2.8s7-1.2 7-2.8', stroke: '#B49BFA', strokeWidth: 1.5 }]] },
                 { top: 562, en: 'Redis',            enSub: 'Cache / media queue',      zhSub: '快取 / 媒體佇列',    ip: [['path', { d: 'M12 3l8 4-8 4-8-4z', stroke: '#B49BFA', strokeWidth: 1.5, strokeLinejoin: 'round' }], ['path', { d: 'M4 11l8 4 8-4M4 15l8 4 8-4', stroke: '#B49BFA', strokeWidth: 1.5, strokeLinejoin: 'round' }]] },
                 { top: 718, en: 'Elasticsearch',    enSub: 'Utterance / issue search',  zhSub: '語句 / 議題標籤檢索', ip: [['circle', { cx: 10.5, cy: 10.5, r: 6, stroke: '#B49BFA', strokeWidth: 1.6 }], ['path', { d: 'M15 15l5 5', stroke: '#B49BFA', strokeWidth: 1.6, strokeLinecap: 'round' }]] },
-              ].map(ds => React.createElement('div', { key: ds.en, className: 'arch-abs-data', style: { position: 'absolute', left: 980, top: ds.top, width: 190, height: 90, zIndex: 2, border: '1.5px solid #8B5CF6', background: '#170F2C', borderRadius: 11, boxShadow: '0 0 20px rgba(139,92,246,.15)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 5, textAlign: 'center' } },
+              ].map(ds => React.createElement('div', { key: ds.en, className: 'arch-abs-data', style: { position: 'absolute', left: 840, top: ds.top, width: 190, height: 90, zIndex: 2, border: '1.5px solid #8B5CF6', background: '#170F2C', borderRadius: 11, boxShadow: '0 0 20px rgba(139,92,246,.15)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 5, textAlign: 'center' } },
                 React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 8 } },
                   React.createElement('svg', { width: 18, height: 18, viewBox: '0 0 24 24', fill: 'none' }, ...ds.ip.map(([t, p], i) => React.createElement(t, { ...p, key: i }))),
                   React.createElement('div', { style: { fontSize: 15, fontWeight: 700, color: '#EFEAFB' } }, ds.en)
@@ -833,20 +833,20 @@ export default function EmobotCaseStudy({ lang }) {
                 { top: 364, en: 'Event Bus · trait vector', zh: 'Event Bus · 特質向量化' },
                 { top: 520, en: 'Event Bus · emotion',      zh: 'Event Bus · 情緒特徵' },
                 { top: 676, en: 'Event Bus · feedback',     zh: 'Event Bus · 歷程回饋' },
-              ].map(bus => React.createElement('div', { key: bus.en, style: { position: 'absolute', left: 736, top: bus.top, width: 170, height: 27, zIndex: 3, border: '1px solid #C77B3B', background: '#2A1B0E', borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, fontSize: 11, fontWeight: 600, color: '#E2A45E' } },
+              ].map(bus => React.createElement('div', { key: bus.en, style: { position: 'absolute', left: 626, top: bus.top, width: 170, height: 27, zIndex: 3, border: '1px solid #C77B3B', background: '#2A1B0E', borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, fontSize: 11, fontWeight: 600, color: '#E2A45E' } },
                 React.createElement('svg', { width: 14, height: 14, viewBox: '0 0 24 24', fill: 'none' },
                   React.createElement('path', { d: 'M3 12h5l2-4 4 8 2-4h5', stroke: '#E2A45E', strokeWidth: 1.7, strokeLinecap: 'round', strokeLinejoin: 'round' })
                 ),
                 PA ? bus.zh : bus.en
               )),
-              React.createElement('div', { style: { position: 'absolute', left: 696, top: 840, width: 250, height: 27, zIndex: 3, border: '1px solid #E0A33A', background: '#2A2008', borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, fontSize: 11, fontWeight: 600, color: '#F0BD66' } },
+              React.createElement('div', { style: { position: 'absolute', left: 592, top: 840, width: 250, height: 27, zIndex: 3, border: '1px solid #E0A33A', background: '#2A2008', borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, fontSize: 11, fontWeight: 600, color: '#F0BD66' } },
                 React.createElement('svg', { width: 14, height: 14, viewBox: '0 0 24 24', fill: 'none' },
                   React.createElement('path', { d: 'M12 3l7 2.5v5c0 4-2.8 6.8-7 8.5-4.2-1.7-7-4.5-7-8.5v-5z', stroke: '#F0BD66', strokeWidth: 1.5, strokeLinejoin: 'round' }),
                   React.createElement('path', { d: 'M9 12l2 2 4-4', stroke: '#F0BD66', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round' })
                 ),
                 PA ? '知情同意後轉介 · 結構化前測報告' : 'Consented referral · structured report'
               ),
-              React.createElement('div', { style: { position: 'absolute', left: 691, top: 907, width: 260, height: 90, zIndex: 2, border: '1.5px solid #E0A33A', background: '#241B07', borderRadius: 12, boxShadow: '0 0 22px rgba(224,163,58,.16)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6, textAlign: 'center' } },
+              React.createElement('div', { style: { position: 'absolute', left: 587, top: 907, width: 260, height: 90, zIndex: 2, border: '1.5px solid #E0A33A', background: '#241B07', borderRadius: 12, boxShadow: '0 0 22px rgba(224,163,58,.16)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6, textAlign: 'center' } },
                 React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 8 } },
                   React.createElement('svg', { width: 20, height: 20, viewBox: '0 0 24 24', fill: 'none' },
                     React.createElement('path', { d: 'M4 21V8.5l8-4 8 4V21', stroke: '#F0BD66', strokeWidth: 1.6, strokeLinejoin: 'round' }),
