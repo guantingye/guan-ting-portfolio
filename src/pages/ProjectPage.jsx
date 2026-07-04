@@ -6,6 +6,8 @@ import Icon from '../components/ui/Icon.jsx';
 import StorytellingCaseStudy from '../components/case-studies/StorytellingCaseStudy.jsx';
 import ProjectExtraSection from '../components/case-studies/ProjectExtraSection.jsx';
 import DesignSystemSpecimen from '../components/launch-os/DesignSystemSpecimen.jsx';
+import VerificationLayer from '../components/verification/VerificationLayer.jsx';
+import ProductShowcase from '../components/product-showcase/ProductShowcase.jsx';
 
 export default function ProjectPage({ slug, navigate }) {
     const { t, lang } = useLang();
@@ -66,6 +68,7 @@ export default function ProjectPage({ slug, navigate }) {
                 React.createElement('div', { className: 'proj-section reveal' },
                     React.createElement('div', { className: 'proj-section-title' }, t('projOverview')),
                     overview.split('\n\n').map((para, i) => React.createElement('p', { className: 'proj-body-text', key: i }, para))),
+                slug === 'startup-intelligence-platform' && React.createElement(ProductShowcase, null),
                 React.createElement(StorytellingCaseStudy, { project: p, lang }),
                 React.createElement(ProjectExtraSection, { slug, lang }),
                 React.createElement('div', { className: 'proj-section reveal' },
@@ -96,6 +99,7 @@ export default function ProjectPage({ slug, navigate }) {
                         React.createElement('div', { className: 'award-badge-text' },
                             React.createElement('div', { className: 'award-badge-title' }, a.title),
                             a.desc)))),
+                slug === 'startup-intelligence-platform' && React.createElement(VerificationLayer, null),
                 React.createElement('div', { className: 'proj-nav' },
                     prevP ? React.createElement('a', {
                         href: `#/project/${prevP.slug}`,
