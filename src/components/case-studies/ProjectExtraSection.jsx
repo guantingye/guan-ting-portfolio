@@ -1,33 +1,16 @@
 import React from 'react';
-import Icon from '../ui/Icon.jsx';
+import DeeptechDatabaseCaseStudy from './DeeptechDatabaseCaseStudy.jsx';
 import EmobotCaseStudy from './EmobotCaseStudy.jsx';
+import LaunchOsEvidence from '../launch-os/LaunchOsEvidence.jsx';
 
 export default function ProjectExtraSection({ slug, lang }) {
   const PA = lang === 'zh';
 
   if (slug === 'emobot-plus') return React.createElement(EmobotCaseStudy, { lang });
 
-  if (slug === 'deeptech-database') return React.createElement('div', { className: 'proj-section reveal' },
-    React.createElement('div', { className: 'proj-section-title' }, PA ? '資料管線架構' : 'Pipeline Architecture'),
-    React.createElement('div', { className: 'pipeline-viz' },
-      ...['104.com.tw', '→', 'TSIA / SEMI.org', '→', 'MOPS API', '→', 'ETL Clean', '→', 'SQL Store', '→', 'Excel / Notion'].map((n, i) =>
-        n === '→'
-          ? React.createElement('span', { className: 'pipeline-arrow', key: i }, n)
-          : React.createElement('div', { className: 'pipeline-node', key: i }, n)
-      )
-    ),
-    React.createElement('div', { className: 'stats-bar' },
-      ...[
-        { num: '230+', label: PA ? '公司追蹤' : 'Companies' },
-        { num: '40+',  label: PA ? '資料維度' : 'Data Dims' },
-        { num: 'v9.2', label: PA ? '目前版本' : 'Version' },
-        { num: '9',    label: PA ? '整合來源' : 'Sources' },
-      ].map(s => React.createElement('div', { className: 'stats-bar-item', key: s.label },
-        React.createElement('div', { className: 'stats-bar-num' }, s.num),
-        React.createElement('div', { className: 'stats-bar-label' }, s.label)
-      ))
-    )
-  );
+  if (slug === 'ai-product-launch-os') return React.createElement(LaunchOsEvidence, null);
+
+  if (slug === 'deeptech-database') return React.createElement(DeeptechDatabaseCaseStudy, { lang });
 
   if (slug === 'ai-news-intelligence') return React.createElement('div', { className: 'proj-section reveal' },
     React.createElement('div', { className: 'proj-section-title' }, PA ? '資料來源矩陣' : 'Source Matrix'),

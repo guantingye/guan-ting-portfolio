@@ -5,6 +5,7 @@ import { PROJECTS, PROJECT_THEMES } from '../data/projects.js';
 import Icon from '../components/ui/Icon.jsx';
 import StorytellingCaseStudy from '../components/case-studies/StorytellingCaseStudy.jsx';
 import ProjectExtraSection from '../components/case-studies/ProjectExtraSection.jsx';
+import DesignSystemSpecimen from '../components/launch-os/DesignSystemSpecimen.jsx';
 
 export default function ProjectPage({ slug, navigate }) {
     const { t, lang } = useLang();
@@ -70,15 +71,24 @@ export default function ProjectPage({ slug, navigate }) {
                 React.createElement('div', { className: 'proj-section reveal' },
                     React.createElement('div', { className: 'proj-section-title' }, t('projOutcomes')),
                     React.createElement('ol', { className: 'proj-outcomes' },
-                        outcomes.map((o, i) => React.createElement('li', { key: i },
-                            React.createElement('span', { className: 'outcome-num' }, String(i + 1).padStart(2, '0')),
-                            React.createElement('span', null, o))))),
+                        outcomes.map((o, i) => {
+                            const anchor = p.outcomeModules && p.outcomeModules[i];
+                            return React.createElement('li', { key: i },
+                                React.createElement('span', { className: 'outcome-num' }, String(i + 1).padStart(2, '0')),
+                                React.createElement('span', null, o,
+                                    anchor && React.createElement('button', {
+                                        className: 'outcome-module-link',
+                                        onClick: () => document.getElementById(anchor.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }),
+                                    }, ` → ${lang === 'zh' ? '見' : 'see'} Module ${anchor.num}`)));
+                        }))),
                 React.createElement('div', { className: 'proj-section reveal' },
                     React.createElement('div', { className: 'proj-section-title' }, t('projTech')),
                     React.createElement('div', { className: 'proj-tech-grid' },
                         p.tech.map(item => React.createElement('div', { className: 'tech-item', key: item.label },
                             React.createElement('div', { className: 'tech-item-label' }, item.label),
                             React.createElement('div', { className: 'tech-item-val' }, item.val))))),
+                slug === 'ai-product-launch-os' && React.createElement('div', { className: 'proj-section reveal' },
+                    React.createElement(DesignSystemSpecimen, null)),
                 p.awards && p.awards.length > 0 && React.createElement('div', { className: 'proj-section reveal' },
                     React.createElement('div', { className: 'proj-section-title' }, t('projAwards')),
                     p.awards.map((a, i) => React.createElement('div', { className: 'proj-award', key: i },

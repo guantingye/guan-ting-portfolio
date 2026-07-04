@@ -19,20 +19,20 @@ export const PROJECTS = [
     },
     {
         slug: 'deeptech-database', num: '02',
-        category: 'Data Engineering', zhCategory: '資料工程',
-        title: 'Global DeepTech Database', subtitle: 'Ecosystem Intelligence System',
-        zhTitle: '全球深科技資料庫', zhSubtitle: '生態系情報系統',
-        hook: "A living dataset that maps Taiwan's deep tech landscape — company by company, signal by signal.",
-        zhHook: '一個持續更新的資料集，逐家公司、逐個信號地描繪台灣深科技生態地圖。',
-        stack: ['Python', 'Pandas', 'Playwright', 'ETL', 'SQL', 'yfinance', 'curl_cffi'],
-        role: 'Lead Engineer & Analyst', zhRole: '主任工程師 / 分析師',
-        timeline: '2024 – Present', status: 'Active · v9+', zhStatus: '持續更新 · v9+',
-        impact: '230+ companies tracked', zhImpact: '追蹤 230+ 家公司',
-        overview: "This is the data backbone of ITRI/ISTI's startup ecosystem intelligence. Starting from a seed list of ~230 Taiwan deep tech companies, I built a multi-source enrichment pipeline that pulls financial, governance, talent, news, and competitive data automatically.\n\nThe system targets notoriously hard-to-scrape sources: 104 人力銀行, TSIA, SEMI.org, ASIP, MOPS (公開資訊觀測站), and Cloudflare-protected sites. Each required custom handling — Playwright-based browser automation for JS-heavy pages, cache fallback strategies, and append-only protocols to maintain data integrity across versions.\n\nCurrently at v9.2, with ongoing work on Cloudflare bypass and selector stability.",
-        zhOverview: "這是工研院產科國際所新創生態系情報工作的數據骨幹。從約 230 家台灣深科技公司的種子名單出發，我建立了多源資料豐富化管線，能自動抓取財務、治理、人才、新聞與競爭情報。\n\n系統針對難以爬取的來源：104 人力銀行、TSIA、SEMI.org、ASIP、MOPS，以及受 Cloudflare 保護的網頁。每個來源都需要客製化處理——Playwright 瀏覽器自動化、快取回退策略，以及維護跨版本資料完整性的附加協議。\n\n目前版本為 v9.2，持續進行 Cloudflare 繞過策略優化。",
-        outcomes: ['Built multi-source crawler: 104.com.tw, TSIA, SEMI.org, ASIP, MOPS', 'Designed append-only data protocol maintaining integrity across 9+ versions', 'Automated ETL pipeline with Playwright for Cloudflare-protected sources', 'Enriched 230+ company profiles with financial, talent, and competitive signals', 'Powers national-level ecosystem analysis and investment reports at ITRI'],
-        zhOutcomes: ['建立多源爬蟲，目標包含 104.com.tw、TSIA、SEMI.org、ASIP、MOPS', '設計附加協議，維護 9+ 版本間的資料完整性', '以 Playwright 自動化 ETL 管線處理受 Cloudflare 保護的來源', '豐富 230+ 家公司資料，涵蓋財務、人才與競爭信號', '支撐工研院國家級生態系分析與投資報告'],
-        tech: [{ label: 'Crawler', val: 'Python Playwright, BeautifulSoup, curl_cffi' }, { label: 'Data Store', val: 'Pandas DataFrames, CSV append-only protocol' }, { label: 'Finance', val: 'yfinance, MOPS API, custom regex parsers' }, { label: 'Search', val: 'DuckDuckGo / Bing API enrichment layer' }, { label: 'Anti-block', val: 'Cache fallback, Cloudflare bypass, proxy rotation' }, { label: 'Output', val: 'Structured Excel reports, Notion integration' }],
+        category: 'Data Engineering · Startup Intelligence', zhCategory: '資料工程 · 新創情報',
+        title: 'Taiwan Startup Intelligence Data Room', subtitle: 'ITRI Internship Data Product Case',
+        zhTitle: '台灣新創情報資料工作室', zhSubtitle: '工研院實習資料產品案例',
+        hook: 'A data product case from my ITRI internship: crawlers, evidence-backed company records, bilingual technology tags, and handoff surfaces for maps, analysts, and IEK-style intelligence workflows.',
+        zhHook: '一個來自 ITRI 實習的資料產品案例：爬蟲、有來源證據的公司紀錄、雙語技術標籤，以及可交付給地圖、分析師與 IEK 情報流程的資料介面。',
+        stack: ['Python', 'Pandas', 'Playwright', 'ETL', 'SQL', 'Taxonomy', 'Data Product'],
+        role: 'Data Engineering Intern / Intelligence Workflow Builder', zhRole: '資料工程實習生 / 情報流程建構者',
+        timeline: 'ITRI Internship', status: 'Portfolio-safe reconstruction · v9+ dataset', zhStatus: '作品集安全重構 · v9+ 資料集',
+        impact: '230+ companies · 40+ dimensions · 9-source pipeline', zhImpact: '230+ 家公司 · 40+ 維度 · 9 類來源管線',
+        overview: "At ITRI, I worked on the data layer behind Taiwan startup ecosystem intelligence. The assignment started with crawling and database construction, but the real design problem was broader: how do you make fragmented public company signals useful for analysts, maps, technology classification, and briefing workflows?\n\nI approached the work as a data product. Source adapters captured different kinds of evidence, staging tables preserved provenance, normalization passes made records comparable, and bilingual tags translated Taiwan-specific descriptions into categories an international reader could understand.\n\nThis page reconstructs the work as an interactive portfolio case. It keeps the sensitive company-level records out of view, but shows the operating model: source selection, crawler logic, schema design, taxonomy, quality gates, visualization handoff, and IEK-style intelligence use cases.",
+        zhOverview: "在 ITRI 實習期間，我參與的是台灣新創生態系情報背後的資料層。任務從爬蟲與資料庫建立開始，但真正的設計問題更大：如何讓分散的公開公司訊號，能被分析師、產業地圖、技術分類與情報 brief 流程實際使用？\n\n我把這項工作當成資料產品來做。不同來源 adapter 負責擷取不同證據，staging tables 保留來源溯源，標準化流程讓公司紀錄可以互相比較，雙語技術標籤則把台灣在地描述轉成國際讀者也能理解的分類。\n\n本頁以互動作品集形式重構這段成果：不揭露敏感公司級資料，但完整呈現 source selection、crawler logic、schema design、taxonomy、quality gates、visualization handoff 與 IEK 類型情報應用。",
+        outcomes: ['Built a public-source crawling and enrichment workflow for 230+ Taiwan startup company records', 'Structured 40+ reusable fields across identity, talent, finance, technology tags, provenance, confidence, and review state', 'Designed bilingual technology tags so Taiwan startup descriptions could be compared across international deep-tech categories', 'Prepared map-ready and query-ready exports for analyst dashboards, startup industry maps, and visualization-agent prototypes', 'Added source-aware quality controls: cache fallback, selector checks, append-only lineage, confidence scoring, and review queues'],
+        zhOutcomes: ['建立公開來源爬蟲與資料豐富化流程，支援 230+ 筆台灣新創公司紀錄', '整理 40+ 個可重用欄位，涵蓋公司識別、人才、財務、技術標籤、來源溯源、可信度與審核狀態', '設計雙語技術標籤，讓台灣新創描述能對齊國際 deep-tech 分類進行比較', '準備可製圖、可查詢的資料輸出，支援分析儀表板、新創產業地圖與視覺化 agent 原型', '加入 source-aware 品質控制：快取回退、selector 檢查、附加式 lineage、可信度評分與審核佇列'],
+        tech: [{ label: 'Source Acquisition', val: 'Python Playwright, curl_cffi, BeautifulSoup, source-specific crawler adapters' }, { label: 'ETL & Data Store', val: 'Pandas normalization, SQL-ready tables, append-only dataset lineage' }, { label: 'Data Quality', val: 'Source provenance, cache fallback, selector checks, confidence scoring' }, { label: 'Taxonomy', val: 'Bilingual technical tags, sector mapping, value-chain classification' }, { label: 'Handoff Surface', val: 'Map-ready exports, analyst queries, chart-ready aggregation tables' }, { label: 'Applications', val: 'Taiwan startup industry map, IEK intelligence views, briefing-ready evidence blocks' }],
         awards: [],
     },
     {
@@ -51,9 +51,31 @@ export const PROJECTS = [
         outcomes: ['Built a product narrative that moves from market ambiguity to a focused launch bet and measurable learning agenda', 'Designed a launch cockpit that connects customer urgency, model readiness, UX risk, roadmap sequencing, and GTM messaging', 'Created an executive-friendly metric tree linking activation, workflow value, trust, retention, and risk reduction', 'Structured the rollout as four learning loops: concept room, pilot corridor, launch theatre, and post-launch signal review', 'Positioned credentials as evidence of discipline while keeping the case centered on product strategy and team decision-making'],
         zhOutcomes: ['建立從市場模糊性到明確上市賭注與可衡量學習議程的產品敘事', '設計上市 cockpit，串接使用者急迫性、模型準備度、UX 風險、路線圖排序與 GTM 訊息', '建立適合主管閱讀的指標樹，連結 activation、workflow value、trust、retention 與風險降低', '將 rollout 拆成四個學習迴圈：concept room、pilot corridor、launch theatre 與 post-launch signal review', '將證照作為紀律佐證，但案例核心仍聚焦產品策略與團隊決策'],
         tech: [{ label: 'Product Strategy', val: 'Opportunity framing, launch thesis, roadmap sequencing, stakeholder narrative' }, { label: 'AI PM Layer', val: 'Model-risk assumptions, data readiness, human-in-the-loop workflow, launch gates' }, { label: 'Analytics', val: 'Metric tree, activation / retention / trust metrics, experiment design' }, { label: 'GTM Design', val: 'Positioning, buyer story, adoption loop, launch communication plan' }, { label: 'Prototype', val: 'React story interface, glass panels, live cockpit, responsive image system' }, { label: 'Evidence', val: 'IBM AI PM, Google PM, Google Advanced Data Analytics credentials' }],
-        // Replace later with: assets/projects/ai-product-launch-os-cover.webp
-        caseHeroImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80',
-        imageReplaceHint: 'Replace with assets/projects/ai-product-launch-os-cover.webp or a launch dashboard screenshot.',
+        // Self-drawn SVG cover (no stock photos on this case): cockpit wireframe in the Neural Signal OS palette.
+        caseHeroImage: 'data:image/svg+xml;utf8,' + encodeURIComponent(
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">'
+            + '<rect width="1600" height="900" fill="#14171D"/>'
+            + '<g stroke="#566173" stroke-width="4" fill="#1C2028">'
+            + '<rect x="120" y="140" width="340" height="620" rx="16"/>'
+            + '<rect x="520" y="140" width="560" height="620" rx="16"/>'
+            + '<rect x="1140" y="140" width="340" height="620" rx="16"/>'
+            + '</g>'
+            + '<g stroke="#4A5262" stroke-width="5" stroke-linecap="round">'
+            + '<path d="M160 240h260M160 320h220M160 400h260M160 480h190M160 560h240"/>'
+            + '<path d="M1180 260h200M1180 380h160M1180 500h220M1180 620h180"/>'
+            + '</g>'
+            + '<g stroke="#35C2B0" stroke-width="6" stroke-linecap="round" fill="none">'
+            + '<path d="M560 640l90-70 80 30 110-90 90 20 100-60"/>'
+            + '<circle cx="560" cy="240" r="12" fill="#35C2B0" stroke="none"/>'
+            + '<circle cx="560" cy="320" r="12" fill="#35C2B0" stroke="none" opacity="0.6"/>'
+            + '</g>'
+            + '<g fill="#35C2B0"><circle cx="1160" cy="260" r="9"/><circle cx="1160" cy="380" r="9"/><circle cx="1160" cy="500" r="9"/></g>'
+            + '<circle cx="1160" cy="620" r="9" fill="#E8A33D"/>'
+            + '<rect x="620" y="220" width="360" height="18" rx="9" fill="#2A303C"/>'
+            + '<rect x="620" y="220" width="230" height="18" rx="9" fill="#35C2B0" opacity="0.7"/>'
+            + '<rect x="620" y="300" width="360" height="18" rx="9" fill="#2A303C"/>'
+            + '<rect x="620" y="300" width="150" height="18" rx="9" fill="#35C2B0" opacity="0.5"/>'
+            + '</svg>'),
         caseDeck: {
             eyebrow: 'Launch cockpit',
             zhEyebrow: '上市駕駛艙',
@@ -74,15 +96,13 @@ export const PROJECTS = [
             { iconKey: 'chart', title: 'The evidence wall', zhTitle: '證據牆', body: 'Bring research notes, metrics, risk assumptions, and credential proof into one readable surface.', zhBody: '將研究筆記、指標、風險假設與證照佐證放在同一個可閱讀表面。' },
             { iconKey: 'trend', title: 'The launch rhythm', zhTitle: '上市節奏', body: 'Move from internal conviction to pilot learning, public story, adoption review, and roadmap correction.', zhBody: '從內部確信、pilot 學習、公眾敘事、採用回顧到路線圖修正。' },
         ],
-        caseGallery: [
-            { src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80', title: 'Signal dashboard', zhTitle: '訊號儀表板', note: 'Market signals and AI opportunity monitoring', zhNote: '市場訊號與 AI 機會監測' },
-            { src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80', title: 'Metric intelligence', zhTitle: '指標情報', note: 'Evidence-backed prioritization and launch metrics', zhNote: '證據導向的優先級與上市指標' },
-            { src: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80', title: 'Strategy review', zhTitle: '策略評審', note: 'Stakeholder alignment, roadmap critique, GTM framing', zhNote: '利害關係人對齊、路線圖評審與 GTM framing' },
-            { src: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80', title: 'Narrative workshop', zhTitle: '敘事工作坊', note: 'Turning ambiguous AI ideas into product decisions', zhNote: '將模糊 AI 想法轉成產品決策' },
-            { src: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80', title: 'Launch artifacts', zhTitle: '上市文件', note: 'PRD-lite, risk register, launch checklist placeholders', zhNote: 'PRD-lite、風險登錄表與上市檢查表預留' },
-            { src: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80', title: 'Decision room', zhTitle: '決策會議室', note: 'Cross-functional launch discussion and stakeholder readiness', zhNote: '跨職能上市討論與利害關係人準備度' },
-            { src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80', title: 'Workshop board', zhTitle: '工作坊白板', note: 'Opportunity clustering, roadmap debate, and launch storyline', zhNote: '機會聚類、路線圖辯論與上市故事線' },
-            { src: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=1200&q=80', title: 'GTM planning', zhTitle: 'GTM 規劃', note: 'Positioning, adoption loop, and market-facing narrative', zhNote: '定位、採用迴圈與市場敘事' },
+        // Gallery replaced by six interactive evidence modules (src/components/launch-os/)
+        outcomeModules: [
+            { num: '04', id: 'los-module-prd' },
+            { num: '01', id: 'los-module-cockpit' },
+            { num: '02', id: 'los-module-metric-tree' },
+            { num: '03', id: 'los-module-research' },
+            { num: '05', id: 'los-module-risk' },
         ],
         storyChapters: [
             { iconKey: 'activity', label: 'Signal', zhLabel: '訊號', title: 'Listen for the pattern behind the noise', zhTitle: '聽見噪音背後的模式', body: 'The launch story starts before the roadmap. I scan market reports, workflow complaints, competitor moves, data availability, and policy pressure, then turn them into a one-page opportunity brief that explains why this problem is becoming urgent now.', zhBody: '上市故事從路線圖之前開始。我掃描市場報告、工作流抱怨、競品動態、資料可用性與政策壓力，再將它們整理成一頁機會 brief，說明為什麼這個問題正在此刻變得急迫。', artifact: 'Opportunity brief', zhArtifact: '機會 brief' },
@@ -93,15 +113,11 @@ export const PROJECTS = [
         ],
         pullQuote: 'The strongest AI launch story is not “we used AI.” It is “we changed a decision, reduced a risk, and learned faster than the old workflow.”',
         zhPullQuote: '最強的 AI 上市敘事不是「我們使用了 AI」，而是「我們改變了一個決策、降低了一個風險，並比舊流程學得更快」。',
-        evidenceSlots: [
-            { iconKey: 'chart', title: 'Launch Readiness Board', zhTitle: '上市準備度看板', desc: 'Concept placeholder for product strategy board, roadmap, or metric tree screenshot.', zhDesc: '以概念圖暫代產品策略板、路線圖或指標樹截圖。', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80' },
-            { iconKey: 'briefcase', title: 'PRD / GTM Artifact', zhTitle: 'PRD / GTM 文件', desc: 'Concept placeholder for PRD-lite, positioning one-pager, launch checklist, or stakeholder map.', zhDesc: '以概念圖暫代 PRD-lite、定位單頁、上市檢查表或利害關係人地圖。', image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80' },
-            { iconKey: 'award', title: 'Credential Evidence', zhTitle: '證照佐證', desc: 'Concept placeholder for IBM AI PM, Google PM, and analytics certificate images.', zhDesc: '以概念圖暫代 IBM AI PM、Google PM 與資料分析證照圖片。', image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80' },
-        ],
+        // Evidence slots replaced by the Working Evidence modules; credentials stay as a text-only list.
         credentials: [
-            { iconKey: 'cpu', name: 'IBM AI Product Manager', issuer: 'IBM', relevance: 'AI product strategy, model risk, productization judgment' },
-            { iconKey: 'target', name: 'Google Project Management', issuer: 'Google', relevance: 'Roadmap planning, stakeholder communication, launch governance' },
-            { iconKey: 'chart', name: 'Google Advanced Data Analytics', issuer: 'Google', relevance: 'Metric design, experiment framing, evidence-backed decisions' },
+            { iconKey: 'cpu', name: 'IBM AI Product Manager', issuer: 'IBM', relevance: 'AI product strategy, model risk, productization judgment — applied in the risk register and model card (Module 05)' },
+            { iconKey: 'target', name: 'Google Project Management', issuer: 'Google', relevance: 'Roadmap planning, stakeholder communication, launch governance — applied in the decision gates (Module 01)' },
+            { iconKey: 'chart', name: 'Google Advanced Data Analytics', issuer: 'Google', relevance: 'Metric design, experiment framing, evidence-backed decisions — applied in the metric tree (Module 02)' },
         ],
         awards: [],
     },
