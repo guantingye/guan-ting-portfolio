@@ -155,9 +155,36 @@ export const PROJECTS = [
         outcomes: ['Translated pressure scenarios into an interaction state system spanning notice, alert, decide, confirm, recover, and handoff', 'Designed HMI patterns that use hierarchy, timing, density, and feedback to reduce cognitive load instead of adding visual noise', 'Created a frontend-oriented prototype narrative with responsive layout, keyboard-friendly tabs, visual evidence, and state documentation', 'Built a design-lab presentation style that makes human factors feel tangible rather than academic', 'Positioned UX, HMI, and frontend prototyping as one integrated craft: behavior, interface, system, and evidence'],
         zhOutcomes: ['將壓力情境轉成互動狀態系統，涵蓋 notice、alert、decide、confirm、recover 與 handoff', '設計 HMI 模式，用層級、時機、密度與回饋降低認知負荷，而不是增加視覺噪音', '建立前端導向的原型敘事，包含響應式版面、鍵盤友善 tabs、視覺證據與狀態文件', '用 design-lab 呈現方式讓人因設計變得具體，而不是停留在學術語言', '將 UX、HMI 與前端原型定位為整合工藝：行為、介面、系統與證據'],
         tech: [{ label: 'Human Factors', val: 'Cognitive load, attention switching, severity perception, error recovery' }, { label: 'UX System', val: 'Scenario maps, interface principles, state matrix, information density' }, { label: 'HMI Patterns', val: 'Alert hierarchy, confirmation timing, handoff rules, recovery affordances' }, { label: 'Frontend Craft', val: 'React state, keyboard tabs, responsive panels, resilient image layout' }, { label: 'Design Evidence', val: 'Scenario boards, state diagrams, usability notes, prototype screenshots' }, { label: 'Credential Fit', val: 'Google UX, Meta Full Stack, IBM Systems & Solutions Architect' }],
-        // Replace later with: assets/projects/ux-hmi-interaction-lab-cover.webp
-        caseHeroImage: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80',
-        imageReplaceHint: 'Replace with assets/projects/ux-hmi-interaction-lab-cover.webp or an HMI prototype screenshot.',
+        // Self-drawn SVG cover (no stock photos): a pressure-console preview in the Neural Signal OS palette.
+        caseHeroImage: 'data:image/svg+xml;utf8,' + encodeURIComponent(
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">'
+            + '<rect width="1600" height="900" fill="#0C0E12"/>'
+            + '<rect x="120" y="96" width="1360" height="64" rx="12" fill="#14171D" stroke="#262B35"/>'
+            + '<circle cx="164" cy="128" r="9" fill="#35C2B0"/>'
+            + '<rect x="192" y="119" width="190" height="18" rx="9" fill="#2A303C"/>'
+            + '<rect x="1300" y="112" width="140" height="32" rx="16" fill="#12241F" stroke="#35C2B0"/>'
+            + '<circle cx="1326" cy="128" r="6" fill="#35C2B0"/><rect x="1342" y="122" width="78" height="12" rx="6" fill="#35C2B0" opacity="0.6"/>'
+            + '<rect x="120" y="196" width="840" height="512" rx="16" fill="#14171D" stroke="#262B35"/>'
+            + '<rect x="152" y="230" width="776" height="196" rx="8" fill="#0C0E12" stroke="#232A36"/>'
+            + '<rect x="152" y="300" width="776" height="60" fill="#35C2B0" opacity="0.06"/>'
+            + '<polyline points="152,340 230,332 300,318 370,300 440,255 510,232 580,244 650,300 720,336 792,330 860,334 928,332" fill="none" stroke="#E8A33D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>'
+            + '<circle cx="928" cy="332" r="7" fill="#E8A33D"/>'
+            + '<rect x="152" y="452" width="776" height="196" rx="8" fill="#0C0E12" stroke="#232A36"/>'
+            + '<polyline points="152,560 230,548 300,566 370,552 440,558 510,544 580,560 650,550 720,566 792,552 860,560 928,556" fill="none" stroke="#35C2B0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>'
+            + '<circle cx="928" cy="556" r="7" fill="#35C2B0"/>'
+            + '<g fill="#14171D" stroke="#262B35">'
+            + '<rect x="1000" y="196" width="480" height="90" rx="12"/><rect x="1000" y="300" width="480" height="90" rx="12"/>'
+            + '<rect x="1000" y="404" width="480" height="90" rx="12"/><rect x="1000" y="508" width="480" height="90" rx="12"/>'
+            + '<rect x="1000" y="612" width="480" height="96" rx="12"/></g>'
+            + '<g><rect x="1000" y="196" width="4" height="90" fill="#35C2B0"/><rect x="1000" y="300" width="4" height="90" fill="#35C2B0"/>'
+            + '<rect x="1000" y="404" width="4" height="90" fill="#E8A33D"/><rect x="1000" y="508" width="4" height="90" fill="#35C2B0"/></g>'
+            + '<g fill="#35C2B0"><circle cx="1036" cy="241" r="7"/><circle cx="1036" cy="345" r="7"/><circle cx="1036" cy="553" r="7"/></g>'
+            + '<circle cx="1036" cy="449" r="7" fill="#E8A33D"/>'
+            + '<g fill="#2A303C"><rect x="1060" y="232" width="150" height="16" rx="8"/><rect x="1060" y="336" width="120" height="16" rx="8"/>'
+            + '<rect x="1060" y="440" width="170" height="16" rx="8"/><rect x="1060" y="544" width="130" height="16" rx="8"/></g>'
+            + '<rect x="1024" y="640" width="180" height="40" rx="8" fill="#35C2B0"/>'
+            + '<rect x="1224" y="640" width="150" height="40" rx="8" fill="none" stroke="#E8A33D"/>'
+            + '</svg>'),
         caseDeck: {
             eyebrow: 'Interaction lab',
             zhEyebrow: '互動實驗室',
@@ -178,16 +205,6 @@ export const PROJECTS = [
             { iconKey: 'shield', title: 'The safety rhythm', zhTitle: '安全節奏', body: 'Warnings should escalate with evidence, not volume. The system needs a rhythm: signal, explain, confirm, recover.', zhBody: '警示應該隨證據升級，而不是隨音量升級。系統需要節奏：提示、解釋、確認、復原。' },
             { iconKey: 'monitor', title: 'The prototype surface', zhTitle: '原型表面', body: 'Frontend decisions make the design real: focus order, disabled states, responsive density, and how components behave under stress.', zhBody: '前端決策讓設計變真實：focus order、disabled states、響應式密度，以及元件在壓力下如何表現。' },
         ],
-        caseGallery: [
-            { src: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80', title: 'Touch interaction', zhTitle: '觸控互動', note: 'Scenario-led interface behavior and handoff moments', zhNote: '情境導向介面行為與交接時刻' },
-            { src: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80', title: 'Interaction critique', zhTitle: '互動評審', note: 'Design rationale, information hierarchy, usability discussion', zhNote: '設計理由、資訊層級與可用性討論' },
-            { src: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80', title: 'State documentation', zhTitle: '狀態文件', note: 'Warning, recovery, and confirmation state notes', zhNote: '警示、復原與確認狀態筆記' },
-            { src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80', title: 'Interface telemetry', zhTitle: '介面遙測', note: 'Usage, attention, error, and response-time evidence placeholders', zhNote: '使用、注意力、錯誤與反應時間佐證預留' },
-            { src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80', title: 'Prototype environment', zhTitle: '原型環境', note: 'Frontend prototype review and system-level constraints', zhNote: '前端原型評審與系統限制' },
-            { src: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80', title: 'Design studio', zhTitle: '設計工作室', note: 'Scenario mapping and interface principle refinement', zhNote: '情境地圖與介面原則細修' },
-            { src: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80', title: 'Review table', zhTitle: '評審桌面', note: 'Cross-functional critique of warning, recovery, and handoff states', zhNote: '跨職能評審警示、復原與交接狀態' },
-            { src: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80', title: 'System walkthrough', zhTitle: '系統走查', note: 'Prototype walkthrough across devices, density, and focus paths', zhNote: '跨裝置、資訊密度與 focus path 的原型走查' },
-        ],
         storyChapters: [
             { iconKey: 'globe', label: 'Context', zhLabel: '情境', title: 'Start with a person, not a panel', zhTitle: '從人開始，而不是從面板開始', body: 'The scenario opens with a user who is busy, uncertain, and moving between tasks. The interface is judged by whether it helps them notice the right change at the right time without forcing them to decode the entire system.', zhBody: '情境從一個忙碌、不確定、正在多任務切換的使用者開始。介面是否成功，取決於它能否讓使用者在正確時間注意到正確變化，而不是逼他理解整個系統。', artifact: 'Scenario storyboard', zhArtifact: '情境 storyboard' },
             { iconKey: 'activity', label: 'Human Factors', zhLabel: '人因', title: 'Design around the limits of attention', zhTitle: '圍繞注意力限制設計', body: 'Attention, memory, perception, and error tolerance become product constraints. Every warning, label, color, and delay has to earn its place because HMI is often used when the user has no spare cognition left.', zhBody: '注意力、記憶、知覺與錯誤容忍度成為產品限制。每個警示、標籤、顏色與延遲都必須有存在理由，因為 HMI 常被用在使用者已經沒有多餘認知資源的時候。', artifact: 'Attention map', zhArtifact: '注意力地圖' },
@@ -197,10 +214,10 @@ export const PROJECTS = [
         ],
         pullQuote: 'Good HMI does not ask users to think harder. It shapes the system so the next correct action becomes easier to see.',
         zhPullQuote: '好的 HMI 不是要求使用者更努力思考，而是讓系統本身把下一個正確行動變得更容易被看見。',
+        // Superseded by the live Evidence Lab below — each card jumps to the working module.
         evidenceSlots: [
-            { iconKey: 'monitor', title: 'Prototype Screenshot', zhTitle: '原型截圖', desc: 'Concept placeholder for HMI dashboard, interaction flow, or responsive frontend screenshot.', zhDesc: '以概念圖暫代 HMI 儀表板、互動流程或響應式前端截圖。', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80' },
-            { iconKey: 'layers', title: 'State Matrix', zhTitle: '狀態矩陣', desc: 'Concept placeholder for normal / alert / decision / recovery state documentation.', zhDesc: '以概念圖暫代 normal / alert / decision / recovery 狀態文件。', image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80' },
-            { iconKey: 'award', title: 'Credential Evidence', zhTitle: '證照佐證', desc: 'Concept placeholder for Google UX, Meta Full Stack, and IBM architect certificate images.', zhDesc: '以概念圖暫代 Google UX、Meta Full Stack 與 IBM architect 證照圖片。', image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80' },
+            { iconKey: 'monitor', title: 'Working MVP', zhTitle: '可操作 MVP', desc: 'Open the live pressure console: streaming telemetry, an injectable fault, and a recovery flow you complete.', zhDesc: '打開即時壓力主控台：串流遙測、可注入的故障，以及由你完成的復原流程。', anchor: 'gx-m06', anchorNum: '06' },
+            { iconKey: 'layers', title: 'State Matrix', zhTitle: '狀態矩陣', desc: 'Open the real matrix: 7 interface states across 4 operating contexts, each rendered live with its spec.', zhDesc: '打開真正的矩陣：7 種介面狀態 × 4 種操作情境，每格即時渲染並附規格。', anchor: 'gx-m02', anchorNum: '02' },
         ],
         credentials: [
             { iconKey: 'book', name: 'Google UX Design', issuer: 'Google', relevance: 'UX process, research synthesis, usability and interaction design' },

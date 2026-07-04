@@ -2,6 +2,7 @@ import React from 'react';
 import DeeptechDatabaseCaseStudy from './DeeptechDatabaseCaseStudy.jsx';
 import EmobotCaseStudy from './EmobotCaseStudy.jsx';
 import LaunchOsEvidence from '../launch-os/LaunchOsEvidence.jsx';
+import EvidenceLab from '../evidence-lab/EvidenceLab.jsx';
 
 export default function ProjectExtraSection({ slug, lang }) {
   const PA = lang === 'zh';
@@ -9,6 +10,8 @@ export default function ProjectExtraSection({ slug, lang }) {
   if (slug === 'emobot-plus') return React.createElement(EmobotCaseStudy, { lang });
 
   if (slug === 'ai-product-launch-os') return React.createElement(LaunchOsEvidence, null);
+
+  if (slug === 'ux-hmi-interaction-lab') return React.createElement(EvidenceLab, null);
 
   if (slug === 'deeptech-database') return React.createElement(DeeptechDatabaseCaseStudy, { lang });
 

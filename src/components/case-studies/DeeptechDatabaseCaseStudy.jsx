@@ -36,6 +36,40 @@ const CONTENT = {
         { title: 'Semiconductor substrate', desc: 'A visual proxy for the deep-tech / hardware categories behind the taxonomy.', source: 'Unsplash reference', href: 'https://unsplash.com', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80' },
         { title: 'Data infrastructure', desc: 'Server and storage imagery used as a reference for the data backbone layer.', source: 'Unsplash reference', href: 'https://unsplash.com', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80' },
         { title: 'Analyst cockpit', desc: 'Dashboard imagery used as visual direction for the downstream intelligence surface.', source: 'Unsplash reference', href: 'https://unsplash.com', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80' },
+        { title: 'Networked economy', desc: 'A systems reference for connecting companies, sources, tags, and market activity.', source: 'Unsplash reference', href: 'https://unsplash.com', image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80' },
+        { title: 'AI operations', desc: 'A reference for the agent-assisted workflow layer rather than a literal screenshot.', source: 'Unsplash reference', href: 'https://unsplash.com', image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80' },
+        { title: 'Industrial automation cell', desc: 'A reference for advanced manufacturing, robotics, and hardware-heavy startup categories.', source: 'Unsplash reference', href: 'https://unsplash.com', image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80' },
+        { title: 'Founder review room', desc: 'A visual proxy for analyst moderation, company verification, and cross-source review.', source: 'Unsplash reference', href: 'https://unsplash.com', image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80' },
+      ],
+    },
+    marketProfile: {
+      eyebrow: 'Private-market database benchmark',
+      title: 'A Crunchbase-style company profile, rebuilt for Taiwan deep-tech intelligence',
+      lead: 'The professional database pattern is entity-first: a clean company profile, funding and people signals, source-backed validation, and a traceable edit history. This mockup shows how I would translate that pattern into an ITRI-safe internal intelligence surface.',
+      tabs: [
+        {
+          label: 'Profile',
+          headline: 'Anonymized AI semiconductor scale-up',
+          meta: [['Founded', '2019'], ['HQ', 'Hsinchu / Taipei'], ['Stage', 'growth candidate'], ['Sector', 'AI x IC design']],
+          notes: ['Canonical record links three aliases across Chinese and English sources.', 'Sector tag is analyst-reviewed; value-chain role is edge inference software.'],
+        },
+        {
+          label: 'Signals',
+          headline: 'Market activity signal board',
+          meta: [['Hiring velocity', '+18%'], ['News mentions', '12'], ['Source coverage', '7/9'], ['Confidence', '0.84']],
+          notes: ['Hiring and news signals move together across two source families.', 'Funding references remain candidate-level until registry evidence is confirmed.'],
+        },
+        {
+          label: 'Validation',
+          headline: 'Evidence and moderation layer',
+          meta: [['Open issues', '2'], ['Alias conflicts', '1'], ['Freshness', '18 days'], ['Audit state', 'ready']],
+          notes: ['Low-confidence aliases are kept out of the profile until resolved.', 'Every promoted field carries source URL, extraction date, and review state.'],
+        },
+      ],
+      sideStats: [
+        { label: 'source URLs', value: '31' },
+        { label: 'verified fields', value: '37' },
+        { label: 'candidate fields', value: '6' },
       ],
     },
     pipeline: {
@@ -82,6 +116,105 @@ const CONTENT = {
         { id: 'TW-DT-0224', sector: 'Biotech / MedTech', confidence: '0.79', sources: '5/9', review: 'needs alias check', ready: 'brief', note: 'Multiple Chinese aliases require analyst confirmation.' },
         { id: 'TW-DT-0311', sector: 'Cleantech / Energy', confidence: '0.72', sources: '4/9', review: 'candidate', ready: 'map', note: 'Useful for ecosystem map, not yet ready for briefing.' },
         { id: 'TW-DT-0442', sector: 'Advanced Manufacturing', confidence: '0.88', sources: '8/9', review: 'reviewed', ready: 'agent query', note: 'High provenance coverage and stable source trail.' },
+      ],
+    },
+    databaseConsole: {
+      eyebrow: 'Crunchbase-like database console',
+      title: 'A high-fidelity startup intelligence surface with verification built in',
+      lead: 'This is the product-facing proof layer: search the anonymized company universe, inspect one entity, and see which fields are promoted, candidate, or blocked from downstream AI / map usage.',
+      searchPlaceholder: 'Search company, city, sector, tag, evidence...',
+      empty: 'No anonymized records match the current query.',
+      filters: ['All', 'AI x Semiconductor', 'Biotech / MedTech', 'Cleantech / Energy', 'Advanced Manufacturing'],
+      references: [
+        { label: 'Crunchbase pattern', source: 'Company profiles, search filters, alerts, API, enrichment', href: 'https://www.crunchbase.com', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80' },
+        { label: 'Linked data model', source: 'Company, people, investment relations and sameAs thinking', href: 'https://arxiv.org/abs/1907.08671', image: 'https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?auto=format&fit=crop&w=1200&q=80' },
+        { label: 'Taiwan tech geography', source: 'Hsinchu Science Park and ITRI ecosystem context', href: 'https://web.sipa.gov.tw/english/', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80' },
+      ],
+      companies: [
+        {
+          id: 'TW-DT-0187',
+          name: 'NovaGrid Analytics',
+          mark: 'NG',
+          sector: 'AI x Semiconductor',
+          city: 'Hsinchu',
+          score: '86',
+          stage: 'scale-up candidate',
+          employees: '51-100',
+          readiness: 'map + brief',
+          coverage: '7/9',
+          freshness: '14d',
+          tags: ['edge AI', 'IC design', 'export-ready'],
+          signals: [['Hiring velocity', '+18%'], ['News mentions', '12'], ['Taxonomy fit', '0.91']],
+          evidence: ['website verified', '104 signal stable', 'registry relation reviewed'],
+          checks: [
+            { field: 'canonical_name', state: 'promoted', value: '3 aliases merged' },
+            { field: 'sector_tag', state: 'reviewed', value: 'AI x IC design' },
+            { field: 'funding_signal', state: 'candidate', value: 'news mention only' },
+          ],
+        },
+        {
+          id: 'TW-DT-0224',
+          name: 'AsterBio Systems',
+          mark: 'AB',
+          sector: 'Biotech / MedTech',
+          city: 'Taipei',
+          score: '79',
+          stage: 'research commercialization',
+          employees: '11-50',
+          readiness: 'brief draft',
+          coverage: '5/9',
+          freshness: '27d',
+          tags: ['diagnostics', 'bioinformatics', 'medical AI'],
+          signals: [['Hiring velocity', '+7%'], ['News mentions', '8'], ['Taxonomy fit', '0.83']],
+          evidence: ['registry matched', 'alias review pending', 'clinical claim excluded'],
+          checks: [
+            { field: 'canonical_name', state: 'review', value: 'Chinese alias conflict' },
+            { field: 'sector_tag', state: 'promoted', value: 'medical AI' },
+            { field: 'clinical_claim', state: 'blocked', value: 'insufficient public proof' },
+          ],
+        },
+        {
+          id: 'TW-DT-0311',
+          name: 'HelioCell Materials',
+          mark: 'HM',
+          sector: 'Cleantech / Energy',
+          city: 'Taoyuan',
+          score: '73',
+          stage: 'emerging startup',
+          employees: '11-50',
+          readiness: 'map only',
+          coverage: '4/9',
+          freshness: '31d',
+          tags: ['storage', 'materials', 'climate'],
+          signals: [['Hiring velocity', '+4%'], ['News mentions', '5'], ['Taxonomy fit', '0.76']],
+          evidence: ['website verified', 'association pending', 'funding candidate'],
+          checks: [
+            { field: 'company_site', state: 'promoted', value: 'active source' },
+            { field: 'industry_member', state: 'candidate', value: 'directory pending' },
+            { field: 'funding_signal', state: 'review', value: 'no registry match' },
+          ],
+        },
+        {
+          id: 'TW-DT-0442',
+          name: 'ForgeSense Robotics',
+          mark: 'FR',
+          sector: 'Advanced Manufacturing',
+          city: 'Taichung',
+          score: '88',
+          stage: 'industrial pilot',
+          employees: '101-250',
+          readiness: 'agent query',
+          coverage: '8/9',
+          freshness: '9d',
+          tags: ['robotics', 'vision', 'automation'],
+          signals: [['Hiring velocity', '+22%'], ['News mentions', '15'], ['Taxonomy fit', '0.89']],
+          evidence: ['job source stable', 'filing reviewed', 'brief-ready'],
+          checks: [
+            { field: 'hiring_signal', state: 'promoted', value: 'role-family normalized' },
+            { field: 'sector_tag', state: 'reviewed', value: 'industrial automation' },
+            { field: 'brief_card', state: 'promoted', value: 'agent-ready export' },
+          ],
+        },
       ],
     },
     reviewFlow: {
@@ -162,6 +295,40 @@ const CONTENT = {
         { title: 'Semiconductor substrate', desc: '作為 taxonomy 中 deep-tech / hardware 類別的視覺參照。', source: 'Unsplash reference', href: 'https://unsplash.com', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80' },
         { title: 'Data infrastructure', desc: '作為資料底層、伺服器與儲存層的視覺方向。', source: 'Unsplash reference', href: 'https://unsplash.com', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80' },
         { title: 'Analyst cockpit', desc: '作為後續情報介面與儀表板的視覺參考。', source: 'Unsplash reference', href: 'https://unsplash.com', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80' },
+        { title: 'Networked economy', desc: '作為公司、來源、標籤與市場活動互相連結的系統參照。', source: 'Unsplash reference', href: 'https://unsplash.com', image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80' },
+        { title: 'AI operations', desc: '作為 agent-assisted workflow 的視覺參照，而非真實系統截圖。', source: 'Unsplash reference', href: 'https://unsplash.com', image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80' },
+        { title: 'Industrial automation cell', desc: '作為先進製造、機器人與硬體型新創分類的視覺參照。', source: 'Unsplash reference', href: 'https://unsplash.com', image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80' },
+        { title: 'Founder review room', desc: '作為分析師 moderation、公司驗證與跨來源審核流程的視覺 proxy。', source: 'Unsplash reference', href: 'https://unsplash.com', image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80' },
+      ],
+    },
+    marketProfile: {
+      eyebrow: '私募市場資料庫對標',
+      title: '以 Crunchbase 類公司 profile 邏輯，重建台灣 deep-tech 情報介面',
+      lead: '專業資料庫的核心是 entity-first：乾淨的公司 profile、募資與人物訊號、具來源的驗證層，以及可追溯的修改歷史。這個 mockup 呈現我會如何把該模式轉成 ITRI-safe 的內部情報介面。',
+      tabs: [
+        {
+          label: 'Profile',
+          headline: '匿名 AI 半導體成長型公司',
+          meta: [['Founded', '2019'], ['HQ', 'Hsinchu / Taipei'], ['Stage', 'growth candidate'], ['Sector', 'AI x IC design']],
+          notes: ['標準紀錄串接三個中英文別名來源。', '產業標籤已由分析師審核；價值鏈角色為 edge inference software。'],
+        },
+        {
+          label: 'Signals',
+          headline: '市場活動訊號板',
+          meta: [['Hiring velocity', '+18%'], ['News mentions', '12'], ['Source coverage', '7/9'], ['Confidence', '0.84']],
+          notes: ['人才與新聞訊號在兩個來源類型中同步上升。', '募資參照仍維持候選狀態，等待登記資料確認。'],
+        },
+        {
+          label: 'Validation',
+          headline: '證據與 moderation layer',
+          meta: [['Open issues', '2'], ['Alias conflicts', '1'], ['Freshness', '18 days'], ['Audit state', 'ready']],
+          notes: ['低可信度別名在解決前不會進入正式 profile。', '每個 promoted field 都保留來源 URL、擷取日期與審核狀態。'],
+        },
+      ],
+      sideStats: [
+        { label: 'source URLs', value: '31' },
+        { label: 'verified fields', value: '37' },
+        { label: 'candidate fields', value: '6' },
       ],
     },
     pipeline: {
@@ -208,6 +375,105 @@ const CONTENT = {
         { id: 'TW-DT-0224', sector: 'Biotech / MedTech', confidence: '0.79', sources: '5/9', review: 'needs alias check', ready: 'brief', note: '多個中文別名需要分析師確認。' },
         { id: 'TW-DT-0311', sector: 'Cleantech / Energy', confidence: '0.72', sources: '4/9', review: 'candidate', ready: 'map', note: '適合進入生態系地圖，但尚未達 briefing 標準。' },
         { id: 'TW-DT-0442', sector: 'Advanced Manufacturing', confidence: '0.88', sources: '8/9', review: 'reviewed', ready: 'agent query', note: '來源覆蓋完整，適合進入 agent 查詢。' },
+      ],
+    },
+    databaseConsole: {
+      eyebrow: 'Crunchbase-like 資料庫 console',
+      title: '把驗證流程直接做進資料庫介面的高保真新創情報產品',
+      lead: '這是作品集中最接近專業資料產品的一層：搜尋匿名公司宇宙、檢視單一 entity，並看見哪些欄位已 promoted、哪些仍是 candidate、哪些不可交付給 AI / 地圖下游使用。',
+      searchPlaceholder: '搜尋公司、城市、產業、標籤、證據...',
+      empty: '沒有符合條件的匿名紀錄。',
+      filters: ['All', 'AI x Semiconductor', 'Biotech / MedTech', 'Cleantech / Energy', 'Advanced Manufacturing'],
+      references: [
+        { label: 'Crunchbase pattern', source: '公司 profile、搜尋篩選、alerts、API、enrichment', href: 'https://www.crunchbase.com', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80' },
+        { label: 'Linked data model', source: '公司、人物、投資關係與 sameAs schema 思維', href: 'https://arxiv.org/abs/1907.08671', image: 'https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?auto=format&fit=crop&w=1200&q=80' },
+        { label: 'Taiwan tech geography', source: '新竹科學園區與 ITRI 生態系脈絡', href: 'https://web.sipa.gov.tw/english/', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80' },
+      ],
+      companies: [
+        {
+          id: 'TW-DT-0187',
+          name: 'NovaGrid Analytics',
+          mark: 'NG',
+          sector: 'AI x Semiconductor',
+          city: 'Hsinchu',
+          score: '86',
+          stage: 'scale-up candidate',
+          employees: '51-100',
+          readiness: 'map + brief',
+          coverage: '7/9',
+          freshness: '14d',
+          tags: ['edge AI', 'IC design', 'export-ready'],
+          signals: [['Hiring velocity', '+18%'], ['News mentions', '12'], ['Taxonomy fit', '0.91']],
+          evidence: ['website verified', '104 signal stable', 'registry relation reviewed'],
+          checks: [
+            { field: 'canonical_name', state: 'promoted', value: '3 aliases merged' },
+            { field: 'sector_tag', state: 'reviewed', value: 'AI x IC design' },
+            { field: 'funding_signal', state: 'candidate', value: 'news mention only' },
+          ],
+        },
+        {
+          id: 'TW-DT-0224',
+          name: 'AsterBio Systems',
+          mark: 'AB',
+          sector: 'Biotech / MedTech',
+          city: 'Taipei',
+          score: '79',
+          stage: 'research commercialization',
+          employees: '11-50',
+          readiness: 'brief draft',
+          coverage: '5/9',
+          freshness: '27d',
+          tags: ['diagnostics', 'bioinformatics', 'medical AI'],
+          signals: [['Hiring velocity', '+7%'], ['News mentions', '8'], ['Taxonomy fit', '0.83']],
+          evidence: ['registry matched', 'alias review pending', 'clinical claim excluded'],
+          checks: [
+            { field: 'canonical_name', state: 'review', value: 'Chinese alias conflict' },
+            { field: 'sector_tag', state: 'promoted', value: 'medical AI' },
+            { field: 'clinical_claim', state: 'blocked', value: 'insufficient public proof' },
+          ],
+        },
+        {
+          id: 'TW-DT-0311',
+          name: 'HelioCell Materials',
+          mark: 'HM',
+          sector: 'Cleantech / Energy',
+          city: 'Taoyuan',
+          score: '73',
+          stage: 'emerging startup',
+          employees: '11-50',
+          readiness: 'map only',
+          coverage: '4/9',
+          freshness: '31d',
+          tags: ['storage', 'materials', 'climate'],
+          signals: [['Hiring velocity', '+4%'], ['News mentions', '5'], ['Taxonomy fit', '0.76']],
+          evidence: ['website verified', 'association pending', 'funding candidate'],
+          checks: [
+            { field: 'company_site', state: 'promoted', value: 'active source' },
+            { field: 'industry_member', state: 'candidate', value: 'directory pending' },
+            { field: 'funding_signal', state: 'review', value: 'no registry match' },
+          ],
+        },
+        {
+          id: 'TW-DT-0442',
+          name: 'ForgeSense Robotics',
+          mark: 'FR',
+          sector: 'Advanced Manufacturing',
+          city: 'Taichung',
+          score: '88',
+          stage: 'industrial pilot',
+          employees: '101-250',
+          readiness: 'agent query',
+          coverage: '8/9',
+          freshness: '9d',
+          tags: ['robotics', 'vision', 'automation'],
+          signals: [['Hiring velocity', '+22%'], ['News mentions', '15'], ['Taxonomy fit', '0.89']],
+          evidence: ['job source stable', 'filing reviewed', 'brief-ready'],
+          checks: [
+            { field: 'hiring_signal', state: 'promoted', value: 'role-family normalized' },
+            { field: 'sector_tag', state: 'reviewed', value: 'industrial automation' },
+            { field: 'brief_card', state: 'promoted', value: 'agent-ready export' },
+          ],
+        },
       ],
     },
     reviewFlow: {
@@ -280,6 +546,19 @@ function ButtonList({ items, activeIndex, onSelect, getLabel, className }) {
       key: getLabel(item),
       onClick: () => onSelect(index),
     }, getLabel(item))));
+}
+
+function getCompanySearchText(company) {
+  return [
+    company.name,
+    company.id,
+    company.sector,
+    company.city,
+    company.stage,
+    company.readiness,
+    ...company.tags,
+    ...company.evidence,
+  ].join(' ').toLowerCase();
 }
 
 function HeroRoom({ c }) {
@@ -387,6 +666,44 @@ function SourceStudio({ c }) {
           h('code', null, `route="staging -> normalize -> review"`)))));
 }
 
+function MarketProfile({ c }) {
+  const [active, setActive] = useState(0);
+  const tab = c.marketProfile.tabs[active];
+  return h(Section, { className: 'deeptech-case-market-profile', ...c.marketProfile },
+    h('div', { className: 'deeptech-case-profile-shell' },
+      h('div', { className: 'deeptech-case-profile-main' },
+        h('div', { className: 'deeptech-case-profile-topbar' },
+          h('div', null,
+            h('span', null, 'ANONYMIZED ENTITY'),
+            h('strong', null, 'TW-DT-0187')),
+          h(ButtonList, {
+            items: c.marketProfile.tabs,
+            activeIndex: active,
+            onSelect: setActive,
+            getLabel: item => item.label,
+            className: 'deeptech-case-profile-tabs',
+          })),
+        h('div', { className: 'deeptech-case-company-card' },
+          h('div', { className: 'deeptech-case-company-mark' }, 'DT'),
+          h('div', null,
+            h('h3', null, tab.headline),
+            h('p', null, 'Portfolio-safe company profile modeled after professional private-market database patterns.'))),
+        h('div', { className: 'deeptech-case-profile-meta' },
+          tab.meta.map(([label, value]) => h('div', { key: label },
+            h('span', null, label),
+            h('strong', null, value)))),
+        h('div', { className: 'deeptech-case-profile-notes' },
+          tab.notes.map(note => h('p', { key: note }, note)))),
+      h('aside', { className: 'deeptech-case-profile-side' },
+        h('span', null, 'verification summary'),
+        c.marketProfile.sideStats.map(stat => h('article', { key: stat.label },
+          h('strong', null, stat.value),
+          h('small', null, stat.label))),
+        h('div', { className: 'deeptech-case-validation-meter' },
+          h('i', null),
+          h('span', null, 'review-ready confidence')))));
+}
+
 function DataProductDemo({ c }) {
   const [active, setActive] = useState(0);
   const slice = c.dataProduct.slices[active];
@@ -439,6 +756,113 @@ function DatasetBrowser({ c }) {
           h('div', null, h('dt', null, 'source coverage'), h('dd', null, row.sources)),
           h('div', null, h('dt', null, 'ready for'), h('dd', null, row.ready)),
           h('div', null, h('dt', null, 'confidence'), h('dd', null, row.confidence))))));
+}
+
+function DatabaseReferenceStrip({ references }) {
+  return h('div', { className: 'deeptech-case-db-reference-strip' },
+    references.map(item => h('a', {
+      href: item.href,
+      key: item.label,
+      target: '_blank',
+      rel: 'noreferrer',
+      style: { backgroundImage: `url(${item.image})` },
+    },
+      h('span', null, item.label),
+      h('strong', null, item.source))));
+}
+
+function CompanyList({ companies, activeIndex, empty, onSelect }) {
+  return h('div', { className: 'deeptech-case-db-list' },
+    companies.length === 0
+      ? h('p', { className: 'deeptech-case-db-empty' }, empty)
+      : companies.map((company, index) => h('button', {
+        type: 'button',
+        className: index === activeIndex ? 'active' : '',
+        key: company.id,
+        onClick: () => onSelect(index),
+      },
+        h('div', null,
+          h('strong', null, company.name),
+          h('span', null, `${company.sector} / ${company.city}`)),
+        h('em', null, `${company.score}%`))));
+}
+
+function CompanyProfile({ company }) {
+  if (!company) return null;
+  return h('article', { className: 'deeptech-case-db-profile' },
+    h('div', { className: 'deeptech-case-db-profile-head' },
+      h('div', { className: 'deeptech-case-db-mark' }, company.mark),
+      h('div', null,
+        h('span', null, company.id),
+        h('h3', null, company.name),
+        h('p', null, `${company.stage} / ${company.employees} employees / ${company.city}`)),
+      h('strong', null, company.score)),
+    h('div', { className: 'deeptech-case-db-stat-grid' },
+      [['source coverage', company.coverage], ['freshness', company.freshness], ['ready for', company.readiness]].map(([label, value]) => h('div', { key: label },
+        h('span', null, label),
+        h('strong', null, value)))),
+    h('div', { className: 'deeptech-case-db-tags' },
+      company.tags.map(tag => h('span', { key: tag }, tag))),
+    h('div', { className: 'deeptech-case-db-signal-grid' },
+      company.signals.map(([label, value]) => h('div', { key: label },
+        h('span', null, label),
+        h('strong', null, value)))));
+}
+
+function VerificationPanel({ company }) {
+  if (!company) return null;
+  return h('aside', { className: 'deeptech-case-db-verification' },
+    h('span', null, 'field-level validation'),
+    h('div', { className: 'deeptech-case-db-checks' },
+      company.checks.map(check => h('div', { className: check.state, key: check.field },
+        h('span', null, check.state),
+        h('strong', null, check.field),
+        h('p', null, check.value)))),
+    h('div', { className: 'deeptech-case-db-proof' },
+      company.evidence.map(item => h('div', { key: item },
+        h(Icon, { name: 'check' }),
+        h('span', null, item)))));
+}
+
+function DatabaseConsole({ c }) {
+  const [filter, setFilter] = useState(0);
+  const [query, setQuery] = useState('');
+  const [active, setActive] = useState(0);
+  const normalizedQuery = query.trim().toLowerCase();
+  const companies = c.databaseConsole.companies.filter(company => {
+    const matchesFilter = filter === 0 || company.sector === c.databaseConsole.filters[filter];
+    return matchesFilter && (!normalizedQuery || getCompanySearchText(company).includes(normalizedQuery));
+  });
+  const selectedCompany = companies[Math.min(active, companies.length - 1)];
+
+  return h(Section, { className: 'deeptech-case-db-console-section', ...c.databaseConsole },
+    h(DatabaseReferenceStrip, { references: c.databaseConsole.references }),
+    h('div', { className: 'deeptech-case-db-toolbar' },
+      h('label', { className: 'deeptech-case-db-search' },
+        h(Icon, { name: 'target' }),
+        h('input', {
+          type: 'search',
+          value: query,
+          placeholder: c.databaseConsole.searchPlaceholder,
+          onChange: event => { setQuery(event.target.value); setActive(0); },
+        })),
+      h('span', null, `${companies.length}/${c.databaseConsole.companies.length} records`)),
+    h('div', { className: 'deeptech-case-db-filters' },
+      c.databaseConsole.filters.map((item, index) => h('button', {
+        type: 'button',
+        className: index === filter ? 'active' : '',
+        key: item,
+        onClick: () => { setFilter(index); setActive(0); },
+      }, item))),
+    h('div', { className: 'deeptech-case-db-grid' },
+      h(CompanyList, {
+        companies,
+        activeIndex: active,
+        empty: c.databaseConsole.empty,
+        onSelect: setActive,
+      }),
+      h(CompanyProfile, { company: selectedCompany }),
+      h(VerificationPanel, { company: selectedCompany })));
 }
 
 function AgentPrototype({ c }) {
@@ -521,13 +945,15 @@ function EvidenceBoard({ c }) {
 
 export default function DeeptechDatabaseCaseStudy({ lang }) {
   const c = getContent(lang);
-  return h('div', { className: 'deeptech-case deeptech-case-v2 reveal' },
+  return h('div', { className: 'deeptech-case deeptech-case-v2' },
     h(HeroRoom, { c }),
     h(ContextBoard, { c }),
     h(PipelineExplorer, { c }),
     h(SourceStudio, { c }),
+    h(MarketProfile, { c }),
     h(DataProductDemo, { c }),
     h(DatasetBrowser, { c }),
+    h(DatabaseConsole, { c }),
     h(ReviewFlow, { c }),
     h(AgentPrototype, { c }),
     h(MapWorkbench, { c }),

@@ -76,16 +76,26 @@ export default function StorytellingCaseStudy({ project: p, lang }) {
                     React.createElement('strong', null, chapterArtifact))),
             quote && React.createElement('blockquote', { className: 'story-case-quote' }, quote)),
         p.evidenceSlots && p.evidenceSlots.length > 0 && React.createElement('div', { className: 'story-case-section' },
-            React.createElement('div', { className: 'story-case-section-title' }, PA ? '實作證據預留區' : 'Working Evidence'),
+            React.createElement('div', { className: 'story-case-section-title' }, PA ? '實作證據' : 'Working Evidence'),
             React.createElement('div', { className: 'story-case-evidence-grid' },
-                p.evidenceSlots.map(slot => React.createElement('div', { className: 'story-case-evidence', key: slot.title },
-                    slot.image
-                        ? React.createElement('div', { className: 'story-case-evidence-visual' },
-                            React.createElement('img', { src: slot.image, alt: `${PA ? slot.zhTitle || slot.title : slot.title} visual`, loading: 'lazy', decoding: 'async' }),
-                            React.createElement(Icon, { name: slot.iconKey || 'check' }))
-                        : React.createElement('div', { className: 'story-case-evidence-icon' }, React.createElement(Icon, { name: slot.iconKey || 'check' })),
-                    React.createElement('div', { className: 'story-case-evidence-title' }, PA ? slot.zhTitle || slot.title : slot.title),
-                    React.createElement('p', null, PA ? slot.zhDesc || slot.desc : slot.desc))))),
+                p.evidenceSlots.map(slot => {
+                    const inner = [
+                        slot.image
+                            ? React.createElement('div', { className: 'story-case-evidence-visual', key: 'v' },
+                                React.createElement('img', { src: slot.image, alt: `${PA ? slot.zhTitle || slot.title : slot.title} visual`, loading: 'lazy', decoding: 'async' }),
+                                React.createElement(Icon, { name: slot.iconKey || 'check' }))
+                            : React.createElement('div', { className: 'story-case-evidence-icon', key: 'i' }, React.createElement(Icon, { name: slot.iconKey || 'check' })),
+                        React.createElement('div', { className: 'story-case-evidence-title', key: 't' }, PA ? slot.zhTitle || slot.title : slot.title),
+                        React.createElement('p', { key: 'd' }, PA ? slot.zhDesc || slot.desc : slot.desc),
+                        slot.anchor && React.createElement('span', { className: 'story-case-evidence-link', key: 'l' }, `${PA ? '開啟模組' : 'Open module'} ${slot.anchorNum} →`),
+                    ];
+                    return slot.anchor
+                        ? React.createElement('button', {
+                            className: 'story-case-evidence is-link', key: slot.title, type: 'button',
+                            onClick: () => document.getElementById(slot.anchor)?.scrollIntoView({ behavior: 'smooth', block: 'start' }),
+                        }, ...inner)
+                        : React.createElement('div', { className: 'story-case-evidence', key: slot.title }, ...inner);
+                }))),
         p.credentials && p.credentials.length > 0 && React.createElement('div', { className: 'story-case-section' },
             React.createElement('div', { className: 'story-case-section-title' }, PA ? '證照佐證' : 'Credential Evidence'),
             React.createElement('div', { className: 'story-case-credential-grid' },
