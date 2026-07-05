@@ -86,7 +86,7 @@ const T = {
         ch3Body: '獨立開發「新創商情平台」——支援即時生態系監控的全端數據視覺化系統。同時進行：涵蓋 230+ 家公司的台灣新創生態系地圖、全球深科技趨勢報告，以及育星計畫新創孵化支援。獲選 2025 年工研院育星計畫種子培育。',
         ch4Meta: '第四章 · 現在', ch4Head: '下一篇章',
         ch4Body: '尋找能橋接嚴謹研究與真實產品執行的機會——與真正服務人的 AI 原生系統團隊合作。開放全球產品、研究與生態系策略相關職位。',
-        workLabel: '精選專案', workTitle1: '能夠', workTitleEm: '落地交付', workTitle2: '，經得起驗證的作品。',
+        workLabel: '精選專案', workTitle1: '從研究、', workTitleEm: '資料到介面', workTitle2: '，把想法做成可被使用的產品。',
         skillsLabel: '能力地圖', skillsTitle1: '完整的', skillsTitleEm: '技能堆疊', skillsTitle2: '。',
         skillDomain: '領域', skillTech: '技術', skillLang: '語言與軟實力',
         awardsLabel: '獎項與認可',
