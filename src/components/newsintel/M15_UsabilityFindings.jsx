@@ -1,0 +1,90 @@
+import React, { useState } from 'react';
+import ModuleFrame, { injectStyles, useI18n } from './shared/niKit.jsx';
+import { MODULES } from './data/newsIntelContent.js';
+
+const MOD = MODULES.find(m => m.key === 'M15');
+
+const SEV_TONE = { S1: 'red', S2: 'amber', S3: 'teal' };
+
+const COPY = {
+    en: {
+        title: 'Usability findings & fix log',
+        lead: 'Five findings from three think-aloud sessions on a single task — including one where I turned out to be wrong and had to undo a decision I had defended.',
+        cols: ['Finding', 'Sev', 'Change shipped', 'Verified'],
+        rows: [
+            { f: 'Users scanned for the confidence tag before the headline', s: 'S3', c: 'Kept confidence tick leading the row — validated the earlier bet', v: 'Re-test: all 3 found trust signal first', flip: false },
+            { f: 'The tag filter looked like static labels, not controls', s: 'S2', c: 'Made chips visibly button-like + aria-selected', v: 'Re-test: 3/3 used the filter unprompted', flip: false },
+            { f: 'I assumed date should lead each item. It buried the topic.', s: 'S1', c: 'Reversed it: topic tag leads, date moves right', v: 'Re-test: task time dropped; nobody missed the date', flip: true },
+            { f: 'Bilingual toggle was missed at the top', s: 'S2', c: 'Moved language switch next to the section title', v: 'Re-test: 2/3 switched language during the task', flip: false },
+            { f: 'Empty week read as a bug', s: 'S3', c: 'Empty state now says why + when the next run is', v: 'Re-test: no one flagged it as broken', flip: false },
+        ],
+        flipLabel: 'reversed my own decision',
+        protoToggle: 'Session protocol & task',
+        proto: 'Method: moderated think-aloud, n=3 (ISTI analysts). Single task: “find this week’s semiconductor policy items and tell me which one matters most.” I watched, timed, and logged where each person hesitated. Small and internal — I read patterns across three people, not statistics.',
+        soWhat: 'Findings turn into shipped diffs, and get re-verified.',
+    },
+    zh: {
+        title: '易用性發現與修正紀錄',
+        lead: '來自三場放聲思考測試、同一個任務的五個發現——其中一個是我後來被證明想錯了，只好把自己原本堅持的決定改回來。',
+        cols: ['發現', '嚴重度', '出貨的改動', '驗證'],
+        rows: [
+            { f: '使用者在讀標題前先找信心標籤', s: 'S3', c: '維持信心標記在列首——驗證了先前的賭注', v: '再測：3 人都先找到信任訊號', flip: false },
+            { f: '標籤篩選看起來像靜態標籤，不像控制項', s: 'S2', c: '把晶片做成明顯像按鈕 + aria-selected', v: '再測：3/3 未經提示就用了篩選', flip: false },
+            { f: '我假設日期該放每則之首，結果它埋掉了主題。', s: 'S1', c: '反轉：主題標籤置首，日期移到右側', v: '再測：任務時間下降；沒人漏看日期', flip: true },
+            { f: '雙語切換在頂部被忽略', s: 'S2', c: '把語言切換移到區塊標題旁', v: '再測：2/3 在任務中切換了語言', flip: false },
+            { f: '空的一週被讀成 bug', s: 'S3', c: '空狀態現在說明原因 + 下次執行時間', v: '再測：沒有人再把它當成壞掉', flip: false },
+        ],
+        flipLabel: '反轉了我自己的決策',
+        protoToggle: '測試流程與任務',
+        proto: '方法：主持式放聲思考，n=3（ISTI 分析師）。單一任務：「找出本週的半導體政策項目，並告訴我哪一則最重要。」我在旁觀察、計時，並記錄每個人遲疑之處。小規模且內部——我讀的是三個人身上的模式，不是統計。',
+        soWhat: '發現會變成出貨的 diff，並被再次驗證。',
+    },
+};
+
+export default function M15_UsabilityFindings() {
+    const { lang } = useI18n();
+    const t = COPY[lang] ?? COPY.en;
+    const [open, setOpen] = useState(false);
+    return (
+        <ModuleFrame mod={MOD} title={t.title} lead={t.lead} soWhat={t.soWhat}>
+            <div className="ni-m15-scroll">
+                <table className="ni-m15-table">
+                    <thead><tr>{t.cols.map(c => <th key={c} scope="col">{c}</th>)}</tr></thead>
+                    <tbody>
+                        {t.rows.map((r, i) => (
+                            <tr key={i} className={r.flip ? 'is-flip' : ''}>
+                                <th scope="row" className="ni-m15-f">
+                                    {r.f}
+                                    {r.flip && <span className="ni-m15-flip">↺ {t.flipLabel}</span>}
+                                </th>
+                                <td><span className={`ni-tag ni-tag--${SEV_TONE[r.s]}`}>{r.s}</span></td>
+                                <td className="ni-m15-c">{r.c}</td>
+                                <td className="ni-m15-v">{r.v}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <button className="ni-m15-toggle" aria-expanded={open} onClick={() => setOpen(o => !o)}>
+                <span className="ni-m15-chevron" data-open={open} aria-hidden="true">▸</span>{t.protoToggle}
+            </button>
+            {open && <p className="ni-m15-proto">{t.proto}</p>}
+        </ModuleFrame>
+    );
+}
+
+injectStyles('ni-m15', `
+.ni-m15-scroll { overflow-x: auto; }
+.ni-m15-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 680px; }
+.ni-m15-table th, .ni-m15-table td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--ni-line-1); vertical-align: top; }
+.ni-m15-table thead th { font-family: var(--ni-font-data); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ni-text-3); }
+.ni-m15-table tr.is-flip { background: var(--ni-amber-dim); }
+.ni-m15-f { font-family: var(--ni-font-body); font-weight: 500; color: var(--ni-text-1); width: 30%; }
+.ni-m15-flip { display: block; font-family: var(--ni-font-data); font-size: 10px; letter-spacing: 0.04em; color: var(--ni-amber); margin-top: 6px; }
+.ni-m15-c { color: var(--ni-text-2); width: 32%; }
+.ni-m15-v { color: var(--ni-text-3); }
+.ni-m15-toggle { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; font-family: var(--ni-font-data); font-size: 12px; letter-spacing: 0.06em; color: var(--ni-teal); }
+.ni-m15-chevron { transition: transform 160ms var(--ni-ease); }
+.ni-m15-chevron[data-open="true"] { transform: rotate(90deg); }
+.ni-m15-proto { margin: 12px 0 0; padding: 14px 16px; font-size: 13px; line-height: 1.6; color: var(--ni-text-2); background: var(--ni-bg-2); border: 1px solid var(--ni-line-1); border-radius: var(--ni-r-md); }
+`);

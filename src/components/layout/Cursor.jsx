@@ -1,12 +1,20 @@
 import { useEffect } from 'react';
 
-export default function Cursor() {
+export default function Cursor({ disabled = false }) {
     useEffect(() => {
         const dot = document.getElementById('cursor-dot');
         const ring = document.getElementById('cursor-ring');
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
-        if (!dot || !ring || prefersReducedMotion || isTouchDevice) return undefined;
+        if (!dot || !ring) return undefined;
+        if (disabled || prefersReducedMotion || isTouchDevice) {
+            dot.style.display = 'none';
+            ring.style.display = 'none';
+            document.body.classList.remove('cursor-hover');
+            return undefined;
+        }
+        dot.style.display = 'block';
+        ring.style.display = 'block';
         let mx = window.innerWidth / 2, my = window.innerHeight / 2;
         let rx = mx, ry = my, rafId;
         const LERP = 0.14;
@@ -36,6 +44,6 @@ export default function Cursor() {
             document.removeEventListener('pointerover', onPointerOver);
             document.removeEventListener('pointerout', onPointerOut);
         };
-    }, []);
+    }, [disabled]);
     return null;
 }

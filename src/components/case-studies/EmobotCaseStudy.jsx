@@ -55,8 +55,8 @@ export default function EmobotCaseStudy({ lang }) {
 
   const swot = [
     { iconKey: 'award', label: 'Strengths', zhLabel: 'Strengths 優勢', points: ['Trait-matched support instead of one-size-fits-all chat', 'Avatar and voice direction increases emotional presence', 'Anonymous, low-threshold entry reduces help-seeking pressure'], zhPoints: ['心理特質智慧媒合，提供個人化支持體驗', '擬人化視覺與語音互動，提升沉浸感與情感連結', '即時、匿名、低進入門檻，降低心理防衛與求助壓力'] },
-    { iconKey: 'shield', label: 'Weaknesses', zhLabel: 'Weaknesses 弱點', points: ['AI support still needs trust calibration', 'Matching quality depends on long-term feedback data', 'Technical development and safety governance are costly'], zhPoints: ['使用者對 AI 數位心理支持的信任仍需建立', '精準媒合需要長期優化與足夠資料量', '技術研發、安全治理與維運成本較高'] },
-    { iconKey: 'trend', label: 'Opportunities', zhLabel: 'Opportunities 機會', points: ['Mental-health demand continues to grow globally', 'Schools and public agencies need preventive support systems', 'Most AI companions still lack structured referral architecture'], zhPoints: ['全球心理健康市場需求持續成長', '政府與教育單位推動心理健康促進與防治計畫', '現有 AI 陪伴產品仍缺乏完整心理支持與轉介架構'] },
+    { iconKey: 'shield', label: 'Weaknesses', zhLabel: 'Weaknesses 弱點', points: ['AI support still needs trust calibration', 'Matching quality depends on long-term feedback data', 'Technical development and safety governance are costly'], zhPoints: ['使用者對 AI 數位心理支持的信任仍需建立', '精準媒合需要長期優化與足夠資料量', '技術研發、安全治理與維運成本'] },
+    { iconKey: 'trend', label: 'Opportunities', zhLabel: 'Opportunities 機會', points: ['Mental-health demand continues to grow globally', 'Schools and public agencies need preventive support systems', 'Most AI companions still lack structured referral architecture'], zhPoints: ['全球心理健康市場需求持續成長', '政府與教育單位推動心理健康促進與防治計畫 (WHO, 2021; SDG Target 3.4)', '現有 AI 陪伴產品仍缺乏完整心理支持與轉介架構'] },
     { iconKey: 'target', label: 'Threats', zhLabel: 'Threats 威脅', points: ['Ethical and regulatory expectations for AI intervention', 'Fast-moving AI companion competitors', 'Habit formation and sustainable business model risk'], zhPoints: ['AI 介入心理支持涉及法規與倫理挑戰', '競爭者快速跟進，產品差異化需要持續深化', '使用者接受度、習慣養成與商業模式仍需驗證'] },
   ];
 
@@ -473,11 +473,11 @@ export default function EmobotCaseStudy({ lang }) {
       React.createElement('div', { className: 'emobot-section-head' },
         React.createElement('div', null,
           React.createElement('div', { className: 'emobot-section-kicker' }, PA ? '01 / 問題不是缺少聊天機器人' : '01 / The problem is not another chatbot'),
-          React.createElement('h3', { className: 'emobot-section-title' }, PA ? '真正缺的是低壓入口、持續訊號與安全銜接。' : 'What is missing is a low-pressure entry, continuous signals, and safe handoff.')
+          React.createElement('h3', { className: 'emobot-section-title' }, PA ? '真正缺少能放心開始、覺察情緒，需要時則提供安全協助的心理支持入口' : 'What is missing is a low-pressure entry, continuous signals, and safe handoff.')
         ),
         React.createElement('p', { className: 'emobot-section-copy' },
           PA
-            ? '提案中的問題分析被整理成三個產品設計約束：不能讓學生一開始就感覺被診斷、不能加重諮商端負擔，也不能忽略高風險訊號。'
+            ? '提案中的問題分析被整理成三個產品設計核心：像日常聊天而非帶有壓力的診斷；讓系統提供可供覺察的情緒脈絡，而不是增加諮商端負擔；並確保高風險訊號被正確辨識。'
             : 'The proposal becomes three product constraints: avoid making students feel diagnosed at entry, avoid adding burden to counseling teams, and avoid missing high-risk signals.'
         )
       ),

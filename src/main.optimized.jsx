@@ -1577,11 +1577,11 @@ function EmobotCaseStudy({ lang }) {
       React.createElement('div', { className: 'emobot-section-head' },
         React.createElement('div', null,
           React.createElement('div', { className: 'emobot-section-kicker' }, PA ? '01 / 問題不是缺少聊天機器人' : '01 / The problem is not another chatbot'),
-          React.createElement('h3', { className: 'emobot-section-title' }, PA ? '真正缺的是低壓入口、持續訊號與安全銜接。' : 'What is missing is a low-pressure entry, continuous signals, and safe handoff.')
+          React.createElement('h3', { className: 'emobot-section-title' }, PA ? '真正缺的是一個能放心開始、持續被情緒覺察，並在需要時安全銜接的支持入口。' : 'What is missing is a low-pressure entry, continuous signals, and safe handoff.')
         ),
         React.createElement('p', { className: 'emobot-section-copy' },
           PA
-            ? '提案中的問題分析被整理成三個產品設計約束：不能讓學生一開始就感覺被診斷、不能加重諮商端負擔，也不能忽略高風險訊號。'
+            ? '提案中的問題分析被整理成三個產品設計核心：讓第一步像日常聊天而非診斷；讓系統提供可供覺察的情緒脈絡，而不是增加諮商端負擔；並確保高風險訊號被正確辨識。'
             : 'The proposal becomes three product constraints: avoid making students feel diagnosed at entry, avoid adding burden to counseling teams, and avoid missing high-risk signals.'
         )
       ),

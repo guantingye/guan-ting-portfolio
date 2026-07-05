@@ -5,13 +5,25 @@ export const PROJECTS = [
         title: 'Emobot+', subtitle: 'Award-winning AI Mental Health Companion',
         zhTitle: 'Emobot+', zhSubtitle: '得獎 AI 數位心理支持系統',
         hook: "An award-winning AI mental-health companion that turns anonymous campus check-ins into trait-matched support, safety-aware dialogue, and counselor-ready insight.",
-        zhHook: '一個得獎的 AI 心理支持系統，將匿名校園情緒入口轉化為特質媒合、風險感知對話與諮商端可用洞察。',
+        zhHook: '一套得獎的校園 AI 心理支持系統，將匿名校園情緒議題轉化為特質媒合、風險感知對話與諮商量能解決方案的系統專案。',
         stack: ['React', 'FastAPI', 'LLM Safety', 'Psychological Embedding', 'Avatar UX', 'SDG 3'],
-        role: 'Founder & Product Lead / UX Strategist', zhRole: '創辦人 / 產品負責人 / UX 策略',
-        timeline: '2022 – 2024', status: 'Award-winning MVP', zhStatus: '獲獎 MVP',
+        role: 'Founder & Product Lead / UX Strategist', zhRole: '創辦人 / 產品負責人 / UIUX設計 / 前後端系統架構',
+        timeline: '2025 – 2026', status: 'Award-winning MVP', zhStatus: '獲獎 MVP',
         impact: 'Silver Medal · 2025 AI Sustainability Contest', zhImpact: '2025 AI 跨域永續創新競賽 · 銀獎',
-        overview: "Emobot+ began from a concrete campus service problem: students often need support before they are ready to book counseling, while counseling teams need better early signals without turning everyday emotion into a clinical label. I shaped the project as a product system around low-threshold entry, consent-based data use, and clear boundaries between AI companionship and professional care.\n\nThe proposal that won the 2025 AI Interdisciplinary Sustainability Innovation Contest positioned Emobot+ as a 24/7 emotional support layer for universities. Users can start with everyday language, complete lightweight trait and need signals, and meet a companion persona calibrated to their emotional pattern, disclosure comfort, and preferred support style.\n\nThe product is designed as a bridge rather than a replacement: natural conversation supports reflection and self-awareness, while the backend extracts emotional trends, issue tags, and risk signals that can be summarized for counselors only with user consent.",
-        zhOverview: "Emobot+ 的起點是一個具體的校園服務問題：許多學生在願意正式預約諮商之前就已經需要支持，而諮商團隊也需要更早期的訊號，但不能把日常情緒直接臨床化。因此我將專案設計成一個產品系統：低門檻入口、同意制資料使用，以及 AI 陪伴與專業照護之間清楚的邊界。\n\n這份提案獲得 2025 AI 跨域永續創新競賽銀獎，核心定位是大學場域中的 24/7 情緒支持層。使用者可以用日常語言開始對話，透過輕量化特質與需求訊號，媒合到更符合自身情緒模式、自我揭露舒適度與支持偏好的 AI 陪伴角色。\n\n產品不是要取代心理師，而是作為橋接系統：自然對話協助反思與自我覺察，後端則在使用者同意下整理情緒趨勢、議題標籤與風險訊號，轉化為諮商端可快速理解的摘要。",
+        overview: `Emobot+ was created in response to a real gap in campus support: many students need a safe entry point to process emotions, understand their current state, or simply express what they are going through before they are ready to book formal counseling. At the same time, everyday emotional support and clinical intervention must remain clearly distinguished.
+
+I designed Emobot+ as a bridge between students and professional support systems. It provides a low-barrier emotional entry point, a consent-based data-use flow, and a clear boundary between AI companionship and professional care.
+
+The proposal won the Silver Medal at the 2025 AI Interdisciplinary Sustainability Innovation Contest. Its core positioning is a 24/7 emotional support system for university settings. Users can start with everyday language, while the system matches them with a suitable AI companion based on psychological traits, emotional needs, and support preferences.
+
+Emobot+ is not designed to replace professional counseling. Instead, it helps students who have not yet formally sought help organize their emotions and build self-awareness. With user consent, it also turns emotional trends, issue tags, and risk signals into concise summaries that help counseling teams understand the context and continue support more effectively.`,
+        zhOverview: `Emobot+ 源自一個真實的校園心理服務缺口：許多學生在正式預約諮商之前，已經需要一個能協助梳理情緒、理解狀態，或安全宣洩的入口；但日常情緒支持與臨床介入之間，也必須被清楚區分。
+
+因此，我將 Emobot+ 設計成介於學生與專業支持系統之間的橋接產品。它提供低門檻的情緒入口、同意制資料使用流程，以及 AI 陪伴與專業之間明確的角色邊界與合作關係。
+
+這份提案獲得 2025 AI 跨域永續創新競賽銀獎，核心定位是大學場域中的 24/7 情緒支持系統。使用者可以用日常語言開始對話，系統則根據心理特質、情緒需求與支持偏好，媒合到更合適的 AI 陪伴角色。
+
+Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助的使用者，先完成初步情緒整理與自我覺察；並在使用者同意下，將情緒裝態、議題標籤與風險訊號整理成諮商端可快速理解的摘要，讓後續支持更容易銜接，同時降低諮商不足的量能問題。`,
         outcomes: ['Reframed campus mental-health friction into a product journey spanning anonymous entry, companion matching, safety routing, and counselor handoff', 'Designed trait and need matching around MBTI, attachment style, emotion regulation, basic psychological needs, and conversation history', 'Specified a React + FastAPI architecture with psychological embedding, emotion-topic analysis, risk phrase detection, and consent-based reporting', 'Created a four-persona companion system for different support modes: validation, grounding, action planning, and cognitive reframing', 'Won Silver Medal at the 2025 AI Interdisciplinary Sustainability Innovation Contest and converted the award proposal into a portfolio-ready product case', 'Defined validation signals across PHQ-9 / GAD-7 / PANAS, self-disclosure, companionship, session depth, and qualitative user feedback'],
         zhOutcomes: ['將校園心理支持痛點重構為完整產品旅程：匿名入口、陪伴角色媒合、安全分流與諮商端銜接', '以 MBTI、依附風格、情緒調節、基本心理需求與對話歷程設計特質與需求媒合機制', '規劃 React + FastAPI 架構，結合心理嵌入、情緒議題分析、風險語句偵測與同意制報告', '建立四種 AI 陪伴角色，分別對應情緒接住、穩定安撫、行動規劃與認知重構等支持模式', '獲得 2025 AI 跨域永續創新競賽銀獎，並將競賽提案轉化為作品集中的產品案例', '定義 PHQ-9 / GAD-7 / PANAS、自我揭露、陪伴感、對話深度與質性訪談等驗證訊號'],
         tech: [{ label: 'Frontend', val: 'React 18, guided onboarding, responsive case UI, avatar-ready interaction surfaces' }, { label: 'Backend', val: 'FastAPI, Python services, consent-based session logging and report generation' }, { label: 'Matching', val: 'Psychological embedding with trait vectors, need signals, and conversation history' }, { label: 'AI Layer', val: 'LLM dialogue orchestration, BERT/NRC-style emotion analysis, topic tagging' }, { label: 'Avatar', val: 'D-ID / HeyGen / TTS-ready multimodal companion direction with voice and facial cues' }, { label: 'Safety', val: 'Risk phrase detection, escalation thresholds, counselor summary, professional resource routing' }],
@@ -126,14 +138,14 @@ export const PROJECTS = [
         category: 'AI System · Data Pipeline', zhCategory: 'AI 系統 · 資料管線',
         title: 'AI News Intelligence System', subtitle: 'Automated Tech Trend Analysis & Reporting',
         zhTitle: 'AI 新聞情報系統', zhSubtitle: '自動化科技趨勢分析與報告',
-        hook: 'Turning the firehose of global tech news into structured strategic intelligence — automatically, bilingually, daily.',
-        zhHook: '將全球科技新聞的海量資訊，自動轉化為雙語結構化策略情報，每日更新。',
+        hook: 'Turning the firehose of global tech news into structured strategic intelligence — automatically, bilingually, daily. I designed the AI system and the platform that delivers it, end to end, solo.',
+        zhHook: '將全球科技新聞的海量資訊，自動轉化為雙語結構化策略情報，每日更新。AI 系統與交付它的平台，都由我獨立從頭到尾設計。',
         stack: ['Python', 'Gemini 1.5', 'GPT-4o', 'Playwright', 'Trafilatura', 'Notion API'],
         role: 'System Architect & Lead Developer', zhRole: '系統架構師 / 主任開發者',
         timeline: '2024 – Present', status: 'Production · Daily runs', zhStatus: '上線運作 · 每日執行',
         impact: 'Cost reduced 75% (GPT→Gemini)', zhImpact: '成本降低 75%（GPT→Gemini）',
-        overview: "The challenge: ITRI's deep tech team needs to stay current on global AI, semiconductor, and frontier science news — but manually curating that volume is infeasible at scale.\n\nThis system crawls 6+ sources (TechCrunch, MIT Tech Review, TechNews 科技新報, INSIDE 硬塞, TechNewsWorld, and domain feeds), extracts full text via Trafilatura and Playwright, and feeds a multi-stage Gemini/GPT pipeline that scores relevance, extracts entities, generates strategic summaries, and publishes to Notion.\n\nKey decisions: iterative prompt refinement, native bilingual output (EN/ZH), and a GPT-4o → Gemini migration that cut per-run costs ~75% while maintaining quality.",
-        zhOverview: "挑戰在於：工研院深科技團隊需要持續追蹤全球 AI、半導體與前沿科學動態——但手動策展如此大量的資訊在規模上並不可行。\n\n此系統爬取 6+ 個來源，透過 Trafilatura 和 Playwright 提取完整文章文本，並饋入多階段 Gemini/GPT 管線進行相關性評分、實體提取、策略摘要生成，最後將格式化報告發布至 Notion。\n\n關鍵工程決策：迭代式提示工程、原生雙語輸出（EN/ZH），以及從 GPT-4o 遷移至 Gemini，在維持輸出品質的同時將每次執行成本降低約 75%。",
+        overview: "The challenge: ITRI's deep tech team needs to stay current on global AI, semiconductor, and frontier science news — but manually curating that volume is infeasible at scale.\n\nThis system crawls 6+ sources (TechCrunch, MIT Tech Review, TechNews 科技新報, INSIDE 硬塞, TechNewsWorld, and domain feeds), extracts full text via Trafilatura and Playwright, and feeds a multi-stage Gemini/GPT pipeline that scores relevance, extracts entities, generates strategic summaries, and publishes to Notion.\n\nKey decisions: iterative prompt refinement, native bilingual output (EN/ZH), and a GPT-4o → Gemini migration that cut per-run costs ~75% while maintaining quality.\n\nThe briefings land on a real delivery surface: the /insights feed of the Strategy Intelligence Platform, which I also designed and built. The Evidence Layer below opens the whole workshop — the research, the prompt evaluations, the model tradeoffs, the interface decisions, and the MVP that still runs.",
+        zhOverview: "挑戰在於：工研院深科技團隊需要持續追蹤全球 AI、半導體與前沿科學動態——但手動策展如此大量的資訊在規模上並不可行。\n\n此系統爬取 6+ 個來源，透過 Trafilatura 和 Playwright 提取完整文章文本，並饋入多階段 Gemini/GPT 管線進行相關性評分、實體提取、策略摘要生成，最後將格式化報告發布至 Notion。\n\n關鍵工程決策：迭代式提示工程、原生雙語輸出（EN/ZH），以及從 GPT-4o 遷移至 Gemini，在維持輸出品質的同時將每次執行成本降低約 75%。\n\n這些簡報有一個真實的交付面：Strategy Intelligence Platform 的 /insights 動態，那個平台也是我設計並開發的。下方的證據層打開了整個工作間——研究、提示評測、模型取捨、介面決策，以及到現在還在跑的 MVP。",
         outcomes: ['6-source crawler with Playwright + Trafilatura, handling JS-heavy and static sites', 'Multi-stage LLM pipeline: relevance scoring → entity extraction → strategic summary', 'Native bilingual output (EN + ZH-TW) with consistent formatting', 'Automated Notion publishing with structured database entries', 'Cost optimization: GPT-4o → Gemini, ~75% cost reduction per run'],
         zhOutcomes: ['建立 6 源爬蟲，以 Playwright + Trafilatura 處理 JS 密集與靜態頁面', '多階段 LLM 管線：相關性評分 → 實體提取 → 策略摘要', '原生雙語輸出（EN + ZH-TW），格式一致', '自動化 Notion 發布，建立結構化資料庫條目', '成本優化：GPT-4o → Gemini，每次執行成本降低約 75%'],
         tech: [{ label: 'Crawler', val: 'Playwright, Trafilatura, feedparser, httpx' }, { label: 'AI Layer', val: 'Gemini 1.5 Pro, GPT-4o (legacy), prompt chaining' }, { label: 'Pipeline', val: 'Python async, multi-stage processing, retry logic' }, { label: 'Output', val: 'Notion API, structured database, Markdown reports' }, { label: 'Sources', val: 'TechCrunch, MIT TR, TechNews, INSIDE, TNW + feeds' }, { label: 'Quality', val: 'Entity deduplication, relevance scoring, date normalization' }],
@@ -228,20 +240,92 @@ export const PROJECTS = [
     },
     {
         slug: 'semiconductor-map', num: '06',
-        category: 'Ecosystem Strategy · Data', zhCategory: '生態系策略 · 資料',
-        title: 'Taiwan Startup Ecosystem Map', subtitle: 'Semiconductor & Deep Tech Intelligence',
-        zhTitle: '台灣新創生態系地圖', zhSubtitle: '半導體與深科技情報',
-        hook: "Mapping 230+ companies across the deep tech value chain to reveal where Taiwan's innovation gaps truly lie.",
-        zhHook: '跨深科技價值鏈描繪 230+ 家公司，揭示台灣創新缺口的真實所在。',
-        stack: ['Python', 'Pandas', 'Excel', 'Data Visualization', 'Market Analysis', 'Bilingual NLP'],
-        role: 'Lead Analyst & Data Engineer', zhRole: '首席分析師 / 資料工程師',
-        timeline: '2024 – Present', status: 'Active · ITRI/ISTI', zhStatus: '持續更新 · 工研院',
-        impact: 'Informs national policy decisions', zhImpact: '支援國家級政策決策',
-        overview: "Taiwan's deep tech ecosystem is sophisticated but poorly documented at the company level. This project built the first comprehensive, enriched database of 230+ startups and scale-ups across semiconductor, AI, biotech, and cleantech — with standardized subcategory taxonomies, financial data, headcount trends, and competitive positioning.\n\nThe work combines data engineering with ecosystem strategy: subcategory gap analysis, investment flow mapping, and international benchmark comparisons. Output directly informs ITRI/ISTI's national policy recommendations and the Star Program venture incubation strategy.\n\nA key contribution: a bilingual subcategory taxonomy mapping Chinese company descriptions onto internationally-comparable industry classifications.",
-        zhOverview: "台灣深科技生態系相當成熟，但在公司層面的文件記錄卻相對薄弱。本專案建立了首個全面的資料庫，涵蓋半導體、AI、生技與潔淨科技領域的 230+ 家公司——附有標準化子類別分類法、財務數據、人員規模趨勢與競爭定位。\n\n此工作結合了資料工程與生態系策略：子類別缺口分析、投資流向圖、國際基準比較。成果直接為工研院的國家政策建議及育星計畫新創孵化策略提供依據。\n\n重要貢獻：開發雙語子類別分類法，將中文公司描述映射至國際通用的產業分類。",
-        outcomes: ['Built 230+ company database with 40+ enriched data dimensions per company', 'Developed bilingual subcategory taxonomy (ZH↔EN industry classification)', 'Identified 7 critical gaps in Taiwan deep tech value chain via gap analysis', 'Automated monthly data refresh pipeline reducing manual work ~80%', 'Directly informed national Star Program incubation strategy at ITRI/ISTI'],
-        zhOutcomes: ['建立 230+ 家公司資料庫，每家公司具備 40+ 個豐富化資料維度', '開發雙語子類別分類法（ZH↔EN 產業分類）', '透過缺口分析識別台灣深科技價值鏈的 7 個關鍵缺口', '自動化每月資料更新管線，減少約 80% 手動工作量', '直接為工研院育星計畫孵化策略提供依據'],
-        tech: [{ label: 'Pipeline', val: 'Python ETL, Pandas, multi-source normalization' }, { label: 'Taxonomy', val: 'Custom bilingual classification system (ZH↔EN)' }, { label: 'Sources', val: '104.com.tw, MOPS, TSIA, SEMI.org, ASIP, news' }, { label: 'Analysis', val: 'Gap analysis, investment flow mapping, benchmarking' }, { label: 'Visualization', val: 'Excel dashboards, Python Matplotlib / Plotly' }, { label: 'Output', val: 'Policy reports, ITRI internal database, Notion' }],
+        category: 'Ecosystem Intelligence · B2B Data Product', zhCategory: '生態系商情 · B2B 資料產品',
+        title: 'Taiwan Startup Ecosystem Atlas', subtitle: 'A crawled, tagged, queryable deep-tech intelligence layer',
+        zhTitle: '台灣新創生態系地圖', zhSubtitle: '可爬取、標籤化、可查詢的深科技商情層',
+        hook: 'A B2B intelligence layer over 230+ deep-tech companies: crawled and tagged into one atlas, read for gaps, capital, patents and grants — and questioned in plain language over RAG.',
+        zhHook: '一層覆蓋 230+ 家深科技公司的 B2B 商情：爬取並標籤化為一張地圖，讀出缺口、資金、專利與補助，並透過 RAG 用白話查詢。',
+        stack: ['Python', 'Playwright', 'ETL', 'Bilingual Taxonomy', 'RAG', 'SVG Data Viz'],
+        role: 'Data Engineer & Intelligence Product Designer', zhRole: '資料工程 / 商情產品設計',
+        timeline: '2024 – Present', status: 'Data foundation live · B2B layer proposed', zhStatus: '資料基礎上線 · B2B 層提案中',
+        impact: '230+ companies · 40+ dimensions · 9 sources', zhImpact: '230+ 家公司 · 40+ 維度 · 9 類來源',
+        overview: "Taiwan's deep-tech ecosystem is dense but poorly documented at the company level. The foundation of this project — built during my ITRI/ISTI work — is a crawled, enriched dataset of 230+ startups and scale-ups across semiconductor, AI, biotech and cleantech, with a bilingual taxonomy that maps Chinese company descriptions onto internationally-comparable categories.\n\nThis page re-envisions that dataset as a B2B intelligence product: acquire and structure the records, map them into a navigable ecosystem atlas, read them for value-chain gaps, capital flow, patent depth and grant routes, then deliver the result as briefs, an API, and a plain-language RAG query surface.\n\nThe evidence layer below opens the whole workshop — the sources, the schema and tagging, the interactive sector atlas, the gap and investment analysis, and the RAG console — with each artifact labelled for what is shipped versus proposed.",
+        zhOverview: "台灣深科技生態系相當密集，但在公司層面的文件記錄卻相對薄弱。本專案的基礎——建立於我在工研院的工作——是一份爬取並豐富化的資料集，涵蓋半導體、AI、生技與潔淨科技的 230+ 家新創與成長型公司，並以雙語分類法把中文公司描述對映到國際可比的類別。\n\n本頁把那份資料集重新設想為一個 B2B 商情產品：擷取並結構化紀錄、繪成可導覽的生態系地圖、讀出價值鏈缺口、資金流向、專利深度與補助管道，再以商情卡、API 與白話 RAG 查詢介面交付結果。\n\n下方的證據層打開整個工作間——來源、結構與標籤、可互動的產業地圖、缺口與投資分析，以及 RAG 查詢台——每個產出都標明哪些已上線、哪些為提案。",
+        outcomes: [
+            'Crawled and enriched 230+ deep-tech companies from 9 public sources into 40+ dimensions each',
+            'Built a bilingual taxonomy (ZH↔EN) so a record is findable from either a Chinese or an English search',
+            'Mapped the set into an interactive sector atlas and a value-chain transect that exposes thin stages at a glance',
+            'Read the ecosystem for 7 value-chain gaps, per-sector capital composition, and patent-to-funding mismatches',
+            'Designed the B2B delivery layer — briefs, query API, and a grounded RAG console that cites where each answer comes from',
+        ],
+        zhOutcomes: [
+            '從 9 個公開來源爬取並豐富化 230+ 家深科技公司，每家 40+ 維度',
+            '建立雙語分類法（中↔英），使一筆紀錄從中文或英文搜尋都找得到',
+            '將資料集繪成可互動的產業地圖與價值鏈剖面，一眼看出單薄的階段',
+            '讀出 7 個價值鏈缺口、各產業資金組成，以及專利對資金的落差',
+            '設計 B2B 交付層——商情卡、查詢 API，以及會標出每個回答依據的 RAG 查詢台',
+        ],
+        tech: [
+            { label: 'Acquisition', val: 'Python, Playwright, per-source adapters, cache fallback, append-only lineage' },
+            { label: 'Structure', val: '40+ dimension schema, bilingual ZH↔EN taxonomy, confidence & review state' },
+            { label: 'Sources', val: '104, MOPS, TSIA, SEMI.org, ASIP, patents, grants, news, company sites' },
+            { label: 'Analysis', val: 'Sector atlas, value-chain transect, gap analysis, investment flow' },
+            { label: 'Delivery', val: 'Brief cards, query API, atlas dashboard, grounded RAG console' },
+            { label: 'Context', val: 'ITRI/ISTI foundation; sits between the Data Room (02) and Platform (07)' },
+        ],
+        caseHeroImage: 'data:image/svg+xml;utf8,' + encodeURIComponent(
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">'
+            + '<rect width="1600" height="900" fill="#0C0E12"/>'
+            + '<g stroke="#1B2029" stroke-width="1">'
+            + Array.from({ length: 17 }, (_, i) => `<path d="M${120 + i * 80} 90V810"/>`).join('')
+            + Array.from({ length: 10 }, (_, i) => `<path d="M120 ${90 + i * 80}H1480"/>`).join('')
+            + '</g>'
+            + '<g stroke="#E8A33D" stroke-width="1.5" opacity="0.6">'
+            + '<path d="M120 90h16M120 90v16M1464 90h16M1480 90v16M120 794v16M120 810h16M1464 810h16M1480 794v16"/></g>'
+            + '<text x="132" y="130" fill="#6B7280" font-family="monospace" font-size="20" letter-spacing="4">FIELD ATLAS · TAIWAN DEEP-TECH</text>'
+            // sector bubbles: teal=low gap, amber=mid, red=high
+            + '<circle cx="419" cy="300" r="56" fill="rgba(53,194,176,0.14)" stroke="#35C2B0" stroke-width="2"/><text x="419" y="308" fill="#F2F0EB" font-family="monospace" font-size="26" text-anchor="middle">45</text>'
+            + '<circle cx="800" cy="260" r="66" fill="rgba(232,163,61,0.14)" stroke="#E8A33D" stroke-width="2"/><text x="800" y="270" fill="#F2F0EB" font-family="monospace" font-size="30" text-anchor="middle">62</text>'
+            + '<circle cx="1099" cy="348" r="52" fill="rgba(229,103,90,0.14)" stroke="#E5675A" stroke-width="2"/><text x="1099" y="357" fill="#F2F0EB" font-family="monospace" font-size="24" text-anchor="middle">38</text>'
+            + '<circle cx="582" cy="452" r="47" fill="rgba(229,103,90,0.14)" stroke="#E5675A" stroke-width="2"/><text x="582" y="460" fill="#F2F0EB" font-family="monospace" font-size="22" text-anchor="middle">29</text>'
+            + '<circle cx="963" cy="470" r="54" fill="rgba(232,163,61,0.14)" stroke="#E8A33D" stroke-width="2"/><text x="963" y="479" fill="#F2F0EB" font-family="monospace" font-size="24" text-anchor="middle">41</text>'
+            + '<circle cx="1235" cy="500" r="40" fill="rgba(229,103,90,0.14)" stroke="#E5675A" stroke-width="2"/><text x="1235" y="508" fill="#F2F0EB" font-family="monospace" font-size="20" text-anchor="middle">18</text>'
+            + '<g stroke="#333A47" stroke-width="1.5" stroke-dasharray="5 5"><path d="M475 300 L734 260M866 260 L1047 348M619 452 L909 470M1017 470 L1195 500"/></g>'
+            // value-chain transect
+            + '<g>' + [22, 45, 41, 62, 45, 18].map((v, i) => {
+                const h = 20 + v * 1.8; const x = 200 + i * 190;
+                return `<rect x="${x}" y="${700 - h}" width="60" height="${h}" rx="4" fill="${i === 0 || i === 5 ? '#E5675A' : '#35C2B0'}" opacity="0.85"/>`;
+            }).join('') + '</g>'
+            + '<path d="M180 730H1420" stroke="#333A47" stroke-width="1.5"/>'
+            + '<rect x="200" y="756" width="1050" height="34" rx="8" fill="#14171D" stroke="#333A47"/><text x="220" y="778" fill="#E8A33D" font-family="monospace" font-size="16">▸ ask the atlas: which sectors have the biggest gaps?</text>'
+            + '</svg>'),
+        caseDeck: {
+            eyebrow: 'Intelligence atlas', zhEyebrow: '商情地圖集',
+            title: 'From 230+ scraped companies to a queryable market read',
+            zhTitle: '從 230+ 家爬取的公司到可查詢的市場判讀',
+            body: 'A workspace for reading the ecosystem the way an analyst, an investor, and a policymaker each would — coverage, gaps, capital, and a plain-language way in.',
+            zhBody: '一個工作區，用分析師、投資人與政策制定者各自的眼光讀懂生態系——覆蓋、缺口、資金，以及一個白話的入口。',
+            kpis: [
+                { label: 'Companies', value: '230+', zhLabel: '公司數' },
+                { label: 'Sources', value: '9', zhLabel: '來源' },
+                { label: 'Value-chain gaps', value: '7', zhLabel: '價值鏈缺口' },
+            ],
+            signals: ['Crawl', 'Tag', 'Map', 'Gap', 'Capital', 'RAG'],
+            zhSignals: ['爬取', '標籤', '製圖', '缺口', '資金', 'RAG'],
+        },
+        storyMoments: [
+            { iconKey: 'database', title: 'Acquire & structure', zhTitle: '擷取與結構化', body: 'Nine public sources, each earning a different kind of evidence, folded into one 40+ dimension record and tagged in both languages.', zhBody: '九個公開來源各換取不同證據，收攏成一筆 40+ 維度的紀錄，並以雙語標籤化。' },
+            { iconKey: 'map', title: 'Map & analyze', zhTitle: '製圖與分析', body: 'The set becomes a navigable atlas: sectors sized by count, a value-chain transect, and gaps read from coverage and capital.', zhBody: '資料集變成可導覽的地圖：產業依數量大小、價值鏈剖面，以及讀自覆蓋與資金的缺口。' },
+            { iconKey: 'cpu', title: 'Deliver & query', zhTitle: '交付與查詢', body: 'Intelligence reaches a decision as briefs, an API, and a grounded RAG console that cites where each answer comes from.', zhBody: '商情以商情卡、API 與會標出依據的 RAG 查詢台觸及決策。' },
+        ],
+        storyChapters: [
+            { iconKey: 'database', label: 'Acquire', zhLabel: '擷取', title: 'Turn scattered public signals into one record', zhTitle: '把分散的公開訊號變成一筆紀錄', body: 'Crawlers with per-source adapters pull talent, filings, patents, grants, and news; a staging layer keeps provenance; normalisation makes companies comparable; a bilingual tag layer makes them findable from either language.', zhBody: '帶各來源 adapter 的爬蟲擷取人才、財報、專利、補助與新聞；暫存層保留來源溯源；標準化讓公司可比較；雙語標籤層讓它們從任一語言都找得到。', artifact: 'Source atlas', zhArtifact: '來源地圖' },
+            { iconKey: 'map', label: 'Map', zhLabel: '製圖', title: 'Make the ecosystem one navigable picture', zhTitle: '把生態系變成一張可導覽的圖', body: 'The atlas places sectors on a field sized by company count and coloured by value-chain gap; a transect re-cuts the same set upstream-to-downstream so a thin stage is visible before a word of analysis.', zhBody: '地圖把產業放在一片場域上，大小依公司數、顏色依價值鏈缺口；剖面把同一集合由上游到下游重切，讓單薄的階段在任何分析之前就看得見。', artifact: 'Sector atlas', zhArtifact: '產業地圖' },
+            { iconKey: 'chart', label: 'Analyze', zhLabel: '分析', title: 'Read gaps, capital, patents and grants', zhTitle: '讀出缺口、資金、專利與補助', body: 'Seven value-chain gaps stated with a reason and a data signal; capital composition per sector; a ledger of patent depth, grant routes, and the prevailing business model — the read an investor or policymaker actually needs.', zhBody: '七個價值鏈缺口，各附理由與資料訊號；各產業資金組成；一份專利深度、補助管道與主流商模的帳——投資人或政策制定者真正需要的判讀。', artifact: 'Gap & flow analysis', zhArtifact: '缺口與流向分析' },
+            { iconKey: 'cpu', label: 'Deliver', zhLabel: '交付', title: 'Let a decision-maker ask it a question', zhTitle: '讓決策者能向它提問', body: 'The B2B layer names who reads this and the decision they owe, then meets them with briefs, a query API, and a grounded RAG console that answers plain language and cites the records behind every claim.', zhBody: 'B2B 層指明誰在讀、他們該做的決策，再以商情卡、查詢 API 與依據式 RAG 查詢台迎接他們——回答白話、並為每個主張引用背後的紀錄。', artifact: 'RAG console', zhArtifact: 'RAG 查詢台' },
+        ],
+        pullQuote: 'A market map earns its keep when an analyst, an investor, and a policymaker can each read it from their own angle — and then ask it a question.',
+        zhPullQuote: '一張市場地圖真正有價值，是當分析師、投資人與政策制定者各自都能從自己的角度讀懂它——然後能向它提問。',
         awards: [],
     },
     {
@@ -262,7 +346,115 @@ export const PROJECTS = [
         tech: [{ label: 'Backend', val: 'Python, SQL database management & maintenance' }, { label: 'Frontend', val: 'JavaScript, interactive data visualization' }, { label: 'Crawler', val: 'Automated web scraper for startup ecosystem data' }, { label: 'Pipeline', val: 'ETL (Extract, Transform, Load) workflow' }, { label: 'Database', val: 'SQL with automated refresh cycle' }, { label: 'Context', val: 'Internal platform at ITRI/ISTI Innovation Division' }],
         awards: [{ iconKey: 'database', title: '2025 ITRI Star Program', desc: 'Selected as seed cultivator — outstanding platform contribution and data engineering excellence at ITRI/ISTI.' }],
     },
-    { slug: 'coming-soon-2', num: '08', comingSoon: true, title: 'Coming Soon', zhTitle: '即將推出', category: 'Next Project', zhCategory: '下一個專案', stack: [] },
+    {
+        slug: 'psymatch', num: '08',
+        category: 'Psychometrics · Counselling Matching', zhCategory: '心理計量 · 諮商媒合系統',
+        title: 'PsyMatch', subtitle: 'Trait-based counselling-matching engine',
+        zhTitle: 'PsyMatch 心理諮商媒合引擎', zhSubtitle: '以自陳量表媒合合適的心理師',
+        hook: "A self-report intake and a transparent scoring algorithm that recommends a licensed psychologist to fit — issue, orientation, budget, and time — and still lets the person choose freely.",
+        zhHook: '一套自陳量表加上一個透明的評分演算法：依議題、取向、預算與時段，推薦合適的合格心理師，並且始終讓使用者自由選擇。',
+        stack: ['React', 'FastAPI', 'Python', 'Psychometrics', 'Matching Algorithm', 'SVG Data Viz'],
+        role: 'Product Designer & Algorithm Designer', zhRole: '產品設計 / 演算法設計',
+        timeline: '2025 – 2026', status: 'Live MVP · self-initiated', zhStatus: '上線 MVP · 自主專案',
+        impact: '7-topic intake · 4-criterion transparent match', zhImpact: '七題量表 · 四準則透明媒合',
+        overview: "PsyMatch is a counselling-matching platform I designed and built end to end. A person completes a short self-report intake, and an algorithm recommends licensed psychologists whose orientation, fee, availability, and areas of focus fit what the person said they need.\n\nThe design problem sits before the recommendation. Support only works when the fit is right, yet most directories ask people to pick a therapist from a wall of profiles with no structure. I turned that into a measured intake — seven issue topics rated for importance, plus preferences for orientation, budget, and time — and a scoring rule simple enough to read out loud and defend.\n\nThis page opens the whole method as a research report: the instrument, the exact four-criterion algorithm you can operate in §3, the shipped system and its failure paths, a pilot read against pre-set criteria, and where the measurement stops being my responsibility and a licensed professional's begins. PsyMatch is not a diagnostic tool; it profiles needs and routes people to human care.",
+        zhOverview: "PsyMatch 是我獨立從頭到尾設計並開發的心理諮商媒合平台。使用者填寫一份簡短的自陳量表，演算法便依據取向、費用、可預約時段與專長，推薦合適的合格心理師。\n\n真正的設計問題發生在推薦之前。心理支持只有在「適配」時才有效，但多數名錄卻要人在一整面缺乏結構的心理師檔案牆前自行挑選。我把這件事轉成一份可量測的量表——七個議題各自評分重要程度，再加上取向、預算與時段的偏好——以及一條簡單到可以唸出來、也守得住的評分規則。\n\n本頁以研究報告的方式攤開整套方法：量表工具、可在 §3 親手操作的四準則演算法、已上線的系統與它的失效路徑、對照事前設定標準的試辦讀數，以及量測責任在哪裡結束、由合格專業人員接手。PsyMatch 並非診斷工具；它描繪需求，並把人導向真人的專業照護。",
+        outcomes: [
+            'Designed a seven-topic self-report intake (1–7 importance) that builds a needs profile in about eight minutes — framed as profiling, not diagnosis',
+            'Ported and can operate the real matching algorithm: a four-criterion additive score (orientation .30, online .20, budget .20, topic-fit .30) ranking licensed psychologists',
+            'Built the full request path — React intake → FastAPI scoring → ranked results → booking — and designed its edge cases: skipped items, flat profiles, network failure at submit',
+            'Wrote model choice as a costed decision record: rule-based additive scoring chosen over cosine distance and learned ranking, with the cold-start reason stated',
+            'Audited my own model for sensitivity and degeneracy, and reported where two orientations are hard to separate rather than hiding it',
+            'Set measurement-ethics boundaries: non-clinical positioning, consent and data handling, and a documented handoff to professional care',
+        ],
+        zhOutcomes: [
+            '設計七題自陳量表（重要程度 1–7），約八分鐘建立需求輪廓——定位為需求描繪，而非診斷',
+            '移植並能親手操作真實媒合演算法：四準則加總評分（取向 .30、線上 .20、預算 .20、議題吻合 .30）對合格心理師排序',
+            '打造完整請求路徑——React 量表 → FastAPI 評分 → 排序結果 → 預約——並設計其邊界情境：跳題、平坦輪廓、送出時斷線',
+            '以有成本的決策紀錄書寫模型選擇：規則式加總評分勝過餘弦距離與學習式排序，並說明冷啟動理由',
+            '對自己的模型進行敏感度與退化稽核，誠實回報兩種取向難以區分之處，而非隱藏',
+            '設定量測倫理邊界：非臨床定位、同意制資料處理，以及有文件紀錄的專業照護交接',
+        ],
+        tech: [
+            { label: 'Frontend', val: 'React 18, multi-step intake, results ranking, hand-rolled SVG profile radar (no chart library)' },
+            { label: 'Matching', val: 'Four-criterion additive scoring, deterministic top-N ranking, pure-JS port with unit sanity tests' },
+            { label: 'Instrument', val: 'Seven-topic 1–7 self-report intake plus orientation / budget / time preferences' },
+            { label: 'Backend', val: 'FastAPI scoring endpoint; selection logged as future training signal' },
+            { label: 'Data model', val: 'Therapist records: orientation, specialties, fee range, availability, licence' },
+            { label: 'Ethics', val: 'Non-clinical framing, consent-based data handling, licensed-professional handoff' },
+        ],
+        // Self-drawn SVG cover (no stock photos): the matching bench — an intake
+        // profile radar feeding a ranked, score-barred shortlist.
+        caseHeroImage: 'data:image/svg+xml;utf8,' + encodeURIComponent(
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">'
+            + '<rect width="1600" height="900" fill="#0C0E12"/>'
+            + '<g stroke="#242A34" stroke-width="1"><path d="M120 150h1360" opacity="0"/></g>'
+            + '<rect x="120" y="150" width="560" height="600" rx="16" fill="#14171D" stroke="#262B35"/>'
+            + '<rect x="900" y="150" width="580" height="600" rx="16" fill="#14171D" stroke="#262B35"/>'
+            + '<text x="152" y="196" fill="#6B7280" font-family="monospace" font-size="20" letter-spacing="3">FIG · INTAKE PROFILE</text>'
+            + '<text x="932" y="196" fill="#6B7280" font-family="monospace" font-size="20" letter-spacing="3">RANKED MATCH · TOP 4</text>'
+            + '<g fill="none" stroke="#2A303C" stroke-width="2">'
+            + '<polygon points="400,270 548,344 588,502 486,632 314,632 212,502 252,344"/>'
+            + '<polygon points="400,340 474,377 494,456 443,521 357,521 306,456 326,377"/></g>'
+            + '<g stroke="#2A303C" stroke-width="1"><path d="M400,455 L400,270M400,455 L548,344M400,455 L588,502M400,455 L486,632M400,455 L314,632M400,455 L212,502M400,455 L252,344"/></g>'
+            + '<polygon points="400,300 470,399 517,482 461,581 365,527 273,484 353,418" fill="rgba(53,194,176,0.16)" stroke="#35C2B0" stroke-width="3"/>'
+            + '<g fill="#35C2B0"><circle cx="400" cy="300" r="6"/><circle cx="470" cy="399" r="6"/><circle cx="517" cy="482" r="6"/><circle cx="461" cy="581" r="6"/><circle cx="365" cy="527" r="6"/><circle cx="273" cy="484" r="6"/><circle cx="353" cy="418" r="6"/></g>'
+            + '<g stroke="#35C2B0" stroke-width="5" fill="none" stroke-linecap="round"><path d="M700 450 h150"/><path d="M832 434 l22 16 l-22 16"/></g>'
+            + '<text x="712" y="432" fill="#35C2B0" font-family="monospace" font-size="18" letter-spacing="2">score</text>'
+            + '<g font-family="monospace">'
+            // row 1 — top match (teal)
+            + '<rect x="936" y="228" width="508" height="112" rx="12" fill="#12241F" stroke="#35C2B0" stroke-width="2"/>'
+            + '<circle cx="992" cy="284" r="30" fill="#1C2028" stroke="#35C2B0" stroke-width="2"/>'
+            + '<rect x="1040" y="256" width="220" height="16" rx="8" fill="#2A303C"/>'
+            + '<rect x="1040" y="286" width="404" height="20" rx="10" fill="#0C0E12" stroke="#232A36"/><rect x="1040" y="286" width="404" height="20" rx="10" fill="#35C2B0"/>'
+            + '<circle cx="1416" cy="252" r="9" fill="#E8A33D"/>'
+            // row 2
+            + '<rect x="936" y="356" width="508" height="112" rx="12" fill="#0C0E12" stroke="#262B35"/>'
+            + '<circle cx="992" cy="412" r="30" fill="#1C2028" stroke="#333A47" stroke-width="2"/>'
+            + '<rect x="1040" y="384" width="180" height="16" rx="8" fill="#2A303C"/>'
+            + '<rect x="1040" y="414" width="404" height="20" rx="10" fill="#0C0E12" stroke="#232A36"/><rect x="1040" y="414" width="300" height="20" rx="10" fill="#35C2B0" opacity="0.55"/>'
+            // row 3
+            + '<rect x="936" y="484" width="508" height="112" rx="12" fill="#0C0E12" stroke="#262B35"/>'
+            + '<circle cx="992" cy="540" r="30" fill="#1C2028" stroke="#333A47" stroke-width="2"/>'
+            + '<rect x="1040" y="512" width="150" height="16" rx="8" fill="#2A303C"/>'
+            + '<rect x="1040" y="542" width="404" height="20" rx="10" fill="#0C0E12" stroke="#232A36"/><rect x="1040" y="542" width="210" height="20" rx="10" fill="#35C2B0" opacity="0.4"/>'
+            // row 4
+            + '<rect x="936" y="612" width="508" height="112" rx="12" fill="#0C0E12" stroke="#262B35"/>'
+            + '<circle cx="992" cy="668" r="30" fill="#1C2028" stroke="#333A47" stroke-width="2"/>'
+            + '<rect x="1040" y="640" width="196" height="16" rx="8" fill="#2A303C"/>'
+            + '<rect x="1040" y="670" width="404" height="20" rx="10" fill="#0C0E12" stroke="#232A36"/><rect x="1040" y="670" width="150" height="20" rx="10" fill="#35C2B0" opacity="0.3"/>'
+            + '</g>'
+            + '</svg>'),
+        caseDeck: {
+            eyebrow: 'Matching bench', zhEyebrow: '媒合台',
+            title: 'From a needs profile to a defensible shortlist',
+            zhTitle: '從需求輪廓到可被辯護的推薦名單',
+            body: 'A workspace for reading the intake, the four weighted criteria, and the ranked result the way a reviewer would — every point of score accounted for.',
+            zhBody: '一個工作區，用審查者的眼光讀懂量表輸入、四個加權準則，以及排序結果——每一分都有交代。',
+            kpis: [
+                { label: 'Intake topics', value: '7', zhLabel: '量表議題' },
+                { label: 'Match criteria', value: '4', zhLabel: '媒合準則' },
+                { label: 'Max score', value: '1.00', zhLabel: '滿分' },
+            ],
+            signals: ['Issue profile', 'Orientation', 'Budget fit', 'Availability', 'Free choice'],
+            zhSignals: ['議題輪廓', '治療取向', '預算吻合', '可預約', '自由選擇'],
+        },
+        storyMoments: [
+            { iconKey: 'activity', title: 'The measurement, first', zhTitle: '先量測', body: 'Before any recommendation, the person is measured: seven issue topics rated for importance on a 1–7 scale.', zhBody: '在任何推薦之前，先量測使用者：七個議題各自以 1–7 評分重要程度。' },
+            { iconKey: 'target', title: 'The transparent score', zhTitle: '透明的分數', body: 'Four weighted criteria decide the ranking. Nothing is hidden; every added point maps to a stated reason.', zhBody: '四個加權準則決定排序。沒有黑箱；每加一分都對應一個寫明的理由。' },
+            { iconKey: 'shield', title: 'Recommendation, not mandate', zhTitle: '推薦而非指派', body: 'The top match is marked, but every option stays open and the person chooses. Their choice is logged as signal.', zhBody: '最佳媒合會被標示，但所有選項都保持開放，由使用者選擇。他們的選擇被記錄為訊號。' },
+        ],
+        storyChapters: [
+            { iconKey: 'activity', label: 'Premise', zhLabel: '前提', title: 'Fit is the product, not the profile wall', zhTitle: '產品是「適配」，不是檔案牆', body: 'The evidence for matching is old and consistent: the working alliance and a client’s own preferences move outcomes more than the brand of therapy. So the design starts by measuring the person, not by decorating a directory.', zhBody: '媒合的證據既老且一致：治療同盟與個案自身的偏好，對療效的影響大於治療的品牌。因此設計從量測使用者開始，而不是把名錄裝飾得更漂亮。', artifact: 'Evidence brief', zhArtifact: '證據摘要' },
+            { iconKey: 'layers', label: 'Instrument', zhLabel: '量表', title: 'Turn a questionnaire into a needs profile', zhTitle: '把問卷變成需求輪廓', body: 'Seven issue topics, each rated 1–7 for importance, plus preferences for orientation, budget, and time. One construct per step, a fatigue budget under eight minutes, and a threshold that decides which topics actually drive the match.', zhBody: '七個議題，各以 1–7 評分重要程度，再加上取向、預算與時段的偏好。每步一個構念、疲勞預算控制在八分鐘內，並用一個門檻決定哪些議題真正驅動媒合。', artifact: 'Intake spec', zhArtifact: '量表規格' },
+            { iconKey: 'target', label: 'Algorithm', zhLabel: '演算法', title: 'A score you can read out loud', zhTitle: '一個可以唸出來的分數', body: 'Four weighted criteria add to a score out of 1.00, ranked descending. I chose additive rules over cosine distance and learned ranking because there are no users to learn from yet, and because a reviewer must be able to see why a name rose. You can operate the real math in §3.', zhBody: '四個加權準則加總為滿分 1.00 的分數，由高至低排序。我選擇加總規則而非餘弦距離或學習式排序，因為目前還沒有使用者可供學習，也因為審查者必須看得見某個名字為何上升。真實運算可在 §3 親手操作。', artifact: 'Scoring model', zhArtifact: '評分模型' },
+            { iconKey: 'monitor', label: 'System', zhLabel: '系統', title: 'Ship the whole path, design the failures', zhTitle: '交付整條路徑，設計失效', body: 'The request path runs from a React intake to a FastAPI scoring endpoint, back to a ranked result and a booking step. The interesting design work is the unhappy paths: skipped items, an all-neutral profile, a dropped connection at submit.', zhBody: '請求路徑從 React 量表到 FastAPI 評分端點，再回到排序結果與預約步驟。真正有意思的設計是不順的路徑：跳題、全中性的輪廓、送出時斷線。', artifact: 'System map', zhArtifact: '系統圖' },
+            { iconKey: 'check', label: 'Ethics', zhLabel: '倫理', title: 'Measuring people is an ethical act', zhTitle: '量測人是一種倫理行為', body: 'PsyMatch profiles needs; it does not diagnose. The page states what is stored, what is not, and the boundary where its responsibility ends and a licensed psychologist’s begins — the same care continuum that Emobot+ (project 01) sits at the other end of.', zhBody: 'PsyMatch 描繪需求，並不診斷。本頁寫明儲存什麼、不儲存什麼，以及它的責任在哪裡結束、由合格心理師接手——這條照護連續帶的另一端，正是 Emobot+（專案 01）。', artifact: 'Ethics panel', zhArtifact: '倫理面板' },
+        ],
+        pullQuote: 'The honest version of a matching product is the one that shows its weights, reports where they fail, and still lets the person overrule it.',
+        zhPullQuote: '一個誠實的媒合產品，會攤開它的權重、指出它失準的地方，並且仍然讓使用者可以推翻它。',
+        awards: [],
+    },
 ];
 export const PROJECT_THEMES = {
     'emobot-plus':                  'emobot',
@@ -272,4 +464,5 @@ export const PROJECT_THEMES = {
     'ux-hmi-interaction-lab':       'research',
     'semiconductor-map':            'map',
     'startup-intelligence-platform':'platform',
+    'psymatch':                     'research',
 };

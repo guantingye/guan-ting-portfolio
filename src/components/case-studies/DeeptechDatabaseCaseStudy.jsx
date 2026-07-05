@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
 import itriStarImage from '../../../assets/ITRI star project.png';
+import deeptechResearchStudio from '../../../assets/deeptech-research-studio.png';
 import Icon from '../ui/Icon.jsx';
 
 const CONTENT = {
   en: {
     hero: {
       eyebrow: 'ITRI internship / data product case',
-      title: 'A working data room for Taiwan startup intelligence.',
-      lead: 'I treated the internship output as a data product: source adapters, reviewable company records, bilingual technology tags, and handoff surfaces for maps, analysts, and visualization agents.',
+      title: 'A research system for Taiwan startup intelligence.',
+      lead: 'I turned public startup signals into reviewable records, bilingual taxonomy, and handoff surfaces for analysts, maps, and AI-assisted briefings.',
       context: 'Public-safe reconstruction. Company-level records are represented as mock data.',
       thesis: 'The real contribution was not a crawler. It was turning scattered startup signals into a reusable intelligence workflow.',
+      mediaCaption: 'Research studio reconstruction: source maps, schema sketches, taxonomy notes, and analyst review logic.',
+      roles: [
+        { label: 'Product question', text: 'How can analysts trust a scraped startup record?' },
+        { label: 'My role', text: 'Crawler workflow, schema, taxonomy, QA, and handoff UX.' },
+        { label: 'Portfolio boundary', text: 'Public sources and anonymized sample records only.' },
+      ],
     },
     metrics: [
       { value: '230+', label: 'company records', detail: 'structured startup universe' },
@@ -27,10 +34,10 @@ const CONTENT = {
       title: 'The page is grounded in Taiwan’s real deep-tech geography',
       lead: 'These public references establish the ecosystem context without exposing internal ITRI data. The visuals are reference imagery; the interface and dataset below are portfolio-safe reconstructions.',
       facts: [
-        { value: '1980', label: 'Hsinchu Science Park opened', source: 'public HSP record' },
-        { value: '584', label: 'registered HSP tenants, 2024-12', source: 'public HSP record' },
-        { value: '177k+', label: 'HSP workers, 2024-10', source: 'public HSP record' },
-        { value: 'ITRI', label: 'nearby anchor in Taiwan semiconductor history', source: 'public HSP overview' },
+        { value: '1980', label: 'Hsinchu Science Park opened', source: 'HSP public record', href: 'https://en.wikipedia.org/wiki/Hsinchu_Science_Park' },
+        { value: '584', label: 'registered HSP tenants, 2024-12', source: 'HSP public record', href: 'https://en.wikipedia.org/wiki/Hsinchu_Science_Park' },
+        { value: '177k+', label: 'HSP workers, 2024-10', source: 'HSP public record', href: 'https://en.wikipedia.org/wiki/Hsinchu_Science_Park' },
+        { value: 'IEK', label: 'industrial-intelligence taxonomy context', source: 'IEKNet public topics', href: 'https://ieknet.iek.org.tw/' },
       ],
       references: [
         { title: 'Semiconductor substrate', desc: 'A visual proxy for the deep-tech / hardware categories behind the taxonomy.', source: 'Unsplash reference', href: 'https://unsplash.com', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80' },
@@ -49,11 +56,11 @@ const CONTENT = {
       tabs: [
         {
           label: 'Ecosystem',
-          source: 'Startup Island TAIWAN',
-          href: 'https://startupisland.tw/',
+          source: 'Startup Island TAIWAN x Crunchbase',
+          href: 'https://about.crunchbase.com/blog/decoding-taiwans-thriving-startup-scene-startup-island-taiwan-2023-investor-report',
           image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1300&q=80',
-          title: 'Official ecosystem gateway',
-          fact: 'Startup Island TAIWAN positions itself as a gateway to Taiwan’s startup ecosystem and links ecosystem landscape, innovation reports, and NEXT BIG programs.',
+          title: 'Startup ecosystem report as discovery input',
+          fact: 'Crunchbase and Startup Island TAIWAN describe Taiwan as a growing technology startup ecosystem, with the 2023 report covering government support, VC activity, investment opportunities, and innovation trends.',
           trusted: 'Discover ecosystem lists, program names, public community signals, and startup narrative categories.',
           caution: 'Useful for discovery and framing; company-level claims still need registry, website, or analyst review before promotion.',
           fields: ['ecosystem_source', 'program_reference', 'startup_alias', 'market_story'],
@@ -108,8 +115,8 @@ const CONTENT = {
           signals: [['Discovery value', 'high'], ['Verification level', 'geography'], ['Refresh cadence', 'semiannual check']],
         },
         {
-          label: 'Linked Data',
-          source: 'Linked Crunchbase research',
+          label: 'Benchmark',
+          source: 'Crunchbase Pro / linked-data research',
           href: 'https://arxiv.org/abs/1907.08671',
           image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1300&q=80',
           title: 'Knowledge-graph benchmark',
@@ -135,11 +142,11 @@ const CONTENT = {
         {
           label: 'Database UX',
           image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1300&q=80',
-          source: 'Crunchbase-inspired pattern',
-          href: 'https://www.crunchbase.com',
+          source: 'Crunchbase Pro search pattern',
+          href: 'https://support.crunchbase.com/hc/en-us/articles/360046653554-How-can-I-search-using-Crunchbase-Pro',
           title: 'Entity-first search, profile, and enrichment',
-          body: 'The interface starts from the company entity, then exposes sector, people, market activity, source coverage, and readiness for downstream use.',
-          takeaways: ['Canonical company profile', 'Search and sector filtering', 'Confidence visible beside the record'],
+          body: 'The reference pattern is not a pretty table. It is search depth, configurable filters, saved lists, export paths, and profiles that help users act on private-market information.',
+          takeaways: ['Company-first profile', 'Filterable search surface', 'Export-ready records'],
           nodes: [
             { label: 'Company', x: 45, y: 44, tone: 'core' },
             { label: 'Aliases', x: 19, y: 23, tone: 'gold' },
@@ -467,10 +474,16 @@ const CONTENT = {
   zh: {
     hero: {
       eyebrow: '工研院實習 / 資料產品案例',
-      title: '一個為台灣新創情報打造的資料工作室。',
-      lead: '我把實習成果當成資料產品來設計：來源 adapter、可審核的公司紀錄、雙語技術分類，以及能交付給地圖、分析師與視覺化 agent 的資料介面。',
+      title: '一套台灣新創情報研究系統。',
+      lead: '我將公開新創訊號轉成可審核紀錄、雙語 taxonomy，以及能交付給分析師、地圖與 AI briefing 的資料介面。',
       context: '公開安全版本重構；公司級資料以 mock data 呈現。',
       thesis: '真正的貢獻不是一支爬蟲，而是把分散的新創訊號整理成可重複使用的情報流程。',
+      mediaCaption: '研究工作室重構：來源地圖、schema 草圖、taxonomy 筆記與分析師審核邏輯。',
+      roles: [
+        { label: '產品問題', text: '分析師如何信任一筆由爬蟲產生的新創紀錄？' },
+        { label: '我的角色', text: '爬蟲流程、schema、taxonomy、QA 與交接 UX。' },
+        { label: '公開邊界', text: '只使用公開來源與匿名樣本紀錄。' },
+      ],
     },
     metrics: [
       { value: '230+', label: '公司紀錄', detail: '結構化的新創樣本宇宙' },
@@ -488,10 +501,10 @@ const CONTENT = {
       title: '這頁的設計建立在台灣真實 deep-tech 地理脈絡上',
       lead: '這些公開參照用來建立生態系語境，不揭露任何 ITRI 內部資料。圖片是視覺參考；下方介面與資料集是作品集安全版本重構。',
       facts: [
-        { value: '1980', label: '新竹科學園區啟用', source: '公開 HSP 資料' },
-        { value: '584', label: '2024-12 登記廠商數', source: '公開 HSP 資料' },
-        { value: '177k+', label: '2024-10 從業員工數', source: '公開 HSP 資料' },
-        { value: 'ITRI', label: '台灣半導體歷史中的鄰近錨點', source: '公開 HSP overview' },
+        { value: '1980', label: '新竹科學園區啟用', source: 'HSP 公開資料', href: 'https://zh.wikipedia.org/wiki/%E6%96%B0%E7%AB%B9%E7%A7%91%E5%AD%B8%E5%9C%92%E5%8D%80' },
+        { value: '584', label: '2024-12 登記廠商數', source: 'HSP 公開資料', href: 'https://zh.wikipedia.org/wiki/%E6%96%B0%E7%AB%B9%E7%A7%91%E5%AD%B8%E5%9C%92%E5%8D%80' },
+        { value: '177k+', label: '2024-10 從業員工數', source: 'HSP 公開資料', href: 'https://zh.wikipedia.org/wiki/%E6%96%B0%E7%AB%B9%E7%A7%91%E5%AD%B8%E5%9C%92%E5%8D%80' },
+        { value: 'IEK', label: '產業情報 taxonomy 語境', source: 'IEKNet 公開主題', href: 'https://ieknet.iek.org.tw/' },
       ],
       references: [
         { title: 'Semiconductor substrate', desc: '作為 taxonomy 中 deep-tech / hardware 類別的視覺參照。', source: 'Unsplash reference', href: 'https://unsplash.com', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80' },
@@ -510,11 +523,11 @@ const CONTENT = {
       tabs: [
         {
           label: 'Ecosystem',
-          source: 'Startup Island TAIWAN',
-          href: 'https://startupisland.tw/',
+          source: 'Startup Island TAIWAN x Crunchbase',
+          href: 'https://about.crunchbase.com/blog/decoding-taiwans-thriving-startup-scene-startup-island-taiwan-2023-investor-report',
           image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1300&q=80',
-          title: '官方新創生態入口',
-          fact: 'Startup Island TAIWAN 將自身定位為 Taiwan startup ecosystem 的 gateway，並連到 ecosystem landscape、innovation reports 與 NEXT BIG 等內容。',
+          title: '把新創生態報告作為 discovery input',
+          fact: 'Crunchbase 與 Startup Island TAIWAN 將台灣描述為成長中的科技新創生態系，2023 report 涵蓋政府支持、VC 活動、投資機會與創新趨勢。',
           trusted: '適合用來發現生態系名單、計畫名稱、公開社群訊號與新創敘事分類。',
           caution: '適合 discovery 與 framing；公司級主張仍需登記資料、公司官網或分析師審核後才能 promoted。',
           fields: ['ecosystem_source', 'program_reference', 'startup_alias', 'market_story'],
@@ -569,8 +582,8 @@ const CONTENT = {
           signals: [['Discovery value', 'high'], ['Verification level', 'geography'], ['Refresh cadence', 'semiannual check']],
         },
         {
-          label: 'Linked Data',
-          source: 'Linked Crunchbase research',
+          label: 'Benchmark',
+          source: 'Crunchbase Pro / linked-data research',
           href: 'https://arxiv.org/abs/1907.08671',
           image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1300&q=80',
           title: 'Knowledge graph benchmark',
@@ -596,11 +609,11 @@ const CONTENT = {
         {
           label: 'Database UX',
           image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1300&q=80',
-          source: 'Crunchbase-inspired pattern',
-          href: 'https://www.crunchbase.com',
+          source: 'Crunchbase Pro search pattern',
+          href: 'https://support.crunchbase.com/hc/en-us/articles/360046653554-How-can-I-search-using-Crunchbase-Pro',
           title: '以公司 entity 為核心的搜尋、profile 與 enrichment',
-          body: '介面先從公司 entity 出發，再展開產業、人員、市場活動、來源覆蓋，以及是否可交付給下游使用。',
-          takeaways: ['標準公司 profile', '搜尋與產業篩選', '可信度直接放在紀錄旁'],
+          body: '參照模式不是漂亮表格，而是深度搜尋、可配置 filters、saved lists、export paths，以及能讓使用者採取行動的公司 profile。',
+          takeaways: ['公司優先 profile', '可篩選搜尋表面', '可匯出紀錄'],
           nodes: [
             { label: 'Company', x: 45, y: 44, tone: 'core' },
             { label: 'Aliases', x: 19, y: 23, tone: 'gold' },
@@ -936,7 +949,7 @@ function getContent(lang) {
 function Section({ className = '', eyebrow, title, lead, children }) {
   return h('section', { className: `deeptech-case-section ${className}` },
     h('div', { className: 'deeptech-case-section-head' },
-      h('span', { className: 'deeptech-case-eyebrow' }, eyebrow),
+      h('span', { className: 'deeptech-case-section-label' }, eyebrow),
       h('h2', null, title),
       h('p', null, lead)),
     children);
@@ -948,6 +961,7 @@ function ButtonList({ items, activeIndex, onSelect, getLabel, className }) {
       type: 'button',
       className: index === activeIndex ? 'active' : '',
       key: getLabel(item),
+      'aria-pressed': index === activeIndex,
       onClick: () => onSelect(index),
     }, getLabel(item))));
 }
@@ -971,13 +985,20 @@ function HeroRoom({ c }) {
       h('span', { className: 'deeptech-case-eyebrow' }, c.hero.eyebrow),
       h('h2', null, c.hero.title),
       h('p', null, c.hero.lead),
+      h('div', { className: 'deeptech-case-role-rail' },
+        c.hero.roles.map(item => h('article', { key: item.label },
+          h('span', null, item.label),
+          h('strong', null, item.text)))),
       h('div', { className: 'deeptech-case-hero-context' },
         h(Icon, { name: 'shield' }),
         h('span', null, c.hero.context))),
     h('div', { className: 'deeptech-case-dossier' },
       h('div', { className: 'deeptech-case-dossier-top' },
-        h('span', null, 'INTELLIGENCE DOSSIER'),
+        h('span', null, 'Intelligence dossier'),
         h('strong', null, 'TW-DT-0187')),
+      h('figure', { className: 'deeptech-case-hero-media' },
+        h('img', { src: deeptechResearchStudio, alt: c.hero.mediaCaption, loading: 'eager', decoding: 'async' }),
+        h('figcaption', null, c.hero.mediaCaption)),
       h('p', null, c.hero.thesis),
       h('div', { className: 'deeptech-case-metric-grid' },
         c.metrics.map(metric => h('article', { key: metric.label },
@@ -997,7 +1018,7 @@ function ContextBoard({ c }) {
         c.contextBoard.facts.map(fact => h('article', { key: fact.label },
           h('strong', null, fact.value),
           h('span', null, fact.label),
-          h('small', null, fact.source)))),
+          h('a', { href: fact.href, target: '_blank', rel: 'noreferrer' }, fact.source)))),
       h('div', { className: 'deeptech-case-reference-viewer' },
         h('div', { className: 'deeptech-case-reference-image' },
           h('img', { src: reference.image, alt: reference.title, loading: 'lazy', decoding: 'async' })),
@@ -1006,8 +1027,8 @@ function ContextBoard({ c }) {
             items: c.contextBoard.references,
             activeIndex: active,
             onSelect: setActive,
-            getLabel: item => item.title,
-            className: 'deeptech-case-reference-tabs',
+          getLabel: item => item.title,
+          className: 'deeptech-case-reference-tabs',
           }),
           h('span', null, reference.source),
           h('h3', null, reference.title),
@@ -1043,14 +1064,14 @@ function PublicEvidenceAtlas({ c }) {
         h(EvidenceSignals, { signals: item.signals }),
         h('a', { href: item.href, target: '_blank', rel: 'noreferrer' }, 'open public source')),
       h('aside', { className: 'deeptech-case-atlas-field-panel' },
-        h('span', null, 'field extraction plan'),
+        h('span', null, 'Field extraction plan'),
         h('div', { className: 'deeptech-case-atlas-field-list' },
           item.fields.map(field => h('code', { key: field }, field))),
         h('div', { className: 'deeptech-case-atlas-note trusted' },
-          h('strong', null, 'trusted for'),
+          h('strong', null, 'Trusted for'),
           h('p', null, item.trusted)),
         h('div', { className: 'deeptech-case-atlas-note caution' },
-          h('strong', null, 'cannot prove alone'),
+          h('strong', null, 'Cannot prove alone'),
           h('p', null, item.caution)))),
     h('div', { className: 'deeptech-case-atlas-ledger' },
       c.publicEvidence.ledger.map(([stage, detail, artifact], index) => h('article', { key: stage },
@@ -1165,7 +1186,7 @@ function MarketProfile({ c }) {
       h('div', { className: 'deeptech-case-profile-main' },
         h('div', { className: 'deeptech-case-profile-topbar' },
           h('div', null,
-            h('span', null, 'ANONYMIZED ENTITY'),
+            h('span', null, 'Anonymized entity'),
             h('strong', null, 'TW-DT-0187')),
           h(ButtonList, {
             items: c.marketProfile.tabs,
@@ -1186,7 +1207,7 @@ function MarketProfile({ c }) {
         h('div', { className: 'deeptech-case-profile-notes' },
           tab.notes.map(note => h('p', { key: note }, note)))),
       h('aside', { className: 'deeptech-case-profile-side' },
-        h('span', null, 'verification summary'),
+        h('span', null, 'Verification summary'),
         c.marketProfile.sideStats.map(stat => h('article', { key: stat.label },
           h('strong', null, stat.value),
           h('small', null, stat.label))),
@@ -1214,7 +1235,7 @@ function DataProductDemo({ c }) {
             h('span', null, key),
             h('strong', null, value))))),
       h('aside', { className: 'deeptech-case-schema-strip' },
-        h('span', null, 'agent-ready schema'),
+        h('span', null, 'Agent-ready schema'),
         c.dataProduct.schema.map(field => h('code', { key: field }, field)))));
 }
 
@@ -1240,7 +1261,7 @@ function DatasetBrowser({ c }) {
           h('strong', null, item.confidence),
           h('em', null, item.review)))),
       h('aside', { className: 'deeptech-case-record-inspector' },
-        h('span', null, 'selected record'),
+        h('span', null, 'Selected record'),
         h('h3', null, row.id),
         h('p', null, row.note),
         h('dl', null,
@@ -1303,7 +1324,7 @@ function CompanyProfile({ company }) {
 function VerificationPanel({ company }) {
   if (!company) return null;
   return h('aside', { className: 'deeptech-case-db-verification' },
-    h('span', null, 'field-level validation'),
+    h('span', null, 'Field-level validation'),
     h('div', { className: 'deeptech-case-db-checks' },
       company.checks.map(check => h('div', { className: check.state, key: check.field },
         h('span', null, check.state),
@@ -1334,6 +1355,7 @@ function DatabaseConsole({ c }) {
         h('input', {
           type: 'search',
           value: query,
+          'aria-label': c.databaseConsole.searchPlaceholder,
           placeholder: c.databaseConsole.searchPlaceholder,
           onChange: event => { setQuery(event.target.value); setActive(0); },
         })),
@@ -1380,7 +1402,7 @@ function QualityEvidenceRoom({ c }) {
             h('span', { className: state }, state),
             h('p', null, detail))))),
       h('aside', { className: 'deeptech-case-release-log' },
-        h('span', null, 'release log'),
+        h('span', null, 'Release log'),
         c.qualityRoom.releaseLog.map(item => h('div', { className: item.status, key: item.version },
           h('strong', null, item.version),
           h('em', null, item.status),
@@ -1431,7 +1453,7 @@ function MapWorkbench({ c }) {
           h('strong', null, item.count),
           h('span', null, item.name)))),
       h('aside', { className: 'deeptech-case-map-brief' },
-        h('span', null, 'selected cluster'),
+        h('span', null, 'Selected cluster'),
         h('h3', null, cluster.name),
         h('p', null, cluster.brief),
         h('div', { className: 'deeptech-case-brief-actions' },
@@ -1467,7 +1489,7 @@ function EvidenceBoard({ c }) {
 
 export default function DeeptechDatabaseCaseStudy({ lang }) {
   const c = getContent(lang);
-  return h('div', { className: 'deeptech-case deeptech-case-v2' },
+  return h('div', { className: 'deeptech-case deeptech-case-v2 deeptech-case-v3' },
     h(HeroRoom, { c }),
     h(ContextBoard, { c }),
     h(PublicEvidenceAtlas, { c }),

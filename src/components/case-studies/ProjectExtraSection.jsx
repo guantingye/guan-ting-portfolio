@@ -15,17 +15,8 @@ export default function ProjectExtraSection({ slug, lang }) {
 
   if (slug === 'deeptech-database') return React.createElement(DeeptechDatabaseCaseStudy, { lang });
 
-  if (slug === 'ai-news-intelligence') return React.createElement('div', { className: 'proj-section reveal' },
-    React.createElement('div', { className: 'proj-section-title' }, PA ? '資料來源矩陣' : 'Source Matrix'),
-    React.createElement('div', { className: 'source-grid' },
-      ...['TechCrunch', 'MIT Tech Review', 'TechNews 科技新報', 'INSIDE 硬塞', 'TechNewsWorld', '+ Domain Feeds'].map(s =>
-        React.createElement('div', { className: 'source-card', key: s },
-          React.createElement('span', { className: 'source-dot' }),
-          s
-        )
-      )
-    )
-  );
+  // ai-news-intelligence: the source matrix now lives in the Evidence Layer
+  // (Module 02), mounted after the technical approach in ProjectPage.
 
   if (slug === 'semiconductor-map') return React.createElement('div', { className: 'proj-section reveal' },
     React.createElement('div', { className: 'proj-section-title' }, PA ? '深科技價值鏈覆蓋' : 'Deep Tech Value Chain Coverage'),
