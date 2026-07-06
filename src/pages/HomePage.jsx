@@ -6,6 +6,7 @@ import { PROJECTS } from '../data/projects.js';
 import ProjectCard from '../components/home/ProjectCard.jsx';
 import SkillsSection from '../components/home/SkillsSection.jsx';
 import AwardsSection from '../components/home/AwardsSection.jsx';
+import MotionSection from '../components/home/MotionSection.jsx';
 
 export default function HomePage({ navigate }) {
     const { t, lang } = useLang();
@@ -68,7 +69,7 @@ export default function HomePage({ navigate }) {
                     React.createElement('div', { className: 'hero-coords' }, '25.04°N · 121.56°E'),
                     React.createElement('div', { className: 'data-tag' }, t('tagActive')),
                     React.createElement('div', { className: 'data-tag-2' }, t('tagAward'))))),
-        React.createElement('section', { className: 'story', id: 'story' },
+        React.createElement(MotionSection, { className: 'story', id: 'story' },
             React.createElement('div', { className: 'container' },
                 React.createElement('div', { className: 'section-label reveal' }, t('storyLabel')),
                 React.createElement('h2', { className: 'section-title reveal reveal-delay-1' },
@@ -81,7 +82,7 @@ export default function HomePage({ navigate }) {
                         React.createElement('h3', { className: 'timeline-head' }, item.head),
                         React.createElement('p', { className: 'timeline-body' }, item.body),
                         React.createElement('div', { className: 'chips' }, item.chips.map(c => React.createElement('span', { className: 'chip', key: c }, c)))))))),
-        React.createElement('section', { className: 'work', id: 'work' },
+        React.createElement(MotionSection, { className: 'work', id: 'work' },
             React.createElement('div', { className: 'container' },
                 React.createElement('div', { className: 'section-label reveal' }, t('workLabel')),
                 React.createElement('h2', { className: 'section-title reveal reveal-delay-1' },
@@ -90,7 +91,7 @@ export default function HomePage({ navigate }) {
                     PROJECTS.map((p, i) => React.createElement(ProjectCard, { key: p.slug, project: p, index: i, navigate, lang }))))),
         React.createElement(SkillsSection, null),
         React.createElement(AwardsSection, null),
-        React.createElement('section', { className: 'contact-section', id: 'contact' },
+        React.createElement(MotionSection, { className: 'contact-section', id: 'contact' },
             React.createElement('div', { className: 'contact-ghost', 'aria-hidden': 'true' }, 'SIGNAL'),
             React.createElement('div', { className: 'container' },
                 React.createElement('div', { className: 'section-label reveal' }, t('contactLabel')),
