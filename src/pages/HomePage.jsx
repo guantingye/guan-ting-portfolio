@@ -1,8 +1,8 @@
 import React from 'react';
 import { useLang } from '../app/providers/LanguageProvider.jsx';
 import { useReveal } from '../hooks/useReveal.js';
-import { scrollTo } from '../utils/scrollTo.js';
 import { PROJECTS } from '../data/projects.js';
+import HomeHero from '../components/home/HomeHero.jsx';
 import ProjectCard from '../components/home/ProjectCard.jsx';
 import SkillsSection from '../components/home/SkillsSection.jsx';
 import AwardsSection from '../components/home/AwardsSection.jsx';
@@ -24,51 +24,7 @@ export default function HomePage({ navigate }) {
           chips: ['AI Products', 'Research × PM', 'Open to Opportunities'] },
     ];
     return React.createElement('div', { className: 'page-enter' },
-        React.createElement('section', { className: 'hero', id: 'top' },
-            React.createElement('div', { className: 'hero-left' },
-                React.createElement('div', { className: 'hero-status' },
-                    React.createElement('span', { className: 'status-item status-active' },
-                        React.createElement('span', { className: 'status-dot' }), t('heroStatusActive')),
-                    React.createElement('span', { className: 'status-sep' }, '·'),
-                    React.createElement('span', { className: 'status-item status-open' },
-                        React.createElement('span', { className: 'status-dot amber' }), t('heroStatusOpen'))),
-                React.createElement('p', { className: 'hero-eyebrow' }, t('heroEyebrow')),
-                React.createElement('h1', { className: 'hero-title' },
-                    lang === 'en'
-                        ? React.createElement(React.Fragment, null,
-                            'I turn frontier-tech', React.createElement('br', null),
-                            'signals into', React.createElement('br', null),
-                            React.createElement('em', null, t('heroTitleEm')), React.createElement('br', null),
-                            t('heroTitle2'))
-                        : React.createElement(React.Fragment, null,
-                            t('heroTitle1'), React.createElement('br', null),
-                            React.createElement('em', null, t('heroTitleEm')), React.createElement('br', null),
-                            t('heroTitle2'))),
-                React.createElement('p', { className: 'hero-sub' }, t('heroSub')),
-                React.createElement('div', { className: 'hero-actions' },
-                    React.createElement('button', { className: 'btn-primary', onClick: () => scrollTo('work', 0) }, t('heroCta1')),
-                    React.createElement('button', { className: 'btn-ghost', onClick: () => scrollTo('story', 0) }, t('heroCta2'))),
-                React.createElement('div', { className: 'hero-stats' },
-                    React.createElement('div', { className: 'hero-stat' },
-                        React.createElement('div', { className: 'stat-num' }, '3+'),
-                        React.createElement('div', { className: 'stat-label' }, t('statYears'))),
-                    React.createElement('div', { className: 'hero-stat' },
-                        React.createElement('div', { className: 'stat-num' }, '7'),
-                        React.createElement('div', { className: 'stat-label' }, t('statProjects'))),
-                    React.createElement('div', { className: 'hero-stat' },
-                        React.createElement('div', { className: 'stat-num', style: { color: 'var(--amber)' } }, '4'),
-                        React.createElement('div', { className: 'stat-label' }, t('statAwards'))),
-                    React.createElement('div', { className: 'hero-stat' },
-                        React.createElement('div', { className: 'stat-num' }, '2'),
-                        React.createElement('div', { className: 'stat-label' }, t('statPub'))))),
-            React.createElement('div', { className: 'hero-right' },
-                React.createElement('div', { className: 'hero-img-wrap' },
-                    React.createElement('div', { className: 'scan-line' }),
-                    React.createElement('img', { src: 'assets/cv_visual.webp', alt: 'Guan-Ting Ye — Deep Tech Translator', width: '780', height: '1020', decoding: 'async', fetchPriority: 'high' }),
-                    React.createElement('div', { className: 'hero-img-glow' }),
-                    React.createElement('div', { className: 'hero-coords' }, '25.04°N · 121.56°E'),
-                    React.createElement('div', { className: 'data-tag' }, t('tagActive')),
-                    React.createElement('div', { className: 'data-tag-2' }, t('tagAward'))))),
+        React.createElement(HomeHero, { lang }),
         React.createElement(MotionSection, { className: 'story', id: 'story' },
             React.createElement('div', { className: 'container' },
                 React.createElement('div', { className: 'section-label reveal' }, t('storyLabel')),
