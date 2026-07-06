@@ -46,14 +46,14 @@ export default function ProjectPage({ slug, navigate }) {
         : value;
     const deeptechProof = lang === 'zh'
         ? [
-            ['產品問題', '讓爬蟲產生的新創紀錄能被分析師信任。'],
-            ['研究訊號', '來源可信度、taxonomy、審核狀態與 provenance 直接進入介面。'],
-            ['交付表面', '資料庫、地圖、brief card 與 agent handoff 保持同一資料脈絡。'],
+            ['資料問題', '將分散公司訊號整理成研究級情報資料庫。'],
+            ['研究訊號', '來源追溯、實體解析、schema 治理與品質狀態直接進入介面。'],
+            ['交付表面', '資料庫、分析資料層、地圖、brief 與研究輸出共享同一條證據軌跡。'],
         ]
         : [
-            ['Product question', 'Make scraped startup records trustworthy enough for analyst handoff.'],
-            ['Research signal', 'Source credibility, taxonomy, review state, and provenance are visible in the UI.'],
-            ['Handoff surface', 'Database, map, brief card, and agent workflows share the same data trail.'],
+            ['Data problem', 'Turn fragmented company signals into a research-grade intelligence database.'],
+            ['Research signal', 'Source traceability, entity resolution, schema governance, and quality state are visible in the UI.'],
+            ['Handoff surface', 'Database, analysis mart, map, brief, and research exports share one evidence trail.'],
         ];
     const heroMain = React.createElement('div', { className: 'proj-hero-copy' },
         React.createElement('a', { href: '#/', className: 'proj-back', onClick: e => { e.preventDefault(); navigate('#/'); } }, t('projBack')),
@@ -89,16 +89,16 @@ export default function ProjectPage({ slug, navigate }) {
                             React.createElement('figure', { className: 'proj-hero-dossier-media' },
                                 React.createElement('img', {
                                     src: deeptechHeroImage,
-                                    alt: lang === 'zh' ? '台灣新創情報研究系統的研究工作室重構圖' : 'Research studio reconstruction for the Taiwan startup intelligence data room',
+                                    alt: lang === 'zh' ? '全球深科技資料庫的研究工作室重構圖' : 'Research studio reconstruction for the Global DeepTech Database',
                                     loading: 'eager',
                                     decoding: 'async',
                                 })),
                             React.createElement('div', { className: 'proj-hero-dossier-copy' },
-                                React.createElement('span', null, lang === 'zh' ? '招聘方快速掃描' : 'Recruiter scan'),
-                                React.createElement('h2', null, lang === 'zh' ? '可被審核的資料產品，而不是爬蟲展示。' : 'A reviewable data product, not a crawler showcase.'),
+                                React.createElement('span', null, lang === 'zh' ? 'ITRI/ISTI 案例掃描' : 'ITRI/ISTI case scan'),
+                                React.createElement('h2', null, lang === 'zh' ? '研究級情報資料層，而不是一次性試算表。' : 'A research-grade intelligence layer, not a one-off spreadsheet.'),
                                 React.createElement('p', null, lang === 'zh'
-                                    ? '案例把來源選擇、資料品質、taxonomy 與交付介面連成一條可檢視的產品邏輯。'
-                                    : 'The case connects source selection, data quality, taxonomy, and handoff UX into one inspectable product logic.'),
+                                    ? '案例把來源擷取、實體標準化、QA、schema 設計與研究輸出整理成可檢視的資料系統。'
+                                    : 'The case connects source acquisition, entity normalization, QA, schema design, and research output into one inspectable data system.'),
                                 React.createElement('div', { className: 'proj-hero-proof-grid' },
                                     deeptechProof.map(([label, text]) => React.createElement('article', { key: label },
                                         React.createElement('span', null, label),
