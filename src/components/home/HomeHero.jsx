@@ -10,16 +10,16 @@ import { scrollTo } from '../../utils/scrollTo.js';
 const HERO_COPY = {
     zh: {
         kicker: 'SIGNAL PORTFOLIO / GUAN-TING YE',
-        headline: ['我將人類訊號，', '轉譯為可被使用的', 'AI 產品系統。'],
-        subtitle: '橫跨心理學、UX 研究、AI 原型與前端實作，我把模糊的使用者資料與行為脈絡，轉化為能被團隊理解、驗證與落地的產品介面。',
+        headline: ['從人類訊號-', '到可驗證的-', 'AI 產品系統'],
+        subtitle: '橫跨心理學、UIUX 研究、AI 原型與前後端實作，將模糊的行為資料、研究洞察與系統邏輯，轉化為能被理解、驗證與落地的真實產品。',
         primaryCta: '探索作品',
         secondaryCta: '閱讀故事',
         imageAlt: '葉冠廷的插畫式個人肖像',
     },
     en: {
         kicker: 'SIGNAL PORTFOLIO / GUAN-TING YE',
-        headline: ['I translate human signals', 'into AI product systems.'],
-        subtitle: 'Working across psychology, UX research, AI prototyping, and front-end systems, I turn ambiguous human data into interfaces, workflows, and decision tools that teams can actually use.',
+        headline: ['From human signals', 'to validated', 'AI product systems'],
+        subtitle: 'Blending psychology, UX research, AI prototyping, and full-stack development, I translate ambiguous behavioral data, research insights, and system logic into real, testable, and production-minded product experiences.',
         primaryCta: 'Explore Work',
         secondaryCta: 'Read Narrative',
         imageAlt: 'Illustrated portrait of Guan-Ting Ye',
