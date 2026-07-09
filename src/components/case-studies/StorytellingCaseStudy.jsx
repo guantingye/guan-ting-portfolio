@@ -20,7 +20,7 @@ export default function StorytellingCaseStudy({ project: p, lang }) {
             React.createElement('div', { className: 'story-case-copy' },
                 React.createElement('div', { className: 'story-case-kicker' }, PA ? '章節式案例' : 'CINEMATIC CASE STUDY'),
                 React.createElement('h2', { className: 'story-case-title' }, PA ? '用章節式敘事呈現產品思考' : 'A chapter-led product story'),
-                React.createElement('p', { className: 'story-case-lead' }, PA ? '此區塊用更像高階作品集 case study 的節奏，呈現問題、決策、互動、佐證與視覺證據。' : 'This section uses a richer case-study rhythm: problem framing, decision logic, interaction evidence, and visual proof points.')),
+                React.createElement('p', { className: 'story-case-lead' }, PA ? '沿著產品決策的順序，說明如何從問題定義、訊號整理、產品原型、互動設計到上市驗證，建立一套可被討論與執行的 AI 產品流程' : 'This section uses a richer case-study rhythm: problem framing, decision logic, interaction evidence, and visual proof points.')),
             React.createElement('div', { className: 'story-case-media' },
                 React.createElement('img', { src: p.caseHeroImage, alt: `${projectTitle} case study cover`, loading: 'lazy', decoding: 'async' }),
                 React.createElement('div', { className: 'story-case-media-glass' },

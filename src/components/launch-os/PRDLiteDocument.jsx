@@ -4,210 +4,314 @@ import { useI18n } from './shared/useI18n.js';
 
 // ---- DATA ------------------------------------------------------------------
 // The document itself is the artifact: a full PRD-lite for Meridian's
-// draft-reply copilot, written end to end in both languages.
+// draft-reply assistant, written end to end in both languages.
+// ✅ 文案優化：保留原本 PRD 結構與互動，只讓內容更自然、可讀、接近真實產品案例。
 
 const SECTIONS = [
     {
         id: 'problem',
-        title: { en: '1 · Problem statement', zh: '1 · Problem statement 問題陳述' },
+        title: {
+            en: '1 · Problem',
+            zh: '1 · 問題：為什麼需要這個產品',
+        },
         body: {
             en: [
-                'Tier-1 support agents at Meridian’s target accounts handle 40–60 tickets per shift. Internal sampling (Module 01, signal S1) puts 41% of those tickets in twelve recurring question shapes — password resets, plan changes, invoice copies, export limits. The reply to each is near-identical, yet every agent still types it by hand, because the cost of a wrong shortcut lands on them personally: a bad macro is anonymous, a bad reply has their name on it.',
-                'The team we are building for is not drowning in novel problems. It is drowning in the hundredth repetition of solved ones, at the exact hours when attention is most expensive.',
+                'Meridian is designed for frontline support teams that answer a high volume of repeat questions every day. In the accounts we are targeting, agents often handle 40–60 tickets per shift. A large share of those tickets are not new problems — they are familiar requests like password resets, plan changes, invoice copies, and export limits.',
+                'The work looks simple from the outside because the answers already exist. But that is exactly where mistakes happen. When agents answer the same question for the fifth or sixth time in a day, attention drops, small details are easier to miss, and the cost of a wrong reply still lands on the person who sends it.',
+                'The opportunity is not to replace the agent. It is to help the agent stay careful at the moment when the work has become repetitive.',
             ],
             zh: [
-                'Meridian 目標客戶的 tier-1 客服，每班要處理 40–60 張工單。內部抽樣（Module 01 的訊號 S1）顯示其中 41% 落在十二種重複的問題型態——密碼重設、方案變更、發票副本、匯出上限。每一種的回覆幾乎一模一樣，但每位客服仍然親手打字，因為抄捷徑出錯的代價會落在個人頭上：一個爛的罐頭回覆是匿名的，一封爛的回信上面有你的名字。',
-                '我們服務的團隊不是被新問題淹沒，而是被已解問題的第一百次重複淹沒——而且正好發生在注意力最昂貴的時段。',
+                'Meridian 服務的是每天需要處理大量重複問題的一線客服團隊。在目標客戶中，客服一個班次通常要處理 40–60 張工單，其中相當多並不是全新的問題，而是密碼重設、方案變更、發票副本、匯出上限這類反覆出現的請求。',
+                '從外部看，這些工作好像很簡單，因為答案早就存在。但真正容易出錯的地方也在這裡：當客服一天中第五次、第六次回答類似問題時，注意力會下降，細節更容易看漏，而錯誤回覆的責任仍然會落在送出的人身上。',
+                '這個產品的機會不是取代客服，而是在工作變得重複、注意力開始消耗的時候，幫助客服維持原本的謹慎。',
             ],
         },
     },
     {
         id: 'moment',
-        title: { en: '2 · The user moment', zh: '2 · The user moment 使用者瞬間' },
+        title: {
+            en: '2 · User moment',
+            zh: '2 · 使用情境：錯誤通常發生在哪一刻',
+        },
         body: {
             en: [
-                'It is 4:10 on a Thursday. Ren has closed thirty-nine tickets; number forty is another export-limit question, the third today. She knows the answer by heart, which is precisely the problem — she starts typing on autopilot, half-reading, and pastes the limit for the wrong plan tier. The customer replies twenty minutes later, polite and confused. The easy ticket has just become a hard one.',
-                'Meridian’s job is that moment: put a grounded draft in front of Ren at ticket forty that is as careful as she was at ticket four — and make it her draft the second she touches it.',
+                'It is 4:10 on a Thursday. Ren has already closed thirty-nine tickets. The next one is another export-limit question — the third time today. She knows the answer, so she starts typing quickly, half-reading the details, and accidentally uses the limit for the wrong plan.',
+                'The customer replies twenty minutes later, polite but confused. What should have been an easy ticket has now become a repair job.',
+                'Meridian should help in exactly that moment: when the answer is familiar enough to make the agent move fast, but still specific enough that the details matter. The assistant should offer a careful draft, show where the answer comes from, and leave the final judgment to Ren.',
             ],
             zh: [
-                '星期四下午四點十分。Ren 已經結了三十九張工單；第四十張又是匯出上限的問題，今天第三次。她對答案倒背如流，而這正是問題所在——她開始自動駕駛式地打字，半讀不讀，然後貼上了錯誤方案層級的上限數字。二十分鐘後客戶回信，語氣禮貌而困惑。一張簡單的工單，剛剛變成了一張困難的。',
-                'Meridian 的工作就是那個瞬間：在第四十張工單時，把一份和她第四張工單時一樣謹慎的草稿放到 Ren 面前——並且在她碰到它的那一秒，讓它變成她的草稿。',
+                '星期四下午四點十分。Ren 已經處理完三十九張工單，下一張又是匯出上限的問題，今天第三次。她其實知道答案，所以開始很快地打字，只大概掃過細節，結果不小心用了錯誤方案的上限數字。',
+                '二十分鐘後，客戶回信了，語氣禮貌但困惑。原本應該很快解決的一張工單，現在變成需要補救的問題。',
+                'Meridian 要介入的正是這個時刻：答案熟到讓客服容易加速，但細節又重要到不能出錯。助理應該提供一份謹慎的草稿，清楚標出答案來源，並把最後判斷留給 Ren。',
             ],
         },
         annotation: {
-            en: 'I wrote this scene before writing a single requirement, and it settled two arguments later on: the product serves attention decay, not typing speed. Speed was never Ren’s problem.',
-            zh: '我在寫下任何一條需求之前先寫了這個場景，它後來替我解決了兩場爭論：這個產品服務的是注意力的衰減，不是打字速度。速度從來不是 Ren 的問題。',
+            en: 'This scene shaped the rest of the PRD. The product is not mainly about typing faster. It is about helping agents stay accurate when repetitive work makes accuracy harder.',
+            zh: '這個場景決定了後面的需求方向。這個產品的核心不是讓客服打字更快，而是在重複工作讓人更容易分心時，幫助客服維持準確。',
         },
     },
     {
         id: 'goals',
-        title: { en: '3 · Goals & non-goals', zh: '3 · Goals 與 non-goals' },
+        title: {
+            en: '3 · Goals and non-goals',
+            zh: '3 · 目標與非目標',
+        },
         goals: {
-            label: { en: 'Goals', zh: 'Goals' },
+            label: { en: 'Goals', zh: '目標' },
             items: {
                 en: [
-                    'Cut median handling time on tier-1 tickets by 25% without raising reopen rates.',
-                    'Keep agents the visible author: every sent reply reflects an explicit agent action.',
-                    'Make confidence legible enough that agents calibrate trust per ticket, not per product.',
+                    'Reduce the median handling time for common support tickets without increasing reopen rates.',
+                    'Keep the agent as the visible author. Every sent reply should still reflect an explicit human review or edit.',
+                    'Help agents understand when to trust a draft and when to slow down.',
                 ],
                 zh: [
-                    '將 tier-1 工單的處理時間中位數降低 25%，且不推高重開率。',
-                    '讓客服始終是可見的作者：每封送出的回覆都對應一個明確的客服動作。',
-                    '讓 confidence 清楚到客服能逐張工單校準信任，而不是對整個產品一次定生死。',
+                    '降低常見客服工單的處理時間，同時不提高工單重開率。',
+                    '讓客服始終是可見的作者。每一封送出的回覆，都必須經過明確的人類檢查或編輯。',
+                    '幫助客服判斷什麼時候可以相信草稿，什麼時候應該放慢速度再確認。',
                 ],
             },
         },
         nonGoals: {
-            label: { en: 'Non-goals', zh: 'Non-goals' },
+            label: { en: 'Non-goals', zh: '非目標' },
             items: {
                 en: [
-                    'Not building autonomous send in v1. The register of this product is “confident draft”, not “silent automation”. If we cannot win while a human reads every reply, we have not earned autonomy anyway.',
-                    'Not optimizing agent-utilization metrics. This tool reports nothing that ranks people; the day it becomes a surveillance instrument is the day agents teach it to lie.',
-                    'Not covering tier-2 or billing-dispute tickets in v1, even though the model sometimes drafts them plausibly. “Sometimes plausible” is exactly the risk profile we refuse to launch.',
+                    'Meridian v1 will not send replies automatically. If the product cannot create value while a human reviews every draft, it has not earned more autonomy.',
+                    'Meridian will not rank or monitor agents. Usage data is for product improvement, not people evaluation.',
+                    'Meridian v1 will not cover complex billing disputes or highly customized support cases. Those may look draftable, but “sometimes plausible” is not safe enough for launch.',
                 ],
                 zh: [
-                    'v1 不做自動送出。這個產品的基調是「有把握的草稿」，不是「無聲的自動化」。如果連每封回覆都有真人閱讀的情況下我們都贏不了，那我們本來就還沒資格談自動化。',
-                    '不優化客服使用率指標。這個工具不產出任何可以拿來排名的報表；它變成監控工具的那一天，就是客服開始教它說謊的那一天。',
-                    'v1 不涵蓋 tier-2 與帳務爭議工單——即使模型偶爾能寫出看似合理的草稿。「偶爾看似合理」正是我們拒絕上線的那種風險輪廓。',
+                    'Meridian v1 不做自動送出。如果這個產品在每封回覆都有人類檢查的情況下都無法創造價值，那它還沒有資格談更高程度的自動化。',
+                    'Meridian 不用來排名或監控客服。使用資料只用於產品改善，不作為人員評比。',
+                    'Meridian v1 不涵蓋複雜帳務爭議或高度客製化的客服案件。這些情境有時看起來也能生成草稿，但「偶爾看似合理」還不足以上線。',
                 ],
             },
         },
         annotation: {
-            en: 'Non-goals earn their keep in reviews. Two of the three above were relitigated in month one — losing the argument twice is how they stayed non-goals.',
-            zh: 'Non-goals 的價值在評審會議裡才看得到。上面三條有兩條在第一個月被重新翻案——連輸兩次辯論，正是它們得以留在 non-goals 的原因。',
+            en: 'The non-goals matter because they protect the product from becoming a surveillance tool or an unsafe automation feature. They also make the first version easier to evaluate.',
+            zh: '非目標很重要，因為它們保護產品不會變成監控工具，也避免第一版過早走向不安全的自動化。範圍清楚，第一版才更容易被驗證。',
         },
     },
     {
         id: 'scope',
-        title: { en: '4 · Scope: in / out', zh: '4 · Scope：in / out' },
+        title: {
+            en: '4 · Scope: what is in and out',
+            zh: '4 · 範圍：這一版做什麼、不做什麼',
+        },
         scopeIn: {
-            en: ['Drafts for the twelve tier-1 ticket shapes', 'Source-passage display beside every draft', 'Three-level confidence badge', 'Human-first queue routing below τ', 'Edit-diff capture as tone signal'],
-            zh: ['十二種 tier-1 工單型態的草稿', '每份草稿旁的來源段落顯示', '三段式 confidence 標記', '低於 τ 時導入 human-first 佇列', '以語氣訊號形式擷取編輯 diff'],
+            en: [
+                'Draft replies for the most common support ticket types',
+                'Source passages shown beside each draft',
+                'A simple three-level trust indicator',
+                'A human review path when the assistant is unsure',
+                'Agent edits captured as product feedback',
+            ],
+            zh: [
+                '為最常見的客服工單提供回覆草稿',
+                '在每份草稿旁顯示答案來源段落',
+                '提供簡單的三段式信任提示',
+                '當助理不確定時，導向人工優先檢查',
+                '將客服的編輯紀錄作為產品改善回饋',
+            ],
         },
         scopeOut: {
             en: [
-                { item: 'Autonomous send', why: 'Disclosure obligations change shape in two markets the moment no human reviews (S5).' },
-                { item: 'Per-session summaries', why: 'Agents work the queue’s order, not sessions; research insight I3 killed this.' },
-                { item: 'Tone personalization by customer demographics', why: 'Risk R3. Account tier and ticket type carry all the signal we need.' },
-                { item: 'Languages beyond EN / zh-TW', why: 'Mixed-code tickets are already the hardest case we ship; adding languages before nailing it multiplies the failure surface.' },
+                {
+                    item: 'Automatic sending',
+                    why: 'Replies should not reach customers without a human review in v1.',
+                },
+                {
+                    item: 'Shift-level summaries',
+                    why: 'Research shows agents need help inside the ticket they are currently handling, not in a separate summary view.',
+                },
+                {
+                    item: 'Tone personalization based on customer demographics',
+                    why: 'This introduces unnecessary risk. Account type and ticket context are enough for v1.',
+                },
+                {
+                    item: 'Additional languages beyond English and Traditional Chinese',
+                    why: 'Mixed-language tickets are already complex enough for the first release.',
+                },
             ],
             zh: [
-                { item: '自動送出', why: '只要沒有真人審核，兩個市場的揭露義務就會變形（S5）。' },
-                { item: 'Session 層級摘要', why: '客服照佇列的順序工作，不照 session；研究洞見 I3 否決了這項。' },
-                { item: '依客戶人口屬性調整語氣', why: '風險 R3。帳戶層級加工單類型已涵蓋我們需要的全部訊號。' },
-                { item: 'EN / zh-TW 以外的語言', why: '中英夾雜已是我們要出貨的最難情境；在做穩之前加語言，等於把失效面積乘上去。' },
+                {
+                    item: '自動送出',
+                    why: 'v1 不讓任何回覆在未經人類檢查的情況下直接送到客戶端。',
+                },
+                {
+                    item: '班次層級摘要',
+                    why: '研究顯示，客服需要的是眼前這張工單中的協助，而不是另一個需要額外打開的摘要畫面。',
+                },
+                {
+                    item: '依客戶人口屬性調整語氣',
+                    why: '這會帶來不必要的風險。第一版只需要依照帳戶類型與工單情境調整即可。',
+                },
+                {
+                    item: '英文與繁中以外的語言',
+                    why: '中英混合工單已經是第一版需要處理的高複雜情境，不應在尚未穩定前繼續擴張語言範圍。',
+                },
             ],
         },
     },
     {
         id: 'ai-reqs',
-        title: { en: '5 · AI-specific requirements', zh: '5 · AI 特有需求' },
+        title: {
+            en: '5 · AI-specific requirements',
+            zh: '5 · AI 相關需求',
+        },
         reqs: [
             {
-                name: { en: 'Confidence display', zh: 'Confidence 顯示' },
+                name: {
+                    en: 'Trust indicator',
+                    zh: '信任提示',
+                },
                 body: {
-                    en: 'Three levels, computed per ticket. At or above τ, the draft renders expanded with its source passages. Below τ, the draft collapses to an outline behind an “assistant unsure” label — it can be expanded and edited, but cannot be sent without at least one edit.',
-                    zh: '三個等級，逐張工單計算。達到 τ 以上，草稿完整展開並附來源段落。低於 τ，草稿收合為大綱並標示「assistant unsure」——可以展開、可以編輯，但至少要編輯過一次才能送出。',
+                    en: 'Each draft shows one of three trust levels. When the system is confident, the draft opens with source passages beside it. When the system is unsure, the draft appears in a more cautious state: the agent can still open and edit it, but cannot send it without making at least one change.',
+                    zh: '每份草稿都會顯示三段式信任提示。當系統判斷把握較高時，草稿會完整展開，旁邊附上來源段落。當系統不確定時，草稿會以較謹慎的狀態呈現：客服仍然可以打開與編輯，但至少要修改過一次，才能送出。',
                 },
                 annotation: {
-                    en: 'I chose per-ticket confidence over per-session because agents judge one ticket at a time; session-level averages hide exactly the failures that matter.',
-                    zh: '我選擇逐張工單而非 session 層級的 confidence，因為客服一次只判斷一張工單；session 層級的平均值，藏起來的正是最要緊的那些失敗。',
+                    en: 'I chose a simple trust indicator instead of a numeric confidence score because decimals can create false authority. Agents need a review cue, not a score that pretends to be precise.',
+                    zh: '我選擇簡單的信任提示，而不是數值化信心分數，因為小數點很容易製造過度精準的錯覺。客服需要的是檢查提醒，而不是一個看起來像絕對答案的分數。',
                 },
             },
             {
-                name: { en: 'Fallback UX', zh: 'Fallback UX' },
+                name: {
+                    en: 'Fallback states',
+                    zh: '備援狀態',
+                },
                 body: {
-                    en: 'Three layers. Layer 1 — model timeout past two seconds: the editor shows template suggestions under a visible “assistant offline” state. Layer 2 — retrieval index stale: drafting continues, citations are disabled and marked. Layer 3 — full outage: the composer is identical to pre-Meridian; nothing half-renders.',
-                    zh: '三層降級。第一層——模型逾時超過兩秒：編輯器改出範本建議，並明確顯示「assistant offline」。第二層——檢索索引過期：草稿照出，但引用功能停用並標示。第三層——全面停擺：編輯器回到沒有 Meridian 的樣子；不允許任何半渲染狀態。',
+                    en: 'If the assistant is slow, unavailable, or unable to verify its sources, the editor should clearly explain what changed. In the lightest case, the system can show template suggestions. If source verification fails, the citation should be removed or marked. If the assistant is fully unavailable, the editor should return to the normal pre-AI experience.',
+                    zh: '當助理變慢、暫時無法使用，或無法確認答案來源時，編輯器必須清楚告訴客服目前發生了什麼。最輕微的情況下，系統可以改提供範本建議；如果來源無法驗證，引用應該被移除或標示；如果助理完全不可用，編輯器應回到原本沒有 AI 的使用狀態。',
                 },
                 annotation: {
-                    en: 'The fallback ladder is a UX artifact, not an infrastructure note: agents plan their next thirty seconds around whether a draft is coming.',
-                    zh: '這座降級階梯是 UX 產物，不是基礎設施備註：客服會用「草稿到底會不會來」規劃接下來的三十秒。',
+                    en: 'Fallback is a user experience requirement, not only an engineering concern. Agents make their next move based on whether a draft is coming, so the product must be honest about its state.',
+                    zh: '備援不是單純的工程問題，而是使用者體驗問題。客服會根據「草稿到底會不會出現」來決定下一步，因此產品必須誠實呈現自己的狀態。',
                 },
             },
             {
-                name: { en: 'Error states', zh: '錯誤狀態' },
+                name: {
+                    en: 'Wrong-reply recovery',
+                    zh: '錯誤回覆的補救流程',
+                },
                 body: {
-                    en: 'When an accepted draft is later found wrong: the agent or lead flags it; a customer-facing correction template opens in the same ticket; the draft, its sources, and the edit history route to a review queue. If the same ticket shape produces two confirmed wrong drafts, that shape is pulled from drafting until re-evaluated.',
-                    zh: '當已採用的草稿事後被發現有誤：客服或 lead 標記它；同一張工單內開啟面向客戶的更正範本；該草稿、其來源與編輯歷程一併送入審查佇列。同一種工單型態累積兩次確認錯誤，該型態即暫停出草稿，直到重新評估。',
+                    en: 'If a sent reply is later found to be wrong, the agent or lead can flag it inside the same ticket. The product should open a correction template, save the draft, the sources, and the edit history, and route the case to review. If the same ticket type produces repeated confirmed errors, drafting for that ticket type should be paused until it is reviewed.',
+                    zh: '如果已送出的回覆事後被發現有誤，客服或主管可以在同一張工單內標記。產品應開啟更正範本，保存原草稿、來源與編輯紀錄，並將該案例送入審查。如果同一種工單類型重複出現確認錯誤，該類型應暫停產生草稿，直到重新檢查完成。',
                 },
             },
             {
-                name: { en: 'Feedback loop', zh: 'Feedback loop' },
+                name: {
+                    en: 'Learning from edits',
+                    zh: '從客服編輯中學習',
+                },
                 body: {
-                    en: 'Edit diffs are stored as tone signal, not fact signal (model card, assumption 3). Sampled diffs join the evaluation set weekly. Acceptance metrics exist to tune the model and never surface in people dashboards.',
-                    zh: '編輯 diff 以語氣訊號的身分儲存，不當作事實訊號（見 model card 假設 3）。每週抽樣的 diff 併入評估集。採用率指標只用來調整模型，永遠不出現在人員儀表板上。',
+                    en: 'Agent edits should be treated as context and tone feedback, not automatic proof that the original draft was factually wrong. A sample of edits should be reviewed weekly and used to improve future drafts. Acceptance metrics are for product improvement only and should never appear in people-performance dashboards.',
+                    zh: '客服的編輯應被視為情境與語氣回饋，而不是自動判定原草稿事實錯誤。團隊應每週抽樣檢視編輯紀錄，並用來改善後續草稿。採用率與編輯資料只能用於產品改善，不能出現在人員績效儀表板中。',
                 },
                 annotation: {
-                    en: 'Treating edits as tone-only was contested. But an edit can make a wrong answer more convincing — grading facts by edits would teach the model confidence, not correctness.',
-                    zh: '「編輯只算語氣」這條當初有人反對。但一次編輯可以讓錯的答案更有說服力——用編輯來評判事實，教會模型的會是自信，不是正確。',
+                    en: 'An edit can make a wrong answer sound more convincing. That is why edits should inform tone and workflow learning, but should not be blindly treated as factual correction data.',
+                    zh: '一次編輯可能只是讓錯誤答案聽起來更有說服力。因此，編輯可以幫助產品理解語氣與工作流程，但不能被盲目當作事實修正資料。',
                 },
             },
         ],
     },
     {
         id: 'acceptance',
-        title: { en: '6 · Acceptance criteria', zh: '6 · Acceptance criteria 驗收條件' },
+        title: {
+            en: '6 · Acceptance criteria',
+            zh: '6 · 驗收條件',
+        },
         criteria: {
             en: [
-                'Given a tier-1 ticket in a known shape, when the agent opens the reply editor, then a draft with source passages renders within 2 seconds, or the fallback state shows.',
-                'Given a draft below τ, when the agent attempts to send without editing, then send stays disabled and the “assistant unsure” outline remains.',
-                'Given a model timeout, when the editor falls back to templates, then the state is labeled “assistant offline” and no partial draft renders.',
-                'Given an agent edits a draft, when the reply is sent, then the edit diff is stored with the ticket id and marked as tone signal.',
-                'Given a draft cites policy, when the citation fails the retrieval check, then the suggestion demotes to draft-only with the citation stripped.',
-                'Given a thread past 12 turns, when the agent opens the editor, then no draft is offered and the standard composer shows.',
-                'Given an agent’s as-is acceptance exceeds 90% over a week, when the weekly review runs, then a coaching flag routes to support ops — never a lockout.',
-                'Given a sent reply is flagged wrong, when the flag is submitted, then the correction template and report path open inside the same ticket view.',
+                'When an agent opens a common support ticket, the reply editor should show a draft with source passages within 2 seconds. If it cannot, the fallback state should appear instead.',
+                'When a draft is marked as uncertain, the agent should be able to open and edit it, but sending should stay disabled until at least one edit is made.',
+                'When the assistant is unavailable, the editor should clearly show that state and avoid displaying partial or unfinished drafts.',
+                'When an agent edits a draft and sends the reply, the edit history should be saved with the ticket as product feedback.',
+                'When a draft includes a policy reference, the product should only show that reference if it passes source verification.',
+                'When a ticket thread is too long or too complex for the current version, the product should not offer a draft and should return to the standard editor.',
+                'When an agent accepts nearly all drafts without editing over a week, support ops should receive a coaching signal. This should never become an automatic lockout or performance penalty.',
+                'When a sent reply is flagged as wrong, the correction template and reporting path should open inside the same ticket view.',
             ],
             zh: [
-                'Given 一張已知型態的 tier-1 工單，when 客服打開回覆編輯器，then 附來源段落的草稿在 2 秒內渲染完成，否則顯示 fallback 狀態。',
-                'Given 一份低於 τ 的草稿，when 客服未編輯就嘗試送出，then 送出鍵維持停用，「assistant unsure」大綱保持原狀。',
-                'Given 模型逾時，when 編輯器降級為範本，then 狀態標示「assistant offline」，且不渲染任何殘缺草稿。',
-                'Given 客服編輯了草稿，when 回覆送出，then 編輯 diff 連同工單 id 儲存，並標記為語氣訊號。',
-                'Given 草稿引用了政策，when 該引用未通過檢索比對，then 建議降級為僅供草稿並移除引用。',
-                'Given 一串超過 12 輪的工單，when 客服打開編輯器，then 不提供草稿，顯示標準編輯器。',
-                'Given 某位客服一週內原文照收率超過 90%，when 週檢視執行，then 對 support ops 發出 coaching 標記——絕不鎖帳號。',
-                'Given 一封已送出的回覆被標記有誤，when 標記送出，then 更正範本與回報路徑在同一工單視圖內開啟。',
+                '客服打開常見類型的工單時，回覆編輯器應在 2 秒內顯示附來源段落的草稿；如果無法做到，應顯示清楚的備援狀態。',
+                '當草稿被標記為不確定時，客服仍可打開與編輯，但在至少修改一次之前，送出按鈕應保持停用。',
+                '當助理暫時無法使用時，編輯器應清楚顯示目前狀態，並避免出現半完成或殘缺的草稿。',
+                '客服修改草稿並送出後，編輯紀錄應與工單一起保存，作為後續產品改善回饋。',
+                '當草稿引用政策或文件內容時，只有通過來源驗證的引用才應顯示。',
+                '當工單對話太長或情境超出第一版能力範圍時，產品不應提供草稿，並應回到標準編輯器。',
+                '如果某位客服一週內幾乎都原文接受草稿，support ops 應收到 coaching 提醒；這不應成為自動鎖定或績效懲罰。',
+                '當已送出的回覆被標記為錯誤時，更正範本與回報路徑應在同一張工單視圖內開啟。',
             ],
         },
     },
     {
         id: 'questions',
-        title: { en: '7 · Open questions', zh: '7 · Open questions 未決問題' },
+        title: {
+            en: '7 · Open questions',
+            zh: '7 · 未決問題',
+        },
         body: {
             en: [
-                'Where does τ live long-term — per team, per ticket shape, or per agent? The pilot says per team, but the variance inside teams is bigger than the variance between them.',
-                'Does the correction template actually repair customer trust, or does it just close the loop for us? We have no outcome data on whether a good apology works.',
-                'The docs-decay insight (I4) keeps resurfacing: if drafts quietly compensate for stale articles, are we subsidizing the rot we should be fixing?',
+                'Should the trust threshold be adjusted by team, ticket type, or individual agent behavior? The pilot suggests team-level settings, but there may be meaningful variation within the same team.',
+                'Does a correction template actually repair customer trust, or does it only help the internal team close the loop? We still need outcome data from real correction cases.',
+                'If AI drafts quietly compensate for outdated help-center articles, are we hiding a documentation problem that should be fixed at the source?',
             ],
             zh: [
-                'τ 長期應該放在哪一層——每團隊、每工單型態，還是每位客服？試點結果支持每團隊，但團隊內部的變異比團隊之間還大。',
-                '更正範本真的能修復客戶信任，還是只是替我們把流程閉環？關於一封好的道歉信是否有效，我們沒有任何結果資料。',
-                '文件腐化的洞見（I4）不斷浮上來：如果草稿在安靜地替過期文章擦屁股，我們是不是正在補貼那個本來該修好的爛攤子？',
+                '信任門檻應該依團隊、工單類型，還是個別客服行為調整？試點結果目前偏向團隊層級，但同一團隊內也可能存在重要差異。',
+                '更正範本真的能修復客戶信任，還是只是幫內部團隊把流程補完？我們仍需要來自真實更正案例的結果資料。',
+                '如果 AI 草稿默默補上了過期說明文件的缺口，我們是不是反而把一個本該從源頭修正的文件問題藏起來了？',
             ],
         },
     },
     {
         id: 'log',
-        title: { en: '8 · Decision log', zh: '8 · Decision log 決策記錄' },
+        title: {
+            en: '8 · Decision log',
+            zh: '8 · 決策記錄',
+        },
         log: [
             {
                 date: '2026-03-14',
-                decision: { en: 'Three-level confidence badge', zh: '三段式 confidence 標記' },
-                rejected: { en: 'Numeric confidence score', zh: '數值化信心分數' },
-                reason: { en: 'Experiment: two decimal places read as authority; as-is acceptance jumped 11 points on low-confidence drafts.', zh: '實驗結果：小數點兩位被讀成權威；低信心草稿的原文照收率跳升 11 個百分點。' },
+                decision: {
+                    en: 'Use a three-level trust indicator',
+                    zh: '採用三段式信任提示',
+                },
+                rejected: {
+                    en: 'Numeric confidence score',
+                    zh: '數值化信心分數',
+                },
+                reason: {
+                    en: 'In testing, numeric scores made uncertain drafts feel more authoritative than they were.',
+                    zh: '測試中，數值分數讓不確定的草稿看起來比實際上更有權威感。',
+                },
             },
             {
                 date: '2026-04-02',
-                decision: { en: 'Per-ticket confidence', zh: '逐工單 confidence' },
-                rejected: { en: 'Session-level averages', zh: 'Session 層級平均' },
-                reason: { en: 'Agents judge one ticket at a time (insight I3); averages hide the failures that matter.', zh: '客服一次只判斷一張工單（洞見 I3）；平均值把最要緊的失敗藏起來。' },
+                decision: {
+                    en: 'Evaluate trust per ticket',
+                    zh: '逐張工單判斷可信度',
+                },
+                rejected: {
+                    en: 'Session-level average score',
+                    zh: '班次層級平均分數',
+                },
+                reason: {
+                    en: 'Agents make decisions one ticket at a time. Averages can hide the exact cases that need caution.',
+                    zh: '客服一次只判斷一張工單。平均分數可能剛好藏住最需要小心的個案。',
+                },
             },
             {
                 date: '2026-04-21',
-                decision: { en: 'Below τ: send requires an edit', zh: '低於 τ：送出前必須編輯' },
-                rejected: { en: 'Hard block on low confidence', zh: '低信心直接封鎖送出' },
-                reason: { en: 'A hard block turns τ into a wall agents route around; requiring an edit keeps judgment in the loop without theater.', zh: '硬性封鎖會讓 τ 變成一堵客服繞路的牆；要求編輯讓判斷留在迴圈裡，而且不用演戲。' },
+                decision: {
+                    en: 'Require an edit before sending uncertain drafts',
+                    zh: '不確定草稿送出前必須經過編輯',
+                },
+                rejected: {
+                    en: 'Hard block all uncertain drafts',
+                    zh: '直接封鎖所有不確定草稿',
+                },
+                reason: {
+                    en: 'A hard block removes judgment from the workflow. Requiring an edit keeps the agent in control while still slowing down risky sends.',
+                    zh: '直接封鎖會把人的判斷從流程中拿掉。要求編輯可以讓客服保有控制權，同時放慢高風險送出的速度。',
+                },
             },
         ],
     },
@@ -217,28 +321,44 @@ const SECTIONS = [
 const COPY = {
     en: {
         eyebrow: 'MODULE 04 — LAUNCH ARTIFACT',
-        title: 'PRD-lite: Draft-Reply Copilot',
-        lead: 'A product requirements document written all the way through, not a template with headings. The amber notes mark the trade-offs I would defend in a review — the document doubles as a writing sample.',
-        context: 'Scenario: “Meridian” v1, the opportunity that Module 01 scores as the safest first build.',
-        signature: 'Signature interaction: the acceptance criteria are checkable — walk the list like a reviewer.',
+        title: 'PRD-lite: Draft Reply Assistant',
+        lead: [
+            'This module presents a lightweight product requirements document for Meridian’s first release.',
+            'Instead of showing a blank PRD template, it demonstrates how product decisions, AI boundaries, user moments, scope trade-offs, and acceptance criteria can be written clearly enough for design, engineering, and business teams to review together.',
+        ],
+        context: 'Scenario: “Meridian” v1, the draft-reply opportunity selected as the safest first build in Module 01.',
+        signature: 'Signature interaction: review the acceptance criteria like a product reviewer and check them off as you go.',
         readingTime: 'Reading time: 6 min',
         tocLabel: 'CONTENTS',
         inLabel: 'IN',
-        outLabel: 'OUT — each with its why',
-        logHeaders: { date: 'Date', decision: 'Decision', rejected: 'Rejected option', reason: 'Why' },
+        outLabel: 'OUT — with rationale',
+        logHeaders: {
+            date: 'Date',
+            decision: 'Decision',
+            rejected: 'Rejected option',
+            reason: 'Why',
+        },
         criteriaHint: 'Checkboxes are local to this visit — nothing is saved.',
     },
     zh: {
         eyebrow: 'MODULE 04 — LAUNCH ARTIFACT',
-        title: 'PRD-lite：草稿回覆 Copilot',
-        lead: '一份從頭寫到尾的產品需求文件，不是掛著標題的範本。琥珀色註記標出我願意在評審會議上捍衛的取捨——這份文件同時是一份 writing sample。',
-        context: '情境：「Meridian」v1，即 Module 01 評為最穩第一步的那個機會。',
-        signature: '招牌互動：acceptance criteria 可以逐條勾選——像審查者一樣走一遍。',
+        title: 'PRD-lite：客服草稿回覆助手',
+        lead: [
+            '這個模組是一份為 Meridian 第一版設計的輕量產品需求文件。',
+            '它不是空白 PRD 範本，而是示範如何把產品判斷、AI 邊界、使用者情境、範圍取捨與驗收條件，寫成設計、工程與商業團隊都能一起審查的文件。',
+        ],
+        context: '情境：「Meridian」v1，延續 Module 01 中被選為最適合先做的草稿回覆機會。',
+        signature: '你可以像產品審查者一樣逐條檢查驗收條件，並在閱讀過程中勾選確認。',
         readingTime: '閱讀時間：6 分鐘',
         tocLabel: 'CONTENTS',
         inLabel: 'IN',
         outLabel: 'OUT——每一項附上原因',
-        logHeaders: { date: '日期', decision: '決策', rejected: '放棄的選項', reason: '理由' },
+        logHeaders: {
+            date: '日期',
+            decision: '決策',
+            rejected: '放棄的選項',
+            reason: '理由',
+        },
         criteriaHint: '勾選狀態僅存在於本次瀏覽——不會被儲存。',
     },
 };
@@ -254,44 +374,77 @@ const Annotation = ({ text }) => (
 function SectionBody({ section, lang, t, checks, onCheck }) {
     return (
         <>
-            {(section.body?.[lang] || []).map((para, i) => <p className="los-m5-para" key={i}>{para}</p>)}
+            {(section.body?.[lang] || []).map((para, i) => (
+                <p className="los-m5-para" key={i}>
+                    {para}
+                </p>
+            ))}
+
             {section.goals && (
                 <>
-                    <h5 className="los-data-sm los-m5-sublabel">{section.goals.label[lang]}</h5>
+                    <h5 className="los-data-sm los-m5-sublabel">
+                        {section.goals.label[lang]}
+                    </h5>
                     <ul className="los-m5-list">
-                        {section.goals.items[lang].map((item, i) => <li key={i}>{item}</li>)}
+                        {section.goals.items[lang].map((item, i) => (
+                            <li key={i}>{item}</li>
+                        ))}
                     </ul>
-                    <h5 className="los-data-sm los-m5-sublabel">{section.nonGoals.label[lang]}</h5>
+
+                    <h5 className="los-data-sm los-m5-sublabel">
+                        {section.nonGoals.label[lang]}
+                    </h5>
                     <ul className="los-m5-list is-nongoals">
-                        {section.nonGoals.items[lang].map((item, i) => <li key={i}>{item}</li>)}
+                        {section.nonGoals.items[lang].map((item, i) => (
+                            <li key={i}>{item}</li>
+                        ))}
                     </ul>
                 </>
             )}
+
             {section.scopeIn && (
                 <div className="los-m5-scope">
                     <div>
-                        <h5 className="los-data-sm los-m5-sublabel">{t.inLabel}</h5>
+                        <h5 className="los-data-sm los-m5-sublabel">
+                            {t.inLabel}
+                        </h5>
                         <ul className="los-m5-list">
-                            {section.scopeIn[lang].map((item, i) => <li key={i}>{item}</li>)}
+                            {section.scopeIn[lang].map((item, i) => (
+                                <li key={i}>{item}</li>
+                            ))}
                         </ul>
                     </div>
+
                     <div>
-                        <h5 className="los-data-sm los-m5-sublabel">{t.outLabel}</h5>
+                        <h5 className="los-data-sm los-m5-sublabel">
+                            {t.outLabel}
+                        </h5>
                         <ul className="los-m5-list is-out">
                             {section.scopeOut[lang].map((row, i) => (
-                                <li key={i}><strong>{row.item}</strong><span>{row.why}</span></li>
+                                <li key={i}>
+                                    <strong>{row.item}</strong>
+                                    <span>{row.why}</span>
+                                </li>
                             ))}
                         </ul>
                     </div>
                 </div>
             )}
+
             {section.reqs && section.reqs.map((req, i) => (
                 <div className="los-m5-req" key={i}>
-                    <h5 className="los-m5-req-name">{req.name[lang]}</h5>
-                    <p className="los-m5-para">{req.body[lang]}</p>
-                    {req.annotation && <Annotation text={req.annotation[lang]} />}
+                    <h5 className="los-m5-req-name">
+                        {req.name[lang]}
+                    </h5>
+                    <p className="los-m5-para">
+                        {req.body[lang]}
+                    </p>
+                    {req.annotation && (
+                        <Annotation text={req.annotation[lang]} />
+                    )}
                 </div>
             ))}
+
             {section.criteria && (
                 <>
                     <ul className="los-m5-criteria">
@@ -308,9 +461,12 @@ function SectionBody({ section, lang, t, checks, onCheck }) {
                             </li>
                         ))}
                     </ul>
-                    <p className="los-data-sm los-m5-hint">{t.criteriaHint}</p>
+                    <p className="los-data-sm los-m5-hint">
+                        {t.criteriaHint}
+                    </p>
                 </>
             )}
+
             {section.log && (
                 <div className="los-m5-logwrap">
                     <table className="los-m5-log">
@@ -325,7 +481,9 @@ function SectionBody({ section, lang, t, checks, onCheck }) {
                         <tbody>
                             {section.log.map(entry => (
                                 <tr key={entry.date}>
-                                    <td className="los-data-sm">{entry.date}</td>
+                                    <td className="los-data-sm">
+                                        {entry.date}
+                                    </td>
                                     <td>{entry.decision[lang]}</td>
                                     <td>{entry.rejected[lang]}</td>
                                     <td>{entry.reason[lang]}</td>
@@ -335,7 +493,10 @@ function SectionBody({ section, lang, t, checks, onCheck }) {
                     </table>
                 </div>
             )}
-            {section.annotation && <Annotation text={section.annotation[lang]} />}
+
+            {section.annotation && (
+                <Annotation text={section.annotation[lang]} />
+            )}
         </>
     );
 }
@@ -355,42 +516,63 @@ export default function PRDLiteDocument() {
     useEffect(() => {
         const article = articleRef.current;
         if (!article) return;
+
         const headings = article.querySelectorAll('[data-section-id]');
+
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) setActiveSection(entry.target.dataset.sectionId);
+                if (entry.isIntersecting) {
+                    setActiveSection(entry.target.dataset.sectionId);
+                }
             });
         }, { rootMargin: '-20% 0px -70% 0px' });
+
         headings.forEach(el => observer.observe(el));
+
         return () => observer.disconnect();
     }, [lang]);
 
     useEffect(() => {
         let raf = 0;
+
         const onScroll = () => {
             cancelAnimationFrame(raf);
+
             raf = requestAnimationFrame(() => {
                 const article = articleRef.current;
                 if (!article) return;
+
                 const rect = article.getBoundingClientRect();
                 const total = rect.height - window.innerHeight;
                 const read = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 0;
+
                 setProgress(read);
             });
         };
+
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
-        return () => { window.removeEventListener('scroll', onScroll); cancelAnimationFrame(raf); };
+
+        return () => {
+            window.removeEventListener('scroll', onScroll);
+            cancelAnimationFrame(raf);
+        };
     }, []);
 
     const scrollToSection = id => {
         document.getElementById(`los-m5-section-${id}`)
-            ?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
+            ?.scrollIntoView({
+                behavior: reducedMotion ? 'auto' : 'smooth',
+                block: 'start',
+            });
     };
 
     const toc = (
         <nav className={`los-m5-toc${viewport === 'desktop' ? '' : ' is-chips'}`} aria-label={t.tocLabel}>
-            <span className="los-eyebrow los-m5-toc-label">{t.tocLabel}</span>
+            <span className="los-eyebrow los-m5-toc-label">
+                {t.tocLabel}
+            </span>
+
             <ul>
                 {SECTIONS.map(section => (
                     <li key={section.id}>
@@ -418,13 +600,21 @@ export default function PRDLiteDocument() {
             signature={t.signature}
         >
             <div className="los-m5-progress" aria-hidden="true">
-                <div className="los-m5-progress-fill" style={{ width: `${(progress * 100).toFixed(1)}%` }} />
+                <div
+                    className="los-m5-progress-fill"
+                    style={{ width: `${(progress * 100).toFixed(1)}%` }}
+                />
             </div>
+
             <div className="los-m5-meta">
-                <span className="los-data-sm">{t.readingTime}</span>
+                <span className="los-data-sm">
+                    {t.readingTime}
+                </span>
             </div>
+
             <div className={`los-m5-layout is-${viewport}`}>
                 {toc}
+
                 <article className="los-m5-article" ref={articleRef}>
                     {SECTIONS.map(section => (
                         <section
@@ -434,8 +624,17 @@ export default function PRDLiteDocument() {
                             className="los-m5-section"
                             aria-label={section.title[lang]}
                         >
-                            <h4 className="los-m5-section-title">{section.title[lang]}</h4>
-                            <SectionBody section={section} lang={lang} t={t} checks={checks} onCheck={onCheck} />
+                            <h4 className="los-m5-section-title">
+                                {section.title[lang]}
+                            </h4>
+
+                            <SectionBody
+                                section={section}
+                                lang={lang}
+                                t={t}
+                                checks={checks}
+                                onCheck={onCheck}
+                            />
                         </section>
                     ))}
                 </article>

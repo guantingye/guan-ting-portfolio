@@ -5,63 +5,183 @@ const STRINGS = {
     en: {
         eyebrow: 'STATE MODEL',
         title: 'HMI State Matrix Explorer',
-        intent: 'Every state, every context, designed on purpose — not just the happy path.',
-        gridLabel: 'Interface state by operating context',
-        states: 'States', contexts: 'Contexts',
-        pick: 'Pick a cell', arrowHint: 'Arrow keys move · Enter opens',
-        specTitle: 'Spec readout',
-        specTarget: 'Min touch target', specType: 'Primary type', specContrast: 'Contrast', specMotion: 'Motion', specSurface: 'Surface',
+        intent: 'This module shows how the same machine state should change across different operating contexts. A warning on a desk screen, a three-meter glance view, a gloved touch surface, and a night-shift interface should not all look the same.',
+        gridLabel: 'Interface states across operating contexts',
+        states: 'States',
+        contexts: 'Contexts',
+        pick: 'Choose a cell',
+        arrowHint: 'Use arrow keys to move · Enter opens',
+        specTitle: 'State specification',
+        specTarget: 'Touch target',
+        specType: 'Primary value size',
+        specContrast: 'Text contrast',
+        specMotion: 'Motion behavior',
+        specSurface: 'Surface',
         ack: 'Acknowledge',
-        secondaryDropped: 'Secondary text dropped at glance distance',
+        secondaryDropped: 'Secondary text is hidden in this glance context',
         notes: [
-            { tag: 'Decision / 決策', text: 'Critical is the only red on this page. Every other tier uses amber, teal, or gold so red keeps its meaning.' },
-            { tag: 'Trade-off / 取捨', text: '28 designed combinations is expensive. The matrix is what makes that cost visible and reviewable.' },
+            {
+                tag: 'Design decision / 設計判斷',
+                text: 'Red is reserved for the critical state only. Other states use amber, teal, or gold so red still means “stop and act now.”',
+            },
+            {
+                tag: 'Trade-off / 取捨',
+                text: 'Designing every state across every context takes more effort, but the matrix makes that cost visible and reviewable before the interface reaches production.',
+            },
         ],
         content: {
-            normal:   { title: 'Pump A',    value: '4.2 bar', sub: 'loop nominal' },
-            advisory: { title: 'Pump A',    value: '4.8 bar', sub: 'trend rising +0.4/min' },
-            warning:  { title: 'Loop A',    value: '5.6 bar', sub: 'above soft limit' },
-            critical: { title: 'Loop A',    value: '6.8 bar', sub: 'valve V-2 restriction' },
-            degraded: { title: 'Sensor S-3', value: '—.— bar', sub: 'signal lost 12 s' },
-            offline:  { title: 'Link',      value: 'OFFLINE', sub: 'reconnecting…' },
-            handoff:  { title: 'Control',   value: 'MANUAL',  sub: 'operator has control' },
+            normal: {
+                title: 'Pump A',
+                value: '4.2 bar',
+                sub: 'Loop is running normally',
+            },
+            advisory: {
+                title: 'Pump A',
+                value: '4.8 bar',
+                sub: 'Pressure is rising slowly',
+            },
+            warning: {
+                title: 'Loop A',
+                value: '5.6 bar',
+                sub: 'Above the soft limit',
+            },
+            critical: {
+                title: 'Loop A',
+                value: '6.8 bar',
+                sub: 'Valve V-2 may be restricted',
+            },
+            degraded: {
+                title: 'Sensor S-3',
+                value: '—.— bar',
+                sub: 'Signal lost for 12 seconds',
+            },
+            offline: {
+                title: 'Connection',
+                value: 'OFFLINE',
+                sub: 'Trying to reconnect',
+            },
+            handoff: {
+                title: 'Control',
+                value: 'MANUAL',
+                sub: 'Operator has control',
+            },
         },
         ctx: {
-            desk:   { name: 'Desk',         dist: '40 cm', motion: 'standard 240 ms',    note: 'Baseline density for a seated operator at a workstation.' },
-            glance: { name: 'Glance · 3 m', dist: '3 m',   motion: 'essential only',     note: 'Primary value scales ~2.4×; secondary text is dropped so the state reads in one look.' },
-            gloved: { name: 'Gloved touch', dist: '40 cm', motion: 'standard 240 ms',    note: 'Hit areas grow to 56 px and hover-only affordances are removed.' },
-            night:  { name: 'Night shift',  dist: '60 cm', motion: 'reduced glare',      note: 'Dimmed surface preserves red for critical; luminance drops to protect dark adaptation.' },
+            desk: {
+                name: 'Desk',
+                dist: '40 cm',
+                motion: 'standard 240 ms',
+                note: 'This is the baseline view for a seated operator working at a control desk. It keeps enough detail for normal monitoring without overloading the card.',
+            },
+            glance: {
+                name: 'Glance · 3 m',
+                dist: '3 m',
+                motion: 'essential only',
+                note: 'This version is designed for a quick look from farther away. The main value is enlarged, and secondary text is removed so the state can be read in one glance.',
+            },
+            gloved: {
+                name: 'Gloved touch',
+                dist: '40 cm',
+                motion: 'standard 240 ms',
+                note: 'This context assumes slower, less precise input. Touch targets become larger, and the design avoids interactions that depend only on hover.',
+            },
+            night: {
+                name: 'Night shift',
+                dist: '60 cm',
+                motion: 'reduced glare',
+                note: 'This version lowers the visual brightness while keeping the critical state recognizable. The goal is to reduce glare without weakening important warnings.',
+            },
         },
     },
     zh: {
         eyebrow: '狀態模型',
         title: 'HMI 狀態矩陣瀏覽器',
-        intent: '每一種狀態、每一種情境，都是刻意設計的結果，而不只是順利路徑。',
-        gridLabel: '介面狀態 × 操作情境',
-        states: '狀態', contexts: '情境',
-        pick: '選擇一格', arrowHint: '方向鍵移動 · Enter 開啟',
-        specTitle: '規格讀出',
-        specTarget: '最小點擊區', specType: '主要字級', specContrast: '對比', specMotion: '動態', specSurface: '表面',
+        intent: '這個模組展示同一個機器狀態，到了不同操作情境下應該如何改變。桌面監控、三公尺外的一眼辨識、戴手套操作、夜班低眩光介面，不應該只是使用同一張卡片。',
+        gridLabel: '不同情境下的介面狀態',
+        states: '狀態',
+        contexts: '操作情境',
+        pick: '選擇一格',
+        arrowHint: '方向鍵移動 · Enter 開啟',
+        specTitle: '狀態規格',
+        specTarget: '可點擊範圍',
+        specType: '主要數字大小',
+        specContrast: '文字對比',
+        specMotion: '動態節奏',
+        specSurface: '背景表面',
         ack: '確認',
-        secondaryDropped: '在一瞥距離下捨去次要文字',
+        secondaryDropped: '此情境先拿掉次要說明',
         notes: [
-            { tag: 'Decision / 決策', text: '整頁只有危急狀態使用紅色。其他層級一律用琥珀、青綠或金色，讓紅色保有意義。' },
-            { tag: 'Trade-off / 取捨', text: '28 種設計組合成本很高。矩陣的作用，就是把這個成本攤開、可被審視。' },
+            {
+                tag: 'Design decision / 設計判斷',
+                text: '整個頁面只把紅色留給真正需要立刻處理的危急狀態。其他層級改用琥珀、青綠或金色，讓紅色不被稀釋。',
+            },
+            {
+                tag: 'Trade-off / 取捨',
+                text: '為每一種狀態和每一種情境都設計版本很花成本，但矩陣的價值就在這裡：它讓這些成本、取捨與設計理由都能被看見、被討論。',
+            },
         ],
         content: {
-            normal:   { title: '泵浦 A',   value: '4.2 bar', sub: '迴路正常' },
-            advisory: { title: '泵浦 A',   value: '4.8 bar', sub: '趨勢上升 +0.4/分' },
-            warning:  { title: '迴路 A',   value: '5.6 bar', sub: '超過軟性上限' },
-            critical: { title: '迴路 A',   value: '6.8 bar', sub: '閥件 V-2 阻塞' },
-            degraded: { title: '感測 S-3', value: '—.— bar', sub: '訊號遺失 12 秒' },
-            offline:  { title: '連線',     value: 'OFFLINE', sub: '重新連線中…' },
-            handoff:  { title: '控制權',   value: 'MANUAL',  sub: '操作員持有控制' },
+            normal: {
+                title: '泵浦 A',
+                value: '4.2 bar',
+                sub: '迴路運作正常',
+            },
+            advisory: {
+                title: '泵浦 A',
+                value: '4.8 bar',
+                sub: '壓力正在緩慢上升',
+            },
+            warning: {
+                title: '迴路 A',
+                value: '5.6 bar',
+                sub: '已高於軟性上限',
+            },
+            critical: {
+                title: '迴路 A',
+                value: '6.8 bar',
+                sub: '閥件 V-2 可能受阻',
+            },
+            degraded: {
+                title: '感測器 S-3',
+                value: '—.— bar',
+                sub: '訊號已中斷 12 秒',
+            },
+            offline: {
+                title: '連線狀態',
+                value: '離線',
+                sub: '正在嘗試重新連線',
+            },
+            handoff: {
+                title: '控制權',
+                value: '手動',
+                sub: '目前由操作員控制',
+            },
         },
         ctx: {
-            desk:   { name: '桌面',      dist: '40 cm', motion: '標準 240 ms', note: '坐姿操作員在工作站前的基準密度。' },
-            glance: { name: '一瞥 · 3 m', dist: '3 m',  motion: '僅必要動態', note: '主要數值放大約 2.4×，捨去次要文字，讓狀態一眼可讀。' },
-            gloved: { name: '戴手套操作', dist: '40 cm', motion: '標準 240 ms', note: '點擊區放大到 56 px，並移除僅靠 hover 的操作提示。' },
-            night:  { name: '夜班',      dist: '60 cm', motion: '降低眩光',   note: '暗化表面仍保留危急紅色；降低亮度以保護暗適應。' },
+            desk: {
+                name: '桌面監控',
+                dist: '40 cm',
+                motion: '標準 240 ms',
+                note: '這是坐在工作站前操作時的基準版本。它保留足夠資訊，適合日常監控，但不讓卡片變得過度擁擠。',
+            },
+            glance: {
+                name: '一眼辨識 · 3 m',
+                dist: '3 m',
+                motion: '只保留必要動態',
+                note: '這個版本是為了較遠距離的快速判讀而設計。主要數字被放大，次要文字先拿掉，讓操作員能一眼看出狀態。',
+            },
+            gloved: {
+                name: '戴手套操作',
+                dist: '40 cm',
+                motion: '標準 240 ms',
+                note: '這個情境假設操作會比較慢、也比較不精準。因此可點擊範圍會放大，並避免只靠 hover 才看得見的操作提示。',
+            },
+            night: {
+                name: '夜班低眩光',
+                dist: '60 cm',
+                motion: '降低眩光',
+                note: '這個版本降低整體亮度，同時保留危急狀態的可辨識性。目標是減少眩光，但不削弱重要警示。',
+            },
         },
     },
 };
@@ -69,17 +189,18 @@ const STRINGS = {
 const STATE_KEYS = ['normal', 'advisory', 'warning', 'critical', 'degraded', 'offline', 'handoff'];
 const CTX_KEYS = ['desk', 'glance', 'gloved', 'night'];
 
-// Context adaptations (spec 3 · M02). typeScale multiplies the ~28px base value.
+// Context adaptations. typeScale multiplies the ~30px base value.
 const CTX_SPEC = {
-    desk:   { typeScale: 1.0, hitPx: 40, secondary: true, night: false },
+    desk: { typeScale: 1.0, hitPx: 40, secondary: true, night: false },
     glance: { typeScale: 2.4, hitPx: 44, secondary: false, night: false },
     gloved: { typeScale: 1.1, hitPx: 56, secondary: true, night: false },
-    night:  { typeScale: 1.0, hitPx: 44, secondary: true, night: true },
+    night: { typeScale: 1.0, hitPx: 44, secondary: true, night: true },
 };
 
 function tokensFor(stateKey, ctxKey) {
     const s = STATUS[stateKey];
     const c = CTX_SPEC[ctxKey];
+
     return {
         accent: c.night ? s.night : s.hex,
         contrast: c.night ? s.nightRatio : s.ratio,
@@ -94,20 +215,51 @@ function StatusCard({ stateKey, ctxKey, t, lang, variant }) {
     const c = t.content[stateKey];
     const isFull = variant === 'full';
     const valueSize = isFull ? Math.round(30 * tk.typeScale) : 13;
+
     return (
-        <div className={`gx-sc gx-sc-${variant}`} style={{ '--sc': tk.accent, background: tk.surface }}>
+        <div
+            className={`gx-sc gx-sc-${variant}`}
+            style={{ '--sc': tk.accent, background: tk.surface }}
+        >
             <div className="gx-sc-top">
-                <span className="gx-sc-icon" style={{ color: tk.accent }}><StatusIcon name={tk.icon} size={isFull ? 20 : 12} /></span>
-                {isFull && <span className="gx-sc-label" style={{ color: tk.accent }}>{STATUS[stateKey].label[lang]}</span>}
+                <span className="gx-sc-icon" style={{ color: tk.accent }}>
+                    <StatusIcon name={tk.icon} size={isFull ? 20 : 12} />
+                </span>
+
+                {isFull && (
+                    <span className="gx-sc-label" style={{ color: tk.accent }}>
+                        {STATUS[stateKey].label[lang]}
+                    </span>
+                )}
+
                 <span className="gx-sc-led" style={{ background: tk.accent }} />
             </div>
-            <div className="gx-sc-title">{c.title}</div>
-            <div className="gx-sc-value" style={{ fontSize: valueSize, color: tk.accent }}>{c.value}</div>
-            {tk.secondary
-                ? <div className="gx-sc-sub">{c.sub}</div>
-                : isFull && <div className="gx-sc-sub gx-sc-sub-muted">· {t.secondaryDropped} ·</div>}
+
+            <div className="gx-sc-title">
+                {c.title}
+            </div>
+
+            <div className="gx-sc-value" style={{ fontSize: valueSize, color: tk.accent }}>
+                {c.value}
+            </div>
+
+            {tk.secondary ? (
+                <div className="gx-sc-sub">
+                    {c.sub}
+                </div>
+            ) : (
+                isFull && (
+                    <div className="gx-sc-sub gx-sc-sub-muted">
+                        · {t.secondaryDropped} ·
+                    </div>
+                )
+            )}
+
             {isFull && (
-                <button className="gx-sc-ack" style={{ minHeight: tk.hitPx, minWidth: tk.hitPx }}>
+                <button
+                    className="gx-sc-ack"
+                    style={{ minHeight: tk.hitPx, minWidth: tk.hitPx }}
+                >
                     {t.ack}
                 </button>
             )}
@@ -116,13 +268,18 @@ function StatusCard({ stateKey, ctxKey, t, lang, variant }) {
 }
 
 function SpecRow({ k, v, accent }) {
-    return <div className="gx-spec-row"><span>{k}</span><b style={accent ? { color: accent } : undefined}>{v}</b></div>;
+    return (
+        <div className="gx-spec-row">
+            <span>{k}</span>
+            <b style={accent ? { color: accent } : undefined}>{v}</b>
+        </div>
+    );
 }
 
 export default function M02StateMatrix() {
     const { lang } = useI18n();
     const t = STRINGS[lang] ?? STRINGS.en;
-    const [active, setActive] = useState({ r: 3, c: 0 }); // opens on Critical/Desk
+    const [active, setActive] = useState({ r: 3, c: 0 }); // opens on Critical / Desk
     const gridRef = useRef(null);
 
     const move = (dr, dc) => setActive(({ r, c }) => ({
@@ -131,8 +288,17 @@ export default function M02StateMatrix() {
     }));
 
     const onKeyDown = e => {
-        const map = { ArrowUp: [-1, 0], ArrowDown: [1, 0], ArrowLeft: [0, -1], ArrowRight: [0, 1] };
-        if (map[e.key]) { e.preventDefault(); move(...map[e.key]); }
+        const map = {
+            ArrowUp: [-1, 0],
+            ArrowDown: [1, 0],
+            ArrowLeft: [0, -1],
+            ArrowRight: [0, 1],
+        };
+
+        if (map[e.key]) {
+            e.preventDefault();
+            move(...map[e.key]);
+        }
     };
 
     const stateKey = STATE_KEYS[active.r];
@@ -140,31 +306,70 @@ export default function M02StateMatrix() {
     const tk = tokensFor(stateKey, ctxKey);
 
     return (
-        <ModuleFrame id="gx-m02" num="02" tone="var(--gx-teal)" eyebrow={t.eyebrow} title={t.title} intent={t.intent} notes={t.notes}>
+        <ModuleFrame
+            id="gx-m02"
+            num="02"
+            tone="var(--gx-teal)"
+            eyebrow={t.eyebrow}
+            title={t.title}
+            intent={t.intent}
+            notes={t.notes}
+        >
             <div className="gx-m02">
                 <div className="gx-m02-grid-wrap">
                     <div className="gx-m02-colhead" aria-hidden="true">
-                        <span className="gx-m02-corner">{t.states} \\ {t.contexts}</span>
-                        {CTX_KEYS.map(ck => <span key={ck} className="gx-m02-cth">{t.ctx[ck].name}</span>)}
+                        <span className="gx-m02-corner">
+                            {t.states} \ {t.contexts}
+                        </span>
+
+                        {CTX_KEYS.map(ck => (
+                            <span key={ck} className="gx-m02-cth">
+                                {t.ctx[ck].name}
+                            </span>
+                        ))}
                     </div>
-                    <div ref={gridRef} className="gx-m02-grid" role="grid" aria-label={t.gridLabel} onKeyDown={onKeyDown}>
+
+                    <div
+                        ref={gridRef}
+                        className="gx-m02-grid"
+                        role="grid"
+                        aria-label={t.gridLabel}
+                        onKeyDown={onKeyDown}
+                    >
                         {STATE_KEYS.map((sk, r) => (
                             <div className="gx-m02-row" role="row" key={sk}>
-                                <span className="gx-m02-rth" role="rowheader" style={{ color: STATUS[sk].hex }}>
+                                <span
+                                    className="gx-m02-rth"
+                                    role="rowheader"
+                                    style={{ color: STATUS[sk].hex }}
+                                >
                                     <StatusIcon name={STATUS[sk].icon} size={13} /> {STATUS[sk].label[lang]}
                                 </span>
+
                                 {CTX_KEYS.map((ck, c) => {
                                     const on = active.r === r && active.c === c;
+
                                     return (
-                                        <div role="gridcell" key={ck} className="gx-m02-cell-wrap">
+                                        <div
+                                            role="gridcell"
+                                            key={ck}
+                                            className="gx-m02-cell-wrap"
+                                        >
                                             <button
                                                 className={`gx-m02-cell${on ? ' active' : ''}`}
                                                 tabIndex={on ? 0 : -1}
                                                 aria-label={`${STATUS[sk].label[lang]} · ${t.ctx[ck].name}`}
                                                 aria-pressed={on}
                                                 onClick={() => setActive({ r, c })}
-                                                onFocus={() => setActive({ r, c })}>
-                                                <StatusCard stateKey={sk} ctxKey={ck} t={t} lang={lang} variant="thumb" />
+                                                onFocus={() => setActive({ r, c })}
+                                            >
+                                                <StatusCard
+                                                    stateKey={sk}
+                                                    ctxKey={ck}
+                                                    t={t}
+                                                    lang={lang}
+                                                    variant="thumb"
+                                                />
                                             </button>
                                         </div>
                                     );
@@ -176,15 +381,37 @@ export default function M02StateMatrix() {
 
                 <aside className="gx-m02-detail" aria-live="polite">
                     <div className="gx-m02-detail-head">
-                        <span className="gx-eyebrow" style={{ color: tk.accent }}>{STATUS[stateKey].label[lang]} · {t.ctx[ctxKey].name}</span>
-                        <span className="gx-caption">{t.arrowHint}</span>
+                        <span className="gx-eyebrow" style={{ color: tk.accent }}>
+                            {STATUS[stateKey].label[lang]} · {t.ctx[ctxKey].name}
+                        </span>
+
+                        <span className="gx-caption">
+                            {t.arrowHint}
+                        </span>
                     </div>
-                    <div className="gx-m02-stage" style={CTX_SPEC[ctxKey].night ? { background: '#04060A' } : undefined}>
-                        <StatusCard stateKey={stateKey} ctxKey={ctxKey} t={t} lang={lang} variant="full" />
+
+                    <div
+                        className="gx-m02-stage"
+                        style={CTX_SPEC[ctxKey].night ? { background: '#04060A' } : undefined}
+                    >
+                        <StatusCard
+                            stateKey={stateKey}
+                            ctxKey={ctxKey}
+                            t={t}
+                            lang={lang}
+                            variant="full"
+                        />
                     </div>
-                    <p className="gx-m02-ctxnote">{t.ctx[ctxKey].note}</p>
+
+                    <p className="gx-m02-ctxnote">
+                        {t.ctx[ctxKey].note}
+                    </p>
+
                     <div className="gx-m02-spec">
-                        <div className="gx-eyebrow gx-m02-spec-title">{t.specTitle}</div>
+                        <div className="gx-eyebrow gx-m02-spec-title">
+                            {t.specTitle}
+                        </div>
+
                         <SpecRow k={t.specTarget} v={`${tk.hitPx} px`} />
                         <SpecRow k={t.specType} v={`${Math.round(30 * tk.typeScale)} px`} />
                         <SpecRow k={t.specContrast} v={`${tk.contrast} : 1`} accent={tk.accent} />

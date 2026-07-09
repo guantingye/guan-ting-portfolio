@@ -15,7 +15,7 @@ const COPY = {
     },
     zh: {
         title: '實作證據',
-        intro: '上面案例裡的每一句宣稱，都對應到一個可以打開、可以操作的模組。六個互動模組取代了原本的示意圖庫——沒有素材照、沒有截圖，全部由 DOM 與 SVG 構成。',
+        intro: '為了避免產品案例只停留在敘事層面，我將 AI 產品上市流程拆成六個可操作的互動模組。每個模組都對應一種產品產出：從決策儀表板、指標樹、研究證據、PRD、AI 風險登錄到設計系統切片，讓策略、證據與介面能被一起檢視。',
         badge: 'INTERACTIVE — CLICK TO EXPLORE',
     },
 };
@@ -23,12 +23,12 @@ const COPY = {
 // Page order per spec 5.3: Cockpit → Metric Tree → Research Hub → PRD →
 // Risk Register → Specimen (the specimen mounts after Technical Approach).
 const MODULES = [
-    { id: 'los-module-cockpit', num: '01', thumb: 'cockpit', title: { en: 'Launch Decision Cockpit', zh: '上市決策儀表板' }, desc: { en: 'Signals, weighted scoring, seven gates — linked', zh: '訊號、權重評分、七道 gate——彼此連動' } },
-    { id: 'los-module-metric-tree', num: '02', thumb: 'tree', title: { en: 'Metric Tree Explorer', zh: '指標樹瀏覽器' }, desc: { en: 'North star to leaf metrics, with guardrails', zh: '從 north star 到子指標，附 guardrails' } },
-    { id: 'los-module-research', num: '03', thumb: 'research', title: { en: 'UX Research Evidence Hub', zh: '研究證據庫' }, desc: { en: 'Quotes → insights → decisions, traceable', zh: '引述 → 洞見 → 決策，可追溯' } },
-    { id: 'los-module-prd', num: '04', thumb: 'prd', title: { en: 'PRD-lite Document', zh: 'PRD-lite 文件' }, desc: { en: 'A full PRD with decision notes in the margin', zh: '完整 PRD，取捨註記寫在旁邊' } },
-    { id: 'los-module-risk', num: '05', thumb: 'risk', title: { en: 'AI Risk Register & Model Card', zh: 'AI 風險登錄簿與 Model Card' }, desc: { en: 'Heat map, mitigations, human-in-the-loop', zh: '熱度圖、緩解措施、human-in-the-loop' } },
-    { id: 'los-module-specimen', num: '06', thumb: 'specimen', title: { en: 'Design System Specimen', zh: '設計系統切片' }, desc: { en: 'Tokens, states, a11y notes, engineering calls', zh: 'Tokens、元件狀態、無障礙與工程筆記' } },
+    { id: 'los-module-cockpit', num: '01', thumb: 'cockpit', title: { en: 'Launch Decision Cockpit', zh: '上市決策儀表板' }, desc: { en: 'Signals, weighted scoring, seven gates — linked', zh: '將市場訊號、機會評分與決策門檻串在一起，判斷哪個產品方向值得推進' } },
+    { id: 'los-module-metric-tree', num: '02', thumb: 'tree', title: { en: 'Metric Tree Explorer', zh: '指標樹瀏覽器' }, desc: { en: 'North star to leaf metrics, with guardrails', zh: '從 North Star Metric 拆解到子指標與 guardrails，讓成效判斷更可追蹤' } },
+    { id: 'los-module-research', num: '03', thumb: 'research', title: { en: 'UX Research Evidence Hub', zh: '研究證據庫' }, desc: { en: 'Quotes → insights → decisions, traceable', zh: '將訪談引述、研究洞察與產品決策連在一起，保留每個判斷的來源' } },
+    { id: 'los-module-prd', num: '04', thumb: 'prd', title: { en: 'PRD-lite Document', zh: 'PRD-lite 文件' }, desc: { en: 'A full PRD with decision notes in the margin', zh: '用輕量 PRD 梳理功能範圍、設計取捨與版本邊界' } },
+    { id: 'los-module-risk', num: '05', thumb: 'risk', title: { en: 'AI Risk Register & Model Card', zh: 'AI 風險登錄簿與 Model Card' }, desc: { en: 'Heat map, mitigations, human-in-the-loop', zh: '記錄模型限制、風險等級、緩解策略與 human-in-the-loop 判斷' } },
+    { id: 'los-module-specimen', num: '06', thumb: 'specimen', title: { en: 'Design System Specimen', zh: '設計系統切片' }, desc: { en: 'Tokens, states, a11y notes, engineering calls', zh: '整理核心 tokens、元件狀態、可近用性與前端實作筆記' } },
 ];
 
 // Hand-drawn layout sketches — deliberately wireframe-like, never screenshots.

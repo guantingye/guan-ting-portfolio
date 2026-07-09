@@ -5,20 +5,21 @@ import { useI18n } from './shared/useI18n.js';
 // ---- DATA ------------------------------------------------------------------
 // Contrast ratios are measured against --bg-1 (#0C0E12) with the WCAG 2.1
 // formula, not estimated. text-3 fails body-text AA on purpose and says so.
+// ✅ 文案優化：保留原本設計系統結構，只讓說明更自然、可讀，像真實作品集裡的設計與工程決策紀錄。
 
 const COLOR_TOKENS = [
-    { name: '--bg-0', hex: '#060709', usage: { en: 'Page base', zh: '頁面最底層' }, contrast: null },
-    { name: '--bg-1', hex: '#0C0E12', usage: { en: 'Module container', zh: '模組容器底' }, contrast: null },
-    { name: '--bg-2', hex: '#14171D', usage: { en: 'Cards, panels', zh: '卡片／面板底' }, contrast: null },
-    { name: '--bg-3', hex: '#1C2028', usage: { en: 'Hover lift', zh: 'hover 抬升層' }, contrast: null },
-    { name: '--line-1', hex: '#262B35', usage: { en: 'Primary strokes', zh: '主要描邊' }, contrast: null },
-    { name: '--line-2', hex: '#333A47', usage: { en: 'Hover strokes', zh: 'hover 描邊' }, contrast: null },
-    { name: '--text-1', hex: '#F2F0EB', usage: { en: 'Headings (warm white)', zh: '主標題（暖白）' }, contrast: 17.0, grade: 'AAA' },
-    { name: '--text-2', hex: '#A8ADB8', usage: { en: 'Body text', zh: '內文' }, contrast: 8.6, grade: 'AAA' },
-    { name: '--text-3', hex: '#6B7280', usage: { en: 'Labels, secondary notes', zh: '標籤／次要說明' }, contrast: 4.0, grade: 'large-only' },
-    { name: '--teal', hex: '#35C2B0', usage: { en: 'System working: interaction, pass, focus', zh: '系統在運作：互動、通過、focus' }, contrast: 8.7, grade: 'AAA' },
-    { name: '--amber', hex: '#E8A33D', usage: { en: 'Human judgment: notes, cautions', zh: '人的判斷：註記、警示' }, contrast: 9.0, grade: 'AAA' },
-    { name: '--red', hex: '#D96A5B', usage: { en: 'Stop: blocked, high risk (≤3 per view)', zh: '停下來：blocked、高風險（每畫面 ≤3 處）' }, contrast: 5.7, grade: 'AA' },
+    { name: '--bg-0', hex: '#060709', usage: { en: 'Page background', zh: '頁面最底層背景' }, contrast: null },
+    { name: '--bg-1', hex: '#0C0E12', usage: { en: 'Module background', zh: '模組主要背景' }, contrast: null },
+    { name: '--bg-2', hex: '#14171D', usage: { en: 'Cards and panels', zh: '卡片與面板背景' }, contrast: null },
+    { name: '--bg-3', hex: '#1C2028', usage: { en: 'Hover and raised states', zh: '滑過或抬升時的背景' }, contrast: null },
+    { name: '--line-1', hex: '#262B35', usage: { en: 'Default borders', zh: '預設邊框' }, contrast: null },
+    { name: '--line-2', hex: '#333A47', usage: { en: 'Active or hover borders', zh: '滑過或啟用時的邊框' }, contrast: null },
+    { name: '--text-1', hex: '#F2F0EB', usage: { en: 'Primary headings', zh: '主要標題與關鍵文字' }, contrast: 17.0, grade: 'AAA' },
+    { name: '--text-2', hex: '#A8ADB8', usage: { en: 'Body text', zh: '一般內文' }, contrast: 8.6, grade: 'AAA' },
+    { name: '--text-3', hex: '#6B7280', usage: { en: 'Labels and supporting notes', zh: '標籤與輔助說明，不作為長內文' }, contrast: 4.0, grade: 'large-only' },
+    { name: '--teal', hex: '#35C2B0', usage: { en: 'Interaction, pass states, focus', zh: '互動、通過狀態與鍵盤聚焦' }, contrast: 8.7, grade: 'AAA' },
+    { name: '--amber', hex: '#E8A33D', usage: { en: 'Caution and decision notes', zh: '提醒、取捨與需要判斷的狀態' }, contrast: 9.0, grade: 'AAA' },
+    { name: '--red', hex: '#D96A5B', usage: { en: 'Blocked or high-risk states', zh: '阻擋狀態與高風險提醒' }, contrast: 5.7, grade: 'AA' },
 ];
 
 const TYPE_SCALE = [
@@ -32,59 +33,101 @@ const TYPE_SCALE = [
 ];
 
 const GATE_STATES = [
-    { id: 'default', note: { en: 'Resting state', zh: '靜止狀態' } },
-    { id: 'hover', note: { en: 'Pointer over row: bg-2 → bg-3, stroke lifts', zh: '游標懸停：bg-2 → bg-3，描邊提亮' } },
-    { id: 'focus-visible', note: { en: 'Keyboard focus: 2px teal ring, 2px offset', zh: '鍵盤 focus：2px teal 環，offset 2px' } },
-    { id: 'disabled', note: { en: 'Gate not yet reachable: 45% opacity, no pointer', zh: '尚不可達的 gate：45% 透明度，停用游標' } },
-    { id: 'loading', note: { en: 'Evidence loading: static skeleton, no shimmer', zh: '證據載入中：靜態骨架，不做閃爍動畫' } },
+    { id: 'default', note: { en: 'Default resting state', zh: '元件尚未被操作時的預設狀態' } },
+    { id: 'hover', note: { en: 'Hover state: the background lifts slightly and the border becomes clearer', zh: '滑過時背景微微抬升，邊框變得更清楚' } },
+    { id: 'focus-visible', note: { en: 'Keyboard focus: a clear teal ring shows where the user is', zh: '鍵盤操作時顯示清楚的聚焦外框，讓使用者知道目前位置' } },
+    { id: 'disabled', note: { en: 'Disabled state: visible but not yet available', zh: '停用狀態：仍可看見，但目前尚不能操作' } },
+    { id: 'loading', note: { en: 'Loading state: uses a calm placeholder instead of a distracting shimmer', zh: '載入狀態：使用安靜的占位樣式，不用容易干擾閱讀的閃爍動畫' } },
 ];
 
 const A11Y_NOTES = [
     {
-        problem: { en: 'The risk heat map is purely visual information.', zh: '風險熱度圖是純視覺資訊。' },
-        approach: { en: 'A visually-hidden <table> carries every risk with its likelihood and impact values.', zh: '以視覺隱藏的 <table> 承載每項風險及其 likelihood 與 impact 值。' },
+        problem: {
+            en: 'The risk heat map could become impossible to understand for someone who cannot see the chart.',
+            zh: '風險熱度圖如果只靠視覺呈現，使用螢幕閱讀器的人會無法理解每個風險的位置與嚴重程度。',
+        },
+        approach: {
+            en: 'The visual chart is paired with a hidden table that lists every risk, its likelihood, and its impact.',
+            zh: '因此我在視覺圖表之外，補上一份隱藏表格，讓每個風險的發生可能性與影響程度都能被讀取。',
+        },
         verify: {
-            en: 'VoiceOver walkthrough — actual transcript: “Risks by likelihood and impact, table, 3 columns, 5 rows.” / “R1, Hallucinated policy details in replies. Likelihood: 4. Impact: 5.”',
-            zh: 'VoiceOver 走查——實際逐字稿：「Risks by likelihood and impact, table, 3 columns, 5 rows.」／「R1, Hallucinated policy details in replies. Likelihood: 4. Impact: 5.」',
+            en: 'Checked with VoiceOver: the heat map is announced as a table with risks, likelihood, and impact values.',
+            zh: '以 VoiceOver 檢查後，系統能將風險熱度圖讀成包含風險、發生可能性與影響程度的表格。',
         },
     },
     {
-        problem: { en: 'The ranking re-sort animation could disorient motion-sensitive users.', zh: '排序重排動畫可能造成動暈敏感使用者不適。' },
-        approach: { en: 'prefers-reduced-motion collapses every transition to a 100ms opacity change; the FLIP glide is skipped in JS, not just CSS.', zh: 'prefers-reduced-motion 將所有 transition 降為 100ms 的透明度變化；FLIP 滑移在 JS 層跳過，不只靠 CSS。' },
-        verify: { en: 'Toggled macOS Reduce Motion: rows still re-rank instantly, sparklines render their final state, nothing glides.', zh: '切換 macOS「減少動態效果」驗證：排序仍即時更新、sparkline 直接呈現終態、沒有任何滑移。' },
+        problem: {
+            en: 'The animated ranking change may make the interface harder to follow for motion-sensitive users.',
+            zh: '機會排序重新排列時的動畫，可能讓對動態效果敏感的使用者感到不適或難以追蹤。',
+        },
+        approach: {
+            en: 'When reduced motion is enabled, the ranking still updates, but the sliding motion is removed and replaced with a very short opacity change.',
+            zh: '當使用者開啟減少動態效果時，排序仍會更新，但滑動動畫會被移除，只保留非常短的透明度變化。',
+        },
+        verify: {
+            en: 'Tested with macOS Reduce Motion: rows re-rank without sliding, and the interface still communicates what changed.',
+            zh: '以 macOS「減少動態效果」測試後，排序能即時更新且不再滑動，同時仍能看出狀態變化。',
+        },
     },
     {
-        problem: { en: 'Cross-panel links in the cockpit are hover-driven.', zh: 'Cockpit 的跨欄連動以 hover 驅動。' },
-        approach: { en: 'Focus and blur fire the same highlight handlers, and the mobile layout replaces hover entirely with always-visible “feeds A · C” text.', zh: 'focus 與 blur 觸發同一組 highlight 邏輯；行動版則完全改為常駐的「feeds A · C」文字。' },
-        verify: { en: 'Keyboard-only pass: Tab reaches every signal card, gate, slider, and chip; the linked panels light up without a mouse.', zh: '純鍵盤走查：Tab 可達每張訊號卡、gate、滑桿與 chip；不用滑鼠也能看到連動亮起。' },
+        problem: {
+            en: 'Some interactions rely on hover, which does not work for keyboard and touch users.',
+            zh: '部分跨欄互動原本依賴 hover，但鍵盤使用者與手機使用者不一定能使用 hover。',
+        },
+        approach: {
+            en: 'Keyboard focus triggers the same highlighting behavior. On mobile, relationship text is shown directly instead of waiting for hover.',
+            zh: '鍵盤 focus 會觸發同樣的連動效果；在手機版則直接顯示關聯文字，不要求使用者滑過才看得到。',
+        },
+        verify: {
+            en: 'Keyboard-only walkthrough: every signal, gate, slider, and chip can be reached and understood without a mouse.',
+            zh: '以純鍵盤走查後，每張訊號卡、檢查項目、滑桿與篩選標籤都能被操作與理解。',
+        },
     },
     {
-        problem: { en: 'Gate status could read as color alone.', zh: 'Gate 狀態可能淪為只靠顏色辨識。' },
-        approach: { en: 'Every status ships icon + word + note (“Blocked — no owner named”); color is the third channel, never the only one.', zh: '每個狀態都有 icon + 文字 + 註記（「Blocked — no owner named」）；顏色是第三個訊號通道，從來不是唯一的。' },
-        verify: { en: 'Grayscale filter check: all seven gates remain distinguishable with color removed.', zh: '灰階濾鏡檢查：拿掉顏色後，七道 gate 仍可完整區辨。' },
+        problem: {
+            en: 'Gate status could be misunderstood if color is the only signal.',
+            zh: '如果檢查狀態只靠顏色區分，色弱使用者或在灰階情境下會難以判斷。',
+        },
+        approach: {
+            en: 'Each status includes an icon, a word, and a short note. Color is used as support, not as the only way to understand the state.',
+            zh: '每個狀態都同時包含圖示、文字與簡短說明。顏色只是輔助訊號，不是唯一辨識方式。',
+        },
+        verify: {
+            en: 'Checked with a grayscale filter: all gate states remain distinguishable without color.',
+            zh: '以灰階濾鏡檢查後，即使拿掉顏色，所有狀態仍能被區分。',
+        },
     },
 ];
 
 const ENGINEERING_NOTES = [
     {
-        title: { en: 'Why hash routing', zh: '為什麼用 hash routing' },
+        title: {
+            en: 'Why I used hash routing',
+            zh: '為什麼這個作品集使用 hash routing',
+        },
         body: {
-            en: 'GitHub Pages serves a static bundle from a subpath and returns 404 for any deep URL it has never heard of. I considered the 404.html redirect trick — it works, but it flashes on every deep link and pollutes analytics with fake 404s. Hash routing costs URL elegance and buys certainty: every route resolves to index.html by construction, refreshes never break, and the router stays ~30 dependency-free lines. On a portfolio, a link that always opens beats a URL that looks pretty in a bar nobody reads.',
-            zh: 'GitHub Pages 從子路徑供應靜態檔案，任何它沒聽過的深層網址都回 404。我考慮過 404.html 重導向的技巧——可行，但每次深層連結都會閃一下，還會用假 404 汙染分析數據。Hash routing 犧牲網址的優雅，換來確定性：每條路由天生都落在 index.html，重新整理永遠不會壞，router 維持在約 30 行、零依賴。對作品集來說，一個永遠打得開的連結，勝過一串只在沒人看的網址列裡漂亮的字。',
+            en: 'This portfolio is hosted on GitHub Pages, which is reliable for static sites but not friendly to deep links in single-page apps. I considered using a redirect workaround, but that can briefly flash a 404 page and make analytics messy. Hash routing is less elegant visually, but it makes every project link open safely, even after refresh. For a portfolio, reliability matters more than a perfectly clean URL.',
+            zh: '這個作品集部署在 GitHub Pages。它很適合靜態網站，但對單頁應用的深層連結並不友善。我考慮過用重新導向的方式處理，但那會讓頁面短暫閃過 404，也可能讓分析數據變得混亂。Hash routing 的網址看起來沒有那麼漂亮，但能確保每個專案連結重新整理後都打得開。對作品集來說，可靠比網址優雅更重要。',
         },
     },
     {
-        title: { en: 'The reduced-motion budget', zh: 'Reduced-motion 的取捨' },
+        title: {
+            en: 'How I handled reduced motion',
+            zh: '我如何處理減少動態效果',
+        },
         body: {
-            en: 'The rule I settled on: motion that carries information survives in reduced form; motion that carries pleasure dies. Ranking re-sorts still reorder — instantly, without the FLIP glide. Panel reveals keep a 100ms opacity fade so state changes stay findable. Sparkline draw-ins and tab cross-fades go entirely. My first version killed everything, and testing showed that instant reorder with no fade actually reads worse — you lose track of what moved. Reduce, it turns out, does not mean remove.',
-            zh: '我最後定下的規則：承載資訊的動效以降級形式保留，承載愉悅的動效直接刪除。排序重排仍會發生——瞬間完成，沒有 FLIP 滑移。面板揭示保留 100ms 的透明度過渡，讓狀態變化仍然可被察覺。Sparkline 描線與 tab 淡入淡出則完全移除。第一版我把所有動效都砍了，實測發現「無過渡的瞬間重排」反而更難讀——你會跟丟到底是誰動了。原來 reduce 的意思不是 remove。',
+            en: 'I did not simply remove every animation. Some motion helps users understand what changed, while some motion is only decorative. In the reduced-motion version, decorative movement is removed, but small state changes remain visible. For example, ranking changes still happen, but without the sliding animation. This keeps the interface calmer without making it harder to follow.',
+            zh: '我沒有把所有動畫直接關掉，因為有些動效是在幫助使用者理解畫面變化，有些則只是裝飾。減少動態效果開啟後，裝飾性的動效會被移除，但必要的狀態變化仍會被保留。例如排序仍會更新，只是不再滑動。這樣介面會更安靜，但不會讓人失去方向感。',
         },
     },
     {
-        title: { en: 'Zero raster images', zh: '零點陣圖' },
+        title: {
+            en: 'Why the evidence modules use DOM and SVG',
+            zh: '為什麼證據模組不用截圖',
+        },
         body: {
-            en: 'The six evidence modules ship no raster images — every diagram, chart, and thumbnail is DOM or hand-written SVG. Three reasons. Bundle: the whole evidence layer costs less than one hero JPEG. Sharpness: vectors survive any zoom level and pixel density. Consistency: SVG inherits CSS variables, so every chart recolors with the theme for free. The cost was real — the heat map took longer to draw in SVG than a screenshot would have — but a screenshot cannot take keyboard focus, and it cannot speak to a screen reader.',
-            zh: '六個證據模組不含任何點陣圖——每張圖表、示意與縮圖都是 DOM 或手寫 SVG。理由有三。體積：整個證據層的成本比一張 hero JPEG 還小。銳利度：向量圖經得起任何縮放與像素密度。一致性：SVG 繼承 CSS variables，所有圖表跟著主題換色，不用額外成本。代價是真實的——熱度圖用 SVG 畫，比截一張圖久得多——但截圖沒辦法接住鍵盤 focus，也沒辦法對螢幕閱讀器說話。',
+            en: 'The six evidence modules are built with DOM and hand-written SVG instead of screenshots. This keeps the interface sharp at any screen size, allows the charts to follow the same design tokens, and makes the content easier to support with keyboard focus and screen readers. It took more time than exporting images, but the result is more flexible, lighter, and more accessible.',
+            zh: '這六個證據模組使用 DOM 與手寫 SVG 製作，而不是直接放截圖。這樣在不同螢幕尺寸下都能保持清晰，圖表也能跟著同一套設計變數一起變化，並且更容易支援鍵盤操作與螢幕閱讀器。它比輸出圖片更花時間，但結果更輕、更彈性，也更符合無障礙設計。',
         },
     },
 ];
@@ -93,35 +136,79 @@ const ENGINEERING_NOTES = [
 const COPY = {
     en: {
         eyebrow: 'MODULE 06 — SYSTEM SPECIMEN',
-        title: 'Design System Specimen & Engineering Notes',
-        lead: 'The Neural Signal OS itself, exhibited as work: tokens with measured contrast, one component in five states, accessibility notes with their verification, and three short engineering decisions — including a wrong turn.',
-        context: 'Contrast ratios computed against --bg-1 (#0C0E12) with the WCAG 2.1 formula. One token fails body-text AA and is labeled accordingly.',
-        signature: 'Signature interaction: hover a swatch, click to copy its hex.',
-        sections: { tokens: 'A · TOKENS', states: 'B · COMPONENT STATES', a11y: 'C · A11Y NOTES', eng: 'D · ENGINEERING DECISIONS' },
-        tableHeaders: { swatch: '', token: 'Token', hex: 'Hex', usage: 'Usage', contrast: 'Contrast vs bg-1' },
-        gradeNote: { AAA: '✓ AAA', AA: '✓ AA', 'large-only': '△ 3:1 — large text / labels only' },
+        title: 'Design System Slice & Engineering Notes',
+        lead: [
+            'This module shows the system behind the portfolio itself: the colors, type scale, component states, accessibility checks, and engineering decisions that make the work feel consistent and usable.',
+            'Instead of treating the interface as decoration, this section explains how the visual language, interaction states, and technical choices support readability, accessibility, and long-term maintainability.',
+        ],
+        context: 'Color contrast is calculated against --bg-1 (#0C0E12) using the WCAG 2.1 formula. One supporting text token is intentionally marked for labels only, not body copy.',
+        signature: 'Signature interaction: hover a color swatch to preview it, or click to copy its hex value.',
+        sections: {
+            tokens: 'A · DESIGN TOKENS',
+            states: 'B · COMPONENT STATES',
+            a11y: 'C · ACCESSIBILITY NOTES',
+            eng: 'D · ENGINEERING NOTES',
+        },
+        tableHeaders: {
+            swatch: '',
+            token: 'Token',
+            hex: 'Hex',
+            usage: 'Usage',
+            contrast: 'Contrast vs bg-1',
+        },
+        gradeNote: {
+            AAA: '✓ AAA',
+            AA: '✓ AA',
+            'large-only': '△ labels / large text only',
+        },
         copied: 'Copied',
         copyHint: 'Click to copy',
         typeLabel: 'TYPE SCALE',
-        stateFields: { problem: 'Problem', approach: 'Approach', verify: 'Verified by' },
-        gateSample: 'Model risk bounded',
-        gateStatus: 'Conditional — one legal review open',
+        stateFields: {
+            problem: 'Problem',
+            approach: 'Approach',
+            verify: 'Verified by',
+        },
+        gateSample: 'AI risk is manageable',
+        gateStatus: 'Needs review — one legal check remains',
     },
     zh: {
         eyebrow: 'MODULE 06 — SYSTEM SPECIMEN',
         title: '設計系統切片與工程筆記',
-        lead: '把 Neural Signal OS 本身當作品展出：附實測對比值的 tokens、一個元件的五種狀態、附驗證方式的無障礙筆記，以及三則簡短的工程決策——包含一段走過的彎路。',
-        context: '對比值以 WCAG 2.1 公式對 --bg-1（#0C0E12）實際計算。有一個 token 沒過內文 AA，並如實標註。',
-        signature: '招牌互動：懸停色票可預覽，點擊複製 hex。',
-        sections: { tokens: 'A · TOKENS', states: 'B · COMPONENT STATES', a11y: 'C · A11Y NOTES', eng: 'D · ENGINEERING DECISIONS' },
-        tableHeaders: { swatch: '', token: 'Token', hex: 'Hex', usage: '用途', contrast: '對 bg-1 對比值' },
-        gradeNote: { AAA: '✓ AAA', AA: '✓ AA', 'large-only': '△ 3:1——僅限大字／標籤' },
+        lead: [
+            '這個模組展示作品集背後的系統：色彩、字級、元件狀態、無障礙檢查，以及讓整個網站維持一致與可用的工程取捨。',
+            '它不是把介面當成裝飾，而是說明視覺語言、互動狀態與技術選擇如何一起支撐閱讀性、可及性與後續維護。',
+        ],
+        context: '色彩對比以 WCAG 2.1 公式，對 --bg-1（#0C0E12）實際計算。其中一個輔助文字色只適合標籤與大字，不建議用於長篇內文。',
+        signature: '懸停色票可以預覽色碼，點擊即可複製 hex。',
+        sections: {
+            tokens: 'A · 設計變數',
+            states: 'B · 元件狀態',
+            a11y: 'C · 無障礙筆記',
+            eng: 'D · 工程筆記',
+        },
+        tableHeaders: {
+            swatch: '',
+            token: '變數',
+            hex: 'Hex',
+            usage: '用途',
+            contrast: '對 bg-1 的對比',
+        },
+        gradeNote: {
+            AAA: '✓ AAA',
+            AA: '✓ AA',
+            'large-only': '△ 僅適合標籤或大字',
+        },
         copied: '已複製',
         copyHint: '點擊複製',
-        typeLabel: 'TYPE SCALE',
-        stateFields: { problem: '問題', approach: '做法', verify: '驗證方式' },
-        gateSample: 'Model risk bounded',
-        gateStatus: 'Conditional — 一項法務審查未完成',
+        typeLabel: '字級系統',
+        stateFields: {
+            problem: '遇到的問題',
+            approach: '處理方式',
+            verify: '如何確認',
+        },
+        gateSample: 'AI 風險是否可控',
+        gateStatus: '待確認——仍有一項法務檢查未完成',
     },
 };
 
@@ -129,12 +216,14 @@ const COPY = {
 function Swatch({ token, t }) {
     const [copied, setCopied] = useState(false);
     const timer = useRef(null);
+
     const copy = () => {
         navigator.clipboard?.writeText(token.hex).catch(() => {});
         clearTimeout(timer.current);
         setCopied(true);
         timer.current = setTimeout(() => setCopied(false), 1500);
     };
+
     return (
         <button
             className="los-m6-swatch"
@@ -152,6 +241,7 @@ function Swatch({ token, t }) {
 // ---- module ------------------------------------------------------------------
 export default function DesignSystemSpecimen() {
     const { lang, t } = useI18n(COPY);
+
     return (
         <ModuleFrame
             id="los-module-specimen"
@@ -197,6 +287,7 @@ export default function DesignSystemSpecimen() {
                         </tbody>
                     </table>
                 </div>
+
                 <h5 className="los-eyebrow los-m6-subheading">{t.typeLabel}</h5>
                 <div className="los-m6-typescale">
                     {TYPE_SCALE.map(step => (
@@ -216,10 +307,25 @@ export default function DesignSystemSpecimen() {
                             <div className={`los-m6-gate is-${state.id}`} aria-hidden="true">
                                 {state.id === 'loading' ? (
                                     <>
-                                        <span className="los-m6-skeleton" style={{ width: 14, height: 14, borderRadius: '50%', flexShrink: 0, marginTop: 3 }} />
+                                        <span
+                                            className="los-m6-skeleton"
+                                            style={{
+                                                width: 14,
+                                                height: 14,
+                                                borderRadius: '50%',
+                                                flexShrink: 0,
+                                                marginTop: 3,
+                                            }}
+                                        />
                                         <span className="los-m6-gate-main">
-                                            <span className="los-m6-skeleton" style={{ width: '72%', height: 10, display: 'block' }} />
-                                            <span className="los-m6-skeleton" style={{ width: '48%', height: 8, display: 'block', marginTop: 6 }} />
+                                            <span
+                                                className="los-m6-skeleton"
+                                                style={{ width: '72%', height: 10, display: 'block' }}
+                                            />
+                                            <span
+                                                className="los-m6-skeleton"
+                                                style={{ width: '48%', height: 8, display: 'block', marginTop: 6 }}
+                                            />
                                         </span>
                                     </>
                                 ) : (

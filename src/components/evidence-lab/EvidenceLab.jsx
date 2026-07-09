@@ -13,40 +13,108 @@ const M09 = lazy(() => import('./M09_TokenSpecimen.jsx'));
 
 const SHELL = {
     en: {
-        eyebrow: 'APPLIED EVIDENCE',
-        title: 'The lab, opened up.',
-        stand: 'Nine working artifacts. Every screen below is rendered live in React — click, type, and break things.',
-        meta: ['9 modules', 'live in React', 'keyboard-ready', 'reduced-motion aware'],
+        eyebrow: 'APPLIED HMI EVIDENCE',
+        title: 'UX/HMI Interaction Design Lab',
+        stand: 'A set of nine working artifacts that turn HMI design principles into something you can try, inspect, and evaluate. Each module is rendered live in React, so the page behaves like a small interaction lab rather than a static case-study screenshot.',
+        meta: ['9 interactive modules', 'live React artifacts', 'keyboard accessible', 'reduced-motion aware'],
         navLabel: 'Evidence modules',
     },
     zh: {
-        eyebrow: '實證作品',
-        title: '打開實驗室。',
-        stand: '九件可操作的作品。以下每個畫面都由 React 即時渲染——可點擊、可輸入、可測試極限。',
-        meta: ['9 個模組', 'React 即時渲染', '鍵盤可操作', '尊重減少動態'],
-        navLabel: '證據模組',
+        eyebrow: 'HMI 設計證據',
+        title: 'UX/HMI 互動設計實驗室',
+        stand: '這是一組由九個可操作模組組成的作品切片，把 HMI 設計原則轉成可以親自操作、觀察與驗證的互動證據。每個畫面都由 React 即時渲染，因此它不是靜態截圖，而是一個可以被測試的小型互動實驗室。',
+        meta: ['9 個互動模組', 'React 即時渲染', '支援鍵盤操作', '尊重減少動態'],
+        navLabel: '實作證據模組',
     },
 };
 
 // Nav metadata lives here (terse labels); each module owns its full frame copy.
 const MODULES = [
-    { id: 'gx-m01', num: '01', tone: 'var(--gx-sky)',  Comp: M01, type: { en: 'Research method',   zh: '研究方法' }, title: { en: 'Glance Test',        zh: '一眼測試' } },
-    { id: 'gx-m02', num: '02', tone: 'var(--gx-teal)', Comp: M02, type: { en: 'State model',        zh: '狀態模型' }, title: { en: 'State Matrix',       zh: '狀態矩陣' } },
-    { id: 'gx-m03', num: '03', tone: 'var(--gx-amber)', Comp: M03, type: { en: 'Interaction logic', zh: '互動邏輯' }, title: { en: 'Escalation',         zh: '升級策略' } },
-    { id: 'gx-m04', num: '04', tone: 'var(--gx-iris)', Comp: M04, type: { en: 'Design process',     zh: '設計流程' }, title: { en: 'Fidelity Ladder',    zh: '精細度階梯' } },
-    { id: 'gx-m05', num: '05', tone: 'var(--gx-sky)',  Comp: M05, type: { en: 'System model',       zh: '系統模型' }, title: { en: 'Handoff Machine',    zh: '交接狀態機' } },
-    { id: 'gx-m06', num: '06', tone: 'var(--gx-teal)', Comp: M06, type: { en: 'MVP prototype',      zh: 'MVP 原型' }, title: { en: 'Pressure Console',   zh: '壓力主控台' } },
-    { id: 'gx-m07', num: '07', tone: 'var(--gx-gold)', Comp: M07, type: { en: 'Interaction spec',   zh: '互動規格' }, title: { en: 'Timing Budget',      zh: '時序預算' } },
-    { id: 'gx-m08', num: '08', tone: 'var(--gx-iris)', Comp: M08, type: { en: 'Validation',         zh: '驗證' },     title: { en: 'Research Evidence',  zh: '研究證據' } },
-    { id: 'gx-m09', num: '09', tone: 'var(--gx-teal)', Comp: M09, type: { en: 'Design system',      zh: '設計系統' }, title: { en: 'Token Specimen',     zh: '設計代幣' } },
+    {
+        id: 'gx-m01',
+        num: '01',
+        tone: 'var(--gx-sky)',
+        Comp: M01,
+        type: { en: 'Research method', zh: '研究驗證' },
+        title: { en: 'Glance Recognition Test', zh: '一眼辨識測試' },
+    },
+    {
+        id: 'gx-m02',
+        num: '02',
+        tone: 'var(--gx-teal)',
+        Comp: M02,
+        type: { en: 'Interface states', zh: '狀態設計' },
+        title: { en: 'State Matrix', zh: '介面狀態矩陣' },
+    },
+    {
+        id: 'gx-m03',
+        num: '03',
+        tone: 'var(--gx-amber)',
+        Comp: M03,
+        type: { en: 'Alert logic', zh: '警示邏輯' },
+        title: { en: 'Escalation Strategy', zh: '警示升級策略' },
+    },
+    {
+        id: 'gx-m04',
+        num: '04',
+        tone: 'var(--gx-iris)',
+        Comp: M04,
+        type: { en: 'Design process', zh: '設計推進' },
+        title: { en: 'Fidelity Ladder', zh: '精細度階梯' },
+    },
+    {
+        id: 'gx-m05',
+        num: '05',
+        tone: 'var(--gx-sky)',
+        Comp: M05,
+        type: { en: 'Human-machine flow', zh: '人機流程' },
+        title: { en: 'Handoff Machine', zh: '人機交接流程' },
+    },
+    {
+        id: 'gx-m06',
+        num: '06',
+        tone: 'var(--gx-teal)',
+        Comp: M06,
+        type: { en: 'Operational prototype', zh: '可操作原型' },
+        title: { en: 'Pressure Console', zh: '高壓情境控制台' },
+    },
+    {
+        id: 'gx-m07',
+        num: '07',
+        tone: 'var(--gx-gold)',
+        Comp: M07,
+        type: { en: 'Interaction timing', zh: '互動節奏' },
+        title: { en: 'Timing Budget', zh: '反應時間預算' },
+    },
+    {
+        id: 'gx-m08',
+        num: '08',
+        tone: 'var(--gx-iris)',
+        Comp: M08,
+        type: { en: 'Validation', zh: '研究證據' },
+        title: { en: 'Research Evidence', zh: '研究證據整理' },
+    },
+    {
+        id: 'gx-m09',
+        num: '09',
+        tone: 'var(--gx-teal)',
+        Comp: M09,
+        type: { en: 'Design system', zh: '設計規格' },
+        title: { en: 'Token Specimen', zh: '視覺規格樣本' },
+    },
 ];
 
 function Skeleton() {
     return (
-        <div className="gx-skel" role="status" aria-label="Loading module">
+        <div className="gx-skel" role="status" aria-label="Loading evidence module">
             <svg viewBox="0 0 400 40" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M0 20 H90 l8 -14 l8 28 l8 -20 l6 6 H190 l8 -12 l8 12 H400"
-                    fill="none" stroke="var(--gx-line-2)" strokeWidth="2" strokeLinecap="round" />
+                <path
+                    d="M0 20 H90 l8 -14 l8 28 l8 -20 l6 6 H190 l8 -12 l8 12 H400"
+                    fill="none"
+                    stroke="var(--gx-line-2)"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
             </svg>
             <span className="gx-sr-only">Loading…</span>
         </div>
@@ -59,7 +127,11 @@ function Reveal({ children }) {
 }
 
 function LabNav({ lang, t, activeId, reduced }) {
-    const goTo = id => document.getElementById(id)?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+    const goTo = id => document.getElementById(id)?.scrollIntoView({
+        behavior: reduced ? 'auto' : 'smooth',
+        block: 'start',
+    });
+
     return (
         <nav className="gx-lab-nav" aria-label={t.navLabel}>
             <div className="gx-lab-nav-inner">
@@ -71,7 +143,8 @@ function LabNav({ lang, t, activeId, reduced }) {
                                 className={`gx-lab-nav-item${activeId === m.id ? ' active' : ''}`}
                                 style={{ '--gx-accent': m.tone }}
                                 aria-current={activeId === m.id ? 'true' : undefined}
-                                onClick={() => goTo(m.id)}>
+                                onClick={() => goTo(m.id)}
+                            >
                                 <span className="gx-lab-nav-num">{m.num}</span>
                                 <span className="gx-lab-nav-text">
                                     <span className="gx-lab-nav-name">{m.title[lang]}</span>
@@ -98,11 +171,15 @@ export default function EvidenceLab() {
     useEffect(() => {
         const sections = MODULES.map(m => document.getElementById(m.id)).filter(Boolean);
         if (!sections.length || typeof IntersectionObserver === 'undefined') return;
+
         const io = new IntersectionObserver(entries => {
-            const visible = entries.filter(e => e.isIntersecting)
+            const visible = entries
+                .filter(e => e.isIntersecting)
                 .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+
             if (visible[0]) setActiveId(visible[0].target.id);
         }, { rootMargin: '-20% 0px -70% 0px' });
+
         sections.forEach(s => io.observe(s));
         return () => io.disconnect();
     });
@@ -113,7 +190,9 @@ export default function EvidenceLab() {
                 <div className="gx-lab-hero-glyph" aria-hidden="true">
                     <SignalGlyph tone="var(--gx-teal)" width={120} />
                 </div>
-                <span className="gx-eyebrow gx-lab-hero-eyebrow">{t.eyebrow} / {SHELL[lang === 'en' ? 'zh' : 'en'].eyebrow}</span>
+                <span className="gx-eyebrow gx-lab-hero-eyebrow">
+                    {t.eyebrow} / {SHELL[lang === 'en' ? 'zh' : 'en'].eyebrow}
+                </span>
                 <h2 className="gx-lab-hero-title">{t.title}</h2>
                 <p className="gx-lab-hero-stand">{t.stand}</p>
                 <div className="gx-lab-hero-meta">
@@ -143,7 +222,7 @@ injectStyles('gx-lab-shell', `
 .gx-lab-hero-glyph { position: absolute; top: 26px; right: 28px; opacity: 0.55; }
 .gx-lab-hero-eyebrow { color: var(--gx-teal); }
 .gx-lab-hero-title { font-family: var(--gx-font-display); font-size: clamp(32px, 5vw, 56px); font-weight: 500; line-height: 1.04; color: var(--gx-text-1); margin: 14px 0 0; letter-spacing: -0.01em; }
-.gx-lab-hero-stand { max-width: 560px; margin: 16px 0 0; font-size: 16px; line-height: 1.6; color: var(--gx-text-2); }
+.gx-lab-hero-stand { max-width: 620px; margin: 16px 0 0; font-size: 16px; line-height: 1.7; color: var(--gx-text-2); }
 .gx-lab-hero-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 22px; }
 
 .gx-lab-layout { display: grid; grid-template-columns: 1fr; gap: 20px; }
@@ -163,26 +242,26 @@ injectStyles('gx-lab-shell', `
 
 .gx-skel { padding: 40px 30px; border: 1px solid var(--gx-line-1); border-radius: var(--gx-r-lg); background: var(--gx-bg-1); }
 .gx-skel svg { width: 100%; height: 40px; animation: gx-skel-pulse 1.6s var(--gx-ease) infinite; }
-@keyframes gx-skel-pulse { 0%,100% { opacity: 0.35; } 50% { opacity: 0.8; } }
+@keyframes gx-skel-pulse { 0%, 100% { opacity: 0.35; } 50% { opacity: 0.9; } }
 
-/* mobile: horizontal scrollable chip row */
-@media (max-width: 1023px) {
-  .gx-lab-nav { position: sticky; top: 0; z-index: 6; margin: 0 -4px 4px; background: linear-gradient(180deg, var(--gx-bg-0) 70%, transparent); }
-  .gx-lab-nav-title { display: none; }
-  .gx-lab-nav ol { display: flex; gap: 8px; overflow-x: auto; padding: 10px 4px; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
-  .gx-lab-nav-item { flex: 0 0 auto; width: auto; background: var(--gx-bg-2); border: 1px solid var(--gx-line-1); }
-  .gx-lab-nav-item.active { border-color: var(--gx-accent); }
-  .gx-lab-nav-type { display: none; }
-  .gx-lab-nav-tick { display: none; }
+.gx-reveal { opacity: 0; transform: translateY(18px); transition: opacity 520ms var(--gx-ease), transform 520ms var(--gx-ease); }
+.gx-reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .gx-reveal { opacity: 1; transform: none; transition: none; }
+  .gx-skel svg { animation: none; }
 }
-/* desktop: sticky left rail */
+
 @media (min-width: 1024px) {
-  .gx-lab-layout { grid-template-columns: 210px 1fr; gap: 30px; align-items: start; }
-  .gx-lab-nav { position: sticky; top: 90px; align-self: start; }
-  .gx-lab-nav-inner { border-left: 1px solid var(--gx-line-1); padding-left: 16px; }
+  .gx-lab-layout { grid-template-columns: 230px minmax(0, 1fr); align-items: start; gap: 28px; }
+  .gx-lab-nav { position: sticky; top: 94px; }
 }
+
 @media (max-width: 767px) {
-  .gx-lab-hero { padding: 24px 18px; }
-  .gx-lab-hero-glyph { display: none; }
+  .gx-lab-hero { padding: 28px 20px 24px; }
+  .gx-lab-hero-glyph { opacity: 0.25; right: 18px; }
+  .gx-lab-nav ol { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .gx-lab-nav-item { padding: 8px; }
+  .gx-lab-nav-name { white-space: normal; }
 }
 `);

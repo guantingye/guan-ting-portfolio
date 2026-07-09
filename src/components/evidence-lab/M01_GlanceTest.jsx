@@ -4,49 +4,90 @@ import ModuleFrame, { injectStyles, useI18n, usePrefersReducedMotion, STATUS, St
 const STRINGS = {
     en: {
         eyebrow: 'RESEARCH METHOD',
-        title: 'Glance Test Simulator',
-        intent: 'Take the test the page keeps talking about: can you catch the change in three seconds?',
-        a11yNote: 'This demo tests visual glance behaviour; each round result is also announced as text for screen-reader users.',
-        run: 'Run 3-second glance', round: 'Round', watch: 'Watch the panel…',
-        which: 'Which tile changed?', reveal: 'Answer', next: 'Next round', restart: 'Run again',
-        correct: 'Correct', miss: 'Missed', colorOnly: 'color-only', multi: 'multi-channel',
-        summaryTitle: 'Detection summary',
-        rateColor: 'Color-only changes', rateMulti: 'Multi-channel changes', caught: 'caught',
-        takeaway: 'Redundant coding is not decoration. It is detection speed.',
-        simNote: 'Simulated scripted mutations · 5 rounds · a demonstration of method, not a statistic.',
+        title: 'Glance Test: Can You Spot the Change?',
+        intent: 'This small simulator turns one HMI question into a hands-on test: when a status changes quickly, can people notice it in three seconds?',
+        a11yNote: 'This demo is mainly visual, but every round result is also announced in text for screen-reader users.',
+        run: 'Start 3-second test',
+        round: 'Round',
+        watch: 'Watch the panel…',
+        which: 'Which tile changed?',
+        reveal: 'Answer',
+        next: 'Next round',
+        restart: 'Run again',
+        correct: 'Correct',
+        miss: 'Missed',
+        colorOnly: 'color only',
+        multi: 'color + shape + value',
+        summaryTitle: 'What you detected',
+        rateColor: 'Changes shown only by color',
+        rateMulti: 'Changes shown with more than one cue',
+        caught: 'noticed',
+        takeaway: 'Important status changes should not rely on color alone. People detect them faster when color, icon, and value change together.',
+        simNote: 'Scripted 5-round demo · Built to show the method, not to claim statistical significance.',
         tiles: [
-            { name: 'Pump pressure', val: '4.2 bar' }, { name: 'Flow rate', val: '62 %' }, { name: 'Temp', val: '48 °C' },
-            { name: 'Valve', val: 'OPEN' }, { name: 'Queue depth', val: '3' }, { name: 'Link', val: 'OK' },
+            { name: 'Pump pressure', val: '4.2 bar' },
+            { name: 'Flow rate', val: '62 %' },
+            { name: 'Temperature', val: '48 °C' },
+            { name: 'Valve status', val: 'OPEN' },
+            { name: 'Queue depth', val: '3' },
+            { name: 'System link', val: 'OK' },
         ],
         notes: [
-            { tag: 'Decision / 決策', text: 'Fixed scripted mutations, not full randomization, so the color-only vs multi-channel comparison is actually controlled.' },
-            { tag: 'Trade-off / 取捨', text: 'Five rounds is far too few for statistics. It is a demonstration of method — and it says so.' },
+            {
+                tag: 'Design decision / 設計判斷',
+                text: 'I used a fixed sequence instead of full randomization, so the comparison between “color only” and “multiple cues” stays controlled.',
+            },
+            {
+                tag: 'Reading note / 閱讀提醒',
+                text: 'Five rounds are not enough for statistical proof. This module is a method demonstration: it helps viewers feel why HMI states need more than color.',
+            },
         ],
     },
     zh: {
         eyebrow: '研究方法',
-        title: '一眼測試模擬器',
-        intent: '親自做這頁一直在講的測試：你能在三秒內抓到變化嗎？',
-        a11yNote: '本示範測試視覺一瞥行為；每回合結果同時以文字向螢幕報讀器使用者播報。',
-        run: '執行 3 秒一瞥', round: '回合', watch: '注視面板…',
-        which: '哪一格變了？', reveal: '答案', next: '下一回合', restart: '再測一次',
-        correct: '答對', miss: '漏看', colorOnly: '僅顏色', multi: '多重通道',
-        summaryTitle: '偵測結果',
-        rateColor: '僅顏色的變化', rateMulti: '多重通道的變化', caught: '抓到',
-        takeaway: '多重編碼不是裝飾，而是可視速度。',
-        simNote: '模擬腳本變化 · 5 回合 · 是方法示範，不是統計。',
+        title: '一眼辨識測試：你看得出哪裡變了嗎？',
+        intent: '這個小模擬器把一個 HMI 問題變成可以親自體驗的測試：當狀態快速改變時，人能不能在三秒內注意到？',
+        a11yNote: '這個示範主要測試視覺辨識，但每回合結果也會用文字播報，讓螢幕閱讀器使用者能理解測試結果。',
+        run: '開始 3 秒測試',
+        round: '回合',
+        watch: '請注視面板…',
+        which: '哪一格剛剛變了？',
+        reveal: '答案',
+        next: '下一回合',
+        restart: '再測一次',
+        correct: '答對',
+        miss: '漏看',
+        colorOnly: '只靠顏色',
+        multi: '顏色＋圖示＋數值',
+        summaryTitle: '你的辨識結果',
+        rateColor: '只用顏色提示的變化',
+        rateMulti: '使用多種線索提示的變化',
+        caught: '次看出',
+        takeaway: '重要狀態不應該只靠顏色。當顏色、圖示與數值一起變化，人更快看出差異。',
+        simNote: '固定腳本的 5 回合示範 · 用來展示方法，不宣稱統計顯著。',
         tiles: [
-            { name: '泵浦壓力', val: '4.2 bar' }, { name: '流量', val: '62 %' }, { name: '溫度', val: '48 °C' },
-            { name: '閥件', val: 'OPEN' }, { name: '佇列深度', val: '3' }, { name: '連線', val: 'OK' },
+            { name: '泵浦壓力', val: '4.2 bar' },
+            { name: '流量', val: '62 %' },
+            { name: '溫度', val: '48 °C' },
+            { name: '閥門狀態', val: 'OPEN' },
+            { name: '排隊數量', val: '3' },
+            { name: '系統連線', val: 'OK' },
         ],
         notes: [
-            { tag: 'Decision / 決策', text: '採用固定腳本變化而非全隨機，讓「僅顏色 vs 多重通道」的比較真的受控。' },
-            { tag: 'Trade-off / 取捨', text: '五回合遠不足以做統計。這是方法示範——而且它明說了。' },
+            {
+                tag: 'Design decision / 設計判斷',
+                text: '我使用固定腳本，而不是完全隨機，讓「只靠顏色」與「多重線索」之間的比較能保持受控。',
+            },
+            {
+                tag: 'Reading note / 閱讀提醒',
+                text: '五回合不足以做統計推論。這個模組是方法示範，目的是讓觀看者實際感受到：HMI 狀態不能只靠顏色傳達。',
+            },
         ],
     },
 };
 
-// Fixed sequence (spec: color-only rounds are deliberately harder).
+// Fixed sequence: color-only rounds are deliberately harder so viewers can feel
+// why safety-facing interfaces need more than color.
 const SEQUENCE = [
     { tile: 2, channel: 'multi', status: 'warning', val: { en: '71 °C ▲', zh: '71 °C ▲' } },
     { tile: 0, channel: 'color', status: 'advisory' },
@@ -54,6 +95,7 @@ const SEQUENCE = [
     { tile: 4, channel: 'color', status: 'warning' },
     { tile: 1, channel: 'multi', status: 'advisory', val: { en: '54 % ▼', zh: '54 % ▼' } },
 ];
+
 const ROUNDS = SEQUENCE.length;
 
 function Tile({ tile, lang, mut, phase, revealed }) {
@@ -62,9 +104,12 @@ function Tile({ tile, lang, mut, phase, revealed }) {
     const colorOnly = active && mut.channel === 'color';
     const icon = active && !colorOnly ? s.icon : STATUS.normal.icon;
     const value = active && !colorOnly && mut.val ? mut.val[lang] : tile.val;
+
     return (
         <div className={`gx-gt-tile${revealed ? ' revealed' : ''}`} style={{ '--tc': s.hex }}>
-            <span className="gx-gt-tile-icon" style={{ color: s.hex }}><StatusIcon name={icon} size={15} /></span>
+            <span className="gx-gt-tile-icon" style={{ color: s.hex }}>
+                <StatusIcon name={icon} size={15} />
+            </span>
             <span className="gx-gt-tile-name">{tile.name}</span>
             <span className="gx-gt-tile-val" style={{ color: s.hex }}>{value}</span>
             <span className="gx-gt-tile-led" style={{ background: s.hex }} />
@@ -87,52 +132,97 @@ export default function M01GlanceTest() {
     const mut = phase === 'idle' || phase === 'summary' ? null : SEQUENCE[round];
 
     const startRound = () => {
-        setPick(null); setProgress(0); setPhase('exposing');
+        setPick(null);
+        setProgress(0);
+        setPhase('exposing');
+
         const t0 = performance.now();
+
         const tick = now => {
             const p = Math.min(1, (now - t0) / 3000);
             setProgress(p);
-            if (p >= 1) { setPhase('masked'); return; }
+
+            if (p >= 1) {
+                setPhase('masked');
+                return;
+            }
+
             raf.current = requestAnimationFrame(tick);
         };
+
         raf.current = requestAnimationFrame(tick);
     };
+
     useEffect(() => () => cancelAnimationFrame(raf.current), []);
 
     const answer = idx => {
         if (phase !== 'masked') return;
+
         const m = SEQUENCE[round];
         const correct = idx === m.tile;
+
         setPick(idx);
         setResults(r => [...r, { round, correct, channel: m.channel }]);
         setPhase('result');
     };
+
     useEffect(() => {
         if (phase !== 'masked') return;
-        const onKey = e => { const n = parseInt(e.key, 10); if (n >= 1 && n <= 6) answer(n - 1); };
+
+        const onKey = e => {
+            const n = parseInt(e.key, 10);
+            if (n >= 1 && n <= 6) answer(n - 1);
+        };
+
         window.addEventListener('keydown', onKey);
         return () => window.removeEventListener('keydown', onKey);
     });
 
     const advance = () => {
-        if (round + 1 >= ROUNDS) setPhase('summary');
-        else { setRound(round + 1); setPhase('idle'); }
+        if (round + 1 >= ROUNDS) {
+            setPhase('summary');
+        } else {
+            setRound(round + 1);
+            setPhase('idle');
+        }
     };
-    const restart = () => { setRound(0); setResults([]); setPick(null); setPhase('idle'); };
+
+    const restart = () => {
+        setRound(0);
+        setResults([]);
+        setPick(null);
+        setPhase('idle');
+    };
 
     const rate = channel => {
         const rs = results.filter(r => r.channel === channel);
         const hit = rs.filter(r => r.correct).length;
-        return { hit, total: rs.length, pct: rs.length ? Math.round((hit / rs.length) * 100) : 0 };
+
+        return {
+            hit,
+            total: rs.length,
+            pct: rs.length ? Math.round((hit / rs.length) * 100) : 0,
+        };
     };
+
     const lastResult = results[results.length - 1];
     const announce = lastResult
         ? `${t.round} ${lastResult.round + 1}: ${lastResult.correct ? t.correct : t.miss} · ${lastResult.channel === 'color' ? t.colorOnly : t.multi}`
         : '';
-    const R = 20, C = 2 * Math.PI * R;
+
+    const R = 20;
+    const C = 2 * Math.PI * R;
 
     return (
-        <ModuleFrame id="gx-m01" num="01" tone="var(--gx-sky)" eyebrow={t.eyebrow} title={t.title} intent={t.intent} notes={t.notes}>
+        <ModuleFrame
+            id="gx-m01"
+            num="01"
+            tone="var(--gx-sky)"
+            eyebrow={t.eyebrow}
+            title={t.title}
+            intent={t.intent}
+            notes={t.notes}
+        >
             <div className="gx-m01">
                 <p className="gx-m01-a11y">{t.a11yNote}</p>
                 <p className="gx-sr-only" aria-live="polite">{announce}</p>
@@ -142,67 +232,148 @@ export default function M01GlanceTest() {
                         <div className="gx-m01-panel-wrap">
                             <div className={`gx-m01-panel${phase === 'masked' ? ' masked' : ''}${phase === 'masked' && reduced ? ' solid' : ''}`}>
                                 {t.tiles.map((tile, i) => (
-                                    <Tile key={i} tile={tile} lang={lang} mut={mut}
-                                        phase={phase} revealed={phase === 'result' && i === SEQUENCE[round].tile} />
+                                    <Tile
+                                        key={i}
+                                        tile={tile}
+                                        lang={lang}
+                                        mut={mut}
+                                        phase={phase}
+                                        revealed={phase === 'result' && i === SEQUENCE[round].tile}
+                                    />
                                 ))}
                             </div>
 
                             {phase === 'exposing' && (
                                 <div className="gx-m01-count" aria-hidden="true">
-                                    {reduced
-                                        ? <span className="gx-m01-count-num">{Math.ceil(3 * (1 - progress)) || 1}</span>
-                                        : <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r={R} fill="none" stroke="var(--gx-line-2)" strokeWidth="3" />
-                                            <circle cx="24" cy="24" r={R} fill="none" stroke="var(--gx-sky)" strokeWidth="3" strokeLinecap="round"
-                                                strokeDasharray={C} strokeDashoffset={C * progress} transform="rotate(-90 24 24)" /></svg>}
+                                    {reduced ? (
+                                        <span className="gx-m01-count-num">
+                                            {Math.ceil(3 * (1 - progress)) || 1}
+                                        </span>
+                                    ) : (
+                                        <svg viewBox="0 0 48 48">
+                                            <circle
+                                                cx="24"
+                                                cy="24"
+                                                r={R}
+                                                fill="none"
+                                                stroke="var(--gx-line-2)"
+                                                strokeWidth="3"
+                                            />
+                                            <circle
+                                                cx="24"
+                                                cy="24"
+                                                r={R}
+                                                fill="none"
+                                                stroke="var(--gx-sky)"
+                                                strokeWidth="3"
+                                                strokeLinecap="round"
+                                                strokeDasharray={C}
+                                                strokeDashoffset={C * progress}
+                                                transform="rotate(-90 24 24)"
+                                            />
+                                        </svg>
+                                    )}
                                 </div>
                             )}
-                            {phase === 'masked' && <div className="gx-m01-maskmsg">{t.which}</div>}
+
+                            {phase === 'masked' && (
+                                <div className="gx-m01-maskmsg">{t.which}</div>
+                            )}
                         </div>
 
                         {phase === 'masked' && (
                             <div className="gx-m01-answers">
                                 {t.tiles.map((tile, i) => (
-                                    <button key={i} className="gx-btn gx-m01-answer" onClick={() => answer(i)}>
-                                        <span className="gx-m01-answer-key">{i + 1}</span>{tile.name}
+                                    <button
+                                        key={i}
+                                        className="gx-btn gx-m01-answer"
+                                        onClick={() => answer(i)}
+                                    >
+                                        <span className="gx-m01-answer-key">{i + 1}</span>
+                                        {tile.name}
                                     </button>
                                 ))}
                             </div>
                         )}
 
                         {phase === 'result' && (
-                            <div className="gx-m01-result" role="status" style={{ '--gx-accent': lastResult.correct ? STATUS.normal.hex : STATUS.warning.hex }}>
-                                <span className="gx-m01-result-tag">{lastResult.correct ? t.correct : t.miss}</span>
-                                <span className="gx-m01-result-ch">{lastResult.channel === 'color' ? t.colorOnly : t.multi}</span>
-                                <button className="gx-btn gx-btn-accent" onClick={advance}>{t.next} ▸</button>
+                            <div
+                                className="gx-m01-result"
+                                role="status"
+                                style={{ '--gx-accent': lastResult.correct ? STATUS.normal.hex : STATUS.warning.hex }}
+                            >
+                                <span className="gx-m01-result-tag">
+                                    {lastResult.correct ? t.correct : t.miss}
+                                </span>
+                                <span className="gx-m01-result-ch">
+                                    {lastResult.channel === 'color' ? t.colorOnly : t.multi}
+                                </span>
+                                <button className="gx-btn gx-btn-accent" onClick={advance}>
+                                    {t.next} ▸
+                                </button>
                             </div>
                         )}
 
                         <div className="gx-m01-bar">
-                            {(phase === 'idle') && <button className="gx-btn gx-btn-accent" style={{ '--gx-accent': 'var(--gx-sky)' }} onClick={startRound}>◈ {t.run}</button>}
-                            {phase === 'exposing' && <span className="gx-caption">{t.watch}</span>}
-                            <span className="gx-m01-round">{t.round} {Math.min(round + 1, ROUNDS)} / {ROUNDS}</span>
+                            {phase === 'idle' && (
+                                <button
+                                    className="gx-btn gx-btn-accent"
+                                    style={{ '--gx-accent': 'var(--gx-sky)' }}
+                                    onClick={startRound}
+                                >
+                                    ◈ {t.run}
+                                </button>
+                            )}
+
+                            {phase === 'exposing' && (
+                                <span className="gx-caption">{t.watch}</span>
+                            )}
+
+                            <span className="gx-m01-round">
+                                {t.round} {Math.min(round + 1, ROUNDS)} / {ROUNDS}
+                            </span>
                         </div>
                     </>
                 ) : (
                     <div className="gx-m01-summary">
-                        <span className="gx-eyebrow" style={{ color: 'var(--gx-sky)' }}>{t.summaryTitle}</span>
+                        <span className="gx-eyebrow" style={{ color: 'var(--gx-sky)' }}>
+                            {t.summaryTitle}
+                        </span>
+
                         <div className="gx-m01-summary-grid">
                             {[['color', t.rateColor], ['multi', t.rateMulti]].map(([ch, label]) => {
                                 const r = rate(ch);
+
                                 return (
-                                    <div className="gx-m01-rate" key={ch} style={{ '--tc': ch === 'color' ? STATUS.advisory.hex : STATUS.normal.hex }}>
+                                    <div
+                                        className="gx-m01-rate"
+                                        key={ch}
+                                        style={{ '--tc': ch === 'color' ? STATUS.advisory.hex : STATUS.normal.hex }}
+                                    >
                                         <span className="gx-m01-rate-label">{label}</span>
                                         <span className="gx-m01-rate-big">{r.pct}%</span>
-                                        <span className="gx-m01-rate-sub">{r.hit}/{r.total} {t.caught}</span>
-                                        <div className="gx-m01-rate-track"><span style={{ width: `${r.pct}%` }} /></div>
+                                        <span className="gx-m01-rate-sub">
+                                            {r.hit}/{r.total} {t.caught}
+                                        </span>
+                                        <div className="gx-m01-rate-track">
+                                            <span style={{ width: `${r.pct}%` }} />
+                                        </div>
                                     </div>
                                 );
                             })}
                         </div>
-                        <blockquote className="gx-m01-takeaway">{t.takeaway}<span>／{STRINGS[lang === 'en' ? 'zh' : 'en'].takeaway}</span></blockquote>
-                        <button className="gx-btn" onClick={restart}>↺ {t.restart}</button>
+
+                        <blockquote className="gx-m01-takeaway">
+                            {t.takeaway}
+                            <span>／{STRINGS[lang === 'en' ? 'zh' : 'en'].takeaway}</span>
+                        </blockquote>
+
+                        <button className="gx-btn" onClick={restart}>
+                            ↺ {t.restart}
+                        </button>
                     </div>
                 )}
+
                 <p className="gx-caption gx-m01-simnote">{t.simNote}</p>
             </div>
         </ModuleFrame>

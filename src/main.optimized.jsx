@@ -197,7 +197,7 @@ const PROJECTS = [
         title: 'AI Product Launch OS', subtitle: 'Cinematic Launch Case Study',
         zhTitle: 'AI Product Launch OS', zhSubtitle: 'AI 產品上市敘事案例',
         hook: 'A launch studio for turning fuzzy market signals into a sharp product bet, a credible story, and a decision system teams can act on.',
-        zhHook: '一個產品上市工作室：把模糊市場訊號轉成清楚產品賭注、可信敘事與團隊可執行的決策系統。',
+        zhHook: '一套面向 AI 產品早期驗證與上市準備的決策系統，協助團隊把市場訊號、使用者痛點、模型邊界與商業敘事整理成可執行的產品路線。',
         stack: ['AI PM', 'GTM Strategy', 'Roadmapping', 'Metrics', 'UX Research', 'React Prototype'],
         role: 'AI Product Manager / Product Designer', zhRole: 'AI 產品經理 / 產品設計師',
         timeline: '2025 – 2026', status: 'Applied Capstone · Portfolio Case', zhStatus: '應用型 Capstone · 作品集案例',

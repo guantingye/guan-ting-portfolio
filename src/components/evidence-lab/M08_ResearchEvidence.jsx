@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import ModuleFrame, { injectStyles, useI18n } from './shared/labKit.jsx';
 
 const A = 'var(--gx-amber)', B = 'var(--gx-teal)';
-// Fixed, plausible simulated pilot dataset (n=8). Baseline A vs calm-layer B.
+
+// Fixed, plausible simulated pilot dataset (n=8).
+// A = baseline dashboard, B = calm-layer redesign.
+// The numbers are intentionally framed as simulated pilot data, not statistical proof.
 const NOTICE = [[4.2, 2.1], [3.6, 2.4], [5.8, 2.0], [3.1, 1.8], [4.9, 2.6], [6.2, 2.3], [3.9, 2.2], [4.5, 1.9]];
 const SEQ = [[4, 6], [5, 6], [3, 7], [5, 6], [4, 6], [3, 7], [5, 6], [4, 7]];
 const SUCCESS = { a: 5, b: 8, n: 8 };
@@ -10,58 +13,108 @@ const SUCCESS = { a: 5, b: 8, n: 8 };
 const STRINGS = {
     en: {
         eyebrow: 'VALIDATION',
-        title: 'Research Evidence Panel',
-        intent: 'Small-scale validation, presented with real craft: method, measures, results, and limits.',
-        frame: 'Design-lab pilot · moderated · n=8 · within-subjects A/B (baseline dashboard vs calm-layer redesign) · task: detect and resolve an injected fault. Pilot data — directional, not statistical proof.',
-        legendA: 'A · Baseline', legendB: 'B · Redesign',
-        c1: 'Time to notice the fault', c1unit: 'seconds (lower is better)',
-        c2: 'Task success', c2unit: 'participants completing unaided',
-        c3: 'Single Ease Question', c3unit: 'SEQ 1–7 (higher is better)',
-        participant: 'P', simLabel: 'Simulated pilot data',
-        methodTitle: 'Method', changedTitle: 'What changed because of this', limitsTitle: 'Limits',
+        title: 'Pilot Evidence Panel',
+        intent: 'This module shows how a small UX/HMI pilot can be presented responsibly: what was tested, what was measured, what changed afterward, and what the evidence still cannot claim.',
+        frame: 'Design-lab pilot · moderated · n=8 · within-subjects A/B · baseline dashboard vs calm-layer redesign · task: detect and resolve one injected pressure fault. Simulated pilot data for portfolio demonstration — useful for design direction, not statistical proof.',
+        legendA: 'A · Baseline dashboard',
+        legendB: 'B · Calm-layer redesign',
+        c1: 'Time to notice the fault',
+        c1unit: 'seconds · lower is better',
+        c2: 'Task success',
+        c2unit: 'participants completing the task without help',
+        c3: 'Single Ease Question',
+        c3unit: 'SEQ 1–7 · higher is easier',
+        participant: 'P',
+        simLabel: 'Simulated pilot data',
+        methodTitle: 'Method',
+        changedTitle: 'What changed after the pilot',
+        limitsTitle: 'Limits',
         method: [
-            'Protocol: each participant ran the same injected-fault task twice — once on the baseline dashboard, once on the calm-layer redesign — thinking aloud, moderated.',
-            'Why within-subjects: with n=8, pairing each person against themselves removes between-person variance that would otherwise swamp the signal.',
-            'Ordering counterbalanced: half saw baseline first, half saw redesign first, to separate the design effect from a learning effect.',
-            'What a real study would add: larger n, eye-tracking for true glance behaviour, and longitudinal measures of alarm fatigue over weeks.',
+            'Protocol: each participant completed the same injected-fault task twice — once with the baseline dashboard and once with the calm-layer redesign — while thinking aloud in a moderated session.',
+            'Why within-subjects: with only eight participants, it is more useful to compare each person with themselves than to compare two separate groups. This reduces noise from individual speed, confidence, and prior experience.',
+            'Order control: half of the participants saw the baseline first, and half saw the redesign first, so the result is less likely to be explained only by practice or familiarity.',
+            'What a production study would add: more participants, eye-tracking for actual glance behavior, and longer-term observation to understand whether the calmer alert layer reduces alarm fatigue over time.',
         ],
         changed: [
-            { obs: 'P3 and P6 missed the color-only advisory entirely.', act: 'Redundant iconography became mandatory for every status.', link: 'Module 01' },
-            { obs: 'Two participants hesitated at the critical modal.', act: 'Typed acknowledgment was reserved for irreversible actions only.', link: 'Module 03' },
-            { obs: 'Glance-distance reads were slow at 3 m.', act: 'Primary value scale bumped to ~2.4× in the glance context.', link: 'Module 02 / 09' },
+            {
+                obs: 'P3 and P6 missed the advisory when it was shown only through color.',
+                act: 'Every status now needs at least one non-color cue, such as an icon, label, or value change.',
+                link: 'Module 01',
+            },
+            {
+                obs: 'Two participants hesitated when the critical dialog asked for confirmation.',
+                act: 'Typed confirmation is now reserved for actions that are hard to undo; lower-risk actions use faster confirmation.',
+                link: 'Module 03',
+            },
+            {
+                obs: 'Participants read the key value more slowly from the 3 m glance distance.',
+                act: 'The main value is enlarged in the glance context, while secondary text is removed to reduce visual load.',
+                link: 'Module 02 / 09',
+            },
         ],
-        limits: 'n=8 cannot rank two good designs against each other. What a pilot this size can do is kill a bad design early — which is exactly what pilots are for. Every number here is simulated for demonstration.',
+        limits: 'Eight participants cannot prove that one good design is always better than another. What this pilot can do is much more practical: reveal where the baseline breaks, show whether the redesign is moving in the right direction, and identify what should be tested next. All numbers shown here are simulated for demonstration.',
         notes: [
-            { tag: 'Decision / 決策', text: 'The limits section is published as prominently as the results — honesty about scale is the differentiator.' },
-            { tag: 'Trade-off / 取捨', text: 'n=8 cannot rank designs; it can kill bad ones early, which is what pilots are for.' },
+            {
+                tag: 'Decision / 設計判斷',
+                text: 'The limits are shown as clearly as the results. The point is to demonstrate research judgment, not to overclaim certainty from a small pilot.',
+            },
+            {
+                tag: 'Trade-off / 取捨',
+                text: 'n=8 is too small for proof, but useful for early design learning. A pilot of this size should help the team find weak spots before running a larger study.',
+            },
         ],
     },
     zh: {
         eyebrow: '驗證',
-        title: '研究證據面板',
-        intent: '小規模驗證，以真正的研究工藝呈現：方法、量測、結果與限制。',
-        frame: '設計實驗室前導研究 · 引導式 · n=8 · 受試者內 A/B（基準儀表板 vs 冷靜層重設計）· 任務：偵測並處理注入的故障。前導資料——供方向判斷，非統計證明。',
-        legendA: 'A · 基準', legendB: 'B · 重設計',
-        c1: '注意到故障的時間', c1unit: '秒（越低越好）',
-        c2: '任務成功', c2unit: '獨力完成的受試者數',
-        c3: '單題易用度', c3unit: 'SEQ 1–7（越高越好）',
-        participant: 'P', simLabel: '模擬前導資料',
-        methodTitle: '方法', changedTitle: '因此改了什麼', limitsTitle: '限制',
+        title: '前導研究證據面板',
+        intent: '這個模組展示如何負責任地呈現一個小規模 UX/HMI 前導研究：測了什麼、量了什麼、結果如何影響設計，以及哪些地方仍不能過度宣稱。',
+        frame: '設計實驗室前導研究 · 引導式測試 · n=8 · 受試者內 A/B · 基準儀表板 vs 冷靜層重設計 · 任務：偵測並處理一個注入的壓力故障。此處為作品集展示用模擬資料，可用來判斷設計方向，不作為統計證明。',
+        legendA: 'A · 基準儀表板',
+        legendB: 'B · 冷靜層重設計',
+        c1: '注意到故障的時間',
+        c1unit: '秒 · 越低越好',
+        c2: '任務成功',
+        c2unit: '不需協助即可完成任務的人數',
+        c3: '單題易用度',
+        c3unit: 'SEQ 1–7 · 越高代表越容易',
+        participant: 'P',
+        simLabel: '展示用模擬前導資料',
+        methodTitle: '研究方法',
+        changedTitle: '研究後改了什麼',
+        limitsTitle: '研究限制',
         method: [
-            '流程：每位受試者以相同的注入故障任務進行兩次——一次在基準儀表板、一次在冷靜層重設計上——放聲思考，引導式進行。',
-            '為何用受試者內：在 n=8 下，讓每個人與自己配對，可移除本會淹沒訊號的人際差異。',
-            '順序對消：一半先看基準、一半先看重設計，以分離設計效果與學習效果。',
-            '真正研究會再加上：更大的 n、真實一瞥行為的眼動追蹤，以及數週的警報疲勞縱貫量測。',
+            '流程：每位參與者都完成同一個注入故障任務兩次——一次使用基準儀表板，一次使用冷靜層重設計——過程中放聲思考，並由研究者引導。',
+            '為什麼用受試者內設計：只有 8 位參與者時，讓同一個人比較兩種版本，比把人分成兩組更有用。這可以降低個人速度、信心與經驗差異造成的雜訊。',
+            '順序控制：一半參與者先看基準版，一半先看重設計版，避免結果只是因為第二次比較熟悉任務。',
+            '正式研究還需要補上：更多參與者、用眼動追蹤觀察真實一瞥行為，以及更長時間的現場觀察，確認較冷靜的警示層是否真的能降低警報疲勞。',
         ],
         changed: [
-            { obs: 'P3 與 P6 完全漏看僅以顏色呈現的注意訊號。', act: '每個狀態一律強制加上多餘的圖示編碼。', link: '模組 01' },
-            { obs: '兩位受試者在危急彈窗前猶豫。', act: '輸入式確認只保留給不可逆的操作。', link: '模組 03' },
-            { obs: '在 3 m 一瞥距離下讀值偏慢。', act: '一瞥情境的主要數值放大到約 2.4×。', link: '模組 02 / 09' },
+            {
+                obs: 'P3 與 P6 漏看了只用顏色呈現的注意訊號。',
+                act: '每個狀態都需要至少一個非顏色線索，例如圖示、文字標籤或數值變化。',
+                link: '模組 01',
+            },
+            {
+                obs: '兩位參與者在危急彈窗要求確認時明顯猶豫。',
+                act: '輸入式確認只保留給難以回復的操作；風險較低的操作則改用更快的確認方式。',
+                link: '模組 03',
+            },
+            {
+                obs: '在 3 公尺一眼辨識距離下，參與者讀取關鍵數值的速度偏慢。',
+                act: '一眼辨識情境放大主要數值，同時移除次要文字，降低視覺負擔。',
+                link: '模組 02 / 09',
+            },
         ],
-        limits: 'n=8 無法在兩個好設計之間排名。這種規模的前導研究能做的，是及早淘汰壞設計——那正是前導研究的用途。此處每個數字皆為展示用模擬。',
+        limits: '8 位參與者不能證明某個好設計永遠比另一個好。這種前導研究真正能做的，是更務實地看出基準版在哪裡會出錯、重設計方向是否值得繼續，以及下一輪應該測什麼。此處所有數字皆為作品集展示用模擬資料。',
         notes: [
-            { tag: 'Decision / 決策', text: '限制段落與結果同等醒目呈現——對規模誠實，正是差異所在。' },
-            { tag: 'Trade-off / 取捨', text: 'n=8 無法排名設計，但能及早淘汰壞設計，那正是前導研究的用途。' },
+            {
+                tag: 'Decision / 設計判斷',
+                text: '限制段落和結果一樣清楚呈現。重點是展示研究判斷，而不是用小樣本做過度宣稱。',
+            },
+            {
+                tag: 'Trade-off / 取捨',
+                text: 'n=8 不足以作為證明，但很適合早期設計學習。這種規模的前導研究，應該幫團隊在大型研究前先找出弱點。',
+            },
         ],
     },
 };
@@ -69,20 +122,53 @@ const STRINGS = {
 function DotStrip({ t }) {
     const W = 360, H = 210, x0 = 40, x1 = 344, max = 7;
     const sx = v => x0 + (v / max) * (x1 - x0);
+
     return (
-        <svg viewBox={`0 0 ${W} ${H}`} className="gx-m08-svg" role="img" aria-label={`${t.c1}: baseline vs redesign, seconds`}>
+        <svg
+            viewBox={`0 0 ${W} ${H}`}
+            className="gx-m08-svg"
+            role="img"
+            aria-label={`${t.c1}: baseline vs redesign, seconds`}
+        >
             {[0, 2, 4, 6].map(v => (
                 <g key={v}>
-                    <line x1={sx(v)} y1="8" x2={sx(v)} y2={H - 18} stroke="var(--gx-line-1)" strokeWidth="1" />
-                    <text x={sx(v)} y={H - 5} textAnchor="middle" className="gx-m08-axis">{v}s</text>
+                    <line
+                        x1={sx(v)}
+                        y1="8"
+                        x2={sx(v)}
+                        y2={H - 18}
+                        stroke="var(--gx-line-1)"
+                        strokeWidth="1"
+                    />
+                    <text
+                        x={sx(v)}
+                        y={H - 5}
+                        textAnchor="middle"
+                        className="gx-m08-axis"
+                    >
+                        {v}s
+                    </text>
                 </g>
             ))}
+
             {NOTICE.map(([a, b], i) => {
                 const y = 16 + i * 22;
+
                 return (
                     <g key={i}>
-                        <text x="6" y={y + 4} className="gx-m08-plabel">{t.participant}{i + 1}</text>
-                        <line x1={sx(Math.min(a, b))} y1={y} x2={sx(Math.max(a, b))} y2={y} stroke="var(--gx-line-2)" strokeWidth="1.5" />
+                        <text x="6" y={y + 4} className="gx-m08-plabel">
+                            {t.participant}{i + 1}
+                        </text>
+
+                        <line
+                            x1={sx(Math.min(a, b))}
+                            y1={y}
+                            x2={sx(Math.max(a, b))}
+                            y2={y}
+                            stroke="var(--gx-line-2)"
+                            strokeWidth="1.5"
+                        />
+
                         <circle cx={sx(a)} cy={y} r="4.5" fill={A} />
                         <circle cx={sx(b)} cy={y} r="4.5" fill={B} />
                     </g>
@@ -91,43 +177,115 @@ function DotStrip({ t }) {
         </svg>
     );
 }
+
 function BarPair({ t }) {
     const W = 360, x0 = 40, x1 = 300, max = SUCCESS.n;
     const bw = v => (v / max) * (x1 - x0);
-    const rows = [{ k: 'a', v: SUCCESS.a, c: A }, { k: 'b', v: SUCCESS.b, c: B }];
+    const rows = [
+        { k: 'a', v: SUCCESS.a, c: A },
+        { k: 'b', v: SUCCESS.b, c: B },
+    ];
+
     return (
-        <svg viewBox={`0 0 ${W} 96`} className="gx-m08-svg" role="img" aria-label={`${t.c2}: baseline ${SUCCESS.a} of ${SUCCESS.n}, redesign ${SUCCESS.b} of ${SUCCESS.n}`}>
+        <svg
+            viewBox={`0 0 ${W} 96`}
+            className="gx-m08-svg"
+            role="img"
+            aria-label={`${t.c2}: baseline ${SUCCESS.a} of ${SUCCESS.n}, redesign ${SUCCESS.b} of ${SUCCESS.n}`}
+        >
             {rows.map((r, i) => {
                 const y = 20 + i * 40;
+
                 return (
                     <g key={r.k}>
-                        <text x="6" y={y + 15} className="gx-m08-plabel">{r.k === 'a' ? 'A' : 'B'}</text>
-                        <rect x={x0} y={y} width={x1 - x0} height="20" rx="4" fill="var(--gx-bg-3)" />
-                        <rect x={x0} y={y} width={bw(r.v)} height="20" rx="4" fill={r.c} />
-                        <text x={x0 + bw(r.v) + 8} y={y + 15} className="gx-m08-barval">{r.v}/{SUCCESS.n}</text>
+                        <text x="6" y={y + 15} className="gx-m08-plabel">
+                            {r.k === 'a' ? 'A' : 'B'}
+                        </text>
+
+                        <rect
+                            x={x0}
+                            y={y}
+                            width={x1 - x0}
+                            height="20"
+                            rx="4"
+                            fill="var(--gx-bg-3)"
+                        />
+
+                        <rect
+                            x={x0}
+                            y={y}
+                            width={bw(r.v)}
+                            height="20"
+                            rx="4"
+                            fill={r.c}
+                        />
+
+                        <text x={x0 + bw(r.v) + 8} y={y + 15} className="gx-m08-barval">
+                            {r.v}/{SUCCESS.n}
+                        </text>
                     </g>
                 );
             })}
         </svg>
     );
 }
+
 function SlopeChart({ t }) {
     const W = 360, H = 210, yTop = 16, yBot = 176, xa = 120, xb = 240, min = 1, max = 7;
     const sy = v => yBot - ((v - min) / (max - min)) * (yBot - yTop);
+
     return (
-        <svg viewBox={`0 0 ${W} ${H}`} className="gx-m08-svg" role="img" aria-label={`${t.c3}: baseline vs redesign per participant`}>
+        <svg
+            viewBox={`0 0 ${W} ${H}`}
+            className="gx-m08-svg"
+            role="img"
+            aria-label={`${t.c3}: baseline vs redesign per participant`}
+        >
             {[1, 3, 5, 7].map(v => (
-                <g key={v}><line x1={xa - 8} y1={sy(v)} x2={xb + 8} y2={sy(v)} stroke="var(--gx-line-1)" strokeWidth="1" />
-                    <text x={xa - 16} y={sy(v) + 4} textAnchor="end" className="gx-m08-axis">{v}</text></g>
-            ))}
-            {SEQ.map(([a, b], i) => (
-                <g key={i}>
-                    <line x1={xa} y1={sy(a)} x2={xb} y2={sy(b)} stroke="var(--gx-line-2)" strokeWidth="1.5" opacity="0.7" />
-                    <circle cx={xa} cy={sy(a)} r="4" fill={A} /><circle cx={xb} cy={sy(b)} r="4" fill={B} />
+                <g key={v}>
+                    <line
+                        x1={xa - 8}
+                        y1={sy(v)}
+                        x2={xb + 8}
+                        y2={sy(v)}
+                        stroke="var(--gx-line-1)"
+                        strokeWidth="1"
+                    />
+
+                    <text
+                        x={xa - 16}
+                        y={sy(v) + 4}
+                        textAnchor="end"
+                        className="gx-m08-axis"
+                    >
+                        {v}
+                    </text>
                 </g>
             ))}
-            <text x={xa} y={H - 6} textAnchor="middle" className="gx-m08-plabel">A</text>
-            <text x={xb} y={H - 6} textAnchor="middle" className="gx-m08-plabel">B</text>
+
+            {SEQ.map(([a, b], i) => (
+                <g key={i}>
+                    <line
+                        x1={xa}
+                        y1={sy(a)}
+                        x2={xb}
+                        y2={sy(b)}
+                        stroke="var(--gx-line-2)"
+                        strokeWidth="1.5"
+                        opacity="0.7"
+                    />
+                    <circle cx={xa} cy={sy(a)} r="4" fill={A} />
+                    <circle cx={xb} cy={sy(b)} r="4" fill={B} />
+                </g>
+            ))}
+
+            <text x={xa} y={H - 6} textAnchor="middle" className="gx-m08-plabel">
+                A
+            </text>
+
+            <text x={xb} y={H - 6} textAnchor="middle" className="gx-m08-plabel">
+                B
+            </text>
         </svg>
     );
 }
@@ -135,9 +293,20 @@ function SlopeChart({ t }) {
 function Chart({ title, unit, children, t }) {
     return (
         <figure className="gx-m08-chart">
-            <figcaption><span className="gx-m08-chart-title">{title}</span><span className="gx-m08-chart-unit">{unit}</span></figcaption>
+            <figcaption>
+                <span className="gx-m08-chart-title">
+                    {title}
+                </span>
+                <span className="gx-m08-chart-unit">
+                    {unit}
+                </span>
+            </figcaption>
+
             {children}
-            <span className="gx-caption gx-m08-chart-sim">{t.simLabel}</span>
+
+            <span className="gx-caption gx-m08-chart-sim">
+                {t.simLabel}
+            </span>
         </figure>
     );
 }
@@ -148,41 +317,101 @@ export default function M08ResearchEvidence() {
     const [openMethod, setOpenMethod] = useState(false);
 
     return (
-        <ModuleFrame id="gx-m08" num="08" tone="var(--gx-iris)" eyebrow={t.eyebrow} title={t.title} intent={t.intent} notes={t.notes}>
+        <ModuleFrame
+            id="gx-m08"
+            num="08"
+            tone="var(--gx-iris)"
+            eyebrow={t.eyebrow}
+            title={t.title}
+            intent={t.intent}
+            notes={t.notes}
+        >
             <div className="gx-m08">
-                <p className="gx-m08-frame">{t.frame}</p>
+                <p className="gx-m08-frame">
+                    {t.frame}
+                </p>
 
                 <div className="gx-m08-legend">
-                    <span><i style={{ background: A }} />{t.legendA}</span>
-                    <span><i style={{ background: B }} />{t.legendB}</span>
+                    <span>
+                        <i style={{ background: A }} />{t.legendA}
+                    </span>
+                    <span>
+                        <i style={{ background: B }} />{t.legendB}
+                    </span>
                 </div>
 
                 <div className="gx-m08-charts">
-                    <Chart title={t.c1} unit={t.c1unit} t={t}><DotStrip t={t} /></Chart>
-                    <Chart title={t.c2} unit={t.c2unit} t={t}><BarPair t={t} /></Chart>
-                    <Chart title={t.c3} unit={t.c3unit} t={t}><SlopeChart t={t} /></Chart>
+                    <Chart title={t.c1} unit={t.c1unit} t={t}>
+                        <DotStrip t={t} />
+                    </Chart>
+
+                    <Chart title={t.c2} unit={t.c2unit} t={t}>
+                        <BarPair t={t} />
+                    </Chart>
+
+                    <Chart title={t.c3} unit={t.c3unit} t={t}>
+                        <SlopeChart t={t} />
+                    </Chart>
                 </div>
 
                 <div className="gx-m08-accordion">
-                    <button className="gx-m08-acc-btn" aria-expanded={openMethod} onClick={() => setOpenMethod(o => !o)}>
-                        <span className="gx-eyebrow">{t.methodTitle}</span><span>{openMethod ? '−' : '+'}</span>
+                    <button
+                        className="gx-m08-acc-btn"
+                        aria-expanded={openMethod}
+                        onClick={() => setOpenMethod(o => !o)}
+                    >
+                        <span className="gx-eyebrow">
+                            {t.methodTitle}
+                        </span>
+                        <span>
+                            {openMethod ? '−' : '+'}
+                        </span>
                     </button>
-                    {openMethod && <ul className="gx-m08-method">{t.method.map((m, i) => <li key={i}>{m}</li>)}</ul>}
+
+                    {openMethod && (
+                        <ul className="gx-m08-method">
+                            {t.method.map((m, i) => (
+                                <li key={i}>
+                                    {m}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
                 </div>
 
                 <div className="gx-m08-changed">
-                    <span className="gx-eyebrow gx-m08-changed-title">{t.changedTitle}</span>
+                    <span className="gx-eyebrow gx-m08-changed-title">
+                        {t.changedTitle}
+                    </span>
+
                     {t.changed.map((c, i) => (
                         <div className="gx-m08-change" key={i}>
-                            <span className="gx-m08-change-num">{i + 1}</span>
-                            <p><span className="gx-m08-obs">{c.obs}</span> <span aria-hidden="true">→</span> {c.act} <span className="gx-m08-change-link">→ {c.link}</span></p>
+                            <span className="gx-m08-change-num">
+                                {i + 1}
+                            </span>
+
+                            <p>
+                                <span className="gx-m08-obs">
+                                    {c.obs}
+                                </span>{' '}
+                                <span aria-hidden="true">→</span>{' '}
+                                {c.act}{' '}
+                                <span className="gx-m08-change-link">
+                                    → {c.link}
+                                </span>
+                            </p>
                         </div>
                     ))}
                 </div>
 
                 <div className="gx-m08-limits">
-                    <span className="gx-eyebrow" style={{ color: 'var(--gx-iris)' }}>{t.limitsTitle}</span>
-                    <p>{t.limits}</p>
+                    <span className="gx-eyebrow" style={{ color: 'var(--gx-iris)' }}>
+                        {t.limitsTitle}
+                    </span>
+
+                    <p>
+                        {t.limits}
+                    </p>
                 </div>
             </div>
         </ModuleFrame>
