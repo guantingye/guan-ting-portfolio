@@ -13,7 +13,7 @@ function AppRoutes() {
     const { slug, navigate } = useRoute();
     return React.createElement(React.Fragment, null,
         React.createElement(NeuralCanvas, null),
-        React.createElement(Cursor, { disabled: slug === 'deeptech-database' }),
+        React.createElement(Cursor, null),
         React.createElement(ProgressBar, null),
         React.createElement(Nav, { navigate }),
         slug

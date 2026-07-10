@@ -1,3 +1,44 @@
+// Self-drawn SVG cover for the deeptech-database case (no stock photos): a data-room
+// console wireframe — 8 registered sources converging into a relational core, then
+// diverging into 4 decision surfaces — in the Neural Signal OS palette.
+const DEEPTECH_SOURCE_YS = [92, 182, 272, 362, 452, 542, 632, 722];
+const DEEPTECH_OUTPUT_YS = [170, 320, 470, 620];
+const DEEPTECH_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">'
+    + '<rect width="1600" height="900" fill="#0C0E12"/>'
+    + '<g stroke="#262B35" stroke-width="3" fill="#14171D">'
+    + DEEPTECH_SOURCE_YS.map(y => `<rect x="110" y="${y}" width="260" height="52" rx="10"/>`).join('')
+    + '</g>'
+    + '<g>'
+    + DEEPTECH_SOURCE_YS.map((y, i) => `<circle cx="126" cy="${y + 26}" r="5" fill="${i === 7 ? '#E8A33D' : '#35C2B0'}"/>`).join('')
+    + '</g>'
+    + '<g stroke="#35C2B0" stroke-width="2" fill="none" opacity="0.5">'
+    + DEEPTECH_SOURCE_YS.slice(0, 7).map(y => `<path d="M370,${y + 26} C 480,${y + 26} 520,420 620,420"/>`).join('')
+    + '</g>'
+    + `<path d="M370,${DEEPTECH_SOURCE_YS[7] + 26} C 480,${DEEPTECH_SOURCE_YS[7] + 26} 520,420 620,420" stroke="#E8A33D" stroke-width="2.5" fill="none" opacity="0.75"/>`
+    + '<g stroke="#333A47" stroke-width="4" fill="#1C2028">'
+    + '<ellipse cx="800" cy="230" rx="180" ry="28"/>'
+    + '<rect x="620" y="230" width="360" height="430"/>'
+    + '<ellipse cx="800" cy="660" rx="180" ry="28"/>'
+    + '</g>'
+    + '<g fill="#2A303C">'
+    + [280, 340, 400, 460, 520, 580].map((y, i) => `<rect x="660" y="${y}" width="${[280, 220, 260, 180, 240, 200][i]}" height="14" rx="7"/>`).join('')
+    + '</g>'
+    + '<rect x="660" y="340" width="140" height="14" rx="7" fill="#35C2B0" opacity="0.6"/>'
+    + '<rect x="660" y="460" width="110" height="14" rx="7" fill="#35C2B0" opacity="0.6"/>'
+    + '<g stroke="#262B35" stroke-width="3" fill="#14171D">'
+    + DEEPTECH_OUTPUT_YS.map(y => `<rect x="1180" y="${y}" width="280" height="90" rx="12"/>`).join('')
+    + '</g>'
+    + '<g fill="#35C2B0">'
+    + DEEPTECH_OUTPUT_YS.slice(0, 3).map(y => `<circle cx="1204" cy="${y + 45}" r="6"/>`).join('')
+    + '</g>'
+    + `<circle cx="1204" cy="${DEEPTECH_OUTPUT_YS[3] + 45}" r="6" fill="#E8A33D"/>`
+    + '<g stroke="#35C2B0" stroke-width="2.5" fill="none" opacity="0.65">'
+    + DEEPTECH_OUTPUT_YS.slice(0, 3).map(y => `<path d="M980,420 C 1080,420 1100,${y + 45} 1180,${y + 45}"/>`).join('')
+    + '</g>'
+    + `<path d="M980,420 C 1080,420 1100,${DEEPTECH_OUTPUT_YS[3] + 45} 1180,${DEEPTECH_OUTPUT_YS[3] + 45}" stroke="#E8A33D" stroke-width="2.5" fill="none" opacity="0.75"/>`
+    + '</svg>');
+
 export const PROJECTS = [
     {
         slug: 'emobot-plus', num: '01',
@@ -45,6 +86,50 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
         outcomes: ['Consolidated fragmented public and manually maintained ecosystem signals into a reusable research database workflow', 'Modeled stable company entities with aliases, source rows, company-source relationships, profiles, tags, and update logs', 'Designed source traceability and quality controls around missing fields, stale sources, duplicate candidates, and conflicting values', 'Prepared dashboard-ready and map-ready outputs for company indexes, ecosystem segmentation, research briefs, and enriched dataset packages', 'Translated data engineering work into a high-fidelity portfolio case for AI product, UX research, frontend, and data platform roles'],
         zhOutcomes: ['將分散的公開與人工維護產業訊號整合成可重複使用的研究資料庫流程', '以公司實體為核心建模，串接 aliases、source_rows、company_sources、profiles、tags 與 update_logs', '圍繞缺失欄位、來源過期、重複候選與衝突值設計來源追溯與品質控制', '準備可接入儀表板與地圖的輸出，支援公司索引、生態分群、研究 brief 與補強資料包', '將資料工程工作轉譯為 AI 產品、UX 研究、前端與資料平台職能都能理解的高擬真案例'],
         tech: [{ label: 'Acquisition', val: 'Playwright for dynamic pages, structured requests for stable pages, manual spreadsheet ingestion, cache fallback' }, { label: 'Cleaning', val: 'Pandas normalization, missing-value flags, deduplication, alias mapping, column and type standardization' }, { label: 'Database Modeling', val: 'Canonical company entities, alias tables, source registry, source rows, join tables, update logs' }, { label: 'Quality Controls', val: 'Source traceability, stale-source checks, conflict handling, review queue, field-level confidence indicators' }, { label: 'Visualization', val: 'Power BI-ready tables, HTML ecosystem map, filterable intelligence views, research brief exports' }, { label: 'Portfolio Boundary', val: 'Public-safe reconstruction with sample displays instead of confidential company-level records' }],
+        // Self-drawn SVG cover (no stock photos): a data-room console wireframe in the Neural Signal OS palette.
+        caseHeroImage: DEEPTECH_HERO_IMAGE,
+        caseDeck: {
+            eyebrow: 'Data room',
+            zhEyebrow: '資料室',
+            title: 'From fragmented public records to a queryable research database',
+            zhTitle: '把分散的公開紀錄，整理成可查詢的研究資料庫',
+            body: 'A relational core where every field can point back to the source row that proved it — built for a research team that needs to trust a number before citing it.',
+            zhBody: '一個關聯式資料核心，每個欄位都能指回證明它的來源列 — 為需要在引用數字前先信任它的研究團隊而建。',
+            kpis: [
+                { label: 'Sources', value: '8', zhLabel: '來源' },
+                { label: 'Tables', value: '8', zhLabel: '資料表' },
+                { label: 'Companies', value: '230+', zhLabel: '公司數' },
+            ],
+            signals: ['Intake', 'Resolve', 'Model', 'Gate', 'Deliver'],
+            zhSignals: ['登錄', '解析', '建模', '把關', '交付'],
+        },
+        storyMoments: [
+            { iconKey: 'database', title: 'Every source becomes a signal', zhTitle: '每個來源都成為一個訊號', body: 'Company registries, job pages, association lists, and manual sheets get registered with an access method, a cadence, and a trust boundary — not treated as one undifferentiated pile.', zhBody: '公司登記、徵才頁、協會名單與人工表格，都被登錄成有取得方式、更新頻率與信任邊界的訊號，而不是混在一起的資料堆。' },
+            { iconKey: 'layers', title: 'Identity becomes stable', zhTitle: '身份變得穩定', body: 'Aliases resolve into one canonical company profile, with a confidence score and a source trail attached to every merge decision.', zhBody: '別名解析為單一標準公司檔案，每個合併判斷都附帶可信度分數與來源軌跡。' },
+            { iconKey: 'check', title: 'Every number stays defensible', zhTitle: '每個數字都可以被捍衛', body: 'A quality gate and a provenance ledger sit between the raw data and the dashboard, so a stakeholder question always has a traceable answer.', zhBody: '品質閘門與溯源台帳銜接在原始資料與儀表板之間，讓利害關係人的提問總能得到可追溯的答案。' },
+        ],
+        // Outcomes deep-link into the Research Database Console modules (src/components/dataroom/).
+        outcomeModules: [
+            { num: '01', id: 'dt-m01' },
+            { num: '03', id: 'dt-m03' },
+            { num: '05', id: 'dt-m05' },
+            { num: '07', id: 'dt-m07' },
+            { num: '02', id: 'dt-m02' },
+        ],
+        storyChapters: [
+            { iconKey: 'activity', label: 'Signal', zhLabel: '訊號', title: 'Register every source as a signal, not a script', zhTitle: '把每個來源登錄為訊號，而不是腳本', body: 'The work starts by treating MOPS, 104, TSIA, SEMI, ASIP, startup lists, news, and manual sheets as registered signals — each with an access method, a cadence, and a set of trusted fields — instead of one-off scraping scripts.', zhBody: '這項工作從把 MOPS、104、TSIA、SEMI、ASIP、新創名單、新聞與人工表格登錄為有登記的訊號開始 — 各自附帶取得方式、更新頻率與可信欄位 — 而不是一次性的爬蟲腳本。', artifact: 'Source registry', zhArtifact: '來源登錄表' },
+            { iconKey: 'layers', label: 'Identity', zhLabel: '身份', title: 'Turn unstable names into one canonical entity', zhTitle: '把不穩定的名稱整理成單一標準實體', body: 'Chinese names, English aliases, and renamed entities get mapped to one canonical company profile through a confidence-scored alias workbench, with every merge decision kept reviewable.', zhBody: '中文名稱、英文別名與更名資訊，透過帶有可信度評分的別名工作台對應到單一標準公司檔案，每個合併判斷都保持可被審核。', artifact: 'Alias resolution log', zhArtifact: '別名解析紀錄' },
+            { iconKey: 'database', label: 'Model', zhLabel: '建模', title: 'Model a database, not a spreadsheet archive', zhTitle: '建立資料庫模型，而不是試算表堆疊', body: 'Eight relational tables carry the evidence: raw rows stay traceable, canonical companies stay stable, and every enriched field can point back to the source that proved it.', zhBody: '八個關聯式資料表承載證據：原始列保持可追溯、標準公司實體保持穩定，每個補強欄位都能指回證明它的來源。', artifact: 'Relational schema', zhArtifact: '關聯式 schema' },
+            { iconKey: 'shield', label: 'Quality', zhLabel: '品質', title: 'Make uncertainty visible instead of silent', zhTitle: '讓不確定性可見，而不是靜默發生', body: 'Six quality gates check coverage, traceability, identity control, freshness, and conflicts — a disagreement between two trusted sources gets held for review, never silently overwritten.', zhBody: '六個品質閘門檢查覆蓋範圍、來源追溯、身份控制、更新鮮度與衝突 — 兩個可信來源間的分歧會被保留審核，絕不會被靜默覆寫。', artifact: 'Quality gate board', zhArtifact: '品質閘門看板' },
+            { iconKey: 'check', label: 'Delivery', zhLabel: '交付', title: 'Ship outputs that still carry their evidence', zhTitle: '交付仍保有證據脈絡的輸出', body: 'Company indexes, ecosystem maps, dashboards, research briefs, and dataset packages are exported from the same database — each traceable back to its source tables through the provenance ledger.', zhBody: '公司索引、生態地圖、儀表板、研究 brief 與資料包，全部從同一個資料庫匯出 — 每一項都能透過溯源台帳追溯回其來源資料表。', artifact: 'Decision surfaces', zhArtifact: '決策輸出' },
+        ],
+        pullQuote: 'The challenge was not collecting more data. It was turning unstable public signals into a reusable research asset.',
+        zhPullQuote: '真正的挑戰不是蒐集更多資料，而是把不穩定的公開訊號整理成可重複使用的研究資產。',
+        // Deep links from the story into the Research Database Console modules below.
+        evidenceSlots: [
+            { iconKey: 'layers', title: 'Entity Resolution Workbench', zhTitle: '實體解析工作台', desc: 'Open the merge workbench: alias clusters, a confidence-threshold slider, and an accept/hold review queue you operate yourself.', zhDesc: '打開合併工作台：別名群組、可信度門檻滑桿，以及由你自己操作的接受／保留審核佇列。', anchor: 'dt-m03', anchorNum: '03' },
+            { iconKey: 'database', title: 'Provenance Ledger', zhTitle: '溯源台帳', desc: 'Open the audit ledger: pick an output field and trace it, row by row, back to the source that produced it.', zhDesc: '打開稽核台帳：選擇一個輸出欄位，逐列追溯回產生它的來源。', anchor: 'dt-m06', anchorNum: '06' },
+        ],
         awards: [],
     },
     {

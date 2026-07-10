@@ -87,7 +87,7 @@ const T = {
         ch4Meta: '第四章 · 現在', ch4Head: '下一篇章',
         ch4Body: '尋找能橋接嚴謹研究與真實產品執行的機會——與真正服務人的 AI 原生系統團隊合作。開放全球產品、研究與生態系策略相關職位。',
         workLabel: '精選專案', workTitle1: '從研究、', workTitleEm: '資料到介面', workTitle2: '，把想法做成可被使用的產品。',
-        skillsLabel: '能力地圖', skillsTitle1: '完整的', skillsTitleEm: '技能堆疊', skillsTitle2: '。',
+        skillsLabel: '能力系統', skillsTitle1: '把人與資料的訊號', skillsTitleEm: '做成可驗證的產品', skillsTitle2: '。',
         skillDomain: '領域', skillTech: '技術', skillLang: '語言與軟實力',
         awardsLabel: '獎項與認可',
         awardsTitle1: '從研究到產品，', awardsTitleEm: '可被驗證的成果。',

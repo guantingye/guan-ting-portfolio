@@ -1,5 +1,5 @@
 import React from 'react';
-import DeeptechDatabaseCaseStudy from './DeeptechDatabaseCaseStudy.jsx';
+import DataroomEvidence from '../dataroom/DataroomEvidence.jsx';
 import EmobotCaseStudy from './EmobotCaseStudy.jsx';
 import LaunchOsEvidence from '../launch-os/LaunchOsEvidence.jsx';
 import EvidenceLab from '../evidence-lab/EvidenceLab.jsx';
@@ -13,7 +13,7 @@ export default function ProjectExtraSection({ slug, lang }) {
 
   if (slug === 'ux-hmi-interaction-lab') return React.createElement(EvidenceLab, null);
 
-  if (slug === 'deeptech-database') return React.createElement(DeeptechDatabaseCaseStudy, { lang });
+  if (slug === 'deeptech-database') return React.createElement(DataroomEvidence, null);
 
   // ai-news-intelligence: the source matrix now lives in the Evidence Layer
   // (Module 02), mounted after the technical approach in ProjectPage.

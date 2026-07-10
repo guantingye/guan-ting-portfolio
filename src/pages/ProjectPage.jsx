@@ -10,7 +10,6 @@ import VerificationLayer from '../components/verification/VerificationLayer.jsx'
 import ProductShowcase from '../components/product-showcase/ProductShowcase.jsx';
 import NewsIntelEvidence from '../components/newsintel/NewsIntelEvidence.jsx';
 import PsyMatchEvidence from '../components/psymatch/PsyMatchEvidence.jsx';
-import deeptechHeroImage from '../../assets/deeptech-research-studio.png';
 
 export default function ProjectPage({ slug, navigate }) {
     const { t, lang } = useLang();
@@ -40,21 +39,6 @@ export default function ProjectPage({ slug, navigate }) {
     const status = lang === 'zh' ? p.zhStatus : p.status;
     const impact = lang === 'zh' ? p.zhImpact : p.impact;
     const category = lang === 'zh' ? p.zhCategory : p.category;
-    const isDeeptech = slug === 'deeptech-database';
-    const splitMetaValue = value => isDeeptech && typeof value === 'string' && value.includes('·')
-        ? value.split('·').map(part => React.createElement('span', { className: 'proj-meta-line', key: part.trim() }, part.trim()))
-        : value;
-    const deeptechProof = lang === 'zh'
-        ? [
-            ['資料問題', '將分散公司訊號整理成研究級情報資料庫。'],
-            ['研究訊號', '來源追溯、實體解析、schema 治理與品質狀態直接進入介面。'],
-            ['交付表面', '資料庫、分析資料層、地圖、brief 與研究輸出共享同一條證據軌跡。'],
-        ]
-        : [
-            ['Data problem', 'Turn fragmented company signals into a research-grade intelligence database.'],
-            ['Research signal', 'Source traceability, entity resolution, schema governance, and quality state are visible in the UI.'],
-            ['Handoff surface', 'Database, analysis mart, map, brief, and research exports share one evidence trail.'],
-        ];
     const heroMain = React.createElement('div', { className: 'proj-hero-copy' },
         React.createElement('a', { href: '#/', className: 'proj-back', onClick: e => { e.preventDefault(); navigate('#/'); } }, t('projBack')),
         React.createElement('p', { className: 'proj-category reveal' }, category),
@@ -65,45 +49,23 @@ export default function ProjectPage({ slug, navigate }) {
         React.createElement('div', { className: 'proj-meta reveal reveal-delay-3' },
             React.createElement('div', { className: 'proj-meta-item' },
                 React.createElement('div', { className: 'proj-meta-key' }, t('projRole')),
-                React.createElement('div', { className: 'proj-meta-val' }, splitMetaValue(role))),
+                React.createElement('div', { className: 'proj-meta-val' }, role)),
             React.createElement('div', { className: 'proj-meta-item' },
                 React.createElement('div', { className: 'proj-meta-key' }, t('projTimeline')),
-                React.createElement('div', { className: 'proj-meta-val' }, splitMetaValue(p.timeline))),
+                React.createElement('div', { className: 'proj-meta-val' }, p.timeline)),
             React.createElement('div', { className: 'proj-meta-item' },
                 React.createElement('div', { className: 'proj-meta-key' }, t('projStatus')),
-                React.createElement('div', { className: 'proj-meta-val' }, splitMetaValue(status))),
+                React.createElement('div', { className: 'proj-meta-val' }, status)),
             React.createElement('div', { className: 'proj-meta-item' },
                 React.createElement('div', { className: 'proj-meta-key' }, t('projImpact')),
-                React.createElement('div', { className: 'proj-meta-val' }, splitMetaValue(impact)))));
+                React.createElement('div', { className: 'proj-meta-val' }, impact))));
     useEffect(() => {
         document.title = `${title} · GT.YE`;
         return () => { document.title = 'Guan-Ting Ye · Neural Signal OS'; };
     }, [title]);
     return React.createElement('div', { className: 'proj-page page-enter', 'data-theme': PROJECT_THEMES[slug] || 'data' },
-        React.createElement('div', { className: `proj-hero${isDeeptech ? ' proj-hero--deeptech' : ''}` },
-            React.createElement('div', { className: 'container' },
-                isDeeptech
-                    ? React.createElement('div', { className: 'proj-hero-layout' },
-                        heroMain,
-                        React.createElement('aside', { className: 'proj-hero-dossier reveal reveal-delay-2', 'aria-label': lang === 'zh' ? '專案證據摘要' : 'Project evidence summary' },
-                            React.createElement('figure', { className: 'proj-hero-dossier-media' },
-                                React.createElement('img', {
-                                    src: deeptechHeroImage,
-                                    alt: lang === 'zh' ? '全球深科技資料庫的研究工作室重構圖' : 'Research studio reconstruction for the Global DeepTech Database',
-                                    loading: 'eager',
-                                    decoding: 'async',
-                                })),
-                            React.createElement('div', { className: 'proj-hero-dossier-copy' },
-                                React.createElement('span', null, lang === 'zh' ? 'ITRI/ISTI 案例掃描' : 'ITRI/ISTI case scan'),
-                                React.createElement('h2', null, lang === 'zh' ? '研究級情報資料層，而不是一次性試算表。' : 'A research-grade intelligence layer, not a one-off spreadsheet.'),
-                                React.createElement('p', null, lang === 'zh'
-                                    ? '案例把來源擷取、實體標準化、QA、schema 設計與研究輸出整理成可檢視的資料系統。'
-                                    : 'The case connects source acquisition, entity normalization, QA, schema design, and research output into one inspectable data system.'),
-                                React.createElement('div', { className: 'proj-hero-proof-grid' },
-                                    deeptechProof.map(([label, text]) => React.createElement('article', { key: label },
-                                        React.createElement('span', null, label),
-                                        React.createElement('strong', null, text)))))))
-                    : heroMain)),
+        React.createElement('div', { className: 'proj-hero' },
+            React.createElement('div', { className: 'container' }, heroMain)),
         React.createElement('div', { className: 'proj-body' },
             React.createElement('div', { className: 'container' },
                 React.createElement('div', { className: 'proj-section reveal' },

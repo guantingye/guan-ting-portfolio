@@ -1,0 +1,125 @@
+import React, { useMemo, useState } from 'react';
+import SectionModule, { injectStyles, useI18n } from './shared/dtKit.jsx';
+import { MODULES } from './data/dtContent.js';
+
+const MOD = MODULES.find(m => m.key === 'M06');
+
+const FIELDS = [
+  {
+    id: 'capital', label: 'company_profiles.capital',
+    rows: [
+      { table: 'sources', ref: 'MOPS · registration filing', verified: '—', note: { en: 'source registered', zh: '來源已登錄' } },
+      { table: 'source_rows', ref: 'SR-10432', verified: '2025-11-02', note: { en: 'parsed', zh: '已解析' } },
+      { table: 'company_sources', ref: 'capital = NT$8.9B', verified: '2025-11-03', note: { en: 'evidence linked', zh: '證據已鏈接' } },
+      { table: 'company_profiles', ref: 'capital = NT$8.9B', verified: '2025-11-03', note: { en: 'no review flag', zh: '無審核標記' } },
+    ],
+  },
+  {
+    id: 'latlng', label: 'company_profiles.lat_lng',
+    rows: [
+      { table: 'sources', ref: '104 · job page address', verified: '—', note: { en: 'source registered', zh: '來源已登錄' } },
+      { table: 'source_rows', ref: 'SR-20981', verified: '2025-10-18', note: { en: 'parsed, geocoded', zh: '已解析、已定位' } },
+      { table: 'company_sources', ref: 'lat_lng = 24.7738, 120.9675', verified: '2025-10-19', note: { en: 'geocoded from address text', zh: '從地址文字定位' } },
+      { table: 'company_profiles', ref: 'lat_lng = 24.7738, 120.9675', verified: '2025-10-19', note: { en: 'review required before map export', zh: '匯出地圖前需審核' } },
+    ],
+  },
+  {
+    id: 'person', label: 'company_profiles.responsible_person',
+    rows: [
+      { table: 'sources', ref: 'MOPS · registration filing', verified: '—', note: { en: 'source registered', zh: '來源已登錄' } },
+      { table: 'source_rows', ref: 'SR-10432', verified: '2025-11-02', note: { en: 'parsed', zh: '已解析' } },
+      { table: 'company_sources', ref: 'responsible_person field captured', verified: '2025-11-03', note: { en: 'evidence linked', zh: '證據已鏈接' } },
+      { table: 'company_profiles', ref: 'responsible_person set', verified: '2025-11-03', note: { en: 'no review flag', zh: '無審核標記' } },
+    ],
+  },
+  {
+    id: 'tag', label: "company_tags.tag = 'semiconductor'",
+    rows: [
+      { table: 'sources', ref: 'TSIA · association list', verified: '—', note: { en: 'source registered', zh: '來源已登錄' } },
+      { table: 'source_rows', ref: 'SR-30877', verified: '2025-09-30', note: { en: 'parsed', zh: '已解析' } },
+      { table: 'company_sources', ref: 'tag = semiconductor (sector classification)', verified: '2025-10-01', note: { en: 'evidence linked', zh: '證據已鏈接' } },
+      { table: 'company_tags', ref: 'tag=semiconductor, confidence=0.91', verified: '2025-10-01', note: { en: 'no review flag', zh: '無審核標記' } },
+    ],
+  },
+  {
+    id: 'segment', label: 'analysis_mart.segment_counts (semiconductor)',
+    rows: [
+      { table: 'company_tags', ref: "62 rows where tag='semiconductor'", verified: '—', note: { en: 'rollup input', zh: '彙總輸入' } },
+      { table: 'companies', ref: 'joined via company_id', verified: '—', note: { en: 'resolves each tag to one canonical company', zh: '將每個標籤解析到唯一公司' } },
+      { table: 'analysis_mart.segment_counts', ref: 'semiconductor = 62', verified: '2025-11-05', note: { en: 'recomputed on every pipeline run (see Module 02)', zh: '每次管線執行皆重新計算（見模組 02）' } },
+    ],
+  },
+];
+
+const COPY = {
+  en: {
+    title: 'Provenance Ledger',
+    lead: 'Pick an output field or metric and trace it back — as a table, not an animation — to the exact source row that produced it.',
+    soWhat: 'A number without a lineage row is a number nobody can defend in a research review; this ledger is what makes every figure defensible.',
+    fieldLabel: 'Trace field', step: 'Step', table: 'Table', ref: 'Reference', verified: 'Verified', note: 'Note',
+    announce: (label, n) => `Lineage loaded for ${label}: ${n} steps.`,
+  },
+  zh: {
+    title: '溯源台帳',
+    lead: '選擇一個輸出欄位或指標，以表格（而非動畫）方式追溯回產生它的原始資料列。',
+    soWhat: '沒有血緣紀錄的數字，是研究審查時無法被捍衛的數字；這份台帳讓每一個數字都可以被追溯與捍衛。',
+    fieldLabel: '追溯欄位', step: '步驟', table: '資料表', ref: '參照值', verified: '驗證時間', note: '備註',
+    announce: (label, n) => `已載入 ${label} 的血緣：共 ${n} 個步驟。`,
+  },
+};
+
+export default function M06_ProvenanceLedger() {
+  const { lang } = useI18n();
+  const c = COPY[lang] ?? COPY.en;
+  const [fieldId, setFieldId] = useState(FIELDS[0].id);
+  const field = FIELDS.find(f => f.id === fieldId);
+  const announce = useMemo(() => c.announce(field.label, field.rows.length), [field, c]);
+
+  return (
+    <SectionModule mod={MOD} title={c.title} lead={c.lead} soWhat={c.soWhat}>
+      <div className="dt-pl">
+        <label className="dt-data-sm dt-pl-label" htmlFor="dt-pl-select">{c.fieldLabel}</label>
+        <select id="dt-pl-select" className="dt-pl-select" value={fieldId} onChange={e => setFieldId(e.target.value)}>
+          {FIELDS.map(f => <option value={f.id} key={f.id}>{f.label}</option>)}
+        </select>
+
+        <p className="dt-sr-only" aria-live="polite">{announce}</p>
+
+        <table className="dt-table dt-pl-table">
+          <thead>
+            <tr>
+              <th>{c.step}</th>
+              <th>{c.table}</th>
+              <th>{c.ref}</th>
+              <th>{c.verified}</th>
+              <th>{c.note}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {field.rows.map((r, i) => (
+              <tr key={r.table + i}>
+                <td className="dt-mono">{String(i + 1).padStart(2, '0')}</td>
+                <td className="dt-mono">{r.table}</td>
+                <td>{r.ref}</td>
+                <td className="dt-mono">{r.verified}</td>
+                <td>{r.note[lang]}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </SectionModule>
+  );
+}
+
+injectStyles('dt-m06-styles', `
+.dt-pl-label { display: block; margin-bottom: 6px; color: var(--dt-text-3); text-transform: uppercase; letter-spacing: 0.08em; }
+.dt-pl-select { width: 100%; max-width: 420px; font-family: var(--dt-font-data); font-size: 13px; color: var(--dt-text-1); background: var(--dt-bg-2); border: 1px solid var(--dt-line-2); border-radius: var(--dt-r-sm); padding: 9px 12px; margin-bottom: 18px; }
+.dt-pl-table { margin-top: 4px; }
+@media (max-width: 640px) {
+  .dt-pl-table thead { display: none; }
+  .dt-pl-table, .dt-pl-table tbody, .dt-pl-table tr, .dt-pl-table td { display: block; }
+  .dt-pl-table tr { border: 1px solid var(--dt-line-1); border-radius: var(--dt-r-sm); margin-bottom: 8px; padding: 8px 10px; }
+  .dt-pl-table td { border-bottom: none; padding: 3px 0; }
+}
+`);

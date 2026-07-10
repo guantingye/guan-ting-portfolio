@@ -188,8 +188,8 @@ export default function SkillsSection() {
                 ),
                 React.createElement('p', { className: 'fs-blurb reveal reveal-delay-2' },
                     PA
-                        ? '以精簡能力地圖呈現研究、產品、資料系統與 AI 產品落地的連結。'
-                        : 'A compact capability map across research discipline, product craft, data systems, and AI delivery.'
+                        ? '以研究理解問題，用設計建立體驗，再透過原型、資料與測試推進產品'
+                        : 'Understand problems through research, shape experiences through design, and advance product decisions through prototyping, data, and testing.'
                 )
             ),
             React.createElement('div', { className: 'fs-ovals reveal reveal-delay-2' },

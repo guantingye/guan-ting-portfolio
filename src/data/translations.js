@@ -92,7 +92,7 @@ export const TRANSLATIONS = {
         ch4Meta: '第四章', ch4Head: '下一篇章：AI Product × Research Ops',
         ch4Body: '接下來，我希望把心理學研究訓練、資料整理能力與產品實作經驗，投入真正服務使用者的 AI 原生產品團隊。期待參與產品策略、使用者研究、資料系統設計與前端原型實作，將複雜問題轉化為清楚、可信任、可持續迭代的產品。',
         workLabel: '精選專案', workTitle1: '從', workTitleEm: '研究、資料到介面', workTitle2: '，把想法做成可被使用的MVP產品',
-        skillsLabel: '能力地圖', skillsTitle1: '完整的', skillsTitleEm: '技能堆疊', skillsTitle2: '。',
+        skillsLabel: '能力系統', skillsTitle1: '把人與資料的訊號，', skillsTitleEm: '做成可驗證的產品', skillsTitle2: '。',
         skillDomain: '領域', skillTech: '技術', skillLang: '語言與軟實力',
         awardsLabel: '獎項與認可',
         awardsTitle1: '橫跨', awardsTitleEm: '研究、產品與生態系的外部認可。',
