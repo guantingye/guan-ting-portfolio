@@ -39,6 +39,53 @@ const DEEPTECH_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
     + `<path d="M980,420 C 1080,420 1100,${DEEPTECH_OUTPUT_YS[3] + 45} 1180,${DEEPTECH_OUTPUT_YS[3] + 45}" stroke="#E8A33D" stroke-width="2.5" fill="none" opacity="0.75"/>`
     + '</svg>');
 
+// Self-drawn SVG cover for the Strategy Intelligence Platform case (no stock
+// photos): a globe with three hub markers on the left, a brief assembling in
+// the middle, and a stack of database rows on the right — global signal to
+// deep text to structured record, in one frame, in the Neural Signal OS palette.
+const ISP_ROW_YS = [268, 342, 416, 490, 564];
+const ISP_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">'
+    + '<rect width="1600" height="900" fill="#0C0E12"/>'
+    + '<circle cx="270" cy="450" r="190" fill="#14171D" stroke="#262B35" stroke-width="2"/>'
+    + '<g stroke="#262B35" stroke-width="1" fill="none" opacity="0.8">'
+    + '<ellipse cx="270" cy="450" rx="190" ry="66"/><ellipse cx="270" cy="450" rx="190" ry="140"/>'
+    + '<ellipse cx="270" cy="450" rx="66" ry="190"/><ellipse cx="270" cy="450" rx="140" ry="190"/>'
+    + '</g>'
+    + '<circle cx="270" cy="450" r="190" fill="none" stroke="#333A47" stroke-width="2"/>'
+    + '<g fill="#35C2B0"><circle cx="196" cy="366" r="6"/><circle cx="360" cy="522" r="6"/></g>'
+    + '<circle cx="318" cy="384" r="10" fill="none" stroke="#E8A33D" stroke-width="2.5"/>'
+    + '<circle cx="318" cy="384" r="4.5" fill="#E8A33D"/>'
+    + '<g stroke="#35C2B0" stroke-width="1.5" fill="none" opacity="0.55">'
+    + '<path d="M330,392 C 420,430 470,440 520,440"/>'
+    + '<path d="M362,522 C 440,500 470,470 520,455"/>'
+    + '</g>'
+    + '<rect x="520" y="240" width="460" height="420" rx="14" fill="#14171D" stroke="#262B35" stroke-width="2"/>'
+    + '<rect x="552" y="272" width="220" height="16" rx="8" fill="#2A303C"/>'
+    + '<rect x="552" y="300" width="330" height="10" rx="5" fill="#1C2028"/>'
+    + '<g fill="#35C2B0" opacity="0.85">'
+    + '<rect x="552" y="336" width="10" height="10" rx="2"/><rect x="552" y="358" width="10" height="10" rx="2"/><rect x="552" y="380" width="10" height="10" rx="2"/>'
+    + '</g>'
+    + '<g fill="#2A303C">'
+    + '<rect x="574" y="338" width="360" height="8" rx="4"/><rect x="574" y="360" width="330" height="8" rx="4"/><rect x="574" y="382" width="300" height="8" rx="4"/>'
+    + '</g>'
+    + '<rect x="552" y="420" width="380" height="1" fill="#262B35"/>'
+    + '<g fill="#1C2028"><rect x="552" y="444" width="380" height="8" rx="4"/><rect x="552" y="464" width="360" height="8" rx="4"/><rect x="552" y="484" width="340" height="8" rx="4"/><rect x="552" y="504" width="320" height="8" rx="4"/></g>'
+    + '<rect x="552" y="580" width="380" height="34" rx="8" fill="#12241F" stroke="#35C2B0"/>'
+    + '<text x="572" y="602" fill="#35C2B0" font-family="monospace" font-size="16">▸ ask the database a question</text>'
+    + '<g stroke="#E8A33D" stroke-width="1.5" fill="none" opacity="0.6">'
+    + '<path d="M980,420 C 1030,420 1030,340 1080,340"/>'
+    + '</g>'
+    + '<g stroke="#262B35" stroke-width="2" fill="#14171D">'
+    + ISP_ROW_YS.map(y => `<rect x="1080" y="${y}" width="360" height="56" rx="10"/>`).join('')
+    + '</g>'
+    + '<g>' + ISP_ROW_YS.map((y, i) => `<circle cx="1104" cy="${y + 28}" r="6" fill="${i === 1 ? '#E8A33D' : '#35C2B0'}"/>`).join('') + '</g>'
+    + '<g fill="#2A303C">'
+    + ISP_ROW_YS.map(y => `<rect x="1126" y="${y + 16}" width="200" height="9" rx="4"/><rect x="1126" y="${y + 32}" width="150" height="7" rx="3"/>`).join('')
+    + '</g>'
+    + '<text x="1080" y="230" fill="#6B7280" font-family="monospace" font-size="18" letter-spacing="3">STRATEGY INTELLIGENCE · 201 RECORDS</text>'
+    + '</svg>');
+
 export const PROJECTS = [
     {
         slug: 'emobot-plus', num: '01',
@@ -324,93 +371,76 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
         awards: [],
     },
     {
-        slug: 'semiconductor-map', num: '06',
-        category: 'Ecosystem Intelligence · B2B Data Product', zhCategory: '生態系商情 · B2B 資料產品',
-        title: 'Taiwan Startup Ecosystem Atlas', subtitle: 'A crawled, tagged, queryable deep-tech intelligence layer',
-        zhTitle: '台灣新創生態系地圖', zhSubtitle: '可爬取、標籤化、可查詢的深科技商情層',
-        hook: 'A B2B intelligence layer over 230+ deep-tech companies: crawled and tagged into one atlas, read for gaps, capital, patents and grants — and questioned in plain language over RAG.',
-        zhHook: '一層覆蓋 230+ 家深科技公司的 B2B 商情：爬取並標籤化為一張地圖，讀出缺口、資金、專利與補助，並透過 RAG 用白話查詢。',
-        stack: ['Python', 'Playwright', 'ETL', 'Bilingual Taxonomy', 'RAG', 'SVG Data Viz'],
-        role: 'Data Engineer & Intelligence Product Designer', zhRole: '資料工程 / 商情產品設計',
-        timeline: '2024 – Present', status: 'Data foundation live · B2B layer proposed', zhStatus: '資料基礎上線 · B2B 層提案中',
-        impact: '230+ companies · 40+ dimensions · 9 sources', zhImpact: '230+ 家公司 · 40+ 維度 · 9 類來源',
-        overview: "Taiwan's deep-tech ecosystem is dense but poorly documented at the company level. The foundation of this project — built during my ITRI/ISTI work — is a crawled, enriched dataset of 230+ startups and scale-ups across semiconductor, AI, biotech and cleantech, with a bilingual taxonomy that maps Chinese company descriptions onto internationally-comparable categories.\n\nThis page re-envisions that dataset as a B2B intelligence product: acquire and structure the records, map them into a navigable ecosystem atlas, read them for value-chain gaps, capital flow, patent depth and grant routes, then deliver the result as briefs, an API, and a plain-language RAG query surface.\n\nThe evidence layer below opens the whole workshop — the sources, the schema and tagging, the interactive sector atlas, the gap and investment analysis, and the RAG console — with each artifact labelled for what is shipped versus proposed.",
-        zhOverview: "台灣深科技生態系相當密集，但在公司層面的文件記錄卻相對薄弱。本專案的基礎——建立於我在工研院的工作——是一份爬取並豐富化的資料集，涵蓋半導體、AI、生技與潔淨科技的 230+ 家新創與成長型公司，並以雙語分類法把中文公司描述對映到國際可比的類別。\n\n本頁把那份資料集重新設想為一個 B2B 商情產品：擷取並結構化紀錄、繪成可導覽的生態系地圖、讀出價值鏈缺口、資金流向、專利深度與補助管道，再以商情卡、API 與白話 RAG 查詢介面交付結果。\n\n下方的證據層打開整個工作間——來源、結構與標籤、可互動的產業地圖、缺口與投資分析，以及 RAG 查詢台——每個產出都標明哪些已上線、哪些為提案。",
+        slug: 'industry-strategy-platform', num: '06',
+        category: 'Strategy Intelligence · Frontier-Tech Database', zhCategory: '策略情報 · 前沿科技資料庫',
+        title: 'Strategy Intelligence Platform', subtitle: 'A Crunchbase for frontier tech, with an AI strategist designed on top',
+        zhTitle: 'Strategy Intelligence Platform', zhSubtitle: '一個為前沿科技而生的 Crunchbase，並在其上設計了一層 AI 策略師',
+        hook: 'A self-built, analyst-grade database of 201 frontier-tech companies — six sections per row, including a stated verdict — plus an AI strategist layer I designed to keep that depth scaling.',
+        zhHook: '一個自建、分析師等級的資料庫，收錄 201 家前沿科技公司——每列六段，包含一個明確的判斷——並設計了一層 AI 策略師，讓這種深度可以規模化。',
+        stack: ['React', 'Analyst Research', 'Bilingual Writing', 'AI Agent Design', 'Grounded RAG', 'Vercel'],
+        role: 'Founder, Analyst & Product Designer', zhRole: '創辦人 / 分析師 / 產品設計師',
+        timeline: '2025 – 2026', status: 'Live · database & briefs shipped, AI layer in concept', zhStatus: '上線 · 資料庫與簡報已上線，AI 層為概念設計',
+        impact: '201 companies · 5 strategic briefs · 10-field schema', zhImpact: '201 家公司 · 5 篇策略簡報 · 十欄位 schema',
+        overview: "Crunchbase will tell you a company exists. It will not tell you whether the moat is real, whether the round was priced for perfection, or whether it is worth a follow-up meeting. That gap is the product bet behind the Strategy Intelligence Platform — a site I designed and built end to end, live at industry-strategy-platform.vercel.app.\n\nThe foundation is a self-curated database of 201 frontier-tech companies — humanoid robotics, CRISPR gene editing, AI agents, photonics, climatetech, and more — where every row carries six analyst-written sections: founders, moat, business model, funding, risks, and a stated verdict. Alongside it, a strategic-briefs feed reads the macro picture: five long-form theses on power constraints, packaging bottlenecks, and where AI infrastructure is actually bottlenecked.\n\nThis page is not a UI tour. It opens the workshop: the schema and taxonomy behind 201 comparable rows, the writing method behind every brief and analyst note, and — the part I want to be most upfront about — an AI strategist layer I designed but have not yet wired to the live product: an agent that drafts a note in eight checkable skills, an editorial-ops board that manages what it drafts, and a grounded RAG layer that can query the database in plain language and cite its sources, or refuse when the schema does not have an answer. Each is labelled honestly as a concept, grounded in the real data.\n\nThis project sits downstream of two others in this portfolio: the ITRI ecosystem-data work (02) that first taught me how to structure a company record, and the AI News Intelligence pipeline (04), a related but distinct system whose daily-briefing discipline shaped how I think about a dated, sourced claim.",
+        zhOverview: "Crunchbase 會告訴你一家公司存在。它不會告訴你護城河是不是真的、那輪估值是不是已經定價到完美、或者值不值得一次後續會議。這個缺口，就是 Strategy Intelligence Platform 背後的產品賭注——一個我從頭到尾設計並開發的網站，上線於 industry-strategy-platform.vercel.app。\n\n基礎是一個自建策展的資料庫，收錄 201 家前沿科技公司——人形機器人、CRISPR 基因編輯、AI agent、光子學、潔淨科技等——每一列都帶著六段分析師撰寫的內容：創辦人、護城河、商業模式、資金、風險，以及一個明確的判斷。同時還有一條策略簡報動態，讀懂宏觀局勢：五篇關於電力限制、封裝瓶頸，以及 AI 基礎建設真正卡在哪裡的長文論點。\n\n這一頁不是介面導覽。它打開整個工作間：201 列可互相比較的紀錄背後的 schema 與分類法、每篇簡報與分析師註記背後的寫作方法，以及——我想最先誠實說明的部分——一層我設計、但尚未接上線上產品的 AI 策略師：一個以八個可檢查的技能寫出草稿的 agent、一個管理草稿的文案管理看板，以及一個能用白話查詢資料庫、附引用來源、且在 schema 沒有答案時願意拒答的依據式 RAG 層。每一個都誠實標為概念設計，並錨定在真實資料上。\n\n這個專案下游承接作品集裡的另外兩個專案：教會我如何結構化一筆公司紀錄的工研院生態資料工作（02），以及 AI News Intelligence 管線（04）——一個相關但不同的系統，它每日簡報的紀律，形塑了我對「一個有日期、有來源的主張」該長什麼樣的理解。",
         outcomes: [
-            'Crawled and enriched 230+ deep-tech companies from 9 public sources into 40+ dimensions each',
-            'Built a bilingual taxonomy (ZH↔EN) so a record is findable from either a Chinese or an English search',
-            'Mapped the set into an interactive sector atlas and a value-chain transect that exposes thin stages at a glance',
-            'Read the ecosystem for 7 value-chain gaps, per-sector capital composition, and patent-to-funding mismatches',
-            'Designed the B2B delivery layer — briefs, query API, and a grounded RAG console that cites where each answer comes from',
+            'Designed and shipped a live, bilingual product — a globe-led home, a strategic-briefs reader, and a searchable 201-company observatory',
+            'Curated a ten-field schema that holds an analyst\'s full judgment, not just firmographics, and stays constant across wildly different sectors',
+            'Wrote the analyst method behind every brief and company note — the same six-section shape from a coding agent to a gene-editing platform',
+            'Designed an AI strategist layer — an eight-skill agent, an editorial-ops board, and a grounded RAG console — honestly labelled as concept, not shipped',
+            'Built the interaction system (globe hub-switch, expandable rows, sector filter, bilingual toggle) that carries all three routes',
         ],
         zhOutcomes: [
-            '從 9 個公開來源爬取並豐富化 230+ 家深科技公司，每家 40+ 維度',
-            '建立雙語分類法（中↔英），使一筆紀錄從中文或英文搜尋都找得到',
-            '將資料集繪成可互動的產業地圖與價值鏈剖面，一眼看出單薄的階段',
-            '讀出 7 個價值鏈缺口、各產業資金組成，以及專利對資金的落差',
-            '設計 B2B 交付層——商情卡、查詢 API，以及會標出每個回答依據的 RAG 查詢台',
+            '設計並上線一個真實、雙語的產品——地球儀導向的首頁、策略簡報閱讀器，以及可搜尋的 201 家公司觀測站',
+            '策展出一套十欄位 schema，承載分析師的完整判斷，而不只是公司基本資料，並在極度不同的產業間保持一致',
+            '寫出每篇簡報與公司註記背後的分析師方法——同一套六段結構，從編碼代理適用到基因編輯平台',
+            '設計一層 AI 策略師——八技能 agent、文案管理看板與依據式 RAG 查詢台——誠實標為概念設計，而非已上線功能',
+            '打造撐起三條路徑的互動系統（地球儀 hub 切換、可展開列、產業篩選、雙語切換）',
         ],
         tech: [
-            { label: 'Acquisition', val: 'Python, Playwright, per-source adapters, cache fallback, append-only lineage' },
-            { label: 'Structure', val: '40+ dimension schema, bilingual ZH↔EN taxonomy, confidence & review state' },
-            { label: 'Sources', val: '104, MOPS, TSIA, SEMI.org, ASIP, patents, grants, news, company sites' },
-            { label: 'Analysis', val: 'Sector atlas, value-chain transect, gap analysis, investment flow' },
-            { label: 'Delivery', val: 'Brief cards, query API, atlas dashboard, grounded RAG console' },
-            { label: 'Context', val: 'ITRI/ISTI foundation; sits between the Data Room (02) and Platform (07)' },
+            { label: 'Frontend', val: 'React, client-side routing, bilingual EN/繁中 shell, Vercel deployment' },
+            { label: 'Database', val: '201-row curated schema — ten fields per company, six analyst-written sections' },
+            { label: 'Writing method', val: 'Analyst-authored briefs and notes, dated per curation batch, opinionated verdicts' },
+            { label: 'AI Agent design', val: 'Eight-skill drafting pipeline with a confidence + evidence gate (concept)' },
+            { label: 'Editorial ops design', val: 'Six-state kanban — backlog through published and stale (concept)' },
+            { label: 'RAG design', val: 'Typed chunking, hybrid structured + semantic retrieval, citation and refusal (concept)' },
         ],
-        caseHeroImage: 'data:image/svg+xml;utf8,' + encodeURIComponent(
-            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">'
-            + '<rect width="1600" height="900" fill="#0C0E12"/>'
-            + '<g stroke="#1B2029" stroke-width="1">'
-            + Array.from({ length: 17 }, (_, i) => `<path d="M${120 + i * 80} 90V810"/>`).join('')
-            + Array.from({ length: 10 }, (_, i) => `<path d="M120 ${90 + i * 80}H1480"/>`).join('')
-            + '</g>'
-            + '<g stroke="#E8A33D" stroke-width="1.5" opacity="0.6">'
-            + '<path d="M120 90h16M120 90v16M1464 90h16M1480 90v16M120 794v16M120 810h16M1464 810h16M1480 794v16"/></g>'
-            + '<text x="132" y="130" fill="#6B7280" font-family="monospace" font-size="20" letter-spacing="4">FIELD ATLAS · TAIWAN DEEP-TECH</text>'
-            // sector bubbles: teal=low gap, amber=mid, red=high
-            + '<circle cx="419" cy="300" r="56" fill="rgba(53,194,176,0.14)" stroke="#35C2B0" stroke-width="2"/><text x="419" y="308" fill="#F2F0EB" font-family="monospace" font-size="26" text-anchor="middle">45</text>'
-            + '<circle cx="800" cy="260" r="66" fill="rgba(232,163,61,0.14)" stroke="#E8A33D" stroke-width="2"/><text x="800" y="270" fill="#F2F0EB" font-family="monospace" font-size="30" text-anchor="middle">62</text>'
-            + '<circle cx="1099" cy="348" r="52" fill="rgba(229,103,90,0.14)" stroke="#E5675A" stroke-width="2"/><text x="1099" y="357" fill="#F2F0EB" font-family="monospace" font-size="24" text-anchor="middle">38</text>'
-            + '<circle cx="582" cy="452" r="47" fill="rgba(229,103,90,0.14)" stroke="#E5675A" stroke-width="2"/><text x="582" y="460" fill="#F2F0EB" font-family="monospace" font-size="22" text-anchor="middle">29</text>'
-            + '<circle cx="963" cy="470" r="54" fill="rgba(232,163,61,0.14)" stroke="#E8A33D" stroke-width="2"/><text x="963" y="479" fill="#F2F0EB" font-family="monospace" font-size="24" text-anchor="middle">41</text>'
-            + '<circle cx="1235" cy="500" r="40" fill="rgba(229,103,90,0.14)" stroke="#E5675A" stroke-width="2"/><text x="1235" y="508" fill="#F2F0EB" font-family="monospace" font-size="20" text-anchor="middle">18</text>'
-            + '<g stroke="#333A47" stroke-width="1.5" stroke-dasharray="5 5"><path d="M475 300 L734 260M866 260 L1047 348M619 452 L909 470M1017 470 L1195 500"/></g>'
-            // value-chain transect
-            + '<g>' + [22, 45, 41, 62, 45, 18].map((v, i) => {
-                const h = 20 + v * 1.8; const x = 200 + i * 190;
-                return `<rect x="${x}" y="${700 - h}" width="60" height="${h}" rx="4" fill="${i === 0 || i === 5 ? '#E5675A' : '#35C2B0'}" opacity="0.85"/>`;
-            }).join('') + '</g>'
-            + '<path d="M180 730H1420" stroke="#333A47" stroke-width="1.5"/>'
-            + '<rect x="200" y="756" width="1050" height="34" rx="8" fill="#14171D" stroke="#333A47"/><text x="220" y="778" fill="#E8A33D" font-family="monospace" font-size="16">▸ ask the atlas: which sectors have the biggest gaps?</text>'
-            + '</svg>'),
+        caseHeroImage: ISP_HERO_IMAGE,
         caseDeck: {
-            eyebrow: 'Intelligence atlas', zhEyebrow: '商情地圖集',
-            title: 'From 230+ scraped companies to a queryable market read',
-            zhTitle: '從 230+ 家爬取的公司到可查詢的市場判讀',
-            body: 'A workspace for reading the ecosystem the way an analyst, an investor, and a policymaker each would — coverage, gaps, capital, and a plain-language way in.',
-            zhBody: '一個工作區，用分析師、投資人與政策制定者各自的眼光讀懂生態系——覆蓋、缺口、資金，以及一個白話的入口。',
+            eyebrow: 'Strategy observatory', zhEyebrow: '策略觀測站',
+            title: 'From 201 curated companies to a strategist you can question',
+            zhTitle: '從 201 家策展公司到一個可以被提問的策略師',
+            body: 'A workspace for reading frontier tech the way an analyst does — moat, model, funding, risk, verdict — and a designed AI layer for keeping that depth at scale.',
+            zhBody: '一個用分析師的方式讀懂前沿科技的工作區——護城河、商模、資金、風險、判斷——以及一層讓這種深度得以規模化的設計中 AI 層。',
             kpis: [
-                { label: 'Companies', value: '230+', zhLabel: '公司數' },
-                { label: 'Sources', value: '9', zhLabel: '來源' },
-                { label: 'Value-chain gaps', value: '7', zhLabel: '價值鏈缺口' },
+                { label: 'Companies', value: '201', zhLabel: '公司數' },
+                { label: 'Schema fields', value: '10', zhLabel: 'Schema 欄位' },
+                { label: 'Strategic briefs', value: '5', zhLabel: '策略簡報' },
             ],
-            signals: ['Crawl', 'Tag', 'Map', 'Gap', 'Capital', 'RAG'],
-            zhSignals: ['爬取', '標籤', '製圖', '缺口', '資金', 'RAG'],
+            signals: ['Curate', 'Write', 'Automate', 'Query', 'Ship'],
+            zhSignals: ['策展', '寫作', '代理', '查詢', '上線'],
         },
         storyMoments: [
-            { iconKey: 'database', title: 'Acquire & structure', zhTitle: '擷取與結構化', body: 'Nine public sources, each earning a different kind of evidence, folded into one 40+ dimension record and tagged in both languages.', zhBody: '九個公開來源各換取不同證據，收攏成一筆 40+ 維度的紀錄，並以雙語標籤化。' },
-            { iconKey: 'map', title: 'Map & analyze', zhTitle: '製圖與分析', body: 'The set becomes a navigable atlas: sectors sized by count, a value-chain transect, and gaps read from coverage and capital.', zhBody: '資料集變成可導覽的地圖：產業依數量大小、價值鏈剖面，以及讀自覆蓋與資金的缺口。' },
-            { iconKey: 'cpu', title: 'Deliver & query', zhTitle: '交付與查詢', body: 'Intelligence reaches a decision as briefs, an API, and a grounded RAG console that cites where each answer comes from.', zhBody: '商情以商情卡、API 與會標出依據的 RAG 查詢台觸及決策。' },
+            { iconKey: 'database', title: 'The database is the product', zhTitle: '資料庫本身就是產品', body: '201 companies, ten fields each, six of them an analyst\'s judgment — not a fact sheet with a search bar.', zhBody: '201 家公司，各十個欄位，其中六個是分析師的判斷——不是一張加了搜尋框的事實表。' },
+            { iconKey: 'cpu', title: 'An AI strategist, designed honestly', zhTitle: '一個誠實標示的 AI 策略師', body: 'An eight-skill agent, an editorial-ops board, and a grounded RAG layer — labelled concept, grounded in the real schema.', zhBody: '八技能 agent、文案管理看板與依據式 RAG 層——標為概念設計，錨定於真實 schema。' },
+            { iconKey: 'globe', title: 'Global by design', zhTitle: '刻意的全球視野', body: 'A globe, not a hero image, because the product\'s first job is to make breadth across geographies legible.', zhBody: '用地球儀而不是主視覺圖，因為產品的第一個任務就是讓跨地理的廣度一眼可辨。' },
+        ],
+        outcomeModules: [
+            { num: '02', id: 'isp-m02' },
+            { num: '04', id: 'isp-m04' },
+            { num: '06', id: 'isp-m06' },
+            { num: '08', id: 'isp-m08' },
+            { num: '10', id: 'isp-m10' },
         ],
         storyChapters: [
-            { iconKey: 'database', label: 'Acquire', zhLabel: '擷取', title: 'Turn scattered public signals into one record', zhTitle: '把分散的公開訊號變成一筆紀錄', body: 'Crawlers with per-source adapters pull talent, filings, patents, grants, and news; a staging layer keeps provenance; normalisation makes companies comparable; a bilingual tag layer makes them findable from either language.', zhBody: '帶各來源 adapter 的爬蟲擷取人才、財報、專利、補助與新聞；暫存層保留來源溯源；標準化讓公司可比較；雙語標籤層讓它們從任一語言都找得到。', artifact: 'Source atlas', zhArtifact: '來源地圖' },
-            { iconKey: 'map', label: 'Map', zhLabel: '製圖', title: 'Make the ecosystem one navigable picture', zhTitle: '把生態系變成一張可導覽的圖', body: 'The atlas places sectors on a field sized by company count and coloured by value-chain gap; a transect re-cuts the same set upstream-to-downstream so a thin stage is visible before a word of analysis.', zhBody: '地圖把產業放在一片場域上，大小依公司數、顏色依價值鏈缺口；剖面把同一集合由上游到下游重切，讓單薄的階段在任何分析之前就看得見。', artifact: 'Sector atlas', zhArtifact: '產業地圖' },
-            { iconKey: 'chart', label: 'Analyze', zhLabel: '分析', title: 'Read gaps, capital, patents and grants', zhTitle: '讀出缺口、資金、專利與補助', body: 'Seven value-chain gaps stated with a reason and a data signal; capital composition per sector; a ledger of patent depth, grant routes, and the prevailing business model — the read an investor or policymaker actually needs.', zhBody: '七個價值鏈缺口，各附理由與資料訊號；各產業資金組成；一份專利深度、補助管道與主流商模的帳——投資人或政策制定者真正需要的判讀。', artifact: 'Gap & flow analysis', zhArtifact: '缺口與流向分析' },
-            { iconKey: 'cpu', label: 'Deliver', zhLabel: '交付', title: 'Let a decision-maker ask it a question', zhTitle: '讓決策者能向它提問', body: 'The B2B layer names who reads this and the decision they owe, then meets them with briefs, a query API, and a grounded RAG console that answers plain language and cites the records behind every claim.', zhBody: 'B2B 層指明誰在讀、他們該做的決策，再以商情卡、查詢 API 與依據式 RAG 查詢台迎接他們——回答白話、並為每個主張引用背後的紀錄。', artifact: 'RAG console', zhArtifact: 'RAG 查詢台' },
+            { iconKey: 'database', label: 'Build', zhLabel: '建庫', title: 'Curate depth, not just coverage', zhTitle: '策展深度，而不只是覆蓋率', body: 'Crunchbase indexes millions of companies with a fact sheet each. This database holds 201, on purpose — every row carries an analyst\'s full judgment through a constant ten-field schema, so a laser-weeding robot and a CRISPR platform read the same way.', zhBody: 'Crunchbase 用一張事實表索引數百萬家公司。這個資料庫刻意只收 201 家——每一列都透過一套固定的十欄位 schema，承載分析師的完整判斷，讓雷射除草機器人和 CRISPR 平台讀起來是同一套邏輯。', artifact: 'Schema & taxonomy', zhArtifact: 'Schema 與分類法' },
+            { iconKey: 'book', label: 'Write', zhLabel: '寫作', title: 'Six sections, one verdict', zhTitle: '六段結構，一個判斷', body: 'The moat, business-model, funding, and risk sections earn the right to the sixth: a stated, disagreeable verdict. That is the section a plain fact sheet never has, and the one this whole product is built around.', zhBody: '護城河、商業模式、資金與風險段落，賺得寫出第六段的資格：一個明確、可被反駁的判斷。這是一張純事實表永遠不會有的段落，也是整個產品圍繞著建立的核心。', artifact: 'Analyst note anatomy', zhArtifact: '分析師註記解剖' },
+            { iconKey: 'cpu', label: 'Automate', zhLabel: '代理', title: 'Design an AI strategist, not a black box', zhTitle: '設計一個 AI 策略師，而不是黑箱', body: 'Deep writing does not scale by hand forever, so I designed an agent as eight small, independently checkable skills — sourcing through style-guard — with a confidence gate that holds thin evidence instead of publishing it. Concept, honestly labelled.', zhBody: '深度寫作沒辦法永遠靠人力擴大規模，所以我把 agent 設計成八個小型、各自可獨立檢查的技能——從檢索到文風守門——並附一道信心閘門，讓不足的證據被保留，而不是被發佈。誠實標為概念設計。', artifact: 'Agent skill system', zhArtifact: 'Agent 技能系統' },
+            { iconKey: 'zap', label: 'Query', zhLabel: '查詢', title: 'Ground every answer, or refuse', zhTitle: '每個答案都有依據，否則拒答', body: 'A RAG layer designed over the same schema: typed chunks, hybrid structured-plus-semantic retrieval, and a citation on every claim — including a question the database honestly cannot answer.', zhBody: '一層架在同一套 schema 上的 RAG 設計：有型別的切塊、結構化加語意的混合檢索，以及每個主張都附上引用——包含一個資料庫誠實答不出來的問題。', artifact: 'Grounded RAG design', zhArtifact: '依據式 RAG 設計' },
+            { iconKey: 'monitor', label: 'Ship', zhLabel: '上線', title: 'From wireframe to a live, bilingual product', zhTitle: '從線框圖到上線的雙語產品', body: 'A globe-led home, a book-like briefs reader, and a dense, expandable company table — three different reading modes for three different jobs, shipped and running today.', zhBody: '地球儀導向的首頁、書籍式的簡報閱讀器，以及一張密集、可展開的公司表格——三種不同的閱讀模式對應三種不同的工作，今天就在線上運作。', artifact: 'Shipped interface', zhArtifact: '已上線介面' },
         ],
-        pullQuote: 'A market map earns its keep when an analyst, an investor, and a policymaker can each read it from their own angle — and then ask it a question.',
-        zhPullQuote: '一張市場地圖真正有價值，是當分析師、投資人與政策制定者各自都能從自己的角度讀懂它——然後能向它提問。',
+        pullQuote: 'Crunchbase tells you a company exists. An analyst tells you whether it matters. The product bet here is a database where every row carries the analyst\'s answer — and an AI layer designed to keep that promise at scale.',
+        zhPullQuote: 'Crunchbase 告訴你一家公司存在，分析師告訴你它重不重要。這個產品賭的是：一個每一列都帶著分析師答案的資料庫——以及一層讓這個承諾能規模化的 AI。',
         awards: [],
     },
     {
@@ -547,7 +577,7 @@ export const PROJECT_THEMES = {
     'ai-product-launch-os':         'ai',
     'ai-news-intelligence':         'ai',
     'ux-hmi-interaction-lab':       'research',
-    'semiconductor-map':            'map',
+    'industry-strategy-platform':   'map',
     'startup-intelligence-platform':'platform',
     'psymatch':                     'research',
 };

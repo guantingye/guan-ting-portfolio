@@ -3,6 +3,7 @@ import DataroomEvidence from '../dataroom/DataroomEvidence.jsx';
 import EmobotCaseStudy from './EmobotCaseStudy.jsx';
 import LaunchOsEvidence from '../launch-os/LaunchOsEvidence.jsx';
 import EvidenceLab from '../evidence-lab/EvidenceLab.jsx';
+import StrategyPlatformEvidence from '../strategy-platform/StrategyPlatformEvidence.jsx';
 
 export default function ProjectExtraSection({ slug, lang }) {
   const PA = lang === 'zh';
@@ -18,23 +19,7 @@ export default function ProjectExtraSection({ slug, lang }) {
   // ai-news-intelligence: the source matrix now lives in the Evidence Layer
   // (Module 02), mounted after the technical approach in ProjectPage.
 
-  if (slug === 'semiconductor-map') return React.createElement('div', { className: 'proj-section reveal' },
-    React.createElement('div', { className: 'proj-section-title' }, PA ? '深科技價值鏈覆蓋' : 'Deep Tech Value Chain Coverage'),
-    React.createElement('div', { className: 'chain-flow' },
-      ...[
-        { num: '01', name: 'Semiconductor / IC Design', tag: '45+ companies' },
-        { num: '02', name: 'AI / Machine Learning',     tag: '62+ companies' },
-        { num: '03', name: 'Biotech / MedTech',         tag: '38+ companies' },
-        { num: '04', name: 'Cleantech / Energy',        tag: '29+ companies' },
-        { num: '05', name: 'Advanced Manufacturing',    tag: '41+ companies' },
-        { num: '06', name: 'Deep-Tech Enablers',        tag: '18+ companies' },
-      ].map(c => React.createElement('div', { className: 'chain-row', key: c.num },
-        React.createElement('span', { className: 'chain-num' }, c.num),
-        React.createElement('span', { className: 'chain-name' }, c.name),
-        React.createElement('span', { className: 'chain-tag' }, c.tag)
-      ))
-    )
-  );
+  if (slug === 'industry-strategy-platform') return React.createElement(StrategyPlatformEvidence, null);
 
   if (slug === 'startup-intelligence-platform') return React.createElement('div', { className: 'proj-section reveal' },
     React.createElement('div', { className: 'proj-section-title' }, PA ? '平台關鍵指標' : 'Platform Key Metrics'),
