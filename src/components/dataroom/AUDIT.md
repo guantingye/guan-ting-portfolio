@@ -15,7 +15,7 @@ and the UX/HMI Interaction Design Lab (`.gx`).
 - Tokens (reused verbatim, Neural Signal OS palette): bg-0 #060709 / bg-1 #0C0E12 /
   bg-2 #14171D / bg-3 #1C2028, line #262B35/#333A47, text #F2F0EB/#A8ADB8/#6B7280,
   teal #35C2B0, amber #E8A33D, red #E5675A, sky #57A6E8, iris #9B95E6.
-  Fonts: Newsreader (display), Inter (body), JetBrains Mono (data/stamps).
+  Fonts: Fraunces (display), Inter (body), JetBrains Mono (data/stamps).
 
 ## Differentiation (template §6) — new scope `.dt`
 Dialect: **research database console** — mono ledger/table forms, a console-rule

@@ -170,7 +170,7 @@ injectStyles('isp-shared', `
   --isp-iris-dim: rgba(155,149,230,0.12);
   --isp-slate: #94A0B0;
   --isp-slate-dim: rgba(148,160,176,0.10);
-  --isp-font-display: 'Newsreader', 'Noto Serif TC', serif;
+  --isp-font-display: 'Fraunces', 'Noto Serif TC', Georgia, serif;
   --isp-font-body: 'Inter', 'Noto Sans TC', sans-serif;
   --isp-font-data: 'JetBrains Mono', monospace;
   --isp-r-sm: 5px;

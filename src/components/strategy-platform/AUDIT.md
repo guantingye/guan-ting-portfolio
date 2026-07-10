@@ -16,7 +16,7 @@ https://industry-strategy-platform.vercel.app/.
 - Tokens (Neural Signal OS palette, `.isp`-scoped — see gotcha below): bg-0
   #060911 / bg-1 #0B0F19 / bg-2 #131829 / bg-3 #1B2136, line #262D42/#333C57,
   text #F1F2F6/#A9AFC2/#6C7690, teal #35C2B0, amber #E8A33D, red #E5675A,
-  sky #57A6E8, iris #9B95E6. Fonts: Newsreader (display), Inter (body),
+  sky #57A6E8, iris #9B95E6. Fonts: Fraunces (display), Inter (body),
   JetBrains Mono (data/stamps). Background/line/text values are a distinct
   (bluer) shade from the `.ni`/`.dt`/`.gx` scopes on purpose, so this project's
   screenshots and the reused webp captures of the (navy-toned) live product

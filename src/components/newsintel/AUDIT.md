@@ -14,7 +14,7 @@ This file records what is REAL vs reconstructed so no badge lies.
 - Tokens (source of truth, reused verbatim): bg-0 #060709 / bg-1 #0C0E12 /
   bg-2 #14171D / bg-3 #1C2028, line #262B35, text #F2F0EB/#A8ADB8/#6B7280,
   teal #35C2B0 (signal), amber #E8A33D (attention), red #E5675A.
-  Fonts: Newsreader (display), Inter (body), JetBrains Mono (data/stamps).
+  Fonts: Fraunces (display), Inter (body), JetBrains Mono (data/stamps).
 
 ## Differentiation (plan 0.3) — new scope `.ni`
 Own dialect: intelligence-briefing / wire-service terminal. Wire-feed ticker,

@@ -197,7 +197,7 @@ injectStyles('gx-shared-styles', `
   --gx-red-dim: rgba(229,103,90,0.12);
   --gx-gold: #CBA255;
   --gx-iris: #9B95E6;
-  --gx-font-display: 'Newsreader', 'Noto Serif TC', serif;
+  --gx-font-display: 'Fraunces', 'Noto Serif TC', Georgia, serif;
   --gx-font-body: 'Inter', 'Noto Sans TC', sans-serif;
   --gx-font-data: 'JetBrains Mono', monospace;
   --gx-r-sm: 6px;

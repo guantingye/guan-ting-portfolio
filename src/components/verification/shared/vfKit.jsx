@@ -158,7 +158,7 @@ injectStyles('vf-shared', `
   --vf-gold-dim: rgba(203,162,85,0.13);
   --vf-rose: #E0897B;
   --vf-rose-dim: rgba(224,137,123,0.13);
-  --vf-font-display: 'Newsreader', 'Noto Serif TC', serif;
+  --vf-font-display: 'Fraunces', 'Noto Serif TC', Georgia, serif;
   --vf-font-body: 'Inter', 'Noto Sans TC', sans-serif;
   --vf-font-data: 'JetBrains Mono', monospace;
   --vf-r-sm: 6px;

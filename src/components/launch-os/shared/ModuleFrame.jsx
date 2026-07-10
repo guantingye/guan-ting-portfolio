@@ -68,7 +68,7 @@ injectStyles('los-shared-styles', `
   --amber-dim: rgba(232,163,61,0.12);
   --red: #D96A5B;
   --red-dim: rgba(217,106,91,0.12);
-  --font-display: 'Newsreader', 'Noto Serif TC', serif;
+  --font-display: 'Fraunces', 'Noto Serif TC', Georgia, serif;
   --font-body: 'Inter', 'Noto Sans TC', sans-serif;
   --font-data: 'JetBrains Mono', monospace;
   --radius-sm: 6px;

@@ -185,7 +185,7 @@ function SketchScreen({ rough }) {
                 <rect x="300" y="20" width="70" height="18" rx="9" />
                 <rect x="150" y="60" width="234" height="120" rx="4" />
 
-                <text x="168" y="120" fontFamily="'Newsreader',serif" fontSize="42" fill="#5A554C" stroke="none">
+                <text x="168" y="120" fontFamily="'Fraunces',serif" fontSize="42" fill="#5A554C" stroke="none">
                     4.2
                 </text>
 

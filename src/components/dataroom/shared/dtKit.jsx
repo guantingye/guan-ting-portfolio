@@ -118,7 +118,7 @@ injectStyles('dt-shared', `
   --dt-red-dim: rgba(229,103,90,0.12);
   --dt-sky: #57A6E8;
   --dt-iris: #9B95E6;
-  --dt-font-display: 'Newsreader', 'Noto Serif TC', serif;
+  --dt-font-display: 'Fraunces', 'Noto Serif TC', Georgia, serif;
   --dt-font-body: 'Inter', 'Noto Sans TC', sans-serif;
   --dt-font-data: 'JetBrains Mono', monospace;
   --dt-r-sm: 5px;

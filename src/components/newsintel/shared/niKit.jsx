@@ -176,7 +176,7 @@ injectStyles('ni-shared', `
   --ni-iris-dim: rgba(155,149,230,0.12);
   --ni-slate: #94A0B0;
   --ni-slate-dim: rgba(148,160,176,0.10);
-  --ni-font-display: 'Newsreader', 'Noto Serif TC', serif;
+  --ni-font-display: 'Fraunces', 'Noto Serif TC', Georgia, serif;
   --ni-font-body: 'Inter', 'Noto Sans TC', sans-serif;
   --ni-font-data: 'JetBrains Mono', monospace;
   --ni-r-sm: 5px;

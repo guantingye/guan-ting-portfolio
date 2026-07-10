@@ -86,6 +86,67 @@ const ISP_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
     + '<text x="1080" y="230" fill="#6B7280" font-family="monospace" font-size="18" letter-spacing="3">STRATEGY INTELLIGENCE · 201 RECORDS</text>'
     + '</svg>');
 
+// Self-drawn SVG cover for the AI News Intelligence case (no stock photos): six
+// registered sources on the left, a five-stage pipeline column in the middle,
+// and two delivery surfaces (Notion + /insights feed) on the right — the news
+// firehose resolving into a dated, sourced briefing, in the Neural Signal OS palette.
+const NEWS_SOURCE_YS = [150, 250, 350, 450, 550, 650];
+const NEWS_STAGE_YS = [252, 360, 468, 576];
+const NEWS_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">'
+    + '<rect width="1600" height="900" fill="#0C0E12"/>'
+    + '<g stroke="#262B35" stroke-width="2" fill="#14171D">'
+    + NEWS_SOURCE_YS.map(y => `<rect x="90" y="${y}" width="250" height="60" rx="10"/>`).join('')
+    + '</g>'
+    + '<g>' + NEWS_SOURCE_YS.map((y, i) => `<circle cx="114" cy="${y + 30}" r="6" fill="${i === 5 ? '#E8A33D' : '#35C2B0'}"/>`).join('') + '</g>'
+    + '<g fill="#2A303C">' + NEWS_SOURCE_YS.map(y => `<rect x="134" y="${y + 18}" width="150" height="9" rx="4"/><rect x="134" y="${y + 34}" width="110" height="7" rx="3"/>`).join('') + '</g>'
+    + '<g stroke="#35C2B0" stroke-width="2" fill="none" opacity="0.42">'
+    + NEWS_SOURCE_YS.map(y => `<path d="M340,${y + 30} C 460,${y + 30} 500,450 620,450"/>`).join('')
+    + '</g>'
+    + '<rect x="620" y="196" width="360" height="508" rx="16" fill="#14171D" stroke="#262B35" stroke-width="2"/>'
+    + '<text x="648" y="238" fill="#6B7280" font-family="monospace" font-size="16" letter-spacing="2">PIPELINE</text>'
+    + '<g>' + NEWS_STAGE_YS.map((y, i) => `<rect x="648" y="${y}" width="304" height="76" rx="10" fill="#0C0E12" stroke="#232A36"/><rect x="648" y="${y}" width="5" height="76" rx="2" fill="${i === 3 ? '#E8A33D' : '#35C2B0'}"/>`).join('') + '</g>'
+    + '<g fill="#2A303C">' + NEWS_STAGE_YS.map(y => `<rect x="674" y="${y + 24}" width="150" height="10" rx="5"/><rect x="674" y="${y + 46}" width="220" height="8" rx="4"/>`).join('') + '</g>'
+    + '<g stroke="#E8A33D" stroke-width="2" fill="none" opacity="0.6"><path d="M980,450 C 1060,450 1080,360 1160,360"/><path d="M980,450 C 1060,450 1080,560 1160,560"/></g>'
+    + '<g stroke="#262B35" stroke-width="2" fill="#14171D"><rect x="1160" y="300" width="330" height="120" rx="12"/><rect x="1160" y="500" width="330" height="120" rx="12"/></g>'
+    + '<g fill="#35C2B0"><circle cx="1188" cy="330" r="6"/><circle cx="1188" cy="530" r="6"/></g>'
+    + '<g fill="#2A303C"><rect x="1206" y="324" width="160" height="12" rx="6"/><rect x="1184" y="356" width="280" height="8" rx="4"/><rect x="1184" y="374" width="250" height="8" rx="4"/><rect x="1184" y="392" width="265" height="8" rx="4"/><rect x="1206" y="524" width="180" height="12" rx="6"/><rect x="1184" y="556" width="280" height="8" rx="4"/><rect x="1184" y="574" width="235" height="8" rx="4"/><rect x="1184" y="592" width="255" height="8" rx="4"/></g>'
+    + '<text x="90" y="770" fill="#6B7280" font-family="monospace" font-size="18" letter-spacing="3">AI NEWS INTELLIGENCE · 6 SOURCES · DAILY</text>'
+    + '</svg>');
+
+// Self-drawn SVG cover for the Startup Intelligence Platform case (no stock
+// photos): automated crawlers feeding an ETL node, a SQL store at the centre,
+// and an interactive dashboard on the right — a manual spreadsheet replaced by a
+// self-refreshing pipeline, in the Neural Signal OS palette.
+const STARTUP_CRAWLER_YS = [230, 340, 450, 560];
+const STARTUP_BARS = [70, 110, 90, 150, 120, 170];
+const STARTUP_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">'
+    + '<rect width="1600" height="900" fill="#0C0E12"/>'
+    + '<text x="90" y="210" fill="#6B7280" font-family="monospace" font-size="15" letter-spacing="2">CRAWLERS</text>'
+    + '<g stroke="#262B35" stroke-width="2" fill="#14171D">'
+    + STARTUP_CRAWLER_YS.map(y => `<rect x="90" y="${y}" width="210" height="60" rx="10"/>`).join('')
+    + '</g>'
+    + '<g>' + STARTUP_CRAWLER_YS.map(y => `<circle cx="114" cy="${y + 30}" r="6" fill="#35C2B0"/>`).join('') + '</g>'
+    + '<g fill="#2A303C">' + STARTUP_CRAWLER_YS.map(y => `<rect x="132" y="${y + 24}" width="130" height="10" rx="5"/>`).join('') + '</g>'
+    + '<g stroke="#35C2B0" stroke-width="2" fill="none" opacity="0.42">' + STARTUP_CRAWLER_YS.map(y => `<path d="M300,${y + 30} C 360,${y + 30} 380,430 440,430"/>`).join('') + '</g>'
+    + '<rect x="440" y="382" width="150" height="96" rx="12" fill="#12241F" stroke="#35C2B0" stroke-width="2"/>'
+    + '<text x="474" y="438" fill="#35C2B0" font-family="monospace" font-size="22" letter-spacing="2">ETL</text>'
+    + '<g stroke="#E8A33D" stroke-width="2" fill="none" opacity="0.6"><path d="M590,430 C 660,430 680,430 740,430"/></g>'
+    + '<g fill="#1C2028" stroke="#333A47" stroke-width="3"><ellipse cx="850" cy="330" rx="110" ry="26"/><rect x="740" y="330" width="220" height="200"/><ellipse cx="850" cy="530" rx="110" ry="26"/></g>'
+    + '<ellipse cx="850" cy="330" rx="110" ry="26" fill="#14171D" stroke="#35C2B0" stroke-width="2"/>'
+    + '<g stroke="#262B35" stroke-width="1.5" fill="none"><path d="M740,400 a110,26 0 0 0 220,0"/><path d="M740,460 a110,26 0 0 0 220,0"/></g>'
+    + '<text x="808" y="602" fill="#6B7280" font-family="monospace" font-size="16" letter-spacing="2">SQL</text>'
+    + '<g stroke="#35C2B0" stroke-width="2" fill="none" opacity="0.6"><path d="M960,430 C 1030,430 1050,430 1120,430"/></g>'
+    + '<rect x="1120" y="240" width="380" height="420" rx="16" fill="#14171D" stroke="#262B35" stroke-width="2"/>'
+    + '<text x="1148" y="286" fill="#6B7280" font-family="monospace" font-size="15" letter-spacing="2">DASHBOARD</text>'
+    + '<g fill="#35C2B0">' + STARTUP_BARS.map((h, i) => `<rect x="${1150 + i * 44}" y="${520 - h}" width="26" height="${h}" rx="4" opacity="${i === 3 ? 1 : 0.55}"/>`).join('') + '</g>'
+    + '<line x1="1148" y1="520" x2="1476" y2="520" stroke="#262B35" stroke-width="2"/>'
+    + '<polyline points="1150,614 1214,594 1278,602 1342,568 1406,586 1476,546" fill="none" stroke="#E8A33D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>'
+    + '<circle cx="1476" cy="546" r="6" fill="#E8A33D"/>'
+    + '<text x="90" y="770" fill="#6B7280" font-family="monospace" font-size="18" letter-spacing="3">STARTUP INTELLIGENCE · REAL-TIME · SOLO-BUILT</text>'
+    + '</svg>');
+
 export const PROJECTS = [
     {
         slug: 'emobot-plus', num: '01',
@@ -281,6 +342,35 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
         outcomes: ['6-source crawler with Playwright + Trafilatura, handling JS-heavy and static sites', 'Multi-stage LLM pipeline: relevance scoring → entity extraction → strategic summary', 'Native bilingual output (EN + ZH-TW) with consistent formatting', 'Automated Notion publishing with structured database entries', 'Cost optimization: GPT-4o → Gemini, ~75% cost reduction per run'],
         zhOutcomes: ['建立 6 源爬蟲，以 Playwright + Trafilatura 處理 JS 密集與靜態頁面', '多階段 LLM 管線：相關性評分 → 實體提取 → 策略摘要', '原生雙語輸出（EN + ZH-TW），格式一致', '自動化 Notion 發布，建立結構化資料庫條目', '成本優化：GPT-4o → Gemini，每次執行成本降低約 75%'],
         tech: [{ label: 'Crawler', val: 'Playwright, Trafilatura, feedparser, httpx' }, { label: 'AI Layer', val: 'Gemini 1.5 Pro, GPT-4o (legacy), prompt chaining' }, { label: 'Pipeline', val: 'Python async, multi-stage processing, retry logic' }, { label: 'Output', val: 'Notion API, structured database, Markdown reports' }, { label: 'Sources', val: 'TechCrunch, MIT TR, TechNews, INSIDE, TNW + feeds' }, { label: 'Quality', val: 'Entity deduplication, relevance scoring, date normalization' }],
+        caseHeroImage: NEWS_HERO_IMAGE,
+        caseDeck: {
+            eyebrow: 'Newsroom pipeline', zhEyebrow: '編輯室管線',
+            title: 'From a global news firehose to a dated, sourced briefing',
+            zhTitle: '把全球新聞的消防栓，收斂成有日期、有來源的簡報',
+            body: 'A solo-built pipeline that crawls six sources, reads the full text, scores what matters, and publishes a bilingual briefing every day — each claim traceable to the article that made it.',
+            zhBody: '一套獨立打造的管線，爬取六個來源、讀取全文、為重要程度評分，每天發布雙語簡報——每個主張都能追溯回產生它的原文。',
+            kpis: [
+                { label: 'Sources', value: '6', zhLabel: '來源' },
+                { label: 'Cost cut', value: '75%', zhLabel: '成本降低' },
+                { label: 'Cadence', value: 'Daily', zhLabel: '更新頻率' },
+            ],
+            signals: ['Crawl', 'Extract', 'Score', 'Summarise', 'Publish'],
+            zhSignals: ['爬取', '萃取', '評分', '摘要', '發布'],
+        },
+        storyMoments: [
+            { iconKey: 'activity', title: 'The firehose problem', zhTitle: '消防栓問題', body: 'A deep-tech team cannot manually read every AI, semiconductor, and frontier-science story published each day. The volume is the problem before the analysis is.', zhBody: '深科技團隊無法手動讀完每天發布的每一則 AI、半導體與前沿科學新聞。在分析之前，數量本身就是問題。' },
+            { iconKey: 'layers', title: 'A pipeline, not a prompt', zhTitle: '一條管線，而不是一個提示', body: 'Crawl, extract, score, summarise, publish — each stage is separable, retryable, and inspectable, so a bad run is diagnosable instead of mysterious.', zhBody: '爬取、萃取、評分、摘要、發布——每個階段都可分離、可重試、可檢查，讓出狀況的那次執行是可以被診斷的，而不是神秘的。' },
+            { iconKey: 'zap', title: 'The cost migration', zhTitle: '成本遷移', body: 'Moving the summarising stage from GPT-4o to Gemini cut per-run cost about 75% while holding output quality — a decision the pipeline was built to make cheaply.', zhBody: '把摘要階段從 GPT-4o 換到 Gemini，在維持輸出品質下把每次執行成本降低約 75%——這是管線被設計成能低成本做出的決策。' },
+        ],
+        storyChapters: [
+            { iconKey: 'activity', label: 'Crawl', zhLabel: '爬取', title: 'Poll six sources without breaking on the seventh', zhTitle: '輪詢六個來源，且不因第七個而崩潰', body: 'Playwright handles the JS-heavy pages while feedparser and httpx handle the static ones. Each source is registered with its own quirks, so adding a seventh does not mean rewriting the crawler.', zhBody: 'Playwright 處理 JS 密集頁面，feedparser 與 httpx 處理靜態頁面。每個來源都登錄了自己的特性，因此新增第七個來源不需要重寫爬蟲。', artifact: 'Source registry', zhArtifact: '來源登錄表' },
+            { iconKey: 'layers', label: 'Extract', zhLabel: '萃取', title: 'Pull clean full text out of messy HTML', zhTitle: '從雜亂 HTML 中抽出乾淨全文', body: 'Trafilatura strips navigation, ads, and boilerplate down to the article body, so the model reads the story rather than the page furniture around it.', zhBody: 'Trafilatura 剝除導覽、廣告與樣板，只留下文章本體，讓模型讀到的是報導本身，而不是頁面裝飾。', artifact: 'Extraction pass', zhArtifact: '萃取流程' },
+            { iconKey: 'target', label: 'Score', zhLabel: '評分', title: 'Decide what a deep-tech team should actually see', zhTitle: '判斷深科技團隊真正該看到什麼', body: 'A relevance stage scores each item and pulls out entities, so the briefing leads with what matters to this audience instead of whatever happened to be loudest.', zhBody: '相關性階段為每一則評分並抽取實體，讓簡報以「對這群讀者重要的事」開頭，而不是剛好聲量最大的事。', artifact: 'Relevance + entities', zhArtifact: '相關性與實體' },
+            { iconKey: 'book', label: 'Summarise', zhLabel: '摘要', title: 'Write it once, in two languages, with the numbers intact', zhTitle: '一次寫成，雙語，且數字不走樣', body: 'The summariser produces native EN and ZH-TW with consistent formatting, quoting figures verbatim so a translated briefing never quietly changes a number.', zhBody: '摘要器產出原生的英文與繁中，格式一致，並逐字引用數字，讓翻譯後的簡報不會悄悄改動任何一個數值。', artifact: 'Bilingual summary', zhArtifact: '雙語摘要' },
+            { iconKey: 'check', label: 'Publish', zhLabel: '發布', title: 'Land it where the team already reads', zhTitle: '把它送到團隊已經在讀的地方', body: 'Each briefing is written to a structured Notion database and surfaced on the Strategy Platform /insights feed — the same delivery surface project 06 is built around.', zhBody: '每篇簡報寫入結構化的 Notion 資料庫，並呈現在 Strategy Platform 的 /insights 動態上——正是專案 06 圍繞著建立的交付面。', artifact: 'Notion + /insights', zhArtifact: 'Notion 與 /insights' },
+        ],
+        pullQuote: 'The hard part was never calling a model. It was building a pipeline that turns a firehose of news into a dated, sourced claim a team can trust before breakfast.',
+        zhPullQuote: '困難的從來不是呼叫模型，而是打造一條管線，把新聞的消防栓，變成團隊能在早餐前就信任的、有日期有來源的主張。',
         awards: [],
     },
     {
@@ -459,6 +549,35 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
         outcomes: ['Independently designed and built full-stack architecture (Python backend + JS frontend)', 'Automated web crawler collects fresh startup baseline data on schedule', 'ETL pipeline processes, normalizes, and loads data into SQL database', 'Interactive visualization dashboard enables team data-driven decision-making', 'Selected as 2025 ITRI Star Program seed cultivator following platform recognition'],
         zhOutcomes: ['獨立設計並建構全端架構（Python 後端 + JS 前端）', '自動化網路爬蟲定期抓取最新新創基盤數據', 'ETL 管線處理、標準化數據並載入 SQL 資料庫', '互動式視覺化儀表板支援團隊數據驅動決策', '平台影響力受認可，獲選 2025 年工研院育星計畫種子培育'],
         tech: [{ label: 'Backend', val: 'Python, SQL database management & maintenance' }, { label: 'Frontend', val: 'JavaScript, interactive data visualization' }, { label: 'Crawler', val: 'Automated web scraper for startup ecosystem data' }, { label: 'Pipeline', val: 'ETL (Extract, Transform, Load) workflow' }, { label: 'Database', val: 'SQL with automated refresh cycle' }, { label: 'Context', val: 'Internal platform at ITRI/ISTI Innovation Division' }],
+        caseHeroImage: STARTUP_HERO_IMAGE,
+        caseDeck: {
+            eyebrow: 'Ecosystem cockpit', zhEyebrow: '生態系駕駛艙',
+            title: 'From manual spreadsheets to a real-time window on the ecosystem',
+            zhTitle: '從手動試算表，到即時俯瞰生態系的視窗',
+            body: "A solo-built full-stack platform that crawls, cleans, stores, and visualises Taiwan's startup landscape — so an ITRI team stopped hand-updating spreadsheets and started reading a live dashboard.",
+            zhBody: '一套獨立打造的全端平台，爬取、清理、儲存並視覺化台灣新創版圖——讓工研院團隊不再手動更新試算表，而是開始讀一個即時儀表板。',
+            kpis: [
+                { label: 'Manual work', value: '−80%', zhLabel: '手動工作' },
+                { label: 'Refresh', value: '100% auto', zhLabel: '資料更新' },
+                { label: 'Built by', value: '1', zhLabel: '開發人數' },
+            ],
+            signals: ['Crawl', 'Transform', 'Store', 'Visualise', 'Decide'],
+            zhSignals: ['爬取', '轉換', '儲存', '視覺化', '決策'],
+        },
+        storyMoments: [
+            { iconKey: 'activity', title: 'The spreadsheet ceiling', zhTitle: '試算表的天花板', body: 'Before the platform, ecosystem data lived in hand-updated spreadsheets and ad hoc searches — slow, error-prone, and impossible to scale past a few analysts.', zhBody: '在平台之前，生態系資料活在手動更新的試算表與臨時搜尋裡——慢、易錯，且無法擴展到少數幾位分析師以外。' },
+            { iconKey: 'database', title: 'An automated backbone', zhTitle: '自動化骨幹', body: 'Python crawlers feed an ETL pipeline that normalises and loads into SQL on a schedule, so the data refreshes itself instead of waiting for someone to remember.', zhBody: 'Python 爬蟲餵給一條 ETL 管線，定期標準化並載入 SQL，讓資料自我更新，而不是等某個人想起來。' },
+            { iconKey: 'chart', title: 'A window, not a report', zhTitle: '一扇窗，而不是一份報告', body: 'An interactive JS dashboard turned the database into something a strategy team could look through — recognised by ITRI with a 2025 Star Program place.', zhBody: '互動式 JS 儀表板把資料庫變成策略團隊真正能俯瞰的東西——並獲工研院以 2025 育星計畫的名額肯定。' },
+        ],
+        storyChapters: [
+            { iconKey: 'target', label: 'Problem', zhLabel: '問題', title: 'Name the real cost of manual data', zhTitle: '指出手動資料的真實成本', body: 'Strategy decisions at ITRI depended on current, accurate startup data — but manual spreadsheet updates meant the picture was always a little stale and never fully trusted.', zhBody: '工研院的策略決策仰賴即時、準確的新創資料——但手動更新試算表意味著這幅圖像總是有點過期，也從未被完全信任。', artifact: 'Problem framing', zhArtifact: '問題定義' },
+            { iconKey: 'activity', label: 'Crawl', zhLabel: '爬取', title: 'Collect the baseline on a schedule', zhTitle: '定期蒐集基盤資料', body: 'Automated web crawlers gather fresh startup ecosystem data on a cadence, replacing the ad hoc searches that used to eat an analyst’s morning.', zhBody: '自動化網路爬蟲定期抓取最新的新創生態資料，取代過去吃掉分析師整個早上的臨時搜尋。', artifact: 'Crawler jobs', zhArtifact: '爬蟲任務' },
+            { iconKey: 'layers', label: 'Transform', zhLabel: '轉換', title: 'Make the data loadable and consistent', zhTitle: '讓資料可載入且一致', body: 'An ETL pipeline extracts, normalises, and loads the raw signals into a managed SQL database, so what reaches the dashboard is clean and comparable.', zhBody: '一條 ETL 管線把原始訊號萃取、標準化並載入受管的 SQL 資料庫，讓抵達儀表板的資料是乾淨且可比較的。', artifact: 'ETL workflow', zhArtifact: 'ETL 流程' },
+            { iconKey: 'monitor', label: 'Visualise', zhLabel: '視覺化', title: 'Turn a database into a decision surface', zhTitle: '把資料庫變成決策介面', body: 'A JavaScript dashboard makes the ecosystem browsable and filterable, so the team reads and compares in seconds instead of scrolling a spreadsheet.', zhBody: '一個 JavaScript 儀表板讓生態系可瀏覽、可篩選，讓團隊在幾秒內閱讀與比較，而不是滑動一張試算表。', artifact: 'Dashboard', zhArtifact: '儀表板' },
+            { iconKey: 'check', label: 'Impact', zhLabel: '影響', title: 'Recognised, and still running', zhTitle: '被肯定，且仍在運作', body: 'The platform gave the team their first real-time window on the ecosystem and led to selection as a 2025 ITRI Star Program seed cultivator — an internal accelerated-development track.', zhBody: '這個平台給了團隊第一個即時俯瞰生態系的視窗，並促成獲選 2025 年工研院育星計畫種子培育——一個內部加速發展的軌道。', artifact: 'Star Program', zhArtifact: '育星計畫' },
+        ],
+        pullQuote: 'The win was not the crawler or the dashboard. It was that a team stopped trusting a stale spreadsheet and started trusting a system that refreshes itself.',
+        zhPullQuote: '真正的成果不是爬蟲或儀表板，而是一個團隊不再信任一張過期的試算表，開始信任一個會自我更新的系統。',
         awards: [{ iconKey: 'database', title: '2025 ITRI Star Program', desc: 'Selected as seed cultivator — outstanding platform contribution and data engineering excellence at ITRI/ISTI.' }],
     },
     {

@@ -23,8 +23,8 @@ const COLOR_TOKENS = [
 ];
 
 const TYPE_SCALE = [
-    { name: 'display-xl', spec: 'clamp(40–64px) · Newsreader 500', style: { fontFamily: 'var(--font-display)', fontSize: 'clamp(40px, 4.5vw, 64px)', fontWeight: 500, lineHeight: 1.05 } },
-    { name: 'display-md', spec: 'clamp(28–40px) · Newsreader 500', style: { fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 3vw, 40px)', fontWeight: 500, lineHeight: 1.15 } },
+    { name: 'display-xl', spec: 'clamp(40–64px) · Fraunces 500', style: { fontFamily: 'var(--font-display)', fontSize: 'clamp(40px, 4.5vw, 64px)', fontWeight: 500, lineHeight: 1.05 } },
+    { name: 'display-md', spec: 'clamp(28–40px) · Fraunces 500', style: { fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 3vw, 40px)', fontWeight: 500, lineHeight: 1.15 } },
     { name: 'heading', spec: '20px / 1.3 · Inter 600', style: { fontFamily: 'var(--font-body)', fontSize: 20, fontWeight: 600, lineHeight: 1.3 } },
     { name: 'body', spec: '16px / 1.65 · Inter 400', style: { fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.65 } },
     { name: 'data-md', spec: '14px / 1.5 · JetBrains Mono 400', style: { fontFamily: 'var(--font-data)', fontSize: 14, lineHeight: 1.5 } },

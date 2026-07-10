@@ -237,7 +237,7 @@ injectStyles('pm-shared', `
   --pm-iris: #9B95E6;
   --pm-iris-dim: rgba(155,149,230,0.12);
   --pm-paper: #ECE7DC;
-  --pm-font-display: 'Newsreader', 'Noto Serif TC', serif;
+  --pm-font-display: 'Fraunces', 'Noto Serif TC', Georgia, serif;
   --pm-font-body: 'Inter', 'Noto Sans TC', sans-serif;
   --pm-font-data: 'JetBrains Mono', monospace;
   --pm-r-sm: 5px;
