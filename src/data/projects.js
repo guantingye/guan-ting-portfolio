@@ -244,6 +244,58 @@ const FIELD_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
     + '</g>'
     + '</svg>');
 
+// Self-drawn SVG cover for the Brain, Mind & Learning case (no stock photos):
+// a three-network connectogram — Frontoparietal (indigo), Salience (coral),
+// Default Mode (amber) — in the same triangular arrangement as the real
+// analysis figure, on the same dark hero ground as every other cover.
+const BRAIN_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">'
+    + '<rect width="1600" height="900" fill="#0C0E12"/>'
+    + '<defs>'
+    + '<linearGradient id="eA" x1="0" y1="1" x2="0.5" y2="0">'
+    + '<stop offset="0" stop-color="#5B6CF0"/><stop offset="1" stop-color="#E5734E"/>'
+    + '</linearGradient>'
+    + '<linearGradient id="eB" x1="1" y1="1" x2="0.5" y2="0">'
+    + '<stop offset="0" stop-color="#E8A33D"/><stop offset="1" stop-color="#E5734E"/>'
+    + '</linearGradient>'
+    + '<linearGradient id="eC" x1="0" y1="0" x2="1" y2="0">'
+    + '<stop offset="0" stop-color="#5B6CF0"/><stop offset="1" stop-color="#E8A33D"/>'
+    + '</linearGradient>'
+    + '<radialGradient id="gFPN" cx="0.5" cy="0.5" r="0.5">'
+    + '<stop offset="0" stop-color="#5B6CF0" stop-opacity="0.20"/><stop offset="1" stop-color="#5B6CF0" stop-opacity="0"/>'
+    + '</radialGradient>'
+    + '<radialGradient id="gSN" cx="0.5" cy="0.5" r="0.5">'
+    + '<stop offset="0" stop-color="#E5734E" stop-opacity="0.20"/><stop offset="1" stop-color="#E5734E" stop-opacity="0"/>'
+    + '</radialGradient>'
+    + '<radialGradient id="gDMN" cx="0.5" cy="0.5" r="0.5">'
+    + '<stop offset="0" stop-color="#E8A33D" stop-opacity="0.18"/><stop offset="1" stop-color="#E8A33D" stop-opacity="0"/>'
+    + '</radialGradient>'
+    + '</defs>'
+    + '<circle cx="500" cy="610" r="230" fill="url(#gFPN)"/>'
+    + '<circle cx="900" cy="270" r="230" fill="url(#gSN)"/>'
+    + '<circle cx="1180" cy="610" r="230" fill="url(#gDMN)"/>'
+    + '<g fill="none" stroke-linecap="round">'
+    + '<path d="M520,540 C 650,440 780,380 860,340" stroke="url(#eA)" stroke-width="6" opacity="0.9"/>'
+    + '<path d="M960,340 C 1040,420 1100,480 1150,540" stroke="url(#eB)" stroke-width="6" opacity="0.9"/>'
+    + '<path d="M570,620 C 750,650 950,650 1120,620" stroke="url(#eC)" stroke-width="5" opacity="0.75"/>'
+    + '</g>'
+    + '<g fill="#5B6CF0">'
+    + '<circle cx="480" cy="560" r="14"/><circle cx="500" cy="640" r="14"/><circle cx="440" cy="660" r="10"/>'
+    + '</g>'
+    + '<g fill="#E5734E">'
+    + '<circle cx="880" cy="300" r="14"/><circle cx="920" cy="260" r="14"/><circle cx="940" cy="330" r="10"/>'
+    + '</g>'
+    + '<g fill="#E8A33D">'
+    + '<circle cx="1160" cy="560" r="14"/><circle cx="1180" cy="640" r="14"/><circle cx="1220" cy="590" r="10"/>'
+    + '</g>'
+    + '<g stroke="#262B35" stroke-width="2" opacity="0.7">'
+    + [180, 260, 340, 420].map((y) => `<line x1="90" y1="${y}" x2="230" y2="${y}"/>`).join('')
+    + '</g>'
+    + '<g stroke="#35C2B0" stroke-width="2.5" fill="none" opacity="0.55">'
+    + '<path d="M1350,780 C 1380,740 1400,810 1420,770 C 1440,730 1460,800 1480,760 C 1500,730 1510,780 1520,750"/>'
+    + '</g>'
+    + '</svg>');
+
 export const PROJECTS = [
     {
         slug: 'emobot-plus', num: '01',
@@ -947,6 +999,87 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
         ],
         awards: [],
     },
+    {
+        slug: 'brain-and-learning', num: '11',
+        category: 'Cognitive Neuroscience Research', zhCategory: '認知神經科學研究',
+        title: 'Brain, Mind & Learning', subtitle: 'fMRI research on attention, presence, and how people learn',
+        zhTitle: '腦・心智・學習', zhSubtitle: '一場關於注意力、臨場感與學習的 fMRI 研究',
+        hook: 'Before I designed AI products, I spent two years inside a cognitive-neuroscience lab, designing experiments that step outside the sterile button-press paradigm. This page packages that science the way I package products: a naturalistic study, two genuinely novel analysis methods, and the real figures and photographs from the two conferences that tested it in public.',
+        zhHook: '在設計 AI 產品之前，我在認知神經科學實驗室待了兩年，設計跳脫「按鍵反應」制式典範的實驗。這一頁用我包裝產品的方式包裝這門科學：一項自然情境研究、兩套真正新穎的分析方法，以及兩場公開檢驗它的會議留下的真實圖片與照片。',
+        stack: ['fMRI & Neuroimaging', 'Experimental Design', 'R / Python / MATLAB / SPSS', 'Statistics & Machine Learning', 'Academic Writing & Presentation'],
+        role: 'Research Assistant · M.S. Thesis', zhRole: '研究助理 · 碩士論文',
+        timeline: '2023 – 2025', status: 'Published research · 2 conferences', zhStatus: '已發表研究 · 兩場會議',
+        impact: 'TSCN Excellent Award · OHBM Brisbane', zhImpact: 'TSCN 優等獎 · OHBM 布里斯本',
+        overview: "Before any of the consoles in this portfolio existed, I spent close to two years as a research assistant at the Taiwan Mind and Brain Imaging Center, running MRI, cognitive, and physiological experiments across child and adult participants. Alongside that floor work, I carried a flagship study of my own — one built on a deliberate departure from how this kind of research usually gets done.\n\nMost fMRI attention research still relies on artificial, repeated-trial tasks. This study used a naturalistic paradigm instead: 43 participants watched one continuous lecture, delivered either by a dynamic live instructor or a static instructor image. The real innovation was in what came after — reading the result not through single-region activation, but through network-wise functional connectivity across the Frontoparietal, Salience, and Default Mode networks, and through a machine-learning classifier trained on those connectivity features.\n\nThis page treats that research with the same case-study discipline as the other ten projects — but in a different register: a journal-paper world instead of a console. Rather than building custom charts to dramatize results, it shows the real methodology figures and photographs from the actual thesis and its two conferences — the award, the poster, the connectivity diagram, the classification pipeline. The work was recognized with The Excellent Award at the 2025 Taiwan Society for Cognitive Neuroscience Annual Meeting, and presented internationally at the 2025 OHBM Annual Meeting in Brisbane.\n\nOne honesty note, in the same spirit as the rest of this portfolio: institutional facts, the thesis design, the methodology, and the directional findings are real and already published. No specific experimental statistics are disclosed on this page — the figures shown are the actual analysis diagrams, and the text describes direction and method, not exact numbers.",
+        zhOverview: "在這本作品集的任何一座主控台出現之前，我在台灣心智科學腦造影中心當了將近兩年的研究助理，執行橫跨孩童與成人受試者的 MRI、認知與生理實驗。在第一線工作之餘，我也帶著一項屬於自己的旗艦研究——一項刻意背離這類研究慣常做法的研究。\n\n多數 fMRI 注意力研究仍仰賴人工化、重複試次的作業設計。這項研究改用自然情境典範：43 名受試者觀看一段連續的講課內容，分別由動態真人講師或靜態講師圖像呈現。真正的創新在於後續的分析方式——不是看單一腦區活化，而是透過額葉頂葉網絡、顯著性網絡與預設模式網絡之間的網絡層級功能性連結，並用建立在這些連結特徵上的機器學習分類器來解讀。\n\n這一頁用和其他十個專案相同的 case-study 紀律來對待這項研究——但換了一種語域：不是主控台，而是一個期刊論文的世界。這裡不打造自製圖表來誇飾結果，而是展示碩論與兩場會議留下的真實方法論圖版與照片——獎項、海報、連結分析示意圖、分類流程圖。這項研究獲頒 2025 年台灣認知神經科學年會（TSCN）碩士論文優等獎，並於 2025 年 OHBM 年會於澳洲布里斯本進行國際發表。\n\n照這本作品集一貫的誠實原則說明：機構事實、研究設計、方法論與方向性發現皆為真實且已公開發表。此頁面不揭露任何具體實驗統計數字——所展示的圖版皆為實際分析示意圖，文字描述的是方向與方法，而非精確數值。",
+        outcomes: [
+            'Ran MRI, cognitive, and physiological experiments end to end at the Taiwan Mind and Brain Imaging Center, across child and adult participants.',
+            'Designed a naturalistic fMRI paradigm — a real, continuous lecture rather than an artificial repeated-trial task — contrasting a dynamic live instructor against a static instructor image across 43 participants.',
+            'Applied network-wise functional connectivity analysis across the Frontoparietal, Salience, and Default Mode networks — moving the analysis past single-region activation.',
+            'Built a machine-learning classification pipeline (feature selection, leave-one-out cross-validation, logistic regression, ROC/AUC) that separated learner groups from connectivity features alone.',
+            'Won The Excellent Award for the thesis at TSCN 2025, and presented the findings internationally at OHBM 2025 in Brisbane.',
+            'Carried the underlying discipline — naturalistic experimental design, connectivity-based analysis, classification methodology — into the UX research and data-product work in projects 01–10.',
+        ],
+        zhOutcomes: [
+            '在台灣心智科學腦造影中心執行橫跨孩童與成人受試者的 MRI、認知與生理實驗全流程。',
+            '設計一項自然情境 fMRI 典範——以一段真實連續的講課內容取代人工化重複試次作業——比較 43 名受試者觀看動態真人講師與靜態講師圖像的差異。',
+            '運用網絡層級功能性連結分析，橫跨額葉頂葉網絡、顯著性網絡與預設模式網絡——讓分析跳脫單一腦區活化。',
+            '建立機器學習分類流程（特徵選取、留一法交叉驗證、邏輯迴歸、ROC／AUC），僅憑連結特徵便能區分學習者群組。',
+            '碩士論文於 TSCN 2025 榮獲優等獎，並於 2025 年 OHBM 布里斯本年會進行國際發表。',
+            '把底層紀律——自然情境實驗設計、連結基礎分析、分類方法論——帶進專案 01–10 的 UX 研究與資料產品工作。',
+        ],
+        tech: [
+            { label: 'Experimental Design', val: 'Naturalistic paradigm — continuous lecture stimulus, live vs. static instructor, N=43, MRI/cognitive/physiological protocols' },
+            { label: 'Neuroimaging Analysis', val: 'Network-wise functional connectivity (Frontoparietal · Salience · Default Mode), preprocessing, multivariate integration with behavioral data' },
+            { label: 'Statistics & ML', val: 'SPSS, R, Python, MATLAB — median-split classification, RFE feature selection, leave-one-out cross-validation, logistic regression' },
+            { label: 'Academic Communication', val: 'Oral presentation (TSCN 2025), international poster (OHBM 2025), academic report writing' },
+        ],
+        caseHeroImage: BRAIN_HERO_IMAGE,
+        caseDeck: {
+            eyebrow: 'Research record', zhEyebrow: '研究紀錄',
+            title: 'Two years, one flagship study',
+            zhTitle: '兩年，一項旗艦研究',
+            body: 'Design an experiment, collect the data, find the connectivity signature, defend it twice — the same spine that now runs every case study in this portfolio.',
+            zhBody: '設計實驗、收集資料、找出連結訊號、上台辯護兩次——這正是現在跑在作品集每一個案例底下的同一條脊椎。',
+            kpis: [
+                { label: 'Participants', value: '43', zhLabel: '受試者' },
+                { label: 'Networks studied', value: '3', zhLabel: '研究網絡' },
+                { label: 'Conferences', value: '2', zhLabel: '會議發表' },
+            ],
+            signals: ['Design', 'Collect', 'Analyze', 'Model', 'Present'],
+            zhSignals: ['設計', '收集', '分析', '建模', '發表'],
+        },
+        storyMoments: [
+            { iconKey: 'zap', title: 'Trading control for reality', zhTitle: '用控制力換真實', body: 'Deciding to hand a scanner participant a real, continuous lecture instead of another button-press task — and trusting that the analysis method could catch up.', zhBody: '決定讓掃描儀裡的受試者看一段真實、連續的講課內容，而不是又一個按鍵反應作業——並相信分析方法跟得上這個決定。' },
+            { iconKey: 'award', title: 'The name they called', zhTitle: '被念出來的那個名字', body: 'Hearing "The Excellent Award" called at TSCN 2025 for a thesis that started as a stubborn question about eye contact and attention.', zhBody: '在 TSCN 2025 聽見自己的碩論被念出「優等獎」——它原本只是一個關於眼神接觸與注意力的固執提問。' },
+            { iconKey: 'globe', title: 'A poster in Brisbane', zhTitle: '布里斯本的那張海報', body: 'Explaining a naturalistic connectivity paradigm to researchers who had never met a UX designer who could also run a classifier — and vice versa.', zhBody: '向從沒遇過「也會跑分類器的 UX 設計師」的研究者解釋自然情境連結典範——反之亦然。' },
+        ],
+        outcomeModules: [
+            { num: '03', id: 'bl-c03' },
+            { num: '04', id: 'bl-c04' },
+            { num: '05', id: 'bl-c05' },
+            { num: '06', id: 'bl-c06' },
+            { num: '07', id: 'bl-c07' },
+            { num: '09', id: 'bl-c09' },
+        ],
+        storyChapters: [
+            { iconKey: 'target', label: 'Question', zhLabel: '提問', title: 'The question behind the dashboards', zhTitle: '儀表板背後的提問', body: 'Two years inside a cognitive-neuroscience lab, testing what every learning interface quietly assumes.', zhBody: '兩年在認知神經科學實驗室，驗證每一個學習介面都在默默假設的事。', artifact: 'Abstract', zhArtifact: '摘要' },
+            { iconKey: 'activity', label: 'Lab', zhLabel: '實驗室', title: 'Running the experiments', zhTitle: '執行實驗', body: 'MRI, cognitive, and physiological sessions across children and adults, at the Taiwan Mind and Brain Imaging Center.', zhBody: '在台灣心智科學腦造影中心，執行橫跨孩童與成人的 MRI、認知與生理實驗。', artifact: 'Lab role', zhArtifact: '實驗室角色' },
+            { iconKey: 'zap', label: 'Design', zhLabel: '設計', title: 'A naturalistic paradigm, N = 43', zhTitle: '自然情境典範，N = 43', body: 'A real, continuous lecture in two formats — trading some experimental control for ecological validity.', zhBody: '一段真實連續的講課內容、兩種呈現格式——用一部分實驗控制力，換取生態效度。', artifact: 'Fig. 1–2', zhArtifact: '圖一至圖二' },
+            { iconKey: 'trend', label: 'Method', zhLabel: '方法', title: 'Functional connectivity + ML classification', zhTitle: '功能性連結＋機器學習分類', body: 'Two novel analysis lenses — network-wise connectivity, and a classifier trained on those features.', zhBody: '兩個新穎的分析視角——網絡層級連結分析，以及在這些特徵上訓練出的分類器。', artifact: 'Fig. 3–4', zhArtifact: '圖三至圖四' },
+            { iconKey: 'award', label: 'Recognition', zhLabel: '肯定', title: 'TSCN excellence, OHBM Brisbane', zhTitle: 'TSCN 優等獎，OHBM 布里斯本', body: 'The Excellent Award for the thesis, then an international poster in Brisbane.', zhBody: '碩論獲頒優等獎，接著於布里斯本進行國際海報發表。', artifact: 'Two conferences', zhArtifact: '兩場會議' },
+        ],
+        pullQuote: 'Most of what we know about the brain comes from rooms built to remove everything natural from it. This thesis let the brain do what it actually does, then read the answer through two lenses most labs weren\'t using yet.',
+        zhPullQuote: '我們對大腦的理解，多半來自被設計來移除一切自然元素的房間。這篇論文讓大腦做它實際會做的事，再用兩個多數實驗室還沒用上的視角，去讀那個答案。',
+        evidenceSlots: [
+            { iconKey: 'zap', title: 'See the real methodology', zhTitle: '看真實的方法論', desc: 'The actual functional-connectivity and machine-learning-classification figures from the thesis — not a mockup built for this page.', zhDesc: '碩論中實際的功能性連結與機器學習分類圖版——不是為這頁另外做的示意圖。', anchor: 'bl-c04', anchorNum: '04' },
+            { iconKey: 'award', title: 'Read the two conference records', zhTitle: '讀兩場會議紀錄', desc: 'The Excellent Award at TSCN 2025, then an international poster at OHBM Brisbane — both walked through with real photos.', zhDesc: 'TSCN 2025 優等獎，接著 OHBM 布里斯本國際海報——都附上真實照片完整走過。', anchor: 'bl-c06', anchorNum: '06' },
+            { iconKey: 'trend', title: 'See where the research leads', zhTitle: '看研究通往哪裡', desc: 'Four research skills, each drawn as a line pointing at the portfolio projects where it lives now.', zhDesc: '四條研究能力線，每一條都指向它現在住的作品集專案。', anchor: 'bl-c09', anchorNum: '09' },
+        ],
+        awards: [
+            { iconKey: 'award', title: 'The Excellent Award — Master\'s Thesis', desc: '2025 Taiwan Society for Cognitive Neuroscience Annual Meeting (TSCN)' },
+        ],
+    },
 ];
 export const PROJECT_THEMES = {
     'emobot-plus':                  'emobot',
@@ -959,4 +1092,5 @@ export const PROJECT_THEMES = {
     'psymatch':                     'research',
     'deepscout':                    'ai',
     'field-journey':                'field',
+    'brain-and-learning':           'mind',
 };

@@ -11,6 +11,7 @@ import VerificationLayer from '../verification/VerificationLayer.jsx';
 import ProductShowcase from '../product-showcase/ProductShowcase.jsx';
 import DeepScoutEvidence from '../deepscout/DeepScoutEvidence.jsx';
 import FieldJourneyEvidence from '../field-journey/FieldJourneyEvidence.jsx';
+import BrainLearningEvidence from '../brain-and-learning/BrainLearningEvidence.jsx';
 
 // The single "middle" interactive-evidence slot. Every project mounts its big
 // interactive module here — after the storytelling case study and before
@@ -42,6 +43,8 @@ export default function ProjectExtraSection({ slug, lang }) {
   if (slug === 'deepscout') return React.createElement(DeepScoutEvidence, null);
 
   if (slug === 'field-journey') return React.createElement(FieldJourneyEvidence, null);
+
+  if (slug === 'brain-and-learning') return React.createElement(BrainLearningEvidence, null);
 
   return null;
 }
