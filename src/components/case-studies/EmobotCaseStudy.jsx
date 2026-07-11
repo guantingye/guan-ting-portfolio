@@ -11,10 +11,21 @@ const personaAvatarImages = {
 };
 
 const systemArchitectureWireframe = new URL('../../../assets/System architecture wireframe.png', import.meta.url).href;
-
+const emobotLogo = new URL('../../../assets/emobot LOGO.png', import.meta.url).href;
+const personaVideos = {
+  Lumi: new URL('../../../assets/lumi_video.mp4', import.meta.url).href,
+  Solin: new URL('../../../assets/solin_video.mp4', import.meta.url).href,
+  Niko: new URL('../../../assets/niko_video.mp4', import.meta.url).href,
+  Clara: new URL('../../../assets/clara_video.mp4', import.meta.url).href,
+};
 export default function EmobotCaseStudy({ lang }) {
   const PA = lang === 'zh';
   const [activePersona, setActivePersona] = useState(0);
+  const [isPersonaSpeaking, setIsPersonaSpeaking] = useState(false);
+  const [isPersonaPlaybackPending, setIsPersonaPlaybackPending] = useState(false);
+  const [hasPersonaVideoError, setHasPersonaVideoError] = useState(false);
+  const personaVideoRef = useRef(null);
+  const personaTabsRef = useRef(null);
   const archWrapRef = useRef(null);
   const [archScale, setArchScale] = useState(1);
   useEffect(() => {
@@ -26,6 +37,37 @@ export default function EmobotCaseStudy({ lang }) {
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
+  useEffect(() => {
+    setIsPersonaSpeaking(false);
+    setIsPersonaPlaybackPending(false);
+    setHasPersonaVideoError(false);
+  }, [activePersona]);
+
+  const togglePersonaVideo = async () => {
+    const video = personaVideoRef.current;
+    if (!video) return;
+    if (!video.paused) {
+      video.pause();
+      setIsPersonaSpeaking(false);
+      setIsPersonaPlaybackPending(false);
+      return;
+    }
+    try {
+      setIsPersonaPlaybackPending(true);
+      await video.play();
+    } catch {
+      setIsPersonaPlaybackPending(false);
+      setHasPersonaVideoError(true);
+    }
+  };
+  const navigatePersonaTabs = (event) => {
+    if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+    event.preventDefault();
+    const direction = event.key === 'ArrowRight' ? 1 : -1;
+    const nextPersona = (activePersona + direction + personas.length) % personas.length;
+    setActivePersona(nextPersona);
+    requestAnimationFrame(() => personaTabsRef.current?.querySelectorAll('[role="tab"]')[nextPersona]?.focus());
+  };
   const pick = (item, key) => {
     const zhKey = 'zh' + key.charAt(0).toUpperCase() + key.slice(1);
     return PA && item[zhKey] ? item[zhKey] : item[key];
@@ -209,9 +251,9 @@ export default function EmobotCaseStudy({ lang }) {
   ];
 
   const personaPrinciples = [
-    { label: 'Match', zhLabel: '媒合', body: 'Each persona maps to a different help-seeking state, not a visual skin.', zhBody: '每個人設對應不同求助狀態，而不是替換外觀而已。' },
-    { label: 'Tone', zhLabel: '語氣', body: 'Response length, pacing, and emotional directness change with the support need.', zhBody: '回覆長度、節奏與情緒直率度，會隨支持需求調整。' },
-    { label: 'Boundary', zhLabel: '邊界', body: 'The system keeps care language supportive while avoiding clinical over-claiming.', zhBody: '系統維持支持語言，但避免宣稱取代臨床判斷。' },
+    { iconKey: 'target', label: 'Read the need', zhLabel: '讀取需求', title: 'Match', zhTitle: '媒合', body: 'Trait signals and the current help-seeking state select a support strategy, not merely a character style.', zhBody: '綜合心理特質與當下求助狀態，選擇合適的支持策略，而不只是替換角色外觀。' },
+    { iconKey: 'activity', label: 'Shape the response', zhLabel: '調整回應', title: 'Tone', zhTitle: '語氣', body: 'Warmth, pacing, question depth, and response length adapt to what the user can receive at that moment.', zhBody: '依使用者當下能承接的程度，動態調整溫度、節奏、提問深度與回覆長度。' },
+    { iconKey: 'shield', label: 'Protect the relationship', zhLabel: '守住關係', title: 'Boundary', zhTitle: '邊界', body: 'Support stays present and transparent, with clear limits and a safe path toward professional care when needed.', zhBody: '陪伴保持真誠且透明，清楚說明能力限制，必要時銜接安全且可理解的專業支持路徑。' },
   ];
 
   const personas = [
@@ -234,6 +276,14 @@ export default function EmobotCaseStudy({ lang }) {
       zhPrompt: '我一直重播跟朋友吵架的畫面，停不下來地責怪自己。',
       response: 'It makes sense that your mind keeps returning to it. Let us separate what actually happened from what your guilt is adding on top.',
       zhResponse: '你的腦袋一直回到那件事是可以理解的。我們先把實際發生的事情，和罪惡感額外加上的部分分開看。',
+      followup: 'I apologized, but I still feel like I ruined everything.',
+      zhFollowup: '我已經道歉了，但還是覺得自己把一切都搞砸了。',
+      closing: 'An apology is one caring action. Now we can notice what is still yours to repair, and what needs time rather than more self-blame.',
+      zhClosing: '道歉已經是一個在乎關係的行動。接著我們可以分辨哪些仍能修復，哪些需要的是時間，而不是更多自責。',
+      checkpoint: 'I think I need permission to stop punishing myself while I wait.',
+      zhCheckpoint: '我想，我需要允許自己在等待關係修復時，不再一直懲罰自己。',
+      guide: 'Yes. Tonight, try naming one thing you regret and one thing you handled with care. Both can be true at the same time.',
+      zhGuide: '可以。今晚試著各說出一件你後悔的事，以及一件你有用心處理的事。這兩件事可以同時成立。',
     },
     {
       name: 'Solin',
@@ -254,6 +304,14 @@ export default function EmobotCaseStudy({ lang }) {
       zhPrompt: '我總是靠近讓我覺得自己很渺小的人，但我不知道為什麼。',
       response: 'That pattern may be protecting something older. Let us look at when this feeling first became familiar, without rushing to judge it.',
       zhResponse: '這個模式可能在保護某個更早形成的感受。我們先看看這種熟悉感最早從哪裡來，不急著評價它。',
+      followup: 'Maybe being overlooked feels more familiar than being cared for.',
+      zhFollowup: '也許被忽略的感覺，反而比被好好在乎更熟悉。',
+      closing: 'That is an important connection. We can explore what safety feels like to you, then identify one relationship where care does not need to be earned.',
+      zhClosing: '這是一個重要連結。我們可以繼續探索安全感對你而言是什麼，再找出一段不必努力證明自己才值得被在乎的關係。',
+      checkpoint: 'I feel calmer with people who let silence exist without making me earn their attention.',
+      zhCheckpoint: '和那些允許沉默存在、不需要我努力換取注意的人相處時，我比較平靜。',
+      guide: 'Keep that feeling as a reference point. Familiar intensity is not always intimacy, but steadiness can become familiar too.',
+      zhGuide: '把這份平靜留作參考。熟悉的強烈感不一定是親密，而穩定也可以慢慢成為熟悉的感受。',
     },
     {
       name: 'Niko',
@@ -274,6 +332,14 @@ export default function EmobotCaseStudy({ lang }) {
       zhPrompt: '每件事都延後了，我不知道要從哪裡開始。',
       response: 'We will not solve everything tonight. Pick the task with the closest consequence, then we make a 20-minute first move.',
       zhResponse: '今晚不用一次解決全部。我們先挑出後果最近的任務，再設定一個 20 分鐘就能開始的第一步。',
+      followup: 'The presentation is tomorrow, but opening the file already feels overwhelming.',
+      zhFollowup: '明天要簡報，但光是打開檔案就讓我覺得壓力很大。',
+      closing: 'Open it without editing. Then write only the three section titles. That is enough for the first 20 minutes.',
+      zhClosing: '先只打開檔案，不急著修改。接著只寫下三個段落標題，這就是前 20 分鐘的任務。',
+      checkpoint: 'I can do that. After the headings, should I stop or keep going?',
+      zhCheckpoint: '這個我做得到。寫完標題後，我應該停下來，還是繼續？',
+      guide: 'Pause and reassess. If your energy is still steady, choose one heading and add three bullets. Progress stays small and visible.',
+      zhGuide: '先停一下重新評估。如果精力還穩定，就選一個標題補上三個要點，讓進度保持小而清楚。',
     },
     {
       name: 'Clara',
@@ -294,6 +360,14 @@ export default function EmobotCaseStudy({ lang }) {
       zhPrompt: '如果我這次面試失敗，就代表我不夠有能力。',
       response: 'That sentence sounds like a conclusion, not evidence. What are two other explanations that would still fit the facts?',
       zhResponse: '這句話比較像結論，而不是證據。還有哪些解釋也符合事實？我們先列兩個。',
+      followup: 'Maybe the role was not a match, or another candidate had more relevant experience.',
+      zhFollowup: '也許職位不適合我，或其他候選人剛好有更相關的經驗。',
+      closing: 'Good. Neither explanation defines your overall ability. Which part of the interview can give you useful evidence for the next one?',
+      zhClosing: '很好，這兩個解釋都不等於你的整體能力。這次面試的哪個部分，可以成為下一次可用的證據？',
+      checkpoint: 'I answered the case question too quickly and did not explain how I reached the decision.',
+      zhCheckpoint: '我回答案例題時太快了，沒有說清楚自己如何做出判斷。',
+      guide: 'That is specific and workable. Next time, pause to name your assumptions, options, and decision criteria before giving the answer.',
+      zhGuide: '這很具體，也能改善。下次回答前先停一下，依序說明假設、選項與判斷標準，再提出答案。',
     },
   ];
 
@@ -440,12 +514,14 @@ export default function EmobotCaseStudy({ lang }) {
               ))
             ),
             React.createElement('div', { className: 'emobot-live-preview' },
-              React.createElement('img', {
-                src: publicAsset('assets/emobot-live-home.webp'),
-                alt: PA ? 'Emobot+ 線上專案首頁截圖' : 'Emobot+ live project home screen',
-                loading: 'lazy',
-                decoding: 'async'
-              }),
+              React.createElement('div', { className: 'emobot-live-preview-brand' },
+                React.createElement('img', {
+                  src: emobotLogo,
+                  alt: PA ? 'Emobot+ 數位心理健康支持系統標誌' : 'Emobot+ digital mental health support system logo',
+                  loading: 'lazy',
+                  decoding: 'async'
+                })
+              ),
               React.createElement('div', { className: 'emobot-live-preview-copy' },
                 React.createElement('div', null,
                   React.createElement('div', { className: 'emobot-live-preview-label' }, PA ? 'Live product reference' : 'Live product reference'),
@@ -590,15 +666,32 @@ export default function EmobotCaseStudy({ lang }) {
         )
       ),
       React.createElement('div', { className: 'emobot-persona-evidence' },
-        ...personaPrinciples.map(item => React.createElement('article', { key: item.label },
-          React.createElement('span', null, PA ? item.zhLabel : item.label),
-          React.createElement('p', null, PA ? item.zhBody : item.body)
+        ...personaPrinciples.map((item, index) => React.createElement('article', { key: item.label },
+          React.createElement('div', { className: 'emobot-persona-evidence-mark' },
+            React.createElement(Icon, { name: item.iconKey }),
+            React.createElement('span', null, PA ? item.zhLabel : item.label)
+          ),
+          React.createElement('div', { className: 'emobot-persona-evidence-copy' },
+            React.createElement('strong', null, PA ? item.zhTitle : item.title),
+            React.createElement('p', null, PA ? item.zhBody : item.body)
+          ),
+          index < personaPrinciples.length - 1
+            ? React.createElement('span', { className: 'emobot-persona-evidence-link', 'aria-hidden': 'true' })
+            : null
         ))
       ),
       React.createElement('div', { className: 'persona-lab' },
-        React.createElement('div', { className: 'persona-tabs', role: 'tablist', 'aria-label': PA ? '選擇 AI 人設' : 'Choose AI persona' },
+        React.createElement('div', {
+          className: 'persona-tabs',
+          ref: personaTabsRef,
+          role: 'tablist',
+          'aria-label': PA ? '選擇 AI 人設' : 'Choose AI persona',
+          onKeyDown: navigatePersonaTabs
+        },
           ...personas.map((p, i) => React.createElement('button', {
             key: p.name, type: 'button', role: 'tab', 'aria-selected': i === activePersona,
+            'aria-controls': 'active-persona-panel',
+            tabIndex: i === activePersona ? 0 : -1,
             className: `persona-tab ${i === activePersona ? 'active' : ''}`,
             onClick: () => setActivePersona(i)
           },
@@ -611,33 +704,89 @@ export default function EmobotCaseStudy({ lang }) {
             )
           ))
         ),
-        React.createElement('div', { className: 'persona-detail' },
-          React.createElement('div', { className: 'persona-detail-profile' },
-            React.createElement('div', { className: 'persona-detail-photo' },
-              React.createElement('img', { src: active.avatarImage, alt: active.name, loading: 'lazy' })
+        React.createElement('div', { className: 'persona-experience', id: 'active-persona-panel', role: 'tabpanel' },
+          React.createElement('section', {
+            className: `persona-media-stage ${isPersonaPlaybackPending ? 'is-buffering' : ''} ${isPersonaSpeaking ? 'is-speaking' : ''}`,
+            'aria-label': PA ? `${active.name} 角色介紹影片` : `${active.name} introduction video`
+          },
+            React.createElement('img', {
+              className: 'persona-media-still',
+              src: active.avatarImage,
+              alt: PA ? `${active.name} 角色靜態肖像` : `${active.name} portrait`,
+              loading: 'lazy',
+              decoding: 'async'
+            }),
+            React.createElement('video', {
+              ref: personaVideoRef,
+              key: active.name,
+              src: personaVideos[active.name],
+              playsInline: true,
+              preload: 'metadata',
+              onPlaying: () => {
+                setIsPersonaPlaybackPending(false);
+                setIsPersonaSpeaking(true);
+              },
+              onWaiting: () => setIsPersonaPlaybackPending(true),
+              onEnded: () => {
+                setIsPersonaSpeaking(false);
+                setIsPersonaPlaybackPending(false);
+              },
+              onPause: () => setIsPersonaSpeaking(false),
+              onError: () => {
+                setIsPersonaPlaybackPending(false);
+                setHasPersonaVideoError(true);
+              }
+            }),
+            React.createElement('div', { className: 'persona-media-scrim' }),
+            React.createElement('div', { className: 'persona-media-identity' },
+              React.createElement('span', null, PA ? active.zhType : active.type),
+              React.createElement('strong', null, active.name)
             ),
-            React.createElement('div', { className: 'persona-detail-id' },
-              React.createElement('div', { className: 'persona-detail-type' }, PA ? active.zhType : active.type),
-              React.createElement('h4', { className: 'persona-detail-name' }, active.name),
-              React.createElement('div', { className: 'persona-detail-trait' }, PA ? active.zhTrait : active.trait),
-              React.createElement('p', { className: 'persona-detail-desc' }, PA ? active.zhDesc : active.desc)
+            React.createElement('button', {
+              className: 'persona-media-control',
+              type: 'button',
+              onClick: togglePersonaVideo,
+              disabled: hasPersonaVideoError,
+              'aria-label': hasPersonaVideoError
+                ? (PA ? '影片無法播放' : 'Video unavailable')
+                : isPersonaSpeaking
+                  ? (PA ? `暫停 ${active.name} 的介紹` : `Pause ${active.name} introduction`)
+                  : (PA ? `播放 ${active.name} 的有聲介紹` : `Play ${active.name} introduction with sound`)
+            },
+              React.createElement(Icon, { name: isPersonaSpeaking ? 'pause' : 'play' }),
+              React.createElement('span', null,
+                hasPersonaVideoError
+                  ? (PA ? '影片暫時無法播放' : 'Video unavailable')
+                  : isPersonaPlaybackPending
+                    ? (PA ? '正在準備播放' : 'Preparing playback')
+                  : isPersonaSpeaking
+                    ? (PA ? '正在介紹，點擊暫停' : 'Speaking, tap to pause')
+                    : (PA ? '聽我介紹自己' : 'Hear my introduction')
+              )
             )
           ),
-          React.createElement('div', { className: 'persona-detail-content' },
-            React.createElement('div', { className: 'persona-detail-stats' },
-              React.createElement('div', { className: 'persona-stat-block' },
+          React.createElement('section', { className: 'persona-narrative' },
+            React.createElement('div', { className: 'persona-narrative-heading' },
+              React.createElement('span', null, PA ? active.zhTrait : active.trait),
+              React.createElement('h4', null, PA ? `當你需要${active.zhType.replace(' AI', '')}` : `A companion for ${active.trait.toLowerCase()}`),
+              React.createElement('p', null, PA ? active.zhDesc : active.desc)
+            ),
+            React.createElement('div', { className: 'persona-support-notes' },
+              React.createElement('article', null,
                 React.createElement('div', { className: 'persona-stat-label' }, PA ? '核心能力' : 'Core ability'),
                 React.createElement('p', { className: 'persona-stat-body' }, PA ? active.zhAbility : active.ability)
               ),
-              React.createElement('div', { className: 'persona-stat-block' },
+              React.createElement('article', null,
                 React.createElement('div', { className: 'persona-stat-label' }, PA ? '適合議題' : 'Best-fit topics'),
                 React.createElement('p', { className: 'persona-stat-body' }, PA ? active.zhTopics : active.topics)
               )
-            ),
-            React.createElement('div', { className: 'persona-chat-shell' },
+            )
+          ),
+          React.createElement('section', { className: 'persona-conversation' },
+            React.createElement('div', { className: 'persona-chat-shell', key: active.name },
               React.createElement('div', { className: 'persona-chat-header' },
                 React.createElement('div', { className: 'persona-chat-dot' }, React.createElement(Icon, { name: active.iconKey })),
-                React.createElement('span', null, PA ? '對話語氣樣本' : 'Sample interaction')
+                React.createElement('span', null, PA ? '對話語氣範例' : 'Conversation example')
               ),
               React.createElement('div', { className: 'persona-chat-row user' },
                 React.createElement('div', { className: 'persona-chat-bubble' }, PA ? active.zhPrompt : active.prompt)
@@ -645,6 +794,20 @@ export default function EmobotCaseStudy({ lang }) {
               React.createElement('div', { className: 'persona-chat-row' },
                 React.createElement('img', { src: active.avatarImage, alt: active.name, className: 'persona-chat-avatar', loading: 'lazy' }),
                 React.createElement('div', { className: 'persona-chat-bubble' }, PA ? active.zhResponse : active.response)
+              ),
+              React.createElement('div', { className: 'persona-chat-row user' },
+                React.createElement('div', { className: 'persona-chat-bubble' }, PA ? active.zhFollowup : active.followup)
+              ),
+              React.createElement('div', { className: 'persona-chat-row' },
+                React.createElement('img', { src: active.avatarImage, alt: '', className: 'persona-chat-avatar', loading: 'lazy' }),
+                React.createElement('div', { className: 'persona-chat-bubble' }, PA ? active.zhClosing : active.closing)
+              ),
+              React.createElement('div', { className: 'persona-chat-row user' },
+                React.createElement('div', { className: 'persona-chat-bubble' }, PA ? active.zhCheckpoint : active.checkpoint)
+              ),
+              React.createElement('div', { className: 'persona-chat-row' },
+                React.createElement('img', { src: active.avatarImage, alt: '', className: 'persona-chat-avatar', loading: 'lazy' }),
+                React.createElement('div', { className: 'persona-chat-bubble' }, PA ? active.zhGuide : active.guide)
               )
             )
           )
