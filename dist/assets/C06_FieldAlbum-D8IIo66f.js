@@ -1,0 +1,5 @@
+import{u as d,Q as l,j as e,U as o,W as r,$ as m,X as p,a0 as c,_ as u,O as h,i as f}from"./index-BTnBFpGd.js";const x=h.find(a=>a.key==="C06"),t={en:{lead:"The paper trail: boards, report spreads, recordings, and rooms. The scans are being pulled from old drives — each frame below is reserved for one, and the captions already say what belongs there."},zh:{lead:"紙本的證據：溝通板、報告攤頁、錄音現場與活動教室。掃描檔正從舊硬碟裡整理出來——下面每一個相框都留給一張，圖說先告訴你那裡會放什麼。"}};function j(){const{lang:a}=d(),i=l(),n=t[a]??t.en;return e.jsx(o,{chapter:x,lead:n.lead,children:e.jsx(r.div,{className:"fj-album",variants:u(),initial:i?!1:"hidden",whileInView:"show",viewport:{once:!0,amount:.08},children:m.map(s=>e.jsx(r.div,{variants:p,children:e.jsx(c,{photo:s})},s.id))})})}f("fj-c06-styles",`
+.fj-album { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px 18px; padding-top: 10px; }
+@media (max-width: 1023px) { .fj-album { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .fj-album { grid-template-columns: 1fr; } }
+`);export{j as default};

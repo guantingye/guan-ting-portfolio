@@ -4,7 +4,7 @@
 >
 > 本文件為「純計畫」。經你確認後，才會在**下一個視窗**動手編輯與實作。
 >
-> 撰寫：2026-07-10 · 依據：SKILL.md ＋ EVIDENCE_LAYER_TEMPLATE.md ＋ DeepScout 原始碼全量閱讀（已 clone 至 scratchpad 逐檔分析）＋ 線上站 Playwright 實測截圖。
+> 撰寫：2026-07-10 · **修訂 v2**（同日：線上站路由修復後全站複測，前置問題已解除，細節依實測更新）· 依據：SKILL.md ＋ EVIDENCE_LAYER_TEMPLATE.md ＋ DeepScout 原始碼全量閱讀 ＋ 線上站 Playwright 實測截圖（修復前後各一輪）。
 
 ---
 
@@ -14,7 +14,7 @@
 - **敘事殺手鐧**（寫進 overview 收尾）：底層訊號管線（專案 02 深科技資料庫、04 新聞情報管線）是我親手寫的，上層的產品判斷與介面（DeepScout）也是我設計的——**資料層與產品層接成同一條線**，這是只會做 prototype、碰不到資料的候選人給不出的東西。
 - **交付形態**：`projects.js` 完整條目（含自繪 SVG 封面）＋ 一個 `.ds` 命名空間的互動證據層（**11 個模組 + 1 個 Live Bridge**，分五幕），素材全部來自 DeepScout repo 的真實內容與線上站實拍截圖，沿用作品集的誠實標章制度（REAL / RECONSTRUCTED / ILLUSTRATIVE）。
 - **簽名互動**：**保真階梯（Fidelity Ladder）**——同一家公司（Corintis）的 brief，從手繪線框 → 低保真 → 結構化中保真 → 上線高保真，四階並排、逐階標註「這一輪決定了什麼」。直接回應線框圖／低保真／高保真／原型的呈現需求，且其他七個證據層都沒有這個機制。
-- **⚠️ 兩件前置修復（在 DeepScout repo，不在本 repo）**：實測發現 GitHub Pages 部署**目前整站路由是壞的**（首頁主內容區渲染 404 頁），以及 footer 署名仍是「Your Name」佔位符。詳見 §1.7——**建議在作品集連過去之前先修好**，我可以在執行階段一併處理。
+- **✅ 前置問題已解除（2026-07-10 複測確認）**：初版計畫發現的 GH Pages 路由壞損（P1）、footer 佔位符（P2）、sitemap 佔位網域（P3）皆已由你修復，全站八章與 `?company=`／`?state=` 深連結經 Playwright 逐一實測可正常瀏覽。詳見 §1.7 複測紀錄；僅剩一項**選擇性**的署名建議（D6）。**執行階段可直接從截圖採集開始，無阻斷項。**
 
 ---
 
@@ -28,7 +28,7 @@ DeepScout 不是一家公司，是一個 AI 產品設計案例：**把散落在�
 
 | # | 群組 | 章節 | 互動核心 |
 |---|---|---|---|
-| 01 | Product | **The Copilot** 偵搜副駕 | 輸入公司名 → 模擬掃描 → 生成附來源、標信心的結構化 brief；內建低信心／拒答／逾時狀態切換 |
+| 01 | Product | **The Copilot** 偵搜副駕 | 輸入公司名 → 模擬掃描 → 生成附來源、標信心的結構化 brief；主控台上有 **6 家預載公司**（Frore、Ayar Labs、Celestial AI、BrainChip、Prophesee、Proxima Fusion，各帶訊號強度字形，爭議案例以 amber 呈現）與「SHOW DESIGNED STATES」三鍵（低信心／拒答／逾時） |
 | 02 | Research | **Personas & JTBD** | 切換分析師／創新主管／被偵搜新創三種角色，同一份 brief 重新標重點，每個 JTBD 對回 Copilot 裡真實上線的設計 |
 | 03 | Research | **Analyst Journey** | 兩條疊加的信心波形（有／無 DeepScout），「評估」階段的提升刻意壓低——判斷留給人 |
 | 04 | Strategy | **Risk & Guardrail Register** | 打開護欄開關，風險節點在「機率 × 衝擊」矩陣上從固有位置移到殘餘位置 |
@@ -37,7 +37,9 @@ DeepScout 不是一家公司，是一個 AI 產品設計案例：**把散落在�
 | 07 | System | **Knowledge Graph** | 手刻力導向模擬；選兩個節點 Find Connection 解出最短路徑 |
 | 08 | System | **Component Lab** | 設計系統全覽，每個對比度即時對照 WCAG 計算，不是宣稱 |
 
-另有：⌘K 指令面板（搜公司／章節，深連結進 Copilot 特定狀態）、`/copilot?company=<id>` 與 `?state=` 深連結機制、print 樣式（「brief 本來就是要交給別人的文件」——只有 brief 值得印，chrome 全部隱藏）。
+另有：⌘K 指令面板（搜公司／章節，深連結進 Copilot 特定狀態）、`/copilot?company=<id>` 與 `?state=` 深連結機制、print 樣式（「brief 本來就是要交給別人的文件」——只有 brief 值得印，chrome 全部隱藏）。每章開場都有一塊 amber 邊線的 **ANALYST'S NOTE** 導讀框——把「章節導讀」寫成分析師眉批的編輯手法，值得在 09 頁當設計細節引用（`.ds` 方言自己**不**複製這個框，保持家族辨識度）。
+
+**深連結格式（實測確認）**：`https://guantingye.github.io/DeepScout/<path>` ＋ query，例如 `/copilot?company=corintis`、`/copilot?state=insufficient`——Live Bridge 與各模組的「看實品」連結一律用此格式。
 
 ### 1.3 資料層（V2 的核心決策：虛構換真實）
 
@@ -63,19 +65,20 @@ DeepScout 不是一家公司，是一個 AI 產品設計案例：**把散落在�
 
 ### 1.6 可用的數字清單（本頁只用這些，不發明新數字）
 
-`14` 家真實新創 · `8` 章 · `4` 群組 · `6` 步核心迴圈 · `3` 種 persona · `4` 種 AI 設計狀態 ＋ `2` 種欄位旗標 · `3` 種建議動作（call/monitor/pass）· `7` 個決策閘門 · `2` 套優先級鏡片 · 北極星 `1`＋input `4`＋guardrail `3` · `2` 樁製作中收購 · `2` 個爭議敘事案例 · 文案守則 `6` 條 · V1 破折號 `51` 處清理 · 約 `400` 條字串改稿 · 資料凍結 `2026-07-10` · verify.mjs `4` 類檢查 · `2` 份執行計畫。
+`14` 家真實新創 · `8` 章 · `4` 群組 · `6` 步核心迴圈 · `3` 種 persona · `4` 種 AI 設計狀態 ＋ `2` 種欄位旗標 · `3` 種建議動作（call/monitor/pass）· `6` 家主控台預載公司 · `7` 個決策閘門 · `2` 套優先級鏡片 · 北極星 `1`＋input `4`＋guardrail `3` · `2` 樁製作中收購 · `2` 個爭議敘事案例 · 文案守則 `6` 條 · V1 破折號 `51` 處清理 · 約 `400` 條字串改稿 · 資料凍結 `2026-07-10` · verify.mjs `4` 類檢查 · `2` 份執行計畫。
+另有兩個**模組即時計算值**（引用時必須註明是站內即時算出、非固定宣稱）：風險登錄「固有高嚴重度風險 `4` 條」與「開啟護欄後殘餘風險 `↓67%`」。
 
-### 1.7 ⚠️ 部署現況與前置修復（DeepScout repo 側）
+### 1.7 部署現況（2026-07-10 修復後複測紀錄）
 
-Playwright 實測 `https://guantingye.github.io/DeepScout/`（截圖已存證）發現：
+初版計畫發現的三項問題，複測（curl ＋ bundle 檢查 ＋ Playwright 渲染截圖）結果如下：
 
-| # | 問題 | 證據 | 建議修法 |
-|---|---|---|---|
-| P1 | **整站路由壞掉**：`main.jsx` 用 `BrowserRouter` 且未設 `basename`，部署在 `/DeepScout/` 子路徑下所有路由都匹配失敗——首頁主內容區實際渲染的是 404 頁「This signal doesn't resolve」（header／footer 正常）。子路由硬載入也 404（無 `404.html` fallback） | curl：`/DeepScout/copilot` → 404、`/DeepScout/404.html` → 404；截圖：首頁中央是 404 文案 | `<BrowserRouter basename={import.meta.env.BASE_URL}>` ＋ build 後複製 `index.html` → `404.html`（GH Pages SPA fallback）。或改部署 Vercel 根路徑（repo 已有 `vercel.json`，與 psymatch／isp 同款做法）。**擇一即可，建議兩者都做** |
-| P2 | footer 署名仍是「**Your Name**」佔位符（`SiteFooter.jsx` 的 `AUTHOR`），README 也留著 `[your name]` | 實測截圖左下角 | 填入真名與正確的社群連結 |
-| P3 | （次要）`sitemap.xml`／`robots.txt`／og-cover 的網域為佔位值 | repo 檔案 | 隨 P1 的最終網域一起改 |
+| # | 初版發現 | 複測結果 |
+|---|---|---|
+| P1 | `BrowserRouter` 無 `basename`，`/DeepScout/` 子路徑下全站路由匹配失敗 | ✅ **已修復**。部署 bundle 內已含 `"/DeepScout/"` basename；`404.html` SPA fallback 已就位；首頁、`/copilot?company=corintis`、`/copilot?state=insufficient`、`/risks` 等頁面逐一渲染確認正常。注意：子路由硬載入的 **HTTP 狀態碼仍是 404 但內容正常**——這是 GH Pages `404.html` fallback 手法的預期行為，不是 bug，執行時驗連結要看「渲染結果」不能只看狀態碼 |
+| P2 | footer 署名為「Your Name」佔位符 | ✅ 佔位符已移除，現為「Designed & built by **DeepScout**」。剩一項選擇性建議：署名掛的是產品名而非作者名，對作品集用途而言，招聘方在站內看不到「這是誰做的」——建議改為真名（見 D6，由你決定） |
+| P3 | `sitemap.xml`／`robots.txt` 為佔位網域 | ✅ 已指向正式網址 `https://guantingye.github.io/DeepScout/` |
 
-**這三項都在 DeepScout repo，不在本 repo**。P1 不修，作品集所有「開啟實品」的連結都會把招聘方帶進一個 404 頁——**必須先修**。我可以在執行階段直接改好（你 push 或給我 push 權限皆可），或你自己修完告訴我最終網址。**本計畫其餘部分不受影響**：兩種修法下深連結格式相同（path-based），僅網域可能不同。
+**結論：無阻斷項**。截圖採集與 Live Bridge 外連可直接進行，正式網址即你提供的 GH Pages 網址。
 
 ---
 
@@ -249,7 +252,7 @@ src/components/deepscout/
 | III SYSTEM | ds-m07 | **Two Languages, One Product** 雙語文案工程 | REAL | 六條守則卡＋V1→V2 真實改稿對照（before/after 切換）＋「51 處破折號」的清理帳 |
 | IV PROOF | ds-m08 | **The Freshness Problem** 真資料的代價 | REAL | 14 家公司卷宗牆（訊號強度、階段、旗標）；兩樁收購與兩個爭議案例高亮；retrievedAt 戳記解剖 |
 | IV PROOF | ds-m09 | **Metric Tree** 北極星與護欄 | REAL | 互動指標樹（北極星＋4 input＋3 guardrail），連到 time-to-brief 實驗的 MDE 設計 |
-| IV PROOF | ds-m10 | **Risk → Guardrail** 風險對護欄 | REAL | 捏造／hype 帶風向／資料過期／機密外洩，每條接到已上線的控制項與它在 UI 的落點（截圖裁切） |
+| IV PROOF | ds-m10 | **Risk → Guardrail** 風險對護欄 | REAL | 捏造／hype 帶風向／資料過期／過度信任，每條接到已上線的控制項與它在 UI 的落點（截圖裁切）；沿用站內登錄的真實語彙：嚴重度 CRITICAL→MEDIUM、「Shipped in Copilot」章、RESIDUAL＋MONITOR 欄位，並引用即時計算的「固有高嚴重度 4 條 · 殘餘 ↓67%」（註明為模組即時值） |
 | V SHIP | ds-m11 | **Engineering the Case** 技術框架 | REAL | 架構圖：密封模組原則、chapters.js 單一路由真相、i18n 架構、⌘K 與深連結、verify.mjs 四類關卡、V1/V2 執行計畫作為過程證據 |
 | V SHIP | ds-mb | **Live Bridge** 實品入口 | REAL | 八章深連結主控台（實拍縮圖 + 開啟按鈕）＋ 02/04/07 血緣交叉連結卡 |
 
@@ -268,7 +271,7 @@ src/components/deepscout/
 
 ## 5. 素材製作清單（執行階段）
 
-1. **線上站截圖**（Playwright CLI，1280×900 與 360×780 各一組，存 `public/deepscout/`，≤10 張）：首頁、Copilot idle、Copilot 完整 brief（Corintis）、拒答狀態（`?state=insufficient`）、逾時狀態、風險矩陣（護欄開）、決策閘門、知識圖譜（連線點亮）、Component Lab、旅程波形。**前置：P1 修復後才截**，否則截到的全是 404。
+1. **線上站截圖**（Playwright，1280×900 與 360×780 各一組，存 `public/deepscout/`，≤10 張）：首頁、Copilot idle、Copilot 完整 brief（Corintis）、拒答狀態（`?state=insufficient`）、逾時狀態、風險矩陣（護欄開）、決策閘門、知識圖譜（連線點亮）、Component Lab、旅程波形。前置問題已解除，隨時可截。**兩個實測注意事項**：① 站內有捲動顯現動畫，naive `--full-page` 會截到大片未顯現的空白（已實測），每章改用 viewport 截圖、必要時以腳本捲動到目標區塊再截；② 「護欄開」「連線點亮」等互動後狀態需要腳本點擊，不能只靠 URL。
 2. **線框重繪**：M03 的 3–4 張標註線框、M04 的前三階，全部 inline SVG 手繪（Neural Signal OS 調色盤），不用任何點陣佔位圖。
 3. **資料萃取**：從已 clone 的 DeepScout repo 抽出 M08 需要的 14 家公司精選欄位（名稱／領域／階段／訊號／旗標／一句 tagline，含收購與爭議案例的具體事實）寫進 `dsContent.js`——雙語沿用原站已寫好的母語級文案，不重新發明。
 4. **hero SVG**：§3.6 的 `DEEPSCOUT_HERO_IMAGE`。
@@ -284,7 +287,7 @@ src/components/deepscout/
 | 3 | `src/components/case-studies/ProjectExtraSection.jsx` | `if (slug === 'deepscout') return <DeepScoutEvidence/>` 分派一行 |
 | 4 | `public/deepscout/` | 實拍截圖 |
 | 5 | `src/data/translations.js` | 預期**不動**（shell 標籤已齊；若五幕 rail 需新共用字串再最小新增） |
-| —— | 以下在 **DeepScout repo**（P1/P2，§1.7） | `main.jsx` basename ＋ `404.html` fallback（或 Vercel 部署）；`SiteFooter.jsx` 署名 |
+| —— | DeepScout repo 側 | ✅ 路由與部署問題已由你修復（§1.7）；僅剩選擇性的 footer 署名調整（D6） |
 
 首頁格線、路由、prev/next 導覽、進度條自動接收新專案，不需另外接線。
 
@@ -295,7 +298,7 @@ src/components/deepscout/
 - [ ] SKILL.md §8 全項：必填欄位齊、`zh…` 雙生全填、tech 6 格、KPI/moments 3、chapters 5、封面為自繪 SVG、無新字體（顯示字體解析為 Fraunces）、模組只經 `ProjectExtraSection` 掛載、anchors 全部真實存在。
 - [ ] 文案通過 §2.6 守則（朗讀測試；破折號配額；雙語數字一致；只用 §1.6 數字）。
 - [ ] 標章不說謊：RECONSTRUCTED 模組內文自我聲明；AUDIT.md 逐條可查。
-- [ ] 所有外連（八章深連結、GitHub repo）在 P1 修復後逐一點開驗證非 404。
+- [ ] 所有外連（八章深連結、GitHub repo）逐一以「實際渲染結果」驗證（HTTP 狀態碼因 404.html fallback 不可靠，見 §1.7）。
 - [ ] `npm run build` 乾淨；EN／中兩語言、360px 寬度、`prefers-reduced-motion` 三項目視走查。
 
 ---
@@ -308,18 +311,19 @@ src/components/deepscout/
 | D2 | slug `deepscout`、theme `ai`、scope `.ds`（已確認無衝突） | 命名最短且無歧義 |
 | D3 | 模組數 11＋Bridge（比 newsintel 16 精簡） | 設計檔案要密度不要體積；每模組都對到 §2.5 的一項能力 |
 | D4 | 線框／低保真標 RECONSTRUCTED 而非假裝是當年檔案 | 這個作品集的信用建立在標章制度上；而「以程式碼直接迭代」本身就是可以講的方法論 |
-| D5 | P1 修法優先 `basename` ＋ `404.html`（保住你對外已使用的 GH Pages 網址），Vercel 為加分項 | 你提供的網址就是 GH Pages；先讓它活過來 |
+| D5 | 正式網址採用 `https://guantingye.github.io/DeepScout/`，所有外連寫死此網域 | 路由已修復、sitemap 已指向此網址（§1.7 複測），是目前唯一的公開部署 |
+| D6 | **（選擇性，由你決定）** footer 署名現為「Designed & built by DeepScout」，建議改為真名 | 作品集把招聘方送進站內後，站內應該回答得出「這是誰做的」；README 的 `[your name]` 同理。不改也不影響本計畫執行 |
 
-**風險**：① P1 未修前不能上線 09 頁的外連（阻斷項，放在執行第一步）；② 與線上站內容重複的誘惑——執行時以「這裡講理由、那裡看實品」為每個模組的自我檢查；③ 螢幕截圖時效——截圖檔名帶日期戳，M08 內文沿用「資料凍結 2026-07-10」的說法。
+**風險**：① 與線上站內容重複的誘惑——執行時以「這裡講理由、那裡看實品」為每個模組的自我檢查；② 螢幕截圖時效——截圖檔名帶日期戳，M08 內文沿用「資料凍結 2026-07-10」的說法；③ 外連驗證要看渲染結果而非 HTTP 狀態碼（§1.7）。
 
 ## 9. 分階段執行（建議節奏）
 
 | 階段 | 內容 | 估時 |
 |---|---|---|
-| A | P1/P2 修復（DeepScout repo）＋ 驗證部署 ＋ 全套截圖 | 0.5 天 |
+| A | 全套截圖採集（§5 工作流，含互動後狀態）＋ 外連逐一驗證 | 0.25–0.5 天 |
 | B | `projects.js` 條目＋hero SVG＋theme（此時 09 頁已完整可看，只缺證據層） | 0.5–1 天 |
 | C | `dsKit` ＋ 層殼 ＋ Act I–II（M01–M05，含簽名模組） | 1.5–2 天 |
 | D | Act III–V（M06–M11＋MB）＋ AUDIT.md | 1.5–2 天 |
 | E | 雙語走查、RWD、驗收清單、`npm run build` | 0.5 天 |
 
-合計約 **4.5–6 個工作天**，可拆成 3–4 個工作視窗執行。
+合計約 **4–5.5 個工作天**，可拆成 3–4 個工作視窗執行。（原 Phase A 的 DeepScout repo 修復工作已由你完成，估時據此下修。）

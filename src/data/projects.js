@@ -147,6 +147,103 @@ const STARTUP_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
     + '<text x="90" y="770" fill="#6B7280" font-family="monospace" font-size="18" letter-spacing="3">STARTUP INTELLIGENCE · REAL-TIME · SOLO-BUILT</text>'
     + '</svg>');
 
+// Self-drawn SVG cover for the DeepScout case (no stock photos): four signal
+// sources (funding/patents/news/team) converging into a scan console, which
+// resolves into a structured brief card — one field carries the amber
+// UNVERIFIED exception, in the Neural Signal OS palette.
+const DEEPSCOUT_SOURCE_YS = [140, 320, 500, 680];
+const DEEPSCOUT_SOURCE_LABELS = ['FUNDING', 'PATENTS', 'NEWS', 'TEAM'];
+const DEEPSCOUT_FIELD_YS = [178, 274, 370, 466, 562];
+const DEEPSCOUT_FIELDS_SVG = DEEPSCOUT_FIELD_YS.map((y, i) => {
+    const flagged = i === 3;
+    const accent = flagged ? '#E8A33D' : '#35C2B0';
+    return `<rect x="1072" y="${y}" width="406" height="64" rx="10" fill="#0C0E12" stroke="#232A36"/>`
+        + `<rect x="1072" y="${y}" width="4" height="64" rx="2" fill="${accent}"/>`
+        + `<circle cx="1454" cy="${y + 20}" r="4" fill="${accent}"/>`
+        + `<rect x="1092" y="${y + 14}" width="130" height="9" rx="4.5" fill="#6B7280"/>`
+        + `<rect x="1092" y="${y + 34}" width="${flagged ? 190 : 240}" height="11" rx="5.5" fill="${flagged ? '#E8A33D' : '#E9EEF6'}" opacity="${flagged ? 0.85 : 1}"/>`;
+}).join('');
+const DEEPSCOUT_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">'
+    + '<rect width="1600" height="900" fill="#0C0E12"/>'
+    + '<g stroke="#262B35" stroke-width="2" fill="#14171D">'
+    + DEEPSCOUT_SOURCE_YS.map(y => `<rect x="80" y="${y}" width="220" height="90" rx="12"/>`).join('')
+    + '</g>'
+    + '<g>' + DEEPSCOUT_SOURCE_YS.map(y => `<circle cx="104" cy="${y + 30}" r="5" fill="#35C2B0"/>`).join('') + '</g>'
+    + '<g fill="#6B7280" font-family="monospace" font-size="13" letter-spacing="2">'
+    + DEEPSCOUT_SOURCE_YS.map((y, i) => `<text x="122" y="${y + 35}">${DEEPSCOUT_SOURCE_LABELS[i]}</text>`).join('')
+    + '</g>'
+    + '<g fill="#2A303C">' + DEEPSCOUT_SOURCE_YS.map(y => `<rect x="104" y="${y + 52}" width="150" height="10" rx="5"/>`).join('') + '</g>'
+    + '<g stroke="#35C2B0" stroke-width="2" fill="none" opacity="0.4">'
+    + DEEPSCOUT_SOURCE_YS.map(y => `<path d="M300,${y + 45} C 420,${y + 45} 480,450 620,450"/>`).join('')
+    + '</g>'
+    + '<rect x="650" y="170" width="330" height="560" rx="16" fill="#14171D" stroke="#262B35" stroke-width="2"/>'
+    + '<circle cx="680" cy="204" r="5" fill="#35C2B0"/>'
+    + '<text x="696" y="209" fill="#F2F0EB" font-family="monospace" font-size="14" letter-spacing="2">DEEPSCOUT</text>'
+    + '<text x="680" y="250" fill="#6B7280" font-family="monospace" font-size="12" letter-spacing="2">SCANNING SIGNAL SOURCES</text>'
+    + '<rect x="680" y="272" width="270" height="150" rx="8" fill="#0C0E12" stroke="#232A36"/>'
+    + '<polyline points="690,360 720,352 745,330 770,375 795,340 820,352 845,320 870,346 895,335 920,352 940,346" fill="none" stroke="#35C2B0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>'
+    + '<text x="680" y="456" fill="#6B7280" font-family="monospace" font-size="11" letter-spacing="1.5">RESOLVING STRUCTURED BRIEF</text>'
+    + '<rect x="680" y="474" width="270" height="8" rx="4" fill="#1C2028"/>'
+    + '<rect x="680" y="474" width="168" height="8" rx="4" fill="#35C2B0"/>'
+    + '<g fill="#2A303C">'
+    + [520, 552, 584].map((y, i) => `<rect x="680" y="${y}" width="${[220, 190, 150][i]}" height="9" rx="4.5"/>`).join('')
+    + '</g>'
+    + '<rect x="680" y="654" width="150" height="34" rx="17" fill="#12241F" stroke="#35C2B0"/>'
+    + '<text x="704" y="676" fill="#35C2B0" font-family="monospace" font-size="11" letter-spacing="1.5">SCAN SIGNALS</text>'
+    + '<g stroke="#35C2B0" stroke-width="2" fill="none" opacity="0.55"><path d="M980,450 C 1010,450 1010,450 1040,450"/></g>'
+    + '<rect x="1040" y="120" width="470" height="660" rx="16" fill="#14171D" stroke="#262B35" stroke-width="2"/>'
+    + '<text x="1072" y="164" fill="#E8A33D" font-family="monospace" font-size="12" letter-spacing="2">SNAPSHOT</text>'
+    + '<rect x="1072" y="180" width="230" height="16" rx="4" fill="#2A303C"/>'
+    + DEEPSCOUT_FIELDS_SVG
+    + '<rect x="1072" y="662" width="180" height="38" rx="19" fill="#35C2B0"/>'
+    + '<text x="1102" y="686" fill="#08120F" font-family="monospace" font-size="11" letter-spacing="1.5">WORTH A CALL</text>'
+    + '<text x="1268" y="686" fill="#6B7280" font-family="monospace" font-size="11" letter-spacing="1.5">2 MORE OPTIONS</text>'
+    + '</svg>');
+
+// Self-drawn SVG cover for the Field Journey case (no stock photos): a dotted
+// route winding across three cream station cards — hospital, house, civic hall —
+// each in its station accent, on the dark hero ground so the warm paper world
+// is only hinted at before the page itself makes the turn.
+const FIELD_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">'
+    + '<rect width="1600" height="900" fill="#0C0E12"/>'
+    // dotted route, lower-left to upper-right
+    + '<path d="M60,790 C 200,730 240,650 330,608 C 470,545 650,525 800,438 C 950,350 1100,365 1270,308 C 1390,266 1470,225 1540,185" fill="none" stroke="#8A7E68" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 26" opacity="0.85"/>'
+    // station dots on the route
+    + '<circle cx="330" cy="608" r="11" fill="#D97841" stroke="#0C0E12" stroke-width="4"/>'
+    + '<circle cx="800" cy="438" r="11" fill="#7A8B4E" stroke="#0C0E12" stroke-width="4"/>'
+    + '<circle cx="1270" cy="308" r="11" fill="#B08D57" stroke="#0C0E12" stroke-width="4"/>'
+    // station 1 card — hospital
+    + '<g transform="rotate(-2 330 460)">'
+    + '<rect x="212" y="386" width="236" height="164" rx="14" fill="#F6EFE0"/>'
+    + '<rect x="240" y="414" width="56" height="44" rx="5" fill="none" stroke="#D97841" stroke-width="4"/>'
+    + '<path d="M268,424 v24 M256,436 h24" stroke="#D97841" stroke-width="4" stroke-linecap="round"/>'
+    + '<rect x="316" y="418" width="104" height="12" rx="6" fill="#D8CCB2"/>'
+    + '<rect x="316" y="440" width="76" height="12" rx="6" fill="#D8CCB2"/>'
+    + '<rect x="240" y="482" width="180" height="10" rx="5" fill="#E7DDC6"/>'
+    + '<rect x="240" y="504" width="142" height="10" rx="5" fill="#E7DDC6"/>'
+    + '</g>'
+    // station 2 card — house
+    + '<g transform="rotate(1.6 800 290)">'
+    + '<rect x="682" y="216" width="236" height="164" rx="14" fill="#F6EFE0"/>'
+    + '<path d="M708,262 L738,236 L768,262 M714,260 v28 h48 v-28" fill="none" stroke="#7A8B4E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>'
+    + '<rect x="786" y="248" width="104" height="12" rx="6" fill="#D8CCB2"/>'
+    + '<rect x="786" y="270" width="76" height="12" rx="6" fill="#D8CCB2"/>'
+    + '<rect x="710" y="312" width="180" height="10" rx="5" fill="#E7DDC6"/>'
+    + '<rect x="710" y="334" width="142" height="10" rx="5" fill="#E7DDC6"/>'
+    + '</g>'
+    // station 3 card — civic hall
+    + '<g transform="rotate(-1.4 1270 160)">'
+    + '<rect x="1152" y="86" width="236" height="164" rx="14" fill="#F6EFE0"/>'
+    + '<path d="M1178,124 L1208,106 L1238,124 M1184,130 v26 M1200,130 v26 M1216,130 v26 M1232,130 v26 M1178,160 h60" fill="none" stroke="#B08D57" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>'
+    + '<rect x="1256" y="118" width="104" height="12" rx="6" fill="#D8CCB2"/>'
+    + '<rect x="1256" y="140" width="76" height="12" rx="6" fill="#D8CCB2"/>'
+    + '<rect x="1180" y="182" width="180" height="10" rx="5" fill="#E7DDC6"/>'
+    + '<rect x="1180" y="204" width="142" height="10" rx="5" fill="#E7DDC6"/>'
+    + '</g>'
+    + '</svg>');
+
 export const PROJECTS = [
     {
         slug: 'emobot-plus', num: '01',
@@ -689,6 +786,167 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
         zhPullQuote: '一個誠實的媒合產品，會攤開它的權重、指出它失準的地方，並且仍然讓使用者可以推翻它。',
         awards: [],
     },
+    {
+        slug: 'deepscout', num: '09',
+        category: 'AI Product Design · Decision Intelligence', zhCategory: 'AI 產品設計 · 決策情報',
+        title: 'DeepScout', subtitle: 'AI Scouting Copilot — a working case study',
+        zhTitle: 'DeepScout 深科技偵搜副駕', zhSubtitle: '一份做成產品的 AI 產品設計案例',
+        hook: 'A scouting copilot that reads funding, patent, news, and team signals, then writes a brief an analyst can defend — sourced, dated, and honest about what it cannot verify. Shipped as a working bilingual site; this page opens the design record behind it.',
+        zhHook: '讓 AI 讀融資、專利、新聞與團隊訊號，寫出一份分析師守得住的 brief：欄位附來源與日期，查不到的老實標成未驗證。作品本身是一個上線的雙語網站，這一頁打開的是它背後的設計檔案。',
+        stack: ['React 18', 'Vite', 'React Router', 'Interaction Prototyping', 'Design System', 'Bilingual UX Writing'],
+        role: 'Product Designer & Sole Builder', zhRole: '產品設計 / 獨立建造',
+        timeline: '2026', status: 'Live · 8-chapter bilingual site', zhStatus: '上線 · 八章雙語網站',
+        impact: '14 real startups · 4 designed AI states', zhImpact: '14 家真實新創 · 4 種 AI 狀態設計',
+        overview: "An analyst's morning usually starts the same way: a dozen tabs open, one for funding news, one for patent search, one for team backgrounds. The thing weighing on them isn't a shortage of information — it's the fear of missing or misreading a single signal. DeepScout's premise is to collapse that scattered noise into one structured brief: every field carries a source and a timestamp, tagged with a confidence level, and anything that can't be verified is marked unverified instead of smoothed into a good-sounding answer.\n\nThis isn't a stack of slides — it's a bilingual site that's actually live. Eight chapters run from Product (an operable Copilot) through Research (personas, journey) and Strategy (risk guardrails, prioritization, experiment design) to System (knowledge graph, design system), and every chapter can be operated by hand. Every decision each chapter argues for eventually shows up, live, inside the Copilot.\n\nThe most honest decision sits in the data layer: the 14 deep-tech startups inside the site are all real and publicly verifiable, their fields frozen as of July 2026 with source links attached. Two were acquired during production; one went through judicial recovery. Those aren't edge cases invented for effect — they're the freshness problem the product exists to handle, and the reason every field carries a retrievedAt stamp instead of a promise that it's still true.\n\nThis page doesn't re-narrate the eight chapters the site already tells — it opens the design record behind them: the premise and its three-way tension, the wireframes and the same brief carried through four passes, the state design for uncertainty, the bilingual copywriting discipline, the quality gates before shipping. I've crawled and built this domain's data layer myself, in projects 02 and 04 — so every product judgment DeepScout makes is shaped by the feel of real data, not imagination.",
+        zhOverview: "分析師的一天常是這樣開始的：十幾個分頁攤在螢幕上，融資新聞一頁、專利檢索一頁、團隊背景一頁，心裡懸著的不是資訊太少，而是漏看或看錯一個訊號。DeepScout 的命題是把這些散落的雜訊收斂成一份結構化 brief：每個欄位附來源與時效戳、標好信心等級，查不到的就標成未驗證，而不是替你圓一個好聽的答案。\n\n這個作品不是一疊 slides，而是一個上線的雙語網站。八個章節從產品（可操作的 Copilot）、研究（persona、旅程）、策略（風險護欄、優先級、實驗設計）到系統（知識圖譜、設計系統），每一章都能動手操作，而且每一章談的決策，最後都能在 Copilot 裡找到對應。\n\n最誠實的決策在資料層：站內 14 家深科技新創全部真實、公開可查，欄位凍結於 2026 年 7 月並附來源連結。製作期間有兩家被收購、一家經歷司法重整後復原。這些真實變動不是意外，正是產品要處理的「資料時效」問題本身，也是每個欄位都帶 retrievedAt 的理由。\n\n這一頁不重講網站已經講過的八章，而是打開它的設計檔案：命題與三方張力、線框與同一份 brief 的四道工序、不確定性的狀態設計、雙語文案工程、上線前的品質關卡。這個領域的資料層我自己爬過、建過（專案 02、04），所以 DeepScout 的每一個產品判斷，都是從資料的手感長出來的，不是從想像。",
+        outcomes: [
+            'Shipped an 8-chapter bilingual case-study site centered on an operable scouting Copilot — every chapter is a working artifact, not a slide.',
+            'Designed AI honesty as a first-class citizen: strong-signal, low-confidence, insufficient-signal refusal, and feed-timeout states, plus UNVERIFIED / CONFLICTING field flags.',
+            'Replaced fictional data with 14 real, sourced, dated startups — two were acquired mid-production, which proved the product\'s freshness thesis rather than undermining it.',
+            'Built a metric tree (1 north star + 4 input + 3 guardrail metrics) and an operable experiment design with sample size computed live off an MDE slider.',
+            'Mapped every generative-AI risk to a shipped guardrail: fabrication → refusal state, hype → mandatory sourcing, staleness → retrieval timestamps.',
+            'Rewrote all Traditional Chinese copy natively rather than translating it, under a six-rule style guide, and gated shipping with automated checks (console errors, 360px overflow, a11y, bilingual smoke test).',
+        ],
+        zhOutcomes: [
+            '上線八章雙語案例網站，中心是可操作的偵搜 Copilot——每一章都是活文件，不是投影片。',
+            '把 AI 的誠實設計成一等公民：強訊號、低信心、訊號不足拒答、來源逾時四種狀態，加上 UNVERIFIED／CONFLICTING 欄位旗標。',
+            '用 14 家真實、附來源與日期的新創取代虛構資料；其中兩家在製作期間被收購，恰好驗證了產品主張的時效問題。',
+            '建立指標樹（北極星＋4 input＋3 guardrail），並做出樣本數隨 MDE 即時計算的可操作實驗設計。',
+            '把每個生成式 AI 風險對應到已上線的護欄：捏造→拒答狀態、hype→來源必填、過期→時效戳。',
+            '繁中文案依六條守則獨立撰寫而非翻譯，並以自動化檢查（console／360px 溢出／a11y／雙語 smoke）守住上線品質。',
+        ],
+        tech: [
+            { label: 'Frontend', val: 'Vite, React 18, react-router-dom — no UI/CSS framework' },
+            { label: 'Product Core', val: 'Simulated signal-scan replay, structured brief schema, HITL verify / flag / re-scan' },
+            { label: 'Data Layer', val: '14 real startups, per-field source + retrievedAt, knowledge-graph relations' },
+            { label: 'AI-State Design', val: '4 designed states + UNVERIFIED / CONFLICTING flags, per-field confidence' },
+            { label: 'i18n & Copy', val: 'EN / 繁中 independently written, 6-rule style guide, ⌘K palette, deep links' },
+            { label: 'Quality', val: 'verify.mjs: console sweep, 360px overflow scan, axe a11y, EN/中 smoke test' },
+        ],
+        caseHeroImage: DEEPSCOUT_HERO_IMAGE,
+        caseDeck: {
+            eyebrow: 'Scouting console', zhEyebrow: '偵搜主控台',
+            title: 'From scattered signal to a brief you can defend',
+            zhTitle: '把散落的訊號，收斂成一份守得住的 brief',
+            body: 'A console that actually runs: scan four signal sources, resolve them into a sourced, confidence-scored brief, and refuse to write one when the signal is too thin to defend.',
+            zhBody: '真的能操作的副駕：掃描四路訊號、解析成附來源標信心的 brief，訊號太稀薄時會拒答而不是硬編。',
+            kpis: [
+                { label: 'Real startups', value: '14', zhLabel: '真實新創' },
+                { label: 'Chapters', value: '8', zhLabel: '章節' },
+                { label: 'AI states', value: '4', zhLabel: 'AI 狀態' },
+            ],
+            signals: ['Scan', 'Resolve', 'Flag', 'Verify', 'Decide'],
+            zhSignals: ['掃描', '解析', '標記', '驗證', '決策'],
+        },
+        storyMoments: [
+            { iconKey: 'activity', title: 'The tab-hell morning', zhTitle: '分頁地獄的早晨', body: "A scouting pass starts with a dozen open tabs. What's feared isn't a shortage of information — it's missing or misreading one signal. The problem is not volume; it's whether the conclusion can be defended.", zhBody: '一次偵搜從十幾個分頁開始，怕的是漏看或看錯一個訊號。問題不是資訊量，是結論守不守得住。' },
+            { iconKey: 'shield', title: 'The step that cannot be skipped', zhTitle: '不能跳過的那一步', body: 'The core loop has six moves; step five is human verification. Without it, a brief never becomes a decision — the product enforces that at the loop level, not as a suggestion.', zhBody: '核心迴圈六個動作，第五步是人工驗證。沒有這一步，brief 就不會變成決策，產品層面直接擋住。' },
+            { iconKey: 'target', title: 'The acquisitions that proved the thesis', zhTitle: '驗證命題的兩樁收購', body: "Two of the fourteen companies were acquired while this case study was being built. That's exactly why every field carries a retrieval date instead of a promise that it's still true.", zhBody: '十四家公司裡有兩家在製作期間被收購。這正是每個欄位都帶時效戳、而不是打包票的理由。' },
+        ],
+        outcomeModules: [
+            { num: '01', id: 'ds-mb' },
+            { num: '02', id: 'ds-m05' },
+            { num: '03', id: 'ds-m08' },
+            { num: '04', id: 'ds-m09' },
+            { num: '05', id: 'ds-m10' },
+            { num: '06', id: 'ds-m07' },
+        ],
+        storyChapters: [
+            { iconKey: 'globe', label: 'Thesis', zhLabel: '命題', title: 'Three readers, one brief', zhTitle: '三種讀者，一份 brief', body: 'The analyst wants speed, the innovation lead wants signal-to-noise, the scouted startup fears being misjudged on stale data. That three-way tension is what the product scope collapsed into.', zhBody: '分析師要速度、主管要訊噪比、新創怕被誤判，張力收斂成產品範圍。', artifact: 'Tension map', zhArtifact: '張力圖' },
+            { iconKey: 'layers', label: 'Loop', zhLabel: '迴圈', title: 'Design the loop before the screen', zhTitle: '先設計迴圈，再畫畫面', body: 'The six-step core loop was fixed before a single screen was drawn, with human verification written in as a hard product-level rule, not a nice-to-have.', zhBody: '六步核心迴圈，人工驗證寫成產品層的硬規則。', artifact: 'Core loop', zhArtifact: '核心迴圈' },
+            { iconKey: 'shield', label: 'Doubt', zhLabel: '不確定', title: 'Give uncertainty its own interface', zhTitle: '給不確定性一個介面', body: 'Refusal is a designed state, not an error page. A flag is worth more than a beautifully confident answer that turns out to be wrong.', zhBody: '拒答是設計出來的狀態，不是錯誤頁；旗標比華麗的答案更值錢。', artifact: 'State specs', zhArtifact: '狀態規格' },
+            { iconKey: 'activity', label: 'Evidence', zhLabel: '真資料', title: 'Pay the price of real data', zhTitle: '付出真資料的代價', body: 'Fourteen verifiable companies, acquisitions and disputed narratives included rather than hidden, are what make the retrieval-date stamp mean something.', zhBody: '14 家可查證的公司，收購與爭議照登，時效戳因此成立。', artifact: 'Sourced dataset', zhArtifact: '附來源資料集' },
+            { iconKey: 'check', label: 'Ship', zhLabel: '上線', title: 'Ship it, then prove it holds', zhTitle: '上線，然後證明它站得住', body: 'Natively written bilingual copy, automated quality gates, and a brief designed to be the one thing on the site worth printing.', zhBody: '雙語獨立撰寫、自動化品質關卡、可列印的 brief。', artifact: 'Quality gates', zhArtifact: '品質關卡' },
+        ],
+        pullQuote: 'The most honest sentence an AI product can say is "unverified." DeepScout is designed around the moments it has to say it.',
+        zhPullQuote: 'AI 產品最誠實的一句話是「未驗證」。DeepScout 的整套設計，都圍繞著它必須說出這句話的時刻。',
+        evidenceSlots: [
+            { iconKey: 'monitor', title: 'Live copilot, real states', zhTitle: '可操作的實品', desc: 'Open the eight real chapters — the scan, the states, the risk register, the graph — and check every claim on this page against the running site.', zhDesc: '打開八個真實章節——掃描、狀態、風險登錄、圖譜——對照運作中的網站檢查這一頁的每一項宣稱。', anchor: 'ds-mb', anchorNum: '11' },
+            { iconKey: 'layers', title: 'Same brief, four passes', zhTitle: '一份 brief，四道工序', desc: 'The same company brief carried through four passes — hand wireframe to shipped screenshot — each one captioned with what that pass decided.', zhDesc: '同一份 brief 走過四道工序——手繪線框到上線截圖——每一道都標註那一輪決定了什麼。', anchor: 'ds-m04', anchorNum: '04' },
+        ],
+        awards: [],
+    },
+    {
+        slug: 'field-journey', num: '10',
+        category: 'Service Design in the Field', zhCategory: '社福×醫療場域的服務設計實務',
+        title: 'Field Journey', subtitle: 'Three stations of care, data, and design',
+        zhTitle: '三站田野', zhSubtitle: '在醫療與社福場域長出來的設計',
+        hook: 'Before I designed AI products, I spent three years as a project assistant inside a hospital institution, a family-welfare association, and a ministry-level mental-health center. This page packages that fieldwork the way I package products: a journey, reconstructed artifacts you can operate, and the skills that carried forward.',
+        zhHook: '在設計 AI 產品之前，我在醫院附設機構、社福協會與部級心衛中心當了三年計畫助理。這一頁用我包裝產品的方式包裝那段田野：一段旅程、可實際操作的重建產出，和那些被帶走的能力。',
+        stack: ['Service Design', 'AAC / Accessibility', 'Data & Scale Design', 'Form Design', 'Content Production', 'Event Operations'],
+        role: 'Project Assistant · 3 institutions', zhRole: '計畫助理 · 三個機構',
+        timeline: '2021 – 2023', status: 'Field record · 3 stations', zhStatus: '田野紀錄 · 三站',
+        impact: 'Hospital · NGO · ministry-level center', zhImpact: '醫院 · 協會 · 部級中心',
+        overview: "Before any of the dashboards in this portfolio existed, I spent close to three years as a project assistant in three very different institutions: a hospital-affiliated facility serving autistic residents, a small children-and-family welfare association, and a mental-health center in the Ministry of Health and Welfare system. The job title never said designer. The work kept insisting on it.\n\nEach station taught a different scale. At Mennonite's Liming Institution I served on the floor and built what the floor needed — structured course materials and AAC communication boards for people whom standard interfaces don't serve. At the association, a team small enough to count on two hands meant one seat covered statistics, scale design, podcast production, web content, and event logistics. At the ministry-level center, the same crafts scaled up into strategy, cross-department coordination, and resource integration.\n\nThis page treats those three years with the same case-study discipline as the other nine projects — but in a different voice: a warm paper world instead of a console, a journey map, one chapter per station, and reconstructed artifacts you can operate. A communication board that builds sentences. The annual data report that argued for program funding. The intake form redesigned around case types, where the crisis path asks the least.\n\nOne honesty note, in the same spirit as the rest of this portfolio: this is work experience packaged as a case study, not a product launch. Institutional facts are real; artifact details are re-drawn from memory and stamped accordingly; numbers I can no longer verify are left out rather than invented.",
+        zhOverview: "在這本作品集的任何一座儀表板出現之前，我當了將近三年的計畫助理，走過三個非常不同的機構：服務自閉症院生的醫院附設機構、一個小小的兒童暨家庭關懷協會，以及衛福部體系下的心理衛生中心。職稱裡從來沒有「設計」兩個字，但工作本身一直堅持要它。\n\n每一站教的是不同的尺度。在門諾黎明機構，我在第一線服務，也為第一線做東西——結構化課程教材，和給「一般介面服務不到的人」的 AAC 溝通板。在協會，十指可數的團隊意味著一個位子要同時扛統計、量表設計、Podcast 產製、網站內容與活動後勤。到了部級的心衛中心，同樣的手藝被放大成策略、跨部門協調與資源整合。\n\n這一頁用和其他九個專案相同的 case-study 紀律來對待這三年——但換了一種聲音：不是主控台，而是一個暖紙色的世界；一張旅程地圖、一站一章，以及可以實際操作的重建產出。拼得出句子的溝通板、把經費說服下來的年度數據報告、依個案分流重新設計的諮詢表單——危機那條路，問得最少。\n\n照這本作品集一貫的誠實原則說明：這是工作經歷，用案例的方式整理，不是一次產品上線。機構事實為真；產出物細節依記憶重繪並蓋上對應戳章；已無法查證的數字，寧可留白也不編造。",
+        outcomes: [
+            'Designed and produced AAC communication boards and structured course materials for autistic residents — accessibility practice before I knew its name.',
+            'Planned the statistical workflow, designed the scales, and built the annual data report that argued for program funding alongside the psychologists.',
+            'Ran an end-to-end content pipeline — interview outlines, guest invitations, recording, post-production, publishing — plus the association website and visual materials.',
+            'Redesigned counseling intake forms around case types and consultation purposes, so the crisis path asks the least.',
+            'Planned and ran lectures and large-scale events end to end, then coordinated cross-department resource surveys and integration at ministry level.',
+            'Carried five craft lines out of the field — data, instruments, accessibility, content, operations — each traceable to the portfolio projects where it lives now.',
+        ],
+        zhOutcomes: [
+            '為自閉症院生設計並製作 AAC 溝通板與結構化課程教材——在我認識「無障礙設計」這個詞之前，就先做了它。',
+            '規劃統計流程、設計量表，完成年度數據報告，並和心理師一起用這份證據爭取計畫經費。',
+            '一個人跑完整條內容產線——訪談大綱、邀稿、錄音、後製、上架——外加協會網站與視覺物。',
+            '依個案類型與諮詢目的重新設計諮詢諮商表單，讓危機路徑問得最少。',
+            '端到端籌辦講座與大型活動，並在部級單位協調跨部門的資源調查與整合。',
+            '從田野帶走五條手藝線——資料、工具、無障礙、內容、營運——每一條都能對到它現在住的作品集專案。',
+        ],
+        tech: [
+            { label: 'Care & Accessibility', val: 'Daily autism services, AAC picture boards, structured teaching materials' },
+            { label: 'Data & Statistics', val: 'Case-data pipelines, scale design, annual integrated analysis and visualization' },
+            { label: 'Forms & Instruments', val: 'Counseling intake forms differentiated by case type and consultation purpose' },
+            { label: 'Content Production', val: 'Podcast pipeline (outline → publish), web publishing, copywriting and layout' },
+            { label: 'Event Operations', val: 'Theme design, guest invitations, venue, promotion, logistics, feedback follow-up' },
+            { label: 'Coordination', val: 'Team strategy, cross-department and cross-institution resource integration' },
+        ],
+        caseHeroImage: FIELD_HERO_IMAGE,
+        caseDeck: {
+            eyebrow: 'Field log', zhEyebrow: '田野日誌',
+            title: 'Three institutions, one continuous practice',
+            zhTitle: '三個機構，一條連續的實務',
+            body: 'Three stations read as one practice: serve people directly, measure what the service does, design the instruments, produce the content, and coordinate the people who make it land.',
+            zhBody: '三站讀起來是同一條實務：直接服務人、量測服務的效果、設計工具、產製內容，然後協調讓這一切落地的人。',
+            kpis: [
+                { label: 'Institutions', value: '3', zhLabel: '機構' },
+                { label: 'Craft lines', value: '5', zhLabel: '手藝線' },
+                { label: 'Years', value: '~3', zhLabel: '年' },
+            ],
+            signals: ['Serve', 'Measure', 'Design', 'Produce', 'Coordinate'],
+            zhSignals: ['服務', '量測', '設計', '產製', '協調'],
+        },
+        storyMoments: [
+            { iconKey: 'heart', title: 'The sentence on the strip', zhTitle: '句條上的那句話', body: 'The first time a nonverbal resident used a board we made to say what he wanted, the room understood what design is for.', zhBody: '當無口語的院生第一次用我們做的溝通板說出他想要什麼，整個空間都明白了設計是做什麼用的。' },
+            { iconKey: 'chart', title: 'Numbers that argued', zhTitle: '會說話的數字', body: 'A year of case data, cleaned and visualized, then read aloud with the psychologists — and the program funding followed.', zhBody: '一整年的個案資料被清整、視覺化，再和心理師一起對讀——計畫經費跟著來了。' },
+            { iconKey: 'globe', title: 'The table got bigger', zhTitle: '桌子變大了', body: 'At ministry level the deliverable changed: not an artifact but an agreement — which unit offers what resource, and who follows up.', zhBody: '到了部級單位，交付物變了：不是一件產出，而是一份共識——哪個單位出什麼資源、誰負責跟進。' },
+        ],
+        outcomeModules: [
+            { num: '03', id: 'fj-c03' },
+            { num: '04', id: 'fj-c04' },
+            { num: '04', id: 'fj-c04' },
+            { num: '05', id: 'fj-c05' },
+            { num: '05', id: 'fj-c05' },
+            { num: '07', id: 'fj-c07' },
+        ],
+        storyChapters: [
+            { iconKey: 'map', label: 'Route', zhLabel: '路線', title: 'Three institutions, one route', zhTitle: '三個機構，一條路', body: 'Hospital floor, small association, ministry-level center — the same person walking three scales of the same care system.', zhBody: '醫院第一線、小協會、部級中心——同一個人，走過同一套照護系統的三種尺度。', artifact: 'Journey map', zhArtifact: '旅程地圖' },
+            { iconKey: 'heart', label: 'Serve', zhLabel: '服務', title: 'Design starts on the floor', zhTitle: '設計從第一線開始', body: 'Daily autism services set the bar: if a course step or a picture card was ambiguous, it failed immediately and visibly.', zhBody: '自閉症日常服務把標準定死：課程步驟或圖卡只要模糊，立刻且明顯地失敗。', artifact: 'AAC board', zhArtifact: '溝通板' },
+            { iconKey: 'chart', label: 'Measure', zhLabel: '量測', title: 'Scales, statistics, and an argument', zhTitle: '量表、統計，與一場說服', body: 'Case data became scales, scales became an annual report, and the report became the argument that won program funding.', zhBody: '個案資料變成量表，量表變成年報，年報變成把經費說服下來的那場論證。', artifact: 'Annual report', zhArtifact: '年度報告' },
+            { iconKey: 'mic', label: 'Produce', zhLabel: '產製', title: 'One seat, a whole pipeline', zhTitle: '一個位子，一條產線', body: 'Podcast episodes, web content, visual materials — outlined, recorded, edited, and published from a single seat.', zhBody: 'Podcast、網站內容、視覺物——從大綱、錄音、剪輯到上架，都是同一個位子做完的。', artifact: 'Content pipeline', zhArtifact: '內容產線' },
+            { iconKey: 'trend', label: 'Carry', zhLabel: '帶走', title: 'What walked out with me', zhTitle: '跟著我走出來的', body: 'Five craft lines — data, instruments, accessibility, content, operations — each now living inside projects 01–09.', zhBody: '五條手藝線——資料、工具、無障礙、內容、營運——如今都住在專案 01–09 裡。', artifact: 'Skills bridge', zhArtifact: '技能橋接' },
+        ],
+        pullQuote: 'The field taught the lesson no tool teaches: a form, a board, or a report has to work for someone who cannot tell you it doesn\'t.',
+        zhPullQuote: '田野教了工具教不了的事：一張表單、一塊溝通板、一份報告，必須為「沒辦法告訴你它不好用」的人工作。',
+        evidenceSlots: [
+            { iconKey: 'map', title: 'Walk the three stations', zhTitle: '走一遍三站', desc: 'A journey map and one chapter per institution — duties, operable artifacts, and the field note each station left behind.', zhDesc: '一張旅程地圖、一站一章——職責、可操作的產出物，和每一站留下的田野筆記。', anchor: 'fj-c02', anchorNum: '02' },
+            { iconKey: 'book', title: 'Open the field album', zhTitle: '翻開田野相簿', desc: 'Frames reserved for the boards, spreads, and rooms — captions first, scans as they surface.', zhDesc: '為溝通板、報告攤頁與活動現場預留的相框——圖說先到，掃描檔陸續出土。', anchor: 'fj-c06', anchorNum: '06' },
+            { iconKey: 'trend', title: 'See what carried forward', zhTitle: '看哪些被帶走了', desc: 'Five field skills, each drawn as a line pointing at the portfolio projects where it lives now.', zhDesc: '五條田野能力線，每一條都指向它現在住的作品集專案。', anchor: 'fj-c07', anchorNum: '07' },
+        ],
+        awards: [],
+    },
 ];
 export const PROJECT_THEMES = {
     'emobot-plus':                  'emobot',
@@ -699,4 +957,6 @@ export const PROJECT_THEMES = {
     'industry-strategy-platform':   'map',
     'startup-intelligence-platform':'platform',
     'psymatch':                     'research',
+    'deepscout':                    'ai',
+    'field-journey':                'field',
 };

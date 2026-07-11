@@ -9,6 +9,8 @@ import NewsIntelEvidence from '../newsintel/NewsIntelEvidence.jsx';
 import PsyMatchEvidence from '../psymatch/PsyMatchEvidence.jsx';
 import VerificationLayer from '../verification/VerificationLayer.jsx';
 import ProductShowcase from '../product-showcase/ProductShowcase.jsx';
+import DeepScoutEvidence from '../deepscout/DeepScoutEvidence.jsx';
+import FieldJourneyEvidence from '../field-journey/FieldJourneyEvidence.jsx';
 
 // The single "middle" interactive-evidence slot. Every project mounts its big
 // interactive module here — after the storytelling case study and before
@@ -36,6 +38,10 @@ export default function ProjectExtraSection({ slug, lang }) {
     React.createElement(VerificationLayer, null));
 
   if (slug === 'psymatch') return React.createElement(PsyMatchEvidence, null);
+
+  if (slug === 'deepscout') return React.createElement(DeepScoutEvidence, null);
+
+  if (slug === 'field-journey') return React.createElement(FieldJourneyEvidence, null);
 
   return null;
 }

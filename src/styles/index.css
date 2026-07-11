@@ -2204,6 +2204,7 @@ img { max-width: 100%; height: auto; }
 .proj-page[data-theme="safety"]   { --proj-accent: #fb7185; --proj-dim: rgba(251,113,133,0.12); }
 .proj-page[data-theme="map"]      { --proj-accent: #34d399; --proj-dim: rgba(52,211,153,0.12); }
 .proj-page[data-theme="platform"] { --proj-accent: #fb923c; --proj-dim: rgba(251,146,60,0.12); }
+.proj-page[data-theme="field"]    { --proj-accent: #e0956a; --proj-dim: rgba(224,149,106,0.14); }
 .proj-page { --proj-accent: var(--teal); --proj-dim: var(--teal-dim); }
 .proj-page[data-theme="data"] :where(.proj-title, .proj-hook, .proj-body-text, .proj-meta-val, .stack-tag) {
   overflow-wrap: anywhere;
