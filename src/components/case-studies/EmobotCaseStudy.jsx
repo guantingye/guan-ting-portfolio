@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import Icon from '../ui/Icon.jsx';
 
 const publicAsset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
@@ -12,6 +13,9 @@ const personaAvatarImages = {
 
 const systemArchitectureWireframe = new URL('../../../assets/System architecture wireframe.png', import.meta.url).href;
 const emobotLogo = new URL('../../../assets/emobot LOGO.png', import.meta.url).href;
+const awardCeremonyPhoto = new URL('../../../assets/emobot/award-ceremony.webp', import.meta.url).href;
+const awardCertificate = new URL('../../../assets/emobot/award-certificate.webp', import.meta.url).href;
+const closingMomentPhoto = new URL('../../../assets/emobot/closing-moment.webp', import.meta.url).href;
 const personaVideos = {
   Lumi: new URL('../../../assets/lumi_video.mp4', import.meta.url).href,
   Solin: new URL('../../../assets/solin_video.mp4', import.meta.url).href,
@@ -21,6 +25,13 @@ const personaVideos = {
 export default function EmobotCaseStudy({ lang }) {
   const PA = lang === 'zh';
   const [activePersona, setActivePersona] = useState(0);
+  const [lightboxExhibit, setLightboxExhibit] = useState(null);
+  useEffect(() => {
+    if (lightboxExhibit === null) return;
+    const onKey = (e) => { if (e.key === 'Escape') setLightboxExhibit(null); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [lightboxExhibit]);
   const [isPersonaSpeaking, setIsPersonaSpeaking] = useState(false);
   const [isPersonaPlaybackPending, setIsPersonaPlaybackPending] = useState(false);
   const [hasPersonaVideoError, setHasPersonaVideoError] = useState(false);
@@ -74,7 +85,7 @@ export default function EmobotCaseStudy({ lang }) {
   };
 
   const proof = [
-    { num: 'Silver', label: 'Award Signal', zhLabel: '獎項證據', desc: '2025 AI Interdisciplinary Sustainability Innovation Contest', zhDesc: '2025 AI 跨域永續創新競賽銀獎' },
+    { num: '亞軍', enNum: 'Silver Medal', label: 'Award Signal', zhLabel: '獎項證據', desc: '2025 AI Interdisciplinary Sustainability Innovation Contest — 58 teams', zhDesc: '2025 AI 跨域×永續創新競賽亞軍・58 組團隊中脫穎而出' },
     { num: '23.1%', label: 'Student Need', zhLabel: '學生需求', desc: 'High depressive tendency cited in the proposal context', zhDesc: '提案脈絡引用大學生高憂鬱傾向比例' },
     { num: '24/7', label: 'Support Layer', zhLabel: '支持層', desc: 'Always-available, low-threshold emotional check-in', zhDesc: '全天候、低門檻的情緒檢核與陪伴入口' },
   ];
@@ -444,10 +455,82 @@ export default function EmobotCaseStudy({ lang }) {
     { label: 'Finding 03', zhLabel: '發現 03', title: 'Semantic evidence guides safety', zhTitle: '語意證據導向安全設計', body: 'Repeated emotional themes and risk-adjacent language define when the system should slow down, summarize, or route to human care.', zhBody: '重複出現的情緒主題與風險鄰近語言，決定系統何時放慢、摘要或導向真人支持。' },
   ];
 
-  const evidence = [
-    { iconKey: 'award', title: 'Award Video', zhTitle: '得獎影片', body: 'Embedded contest video for the portfolio reader to verify the award context.', zhBody: '嵌入競賽影片，讓作品集讀者能直接驗證得獎脈絡。' },
-    { iconKey: 'book', title: 'Proposal PDF', zhTitle: '提案計畫書', body: 'Reserve for the final deck, problem analysis, market research, and SDG impact page.', zhBody: '預留放置完整提案書、問題分析、市場研究與 SDG 影響頁。' },
-    { iconKey: 'monitor', title: 'MVP Screens', zhTitle: 'MVP 畫面', body: 'Reserve for onboarding, persona match, chat interface, report preview, and dashboard screenshots.', zhBody: '預留放置引導流程、人設媒合、對話介面、報告預覽與儀表板截圖。' },
+  const nccuNewsUrl = 'https://www.nccu.edu.tw/p/405-1000-21162,c87.php?Lang=zh-tw#gsc.tab=0';
+  const iaicNewsUrl = 'https://iaic.nccu.edu.tw/news/218';
+  const linktreeUrl = 'https://linktr.ee/nccuaiforall2025';
+
+  const exhibits = [
+    {
+      code: 'EXHIBIT A',
+      src: awardCeremonyPhoto,
+      ratio: 'wide',
+      tag: 'Award Ceremony',
+      zhTag: '頒獎典禮現場',
+      dateLabel: '2025.11.10',
+      title: 'The Award, in Hand',
+      zhTitle: '領獎瞬間',
+      body: 'NCCU finals stage — the moment Emobot+ took the Silver Medal among 58 competing teams.',
+      zhBody: '政大公企中心決賽現場，58 組團隊中脫穎而出的那一刻。',
+    },
+    {
+      code: 'EXHIBIT B',
+      src: awardCertificate,
+      ratio: 'tall',
+      tag: 'Official Certificate',
+      zhTag: '官方獎狀',
+      dateLabel: '2025.11.10',
+      title: 'Silver Medal Award, on record',
+      zhTitle: '亞軍獎狀正本',
+      body: 'Issued by NCCU AI Center and the NCCU Real Estate Research Center — team Emobot+, I-CHEN CHIANG × GUAN-TING YE.',
+      zhBody: '由政大人工智慧跨域研究中心與政大不動產研究中心共同核發，團隊 Emobot+，蔣宜蓁 I-CHEN CHIANG × 葉冠廷 GUAN-TING YE。',
+    },
+  ];
+
+  const pressClippings = [
+    {
+      masthead: 'NCCU Official',
+      zhMasthead: '政大官方新聞稿',
+      date: '2025.11.14',
+      title: 'AI × Sustainability Innovation Contest, 2nd Edition',
+      zhTitle: 'AI中心第二屆AI跨域永續創新競賽',
+      body: '58 student teams competed, sponsored by Delta and Global Home Real Estate — President Li Tsai-Yen on giving humanities students "a second pair of wings."',
+      zhBody: '58 組團隊參賽，由德利盟公司及永慶房產集團贊助；李蔡彥校長：讓人社背景同學掌握科技後「如同長了兩隻翅膀，飛得更遠」。',
+      href: nccuNewsUrl,
+      linkLabel: 'Read on nccu.edu.tw',
+      zhLinkLabel: '前往政大官網 ↗',
+    },
+    {
+      masthead: 'NCCU IAIC',
+      zhMasthead: '政大AI中心新聞稿',
+      date: '2025.11.14',
+      title: 'AI in Service of Humanistic and Sustainable Vision',
+      zhTitle: '以AI實踐人文創新與永續願景',
+      body: "The AI Center's own account of the finals — Emobot+'s digital mental-health support system named runner-up.",
+      zhBody: 'AI 中心版新聞稿，完整記錄決賽現場，Emobot+ 以數位心理健康支持系統奪得亞軍。',
+      href: iaicNewsUrl,
+      linkLabel: 'Read on iaic.nccu.edu.tw',
+      zhLinkLabel: '前往 AI 中心官網 ↗',
+    },
+    {
+      masthead: 'NCCU IAIC — Feature',
+      zhMasthead: '政大AI中心・成果專訪',
+      date: '2026.01.20',
+      title: 'Starting From a Real Need',
+      zhTitle: '從需求出發：政大團隊 Emobot＋AI 建構永續心理健康支持網絡',
+      quote: '我們很想真的設計出一個作品，去幫助到有需求的人。',
+      quoteAuthor: '蔣宜蓁',
+      href: iaicReportUrl,
+      linkLabel: 'Read the interview',
+      zhLinkLabel: '閱讀完整專訪 ↗',
+      featured: true,
+    },
+  ];
+
+  const archiveLinks = [
+    { label: 'Finals agenda', zhLabel: '決賽議程', href: linktreeUrl },
+    { label: 'Team pitch deck', zhLabel: '團隊簡報', href: linktreeUrl },
+    { label: 'Event photo album', zhLabel: '競賽花絮', href: linktreeUrl },
+    { label: 'NCCU AI Center', zhLabel: '政大 AI 跨域研究中心', href: 'https://iaic.nccu.edu.tw/' },
   ];
 
 
@@ -538,7 +621,7 @@ export default function EmobotCaseStudy({ lang }) {
         ),
         React.createElement('div', { className: 'emobot-proof-grid' },
           ...proof.map(item => React.createElement('div', { className: 'emobot-proof-card', key: item.label },
-            React.createElement('div', { className: 'emobot-proof-num' }, item.num),
+            React.createElement('div', { className: 'emobot-proof-num' }, PA ? item.num : (item.enNum || item.num)),
             React.createElement('div', { className: 'emobot-proof-label' }, pick(item, 'label')),
             React.createElement('div', { className: 'emobot-proof-desc' }, pick(item, 'desc'))
           ))
@@ -1138,25 +1221,121 @@ export default function EmobotCaseStudy({ lang }) {
         )
       )
     ),
-    React.createElement('div', { className: 'proj-section reveal emobot-case-section' },
+    React.createElement('div', { className: 'proj-section reveal emobot-case-section emobot-record-section' },
       React.createElement('div', { className: 'emobot-section-head' },
         React.createElement('div', null,
-          React.createElement('div', { className: 'emobot-section-kicker' }, PA ? '08 / 佐證素材預留區' : '08 / Evidence slots'),
-          React.createElement('h3', { className: 'emobot-section-title' }, PA ? '讓作品集之後能直接接上真實畫面與文件。' : 'A page ready for real artifacts, screenshots, and documents.')
+          React.createElement('div', { className: 'emobot-section-kicker' }, PA ? '08 / 公開紀錄' : '08 / Public record'),
+          React.createElement('h3', { className: 'emobot-section-title' }, PA ? '這個提案最後成為一份可以被公開查證的紀錄。' : 'The proposal ended as a record anyone can verify.')
         ),
         React.createElement('p', { className: 'emobot-section-copy' },
           PA
-            ? '此區塊先保留完整素材位置，後續可以替換為得獎截圖、提案書頁面、MVP 操作畫面、使用者流程或報告輸出。'
-            : 'These slots are prepared for award screenshots, proposal pages, MVP screens, user flows, and report artifacts once final assets are ready.'
+            ? '這裡收錄頒獎典禮實照、官方獎狀正本，以及三篇公開報導——不是自述的成果，而是能逐條點開查證的公開紀錄。'
+            : 'The ceremony photo, the certificate itself, and three published reports — not a claim, but a record you can click through and verify.'
         )
       ),
-      React.createElement('div', { className: 'emobot-evidence-grid' },
-        ...evidence.map(item => React.createElement('article', { className: 'emobot-evidence-card', key: item.title },
-          React.createElement('div', { className: 'emobot-evidence-placeholder' }, React.createElement(Icon, { name: item.iconKey })),
-          React.createElement('h4', { className: 'emobot-card-title' }, pick(item, 'title')),
-          React.createElement('p', { className: 'emobot-card-body' }, pick(item, 'body'))
+      React.createElement('div', { className: 'emobot-record-stage' },
+        ...exhibits.map(ex => React.createElement('figure', {
+          className: `emobot-exhibit emobot-exhibit-${ex.ratio}`,
+          key: ex.code,
+          onClick: () => setLightboxExhibit(ex),
+          role: 'button',
+          tabIndex: 0,
+          onKeyDown: (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setLightboxExhibit(ex); } }
+        },
+          React.createElement('div', { className: 'emobot-exhibit-label' },
+            React.createElement('span', { className: 'emobot-exhibit-code' }, ex.code),
+            React.createElement('span', { className: 'emobot-exhibit-date' }, ex.dateLabel)
+          ),
+          React.createElement('div', { className: 'emobot-exhibit-frame' },
+            React.createElement('img', { src: ex.src, alt: PA ? ex.zhTitle : ex.title, loading: 'lazy', decoding: 'async' }),
+            ex.ratio === 'wide' ? React.createElement('div', { className: 'emobot-exhibit-stamp' },
+              React.createElement('span', null, PA ? '亞軍' : 'SILVER'),
+              React.createElement('span', null, PA ? 'SILVER MEDAL AWARD' : 'MEDAL AWARD')
+            ) : null,
+            React.createElement('div', { className: 'emobot-exhibit-zoom' }, React.createElement(Icon, { name: 'maximize' }))
+          ),
+          React.createElement('figcaption', null,
+            React.createElement('div', { className: 'emobot-exhibit-tag' }, PA ? ex.zhTag : ex.tag),
+            React.createElement('h4', null, PA ? ex.zhTitle : ex.title),
+            React.createElement('p', null, PA ? ex.zhBody : ex.body)
+          )
         ))
+      ),
+      React.createElement('div', { className: 'emobot-press-grid' },
+        ...pressClippings.map(item => React.createElement('article', {
+          className: `emobot-press-card${item.featured ? ' featured' : ''}`,
+          key: item.title
+        },
+          React.createElement('div', { className: 'emobot-press-card-head' },
+            React.createElement('span', { className: 'emobot-press-card-masthead' }, PA ? item.zhMasthead : item.masthead),
+            React.createElement('span', { className: 'emobot-press-card-date' }, item.date)
+          ),
+          React.createElement('h4', null, PA ? item.zhTitle : item.title),
+          item.quote
+            ? React.createElement('blockquote', { className: 'emobot-press-card-quote' },
+                '“', item.quote, '”',
+                React.createElement('cite', null, '— ', item.quoteAuthor)
+              )
+            : React.createElement('p', null, PA ? item.zhBody : item.body),
+          React.createElement('a', {
+            className: 'emobot-press-card-link',
+            href: item.href,
+            target: '_blank',
+            rel: 'noreferrer'
+          }, PA ? item.zhLinkLabel : item.linkLabel)
+        ))
+      ),
+      React.createElement('div', { className: 'emobot-archive-strip' },
+        React.createElement('span', { className: 'emobot-archive-strip-label' }, PA ? '延伸檔案' : 'Also in the archive'),
+        React.createElement('div', { className: 'emobot-archive-strip-links' },
+          ...archiveLinks.map(link => React.createElement('a', { href: link.href, target: '_blank', rel: 'noreferrer', key: link.label },
+            (PA ? link.zhLabel : link.label) + ' ↗'
+          ))
+        ),
+        React.createElement('span', { className: 'emobot-archive-strip-motto' }, 'ACTUALITY × POTENTIALITY × INFINITY')
+      ),
+      React.createElement('div', { className: 'emobot-colophon' },
+        React.createElement('img', {
+          className: 'emobot-colophon-photo',
+          src: closingMomentPhoto,
+          alt: PA ? '決賽現場，宣布結果前的我們' : 'Finals day, before the results were announced',
+          loading: 'lazy',
+          decoding: 'async'
+        }),
+        React.createElement('div', { className: 'emobot-colophon-scrim' }),
+        React.createElement('span', { className: 'emobot-colophon-tag' },
+          PA ? '決賽現場・宣布結果前的我們' : 'Finals day — before the results were announced'
+        ),
+        React.createElement('div', { className: 'emobot-colophon-content' },
+          React.createElement('p', { className: 'emobot-colophon-line' },
+            PA
+              ? '從 58 組團隊中走到亞軍，Emobot+ 不只是一次競賽，而是一個還在繼續的答案。'
+              : 'From 58 teams to the Silver Medal Award — Emobot+ was never just a contest. It is an answer still being written.'
+          ),
+          React.createElement('div', { className: 'emobot-colophon-sign' },
+            React.createElement('span', null, 'Emobot+'),
+            React.createElement('span', null, '蔣宜蓁 I-CHEN CHIANG  ×  葉冠廷 GUAN-TING YE'),
+            React.createElement('span', null, PA ? '2025 政大 AI 跨域×永續創新競賽・亞軍' : '2025 NCCU AI × Sustainability Innovation Contest — Silver Medal')
+          )
+        )
       )
-    )
+    ),
+    lightboxExhibit ? createPortal(React.createElement('div', {
+      className: 'emobot-lightbox',
+      onClick: () => setLightboxExhibit(null)
+    },
+      React.createElement('button', {
+        className: 'emobot-lightbox-close',
+        onClick: () => setLightboxExhibit(null),
+        'aria-label': PA ? '關閉' : 'Close'
+      }, '×'),
+      React.createElement('figure', { className: 'emobot-lightbox-figure', onClick: (e) => e.stopPropagation() },
+        React.createElement('img', { src: lightboxExhibit.src, alt: PA ? lightboxExhibit.zhTitle : lightboxExhibit.title }),
+        React.createElement('figcaption', null,
+          React.createElement('span', null, lightboxExhibit.code),
+          React.createElement('strong', null, PA ? lightboxExhibit.zhTitle : lightboxExhibit.title)
+        )
+      )
+    ), document.body) : null
   );
 }

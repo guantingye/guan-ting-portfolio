@@ -1,7 +1,7 @@
 import {
   FiAward, FiTarget, FiGlobe, FiCpu, FiMap, FiDatabase, FiActivity, FiShield,
   FiBriefcase, FiZap, FiHeart, FiBarChart2, FiLayers, FiMonitor, FiTrendingUp,
-  FiBookOpen, FiCheckCircle, FiMic, FiEdit3, FiUsers, FiPlay, FiPause
+  FiBookOpen, FiCheckCircle, FiMic, FiEdit3, FiUsers, FiPlay, FiPause, FiMaximize2
 } from 'react-icons/fi';
 
 export const ICONS = {
@@ -27,4 +27,5 @@ export const ICONS = {
     users: FiUsers,
     play: FiPlay,
     pause: FiPause,
+    maximize: FiMaximize2,
 };
