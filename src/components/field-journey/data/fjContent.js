@@ -164,18 +164,12 @@ export const SKILL_BRIDGES = [
     },
 ];
 
-// Photo/artifact slots for the field album. `src` stays null until a real scan
-// lands in public/field-journey/ — fill it here, nothing else changes.
-// Filenames follow: <nn>-<station>-<subject>.webp
+// Real photo evidence shown in the field album. Files live in
+// public/field-journey/ and are addressed through Vite's BASE_URL.
 export const PHOTOS = [
-    { id: 'ph-01', station: 'st1', src: null, title: { en: 'Communication board, in use', zh: '溝通輔具成品' }, note: { en: 'The AAC boards produced for nonverbal residents.', zh: '為無口語院生製作的溝通板與圖卡。' } },
-    { id: 'ph-02', station: 'st1', src: null, title: { en: 'Structured course materials', zh: '結構化課程教材' }, note: { en: 'Step-by-step visual materials from the curriculum project.', zh: '課程專案的視覺化分步教材。' } },
-    { id: 'ph-03', station: 'st1', src: null, title: { en: 'Institution event day', zh: '大型活動現場' }, note: { en: 'From planning sheet to the day itself.', zh: '從企劃表到活動當天。' } },
-    { id: 'ph-04', station: 'st2', src: null, title: { en: 'Annual report spread', zh: '年度統計報告' }, note: { en: 'The data report that argued for program funding.', zh: '爭取計畫經費的那份數據報告。' } },
-    { id: 'ph-05', station: 'st2', src: null, title: { en: 'Podcast production', zh: 'Podcast 錄製現場' }, note: { en: 'Outline, recording, edit, publish.', zh: '大綱、錄音、剪輯、上架。' } },
-    { id: 'ph-06', station: 'st2', src: null, title: { en: 'Association lecture', zh: '協會講座活動' }, note: { en: 'Venue, promotion, and the invisible logistics.', zh: '場地、宣傳，與看不見的後勤。' } },
-    { id: 'ph-07', station: 'st3', src: null, title: { en: 'Center website', zh: '心衛中心網頁' }, note: { en: 'Content, navigation, and visual upkeep.', zh: '內容、導覽與視覺維護。' } },
-    { id: 'ph-08', station: 'st3', src: null, title: { en: 'Public lecture, ministry scale', zh: '心衛講座現場' }, note: { en: 'Theme design to participant follow-up.', zh: '從主題設計到參與者回饋跟進。' } },
+    { id: 'ph-01', station: 'st1', src: '01-st1-liming-event.png', layout: 'portrait', aspectRatio: '14 / 19', title: { en: 'Liming Institution activity', zh: '黎明機構活動現場' }, note: { en: 'Supporting a resident during an institution activity.', zh: '在機構活動中協助服務對象。' } },
+    { id: 'ph-02', station: 'st2', src: '02-st2-work-session.jpg', layout: 'work', aspectRatio: '4 / 3', title: { en: 'Association work session', zh: '兒家協會工作現場' }, note: { en: 'A working session with children and family materials.', zh: '與兒童及家庭主題材料一起工作的現場。' } },
+    { id: 'ph-03', station: 'st2', src: '03-st2-association-event.jpg', layout: 'event', aspectRatio: '4 / 3', title: { en: 'Association event', zh: '兒家協會活動合照' }, note: { en: 'The team gathered at an association event.', zh: '協會活動中的團隊合照。' } },
 ];
 
 // Shell copy — the paper zone's own header and chrome.

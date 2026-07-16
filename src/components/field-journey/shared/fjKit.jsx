@@ -115,22 +115,28 @@ export function TornEdge({ flip = false }) {
 }
 
 // ---- photo / artifact slot ---------------------------------------------------
-// `photo.src === null` renders the awaiting-scan state; dropping a .webp into
-// public/field-journey/ and filling `src` in fjContent.js is the only change
-// needed when real material arrives.
-export function PhotoSlot({ photo }) {
+// `photo.src` resolves from public/field-journey/. A supplied `onOpen` turns a
+// real image into an accessible thumbnail button; null sources retain the
+// awaiting-scan fallback for future evidence.
+export function PhotoSlot({ photo, onOpen }) {
     const { lang } = useI18n();
     const station = STATIONS.find(s => s.id === photo.station);
     const src = photo.src ? `${import.meta.env.BASE_URL}field-journey/${photo.src}` : null;
     const pendingLabel = lang === 'zh' ? '照片整理中' : 'Scan on its way';
+    const openLabel = lang === 'zh' ? '放大查看' : 'Enlarge';
+    const title = photo.title[lang] ?? photo.title.en;
+    const photoStyle = { ...accentVars(station), '--fj-photo-ratio': photo.aspectRatio ?? '4 / 3' };
+    const openPhoto = () => onOpen?.({ ...photo, src });
     return (
-        <figure className="fj-photo" style={accentVars(station)}>
+        <figure className={`fj-photo${photo.layout ? ` fj-photo--${photo.layout}` : ''}`} style={photoStyle}>
             <span className="fj-photo-tape" aria-hidden="true" />
             <div className="fj-photo-frame">
                 {src ? (
-                    <img src={src} alt={photo.title[lang]} loading="lazy" decoding="async" />
+                    <button className="fj-photo-button" type="button" onClick={openPhoto} aria-label={`${openLabel}: ${title}`}>
+                        <img src={src} alt={title} loading="lazy" decoding="async" />
+                    </button>
                 ) : (
-                    <div className="fj-photo-empty" role="img" aria-label={`${photo.title[lang]} — ${pendingLabel}`}>
+                    <div className="fj-photo-empty" role="img" aria-label={`${title}: ${pendingLabel}`}>
                         <svg viewBox="0 0 44 36" width="44" height="36" fill="none" stroke="currentColor"
                             strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                             <rect x="2" y="8" width="40" height="26" rx="4" />
@@ -142,8 +148,8 @@ export function PhotoSlot({ photo }) {
                 )}
             </div>
             <figcaption className="fj-photo-cap">
-                <strong>{photo.title[lang]}</strong>
-                <span>{photo.note[lang]}</span>
+                <strong>{title}</strong>
+                <span>{photo.note[lang] ?? photo.note.en}</span>
                 {station && <span className="fj-photo-station">{station.short[lang]}</span>}
             </figcaption>
         </figure>
@@ -273,8 +279,11 @@ html.lang-zh .fj-note-text { font-style: normal; }
 .fj-photo:nth-child(2n) { transform: rotate(0.6deg); }
 .fj-photo:nth-child(3n) { transform: rotate(-0.9deg); }
 .fj-photo-tape { position: absolute; top: -9px; left: 50%; width: 74px; height: 20px; transform: translateX(-50%) rotate(-2deg); background: var(--fj-accent-soft); border-left: 1px dashed rgba(59,50,38,0.14); border-right: 1px dashed rgba(59,50,38,0.14); opacity: 0.9; }
-.fj-photo-frame { background: var(--fj-paper-2); border: 1px solid var(--fj-line-soft); aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-.fj-photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.fj-photo-frame { background: var(--fj-paper-2); border: 1px solid var(--fj-line-soft); aspect-ratio: var(--fj-photo-ratio); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.fj-photo-button { width: 100%; height: 100%; display: block; overflow: hidden; cursor: zoom-in !important; }
+.fj-photo-button img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 220ms var(--fj-ease); }
+.fj-photo-button:hover img { transform: scale(1.025); }
+.fj-photo-button:active img { transform: scale(0.99); }
 .fj-photo-empty { display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--fj-ink-3); font-family: var(--fj-font-data); font-size: 11px; letter-spacing: 0.08em; padding: 12px; text-align: center; border: 1.4px dashed var(--fj-line); border-radius: var(--fj-r-sm); margin: 12px; width: calc(100% - 24px); height: calc(100% - 24px); justify-content: center; }
 .fj-photo-cap { display: flex; flex-direction: column; gap: 2px; padding: 10px 4px 0; }
 .fj-photo-cap strong { font-family: var(--fj-font-display); font-weight: 500; font-size: 14.5px; color: var(--fj-ink); }

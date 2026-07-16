@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import ChapterFrame, { injectStyles, useI18n, PhotoSlot, stagger, riseItem } from './shared/fjKit.jsx';
+import PhotoLightbox from './shared/PhotoLightbox.jsx';
 import { CHAPTERS, PHOTOS } from './data/fjContent.js';
 
 const chapter = CHAPTERS.find(c => c.key === 'C06');
 
 const COPY = {
     en: {
-        lead: 'The paper trail: boards, report spreads, recordings, and rooms. The scans are being pulled from old drives — each frame below is reserved for one, and the captions already say what belongs there.',
+        lead: 'Three photographs place the first two stations back in their real settings: an institution activity, a working session, and an association event. Open a photograph to view the full frame.',
     },
     zh: {
-        lead: '紙本的證據：溝通板、報告攤頁、錄音現場與活動教室。掃描檔正從舊硬碟裡整理出來——下面每一個相框都留給一張，圖說先告訴你那裡會放什麼。',
+        lead: '三張照片把前兩站帶回真實場域：機構活動、工作現場與協會活動。點選縮圖可查看完整畫面。',
     },
 };
 
@@ -18,6 +19,7 @@ export default function C06_FieldAlbum() {
     const { lang } = useI18n();
     const reduced = useReducedMotion();
     const c = COPY[lang] ?? COPY.en;
+    const [activePhoto, setActivePhoto] = useState(null);
     return (
         <ChapterFrame chapter={chapter} lead={c.lead}>
             <motion.div
@@ -28,17 +30,21 @@ export default function C06_FieldAlbum() {
                 viewport={{ once: true, amount: 0.08 }}
             >
                 {PHOTOS.map(photo => (
-                    <motion.div key={photo.id} variants={riseItem}>
-                        <PhotoSlot photo={photo} />
+                    <motion.div key={photo.id} className={`fj-album-item fj-album-item--${photo.layout}`} variants={riseItem}>
+                        <PhotoSlot photo={photo} onOpen={setActivePhoto} />
                     </motion.div>
                 ))}
             </motion.div>
+            <PhotoLightbox image={activePhoto} lang={lang} onClose={() => setActivePhoto(null)} />
         </ChapterFrame>
     );
 }
 
 injectStyles('fj-c06-styles', `
-.fj-album { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px 18px; padding-top: 10px; }
-@media (max-width: 1023px) { .fj-album { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.fj-album { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 22px 18px; padding-top: 10px; align-items: start; }
+.fj-album-item--portrait { grid-column: span 3; width: min(100%, 224px); justify-self: start; }
+.fj-album-item--work { grid-column: span 4; }
+.fj-album-item--event { grid-column: span 5; }
+@media (max-width: 1023px) { .fj-album { grid-template-columns: repeat(2, minmax(0, 1fr)); } .fj-album-item { grid-column: span 1; } .fj-album-item--portrait { width: min(100%, 224px); } }
 @media (max-width: 520px) { .fj-album { grid-template-columns: 1fr; } }
 `);

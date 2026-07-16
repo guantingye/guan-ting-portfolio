@@ -44,23 +44,23 @@ Dialect: **storybook** (warm paper zone) — deliberately NOT the ModuleFrame/fi
 | Annual report chart (C04) | ILLUSTRATIVE curve / REAL pipeline | The curve is explicitly captioned as illustrative; the five-step pipeline (scales → cleaning → viz → read with psychologists → funding) is the real process. |
 | Intake form before/after (C05) | RECONSTRUCTED | Real redesign work; specific field counts and groupings re-drawn from memory. Case-type set (兒少/成人/家庭/危機) is representative. |
 | Journey map, threshold scene, landmark glyphs | ILLUSTRATIVE | Storytelling scenery. |
-| Photo slots (C06) | RESERVED | All `src: null` at ship. Provenance ledger below updates as scans land. |
+| Field photos (C06) | REAL | Three supplied photographs from the first two stations. Each opens in an accessible full-frame lightbox. |
+| Podcast evidence (C04) | REAL | Supplied brand artwork and three published episode cases support the real production pipeline. |
 
-## Photo ledger (update as scans land)
+## Photo ledger
 
 | id | intended subject | file (public/field-journey/) | status |
 |---|---|---|---|
-| ph-01 | AAC boards | 01-st1-aac-board.webp | awaiting scan |
-| ph-02 | course materials | 02-st1-curriculum.webp | awaiting scan |
-| ph-03 | institution event | 03-st1-event.webp | awaiting scan |
-| ph-04 | annual report spread | 04-st2-annual-report.webp | awaiting scan |
-| ph-05 | podcast production | 05-st2-podcast.webp | awaiting scan |
-| ph-06 | association lecture | 06-st2-lecture.webp | awaiting scan |
-| ph-07 | center website | 07-st3-website.webp | awaiting scan |
-| ph-08 | ministry lecture | 08-st3-event.webp | awaiting scan |
+| ph-01 | Liming Institution activity | 01-st1-liming-event.png | shown in field album |
+| ph-02 | association work session | 02-st2-work-session.jpg | shown in field album |
+| ph-03 | association event | 03-st2-association-event.jpg | shown in field album |
+| podcast-brand | podcast brand artwork | st2-podcast-brand.png | shown at Station 2 |
+| podcast-episode-ep73 | podcast episode case | st2-podcast-episode-ep73.png | shown at Station 2 |
+| podcast-episode-ep67 | podcast episode case | st2-podcast-episode-ep67.png | shown at Station 2 |
+| podcast-episode-ep68 | podcast episode case | st2-podcast-episode-ep68.png | shown at Station 2 |
 
-To fill a slot: drop the `.webp` in `public/field-journey/`, set `src: '<filename>'` on the
-matching entry in `PHOTOS` (fjContent.js), update this ledger. No component changes.
+Future evidence should be added to `PHOTOS` only after its public asset, bilingual title,
+bilingual note, aspect ratio, and station mapping are available.
 
 ## [TODO: quantify] register (mirrors `todo` fields in fjContent.js — never rendered)
 
