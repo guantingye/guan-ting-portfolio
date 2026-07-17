@@ -13,8 +13,6 @@ const LAYERS = [
         title: 'Research Systems', zhTitle: '研究系統',
         body: 'Frame research questions, synthesize evidence, and turn academic logic into decision-ready briefs.',
         zhBody: '釐清研究問題、整合證據，將學術邏輯轉化為可決策的分析材料。',
-        ioIn: 'behavior · EEG / fMRI · literature', zhIoIn: '行為訊號 · EEG／fMRI · 文獻',
-        ioOut: 'decision-ready briefs', zhIoOut: '可決策的研究簡報',
         tools: ['Matlab', 'EEG', 'fMRI', 'APA'],
     },
     {
@@ -22,8 +20,6 @@ const LAYERS = [
         title: 'Product and UX Design', zhTitle: '產品與 UX 設計',
         body: 'Map user needs, shape flows, and translate complex behavior into clear product interactions.',
         zhBody: '梳理使用者需求與流程，把複雜行為轉譯為清楚、可落地的產品互動。',
-        ioIn: 'user needs · flows · friction points', zhIoIn: '使用者需求 · 流程 · 摩擦點',
-        ioOut: 'clear product interactions', zhIoOut: '清楚可落地的產品互動',
         tools: ['Figma', 'Photoshop', 'Illustrator', 'Prototyping'],
     },
     {
@@ -31,8 +27,6 @@ const LAYERS = [
         title: 'Frontend Engineering', zhTitle: '前端工程',
         body: 'Build responsive React interfaces with durable component structure and polished interaction details.',
         zhBody: '以 React 建置響應式介面，兼顧元件結構、互動細節與交付品質。',
-        ioIn: 'design specs · component logic', zhIoIn: '設計規格 · 元件邏輯',
-        ioOut: 'responsive React interfaces', zhIoOut: '響應式 React 介面',
         tools: ['React', 'Vite', 'HTML', 'CSS'],
     },
     {
@@ -40,8 +34,6 @@ const LAYERS = [
         title: 'Data Science', zhTitle: '資料科學',
         body: 'Analyze behavioral and market data with Python, R, statistics, and machine-learning workflows.',
         zhBody: '使用 Python、R、統計與機器學習流程，分析行為資料與市場訊號。',
-        ioIn: 'behavioral & market data', zhIoIn: '行為與市場資料',
-        ioOut: 'models · statistics · insight', zhIoOut: '模型 · 統計 · 洞察',
         tools: ['Python', 'R', 'Pandas', 'Sklearn'],
     },
     {
@@ -49,8 +41,6 @@ const LAYERS = [
         title: 'Backend and Data Architecture', zhTitle: '後端與資料架構',
         body: 'Design SQL schemas, ETL routines, and data quality checks for reliable product intelligence.',
         zhBody: '設計 SQL schema、ETL 流程與資料品質檢查，支撐可信任的產品情報。',
-        ioIn: 'raw sources · schemas', zhIoIn: '原始來源 · schema',
-        ioOut: 'reliable data pipelines', zhIoOut: '可信任的資料管線',
         tools: ['PostgreSQL', 'FastAPI', 'ETL', 'SQL'],
     },
     {
@@ -58,8 +48,6 @@ const LAYERS = [
         title: 'AI Product Strategy', zhTitle: 'AI 產品策略',
         body: 'Connect LLM workflows, prompt systems, and governance logic into usable AI-native tools.',
         zhBody: '整合 LLM 流程、提示系統與治理邏輯，打造可被使用的 AI 原生工具。',
-        ioIn: 'LLM workflows · prompts · governance', zhIoIn: 'LLM 流程 · 提示 · 治理',
-        ioOut: 'usable AI-native tools', zhIoOut: '可被使用的 AI 原生工具',
         tools: ['LLM', 'OpenAI API', 'Prompt Flow', 'Governance'],
     },
 ];
@@ -121,6 +109,8 @@ const SKILLS = [
 ];
 
 const PROJ_BY_SLUG = Object.fromEntries(PROJECTS.map(p => [p.slug, p]));
+const SIGNAL_COUNT = SKILLS.length;
+const PROJECT_COUNT = new Set(SKILLS.flatMap(s => s.evidence)).size;
 const isNarrow = () => typeof window !== 'undefined' && window.matchMedia('(max-width: 1024px)').matches;
 
 export default function SkillsSection({ navigate }) {
@@ -129,7 +119,9 @@ export default function SkillsSection({ navigate }) {
     const [animated, setAnimated] = useState(false);
     const [active, setActive] = useState(() => (isNarrow() ? 0 : null)); // null = overview; index = inspecting
     const [hot, setHot] = useState(null);
+    const [closing, setClosing] = useState(false); // playing the dissipation effect before the drawer collapses
     const sceneRef = useRef(null);
+    const closeTimer = useRef(null);
 
     useEffect(() => {
         const io = new IntersectionObserver(entries => {
@@ -138,17 +130,27 @@ export default function SkillsSection({ navigate }) {
         if (sceneRef.current) io.observe(sceneRef.current);
         return () => io.disconnect();
     }, []);
+    useEffect(() => () => clearTimeout(closeTimer.current), []);
+
+    const inspecting = active != null;
+    const select = (i) => { clearTimeout(closeTimer.current); setClosing(false); setActive(i); };
+    const cycle = (dir) => { setClosing(false); setActive(a => ((a == null ? 0 : a) + dir + LAYERS.length) % LAYERS.length); };
+    // dissolve the panel like a dying signal, then collapse the drawer
+    const beginClose = () => {
+        const reduce = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (isNarrow() || reduce) { setActive(null); return; }
+        setClosing(true);
+        clearTimeout(closeTimer.current);
+        closeTimer.current = setTimeout(() => { setActive(null); setClosing(false); }, 480);
+    };
 
     // Esc collapses the drawer back to overview (desktop).
     useEffect(() => {
         if (active == null) return;
-        const onKey = e => { if (e.key === 'Escape' && !isNarrow()) setActive(null); };
+        const onKey = e => { if (e.key === 'Escape' && !isNarrow()) beginClose(); };
         window.addEventListener('keydown', onKey);
         return () => window.removeEventListener('keydown', onKey);
     }, [active]);
-
-    const inspecting = active != null;
-    const cycle = (dir) => setActive(a => ((a == null ? 0 : a) + dir + LAYERS.length) % LAYERS.length);
 
     const toolMark = (tool) => tool.mark || tool.label.replace(/[^a-z0-9]/gi, '').slice(0, 3).toUpperCase();
 
@@ -205,7 +207,7 @@ export default function SkillsSection({ navigate }) {
             'aria-pressed': i === active,
             'aria-expanded': i === active,
             'aria-label': `${layer.num} ${PA ? layer.zhTitle : layer.title}`,
-            onClick: () => setActive(i),
+            onClick: () => select(i),
             onMouseEnter: () => setHot(layer.id),
             onMouseLeave: () => setHot(null),
             onFocus: () => setHot(layer.id),
@@ -227,7 +229,7 @@ export default function SkillsSection({ navigate }) {
         key: layer.id, type: 'button',
         className: `fst-idx-btn${i === active ? ' is-active' : ''}${layer.id === hot ? ' is-hot' : ''}`,
         'aria-pressed': i === active,
-        onClick: () => setActive(i),
+        onClick: () => select(i),
         onMouseEnter: () => setHot(layer.id),
         onMouseLeave: () => setHot(null),
     },
@@ -240,6 +242,53 @@ export default function SkillsSection({ navigate }) {
             )
         ),
         React.createElement('span', { className: 'fst-idx-name' }, PA ? layer.zhShort : layer.short)
+    );
+
+    // ── overview side panels: left MANIFEST (interactive), right TELEMETRY (ambient) ──
+    const manifestRow = (layer, i) => React.createElement('button', {
+        key: layer.id, type: 'button',
+        className: `fst-manifest-row${i === active ? ' is-active' : ''}${layer.id === hot ? ' is-hot' : ''}`,
+        onClick: () => select(i),
+        onMouseEnter: () => setHot(layer.id),
+        onMouseLeave: () => setHot(null),
+        'aria-label': `${layer.num} ${PA ? layer.zhTitle : layer.title}`,
+    },
+        React.createElement('span', { className: 'fst-manifest-leader', 'aria-hidden': 'true' }),
+        React.createElement('span', { className: 'fst-manifest-sig' }, layer.sig),
+        React.createElement('span', { className: 'fst-manifest-name' }, PA ? layer.zhShort : layer.short)
+    );
+    const teleStat = (k, v) => React.createElement('div', { className: 'fst-tele-stat', key: k },
+        React.createElement('span', { className: 'fst-tele-num' }, v),
+        React.createElement('span', { className: 'fst-tele-cap' }, k)
+    );
+    const flankLeft = React.createElement('aside', {
+        className: 'fst-flank is-left',
+        'aria-hidden': inspecting ? 'true' : undefined,
+    },
+        React.createElement('div', { className: 'fst-flank-head' }, React.createElement('span', null, '//'), 'MANIFEST'),
+        ...LAYERS.map((l, i) => ({ l, i })).reverse().map(({ l, i }) => manifestRow(l, i))
+    );
+    const flankRight = React.createElement('aside', { className: 'fst-flank is-right', 'aria-hidden': 'true' },
+        React.createElement('div', { className: 'fst-flank-head' }, React.createElement('span', null, '//'), 'TELEMETRY'),
+        React.createElement('div', { className: 'fst-tele' },
+            teleStat('LAYERS', '06'),
+            teleStat('SIGNALS', String(SIGNAL_COUNT).padStart(2, '0')),
+            teleStat('PROJECTS', String(PROJECT_COUNT).padStart(2, '0'))
+        ),
+        React.createElement('div', { className: 'fst-tele-status' },
+            React.createElement('div', { className: 'fst-tele-line' },
+                React.createElement('span', { className: 'fst-tele-k' }, 'MODE'),
+                React.createElement('span', { className: 'fst-tele-v' }, 'EXPLODED')
+            ),
+            React.createElement('div', { className: 'fst-tele-line' },
+                React.createElement('span', { className: 'fst-tele-k' }, 'SCAN'),
+                React.createElement('span', { className: 'fst-tele-v is-live' },
+                    React.createElement('span', { className: 'fst-tele-dot' }), 'PASSIVE')
+            ),
+            React.createElement('div', { className: 'fst-eq' },
+                ...[0, 1, 2, 3, 4].map(n => React.createElement('span', { key: n, className: 'fst-eq-bar', style: { '--n': n } }))
+            )
+        )
     );
 
     // ── HUD inspector for one layer (merges the skill ledger for that layer) ──
@@ -258,16 +307,6 @@ export default function SkillsSection({ navigate }) {
         const bodyRows = [
             React.createElement('h3', { className: 'fst-insp-title', key: 'title' }, PA ? layer.zhTitle : layer.title),
             React.createElement('p', { className: 'fst-insp-desc', key: 'desc' }, PA ? layer.zhBody : layer.body),
-            React.createElement('div', { className: 'fst-insp-io', key: 'io' },
-                React.createElement('div', { className: 'fst-io-row' },
-                    React.createElement('span', { className: 'fst-io-tag is-in' }, PA ? '輸入' : 'IN'),
-                    React.createElement('span', { className: 'fst-io-val' }, PA ? layer.zhIoIn : layer.ioIn)
-                ),
-                React.createElement('div', { className: 'fst-io-row' },
-                    React.createElement('span', { className: 'fst-io-tag is-out' }, PA ? '輸出' : 'OUT'),
-                    React.createElement('span', { className: 'fst-io-val' }, PA ? layer.zhIoOut : layer.ioOut)
-                )
-            ),
             React.createElement('div', { className: 'fst-insp-section', key: 'sec-tools' },
                 React.createElement('span', { className: 'fst-insp-section-slash' }, '//'),
                 React.createElement('span', null, PA ? '工具鏈' : 'Tooling'),
@@ -292,7 +331,7 @@ export default function SkillsSection({ navigate }) {
             )),
         ];
 
-        return React.createElement('div', { className: 'fst-inspector' },
+        return React.createElement('div', { className: `fst-inspector${closing ? ' is-closing' : ''}` },
             React.createElement('span', { className: 'fst-hud-bracket tl', 'aria-hidden': 'true' }),
             React.createElement('span', { className: 'fst-hud-bracket tr', 'aria-hidden': 'true' }),
             React.createElement('span', { className: 'fst-hud-bracket bl', 'aria-hidden': 'true' }),
@@ -312,7 +351,7 @@ export default function SkillsSection({ navigate }) {
                     React.createElement('button', {
                         type: 'button', className: 'fst-insp-close',
                         'aria-label': PA ? '收合面板' : 'Collapse panel',
-                        onClick: () => setActive(null),
+                        onClick: beginClose,
                     }, '×')
                 ),
                 React.createElement('div', { className: 'fst-spec' },
@@ -363,9 +402,11 @@ export default function SkillsSection({ navigate }) {
             ),
             React.createElement('div', { className: `fst-theatre${inspecting ? ' is-inspecting' : ''}` },
                 React.createElement('div', { className: 'fst-stage' },
+                    flankLeft,
                     React.createElement('div', { className: `fst-scene${animated ? ' is-live' : ''}${inspecting ? ' is-aside' : ''}`, ref: sceneRef },
                         React.createElement('div', { className: 'fst-stack' }, ...LAYERS.map(plane))
-                    )
+                    ),
+                    flankRight
                 ),
                 React.createElement('div', { className: `fst-inspector-wrap${inspecting ? ' is-open' : ''}`, 'aria-hidden': inspecting ? undefined : 'true' },
                     inspecting ? buildInspector(active) : null

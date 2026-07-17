@@ -6,20 +6,29 @@ import Icon from '../components/ui/Icon.jsx';
 import StorytellingCaseStudy from '../components/case-studies/StorytellingCaseStudy.jsx';
 import ProjectExtraSection from '../components/case-studies/ProjectExtraSection.jsx';
 
+function ProjectBackLink({ label, navigate }) {
+    return React.createElement('a', {
+        href: '#/',
+        className: 'proj-back',
+        onClick: event => { event.preventDefault(); navigate('#/'); },
+    },
+        React.createElement('span', { className: 'proj-back-icon', 'aria-hidden': 'true' },
+            React.createElement(Icon, { name: 'arrowLeft' })),
+        React.createElement('span', { className: 'proj-back-label' }, label));
+}
+
 export default function ProjectPage({ slug, navigate }) {
     const { t, lang } = useLang();
     useReveal([slug, lang]);
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-        const progress = document.getElementById('progress');
-        if (progress) progress.style.width = '0%';
     }, [slug]);
     const idx = PROJECTS.findIndex(p => p.slug === slug);
     const p = PROJECTS[idx];
     if (!p || p.comingSoon)
         return React.createElement('div', { className: 'proj-page page-enter', 'data-theme': PROJECT_THEMES[slug] || 'data' },
             React.createElement('div', { className: 'container', style: { paddingTop: 160, paddingBottom: 80 } },
-                React.createElement('a', { href: '#/', className: 'proj-back', onClick: e => { e.preventDefault(); navigate('#/'); } }, t('projBack')),
+                React.createElement(ProjectBackLink, { label: t('projBack'), navigate }),
                 React.createElement('p', { className: 'proj-category' }, t('comingSoon')),
                 React.createElement('h1', { className: 'proj-title' }, t('comingSoon')),
                 React.createElement('p', { className: 'proj-hook' }, t('csDesc'))));
@@ -35,7 +44,7 @@ export default function ProjectPage({ slug, navigate }) {
     const impact = lang === 'zh' ? p.zhImpact : p.impact;
     const category = lang === 'zh' ? p.zhCategory : p.category;
     const heroMain = React.createElement('div', { className: 'proj-hero-copy' },
-        React.createElement('a', { href: '#/', className: 'proj-back', onClick: e => { e.preventDefault(); navigate('#/'); } }, t('projBack')),
+        React.createElement(ProjectBackLink, { label: t('projBack'), navigate }),
         React.createElement('p', { className: 'proj-category reveal' }, category),
         React.createElement('h1', { className: 'proj-title reveal reveal-delay-1' }, title),
         React.createElement('p', { className: 'proj-hook reveal reveal-delay-2' }, hook),
