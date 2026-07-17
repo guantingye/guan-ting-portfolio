@@ -9,53 +9,65 @@ const simpleIcon = (slug, tint) => `https://cdn.simpleicons.org/${slug}/${tint}`
 // Six capability layers, ordered base -> top (index 0 = L1 foundation, index 5 = L6 apex).
 const LAYERS = [
     {
-        id: 'research', num: 'L1', code: 'RESEARCH', short: 'Research', zhShort: '研究',
+        id: 'research', num: 'L1', code: 'RESEARCH', short: 'Research', zhShort: '研究', sig: 'SYS.RES-01',
         title: 'Research Systems', zhTitle: '研究系統',
         body: 'Frame research questions, synthesize evidence, and turn academic logic into decision-ready briefs.',
         zhBody: '釐清研究問題、整合證據，將學術邏輯轉化為可決策的分析材料。',
+        ioIn: 'behavior · EEG / fMRI · literature', zhIoIn: '行為訊號 · EEG／fMRI · 文獻',
+        ioOut: 'decision-ready briefs', zhIoOut: '可決策的研究簡報',
         tools: ['Matlab', 'EEG', 'fMRI', 'APA'],
     },
     {
-        id: 'ux', num: 'L2', code: 'PRODUCT · UX', short: 'Product · UX', zhShort: '設計',
+        id: 'ux', num: 'L2', code: 'PRODUCT · UX', short: 'Product · UX', zhShort: '設計', sig: 'SYS.UXD-02',
         title: 'Product and UX Design', zhTitle: '產品與 UX 設計',
         body: 'Map user needs, shape flows, and translate complex behavior into clear product interactions.',
         zhBody: '梳理使用者需求與流程，把複雜行為轉譯為清楚、可落地的產品互動。',
+        ioIn: 'user needs · flows · friction points', zhIoIn: '使用者需求 · 流程 · 摩擦點',
+        ioOut: 'clear product interactions', zhIoOut: '清楚可落地的產品互動',
         tools: ['Figma', 'Photoshop', 'Illustrator', 'Prototyping'],
     },
     {
-        id: 'frontend', num: 'L3', code: 'FRONTEND', short: 'Frontend', zhShort: '前端',
+        id: 'frontend', num: 'L3', code: 'FRONTEND', short: 'Frontend', zhShort: '前端', sig: 'SYS.FED-03',
         title: 'Frontend Engineering', zhTitle: '前端工程',
         body: 'Build responsive React interfaces with durable component structure and polished interaction details.',
         zhBody: '以 React 建置響應式介面，兼顧元件結構、互動細節與交付品質。',
+        ioIn: 'design specs · component logic', zhIoIn: '設計規格 · 元件邏輯',
+        ioOut: 'responsive React interfaces', zhIoOut: '響應式 React 介面',
         tools: ['React', 'Vite', 'HTML', 'CSS'],
     },
     {
-        id: 'data', num: 'L4', code: 'DATA SCIENCE', short: 'Data', zhShort: '資料',
+        id: 'data', num: 'L4', code: 'DATA SCIENCE', short: 'Data', zhShort: '資料', sig: 'SYS.DAT-04',
         title: 'Data Science', zhTitle: '資料科學',
         body: 'Analyze behavioral and market data with Python, R, statistics, and machine-learning workflows.',
         zhBody: '使用 Python、R、統計與機器學習流程，分析行為資料與市場訊號。',
+        ioIn: 'behavioral & market data', zhIoIn: '行為與市場資料',
+        ioOut: 'models · statistics · insight', zhIoOut: '模型 · 統計 · 洞察',
         tools: ['Python', 'R', 'Pandas', 'Sklearn'],
     },
     {
-        id: 'backend', num: 'L5', code: 'BACKEND', short: 'Backend', zhShort: '後端',
+        id: 'backend', num: 'L5', code: 'BACKEND', short: 'Backend', zhShort: '後端', sig: 'SYS.BCK-05',
         title: 'Backend and Data Architecture', zhTitle: '後端與資料架構',
         body: 'Design SQL schemas, ETL routines, and data quality checks for reliable product intelligence.',
         zhBody: '設計 SQL schema、ETL 流程與資料品質檢查，支撐可信任的產品情報。',
+        ioIn: 'raw sources · schemas', zhIoIn: '原始來源 · schema',
+        ioOut: 'reliable data pipelines', zhIoOut: '可信任的資料管線',
         tools: ['PostgreSQL', 'FastAPI', 'ETL', 'SQL'],
     },
     {
-        id: 'ai', num: 'L6', code: 'AI STRATEGY', short: 'AI Strategy', zhShort: 'AI',
+        id: 'ai', num: 'L6', code: 'AI STRATEGY', short: 'AI Strategy', zhShort: 'AI', sig: 'SYS.AIS-06',
         title: 'AI Product Strategy', zhTitle: 'AI 產品策略',
         body: 'Connect LLM workflows, prompt systems, and governance logic into usable AI-native tools.',
         zhBody: '整合 LLM 流程、提示系統與治理邏輯，打造可被使用的 AI 原生工具。',
+        ioIn: 'LLM workflows · prompts · governance', zhIoIn: 'LLM 流程 · 提示 · 治理',
+        ioOut: 'usable AI-native tools', zhIoOut: '可被使用的 AI 原生工具',
         tools: ['LLM', 'OpenAI API', 'Prompt Flow', 'Governance'],
     },
 ];
 
 const LEVELS = {
-    excellent: { label: 'Excellent', zh: '精通' },
-    advanced: { label: 'Advanced', zh: '進階' },
-    strong: { label: 'Strong', zh: '熟練' },
+    excellent: { label: 'Excellent', zh: '精通', ticks: 3 },
+    advanced: { label: 'Advanced', zh: '進階', ticks: 2 },
+    strong: { label: 'Strong', zh: '熟練', ticks: 1 },
 };
 
 // Nine skill signals. Each carries a proficiency level, the layer it belongs to,
@@ -140,7 +152,12 @@ export default function SkillsSection({ navigate }) {
 
     const toolMark = (tool) => tool.mark || tool.label.replace(/[^a-z0-9]/gi, '').slice(0, 3).toUpperCase();
 
-    const levelBadge = (lv) => React.createElement('span', { className: `fst-level is-${lv}` }, PA ? LEVELS[lv].zh : LEVELS[lv].label);
+    const levelBadge = (lv) => React.createElement('span', { className: `fst-level is-${lv}` },
+        React.createElement('span', { className: 'fst-level-ticks', 'aria-hidden': 'true' },
+            ...[0, 1, 2].map(n => React.createElement('span', { key: n, className: `fst-level-tick${n < LEVELS[lv].ticks ? ' on' : ''}` }))
+        ),
+        PA ? LEVELS[lv].zh : LEVELS[lv].label
+    );
 
     const evidence = (slugs) => React.createElement('div', { className: 'fst-evidence' },
         React.createElement('span', { className: 'fst-evidence-label' }, PA ? '證據' : 'Evidence'),
@@ -171,28 +188,41 @@ export default function SkillsSection({ navigate }) {
         React.createElement('span', null, tool.label)
     );
 
-    // ── 3D exploded plane (label = L# + code only; tool marks removed for clarity) ──
-    const plane = (layer, i) => React.createElement('button', {
-        key: layer.id, type: 'button',
-        className: `fst-layer${i === active ? ' is-active' : ''}${layer.id === hot ? ' is-hot' : ''}`,
-        style: { '--z': animated ? `${i * 54}px` : '0px', transitionDelay: `${i * 0.06}s` },
-        'aria-pressed': i === active,
-        'aria-expanded': i === active,
-        'aria-label': `${layer.num} ${PA ? layer.zhTitle : layer.title}`,
-        onClick: () => setActive(i),
-        onMouseEnter: () => setHot(layer.id),
-        onMouseLeave: () => setHot(null),
-        onFocus: () => setHot(layer.id),
-        onBlur: () => setHot(null),
-    },
-        React.createElement('span', { className: 'fst-layer-face', 'aria-hidden': 'true' },
-            React.createElement('span', { className: 'fst-layer-num' }, layer.num),
-            React.createElement('span', { className: 'fst-layer-code' }, layer.code),
-            React.createElement('span', { className: 'fst-layer-scan' })
-        )
-    );
+    // ── 3D exploded plane: slab (thickness) + face; deforms when a layer is inspected ──
+    const plane = (layer, i) => {
+        let state = '';
+        if (active != null) {
+            if (i === active) state = ' is-active';
+            else if (i > active) state = ' is-raised';
+            else state = ' is-lower';
+        } else if (layer.id === hot) {
+            state = ' is-hot';
+        }
+        return React.createElement('button', {
+            key: layer.id, type: 'button',
+            className: `fst-layer${state}`,
+            style: { '--z': animated ? `${i * 54}px` : '0px', transitionDelay: `${i * 0.05}s` },
+            'aria-pressed': i === active,
+            'aria-expanded': i === active,
+            'aria-label': `${layer.num} ${PA ? layer.zhTitle : layer.title}`,
+            onClick: () => setActive(i),
+            onMouseEnter: () => setHot(layer.id),
+            onMouseLeave: () => setHot(null),
+            onFocus: () => setHot(layer.id),
+            onBlur: () => setHot(null),
+        },
+            React.createElement('span', { className: 'fst-layer-slab', 'aria-hidden': 'true' }),
+            React.createElement('span', { className: 'fst-layer-face', 'aria-hidden': 'true' },
+                React.createElement('span', { className: 'fst-layer-corners' }),
+                React.createElement('span', { className: 'fst-layer-num' }, layer.num),
+                React.createElement('span', { className: 'fst-layer-code' }, layer.code),
+                React.createElement('span', { className: 'fst-layer-scan' }),
+                React.createElement('span', { className: 'fst-layer-sig' }, layer.sig)
+            )
+        );
+    };
 
-    // ── persistent horizontal layer index (works in both states) ──
+    // ── persistent horizontal layer index with altitude glyph + sliding indicator ──
     const indexBtn = (layer, i) => React.createElement('button', {
         key: layer.id, type: 'button',
         className: `fst-idx-btn${i === active ? ' is-active' : ''}${layer.id === hot ? ' is-hot' : ''}`,
@@ -201,7 +231,14 @@ export default function SkillsSection({ navigate }) {
         onMouseEnter: () => setHot(layer.id),
         onMouseLeave: () => setHot(null),
     },
-        React.createElement('span', { className: 'fst-idx-num' }, layer.num),
+        React.createElement('div', { className: 'fst-idx-top' },
+            React.createElement('span', { className: 'fst-idx-num' }, layer.num),
+            React.createElement('span', { className: 'fst-idx-alt', 'aria-hidden': 'true' },
+                ...LAYERS.map((_, b) => React.createElement('span', {
+                    key: b, className: `fst-idx-alt-bar${b === (LAYERS.length - 1 - i) ? ' on' : ''}`,
+                }))
+            )
+        ),
         React.createElement('span', { className: 'fst-idx-name' }, PA ? layer.zhShort : layer.short)
     );
 
@@ -209,21 +246,41 @@ export default function SkillsSection({ navigate }) {
     const buildInspector = (idx) => {
         const layer = LAYERS[idx];
         const skills = SKILLS.filter(s => s.layer === layer.id);
+        const links = new Set();
+        skills.forEach(s => s.evidence.forEach(e => links.add(e)));
+        const linkCount = links.size;
+
+        const specCell = (label, value, cls) => React.createElement('div', { className: `fst-spec-cell${cls ? ' ' + cls : ''}` },
+            React.createElement('span', { className: 'fst-spec-k' }, label),
+            React.createElement('span', { className: 'fst-spec-v' }, value)
+        );
 
         const bodyRows = [
             React.createElement('h3', { className: 'fst-insp-title', key: 'title' }, PA ? layer.zhTitle : layer.title),
             React.createElement('p', { className: 'fst-insp-desc', key: 'desc' }, PA ? layer.zhBody : layer.body),
+            React.createElement('div', { className: 'fst-insp-io', key: 'io' },
+                React.createElement('div', { className: 'fst-io-row' },
+                    React.createElement('span', { className: 'fst-io-tag is-in' }, PA ? '輸入' : 'IN'),
+                    React.createElement('span', { className: 'fst-io-val' }, PA ? layer.zhIoIn : layer.ioIn)
+                ),
+                React.createElement('div', { className: 'fst-io-row' },
+                    React.createElement('span', { className: 'fst-io-tag is-out' }, PA ? '輸出' : 'OUT'),
+                    React.createElement('span', { className: 'fst-io-val' }, PA ? layer.zhIoOut : layer.ioOut)
+                )
+            ),
             React.createElement('div', { className: 'fst-insp-section', key: 'sec-tools' },
-                React.createElement('span', { className: 'fst-insp-section-line' }),
-                React.createElement('span', null, PA ? '工具鏈' : 'Tooling')
+                React.createElement('span', { className: 'fst-insp-section-slash' }, '//'),
+                React.createElement('span', null, PA ? '工具鏈' : 'Tooling'),
+                React.createElement('span', { className: 'fst-insp-section-rule' })
             ),
             React.createElement('div', { className: 'fst-insp-tools', key: 'tools' },
                 ...layer.tools.map(tp => React.createElement('span', { className: 'fst-chip', key: tp }, tp))
             ),
             React.createElement('div', { className: 'fst-insp-section', key: 'sec-sig' },
-                React.createElement('span', { className: 'fst-insp-section-line' }),
+                React.createElement('span', { className: 'fst-insp-section-slash' }, '//'),
                 React.createElement('span', null, PA ? '技能訊號' : 'Skill signals'),
-                React.createElement('span', { className: 'fst-insp-section-count' }, `${String(skills.length).padStart(2, '0')}`)
+                React.createElement('span', { className: 'fst-insp-section-rule' }),
+                React.createElement('span', { className: 'fst-insp-section-count' }, String(skills.length).padStart(2, '0'))
             ),
             ...skills.map((s, k) => React.createElement('div', { className: 'fst-sig', key: `sig-${k}` },
                 React.createElement('div', { className: 'fst-sig-head' },
@@ -240,21 +297,36 @@ export default function SkillsSection({ navigate }) {
             React.createElement('span', { className: 'fst-hud-bracket tr', 'aria-hidden': 'true' }),
             React.createElement('span', { className: 'fst-hud-bracket bl', 'aria-hidden': 'true' }),
             React.createElement('span', { className: 'fst-hud-bracket br', 'aria-hidden': 'true' }),
+            React.createElement('span', { className: 'fst-insp-sweep', 'aria-hidden': 'true' }),
             React.createElement('div', { className: 'fst-insp-head' },
-                React.createElement('div', { className: 'fst-insp-sysid' },
-                    React.createElement('span', { className: 'fst-insp-diamond', 'aria-hidden': 'true' }, '◇'),
-                    'CAPABILITY.SYS',
-                    React.createElement('span', { className: 'fst-insp-code' }, `${String(idx + 1).padStart(2, '0')} / 06`)
+                React.createElement('div', { className: 'fst-insp-topline' },
+                    React.createElement('div', { className: 'fst-insp-sysid' },
+                        React.createElement('span', { className: 'fst-insp-diamond', 'aria-hidden': 'true' }, '◇'),
+                        'CAPABILITY.SYS',
+                        React.createElement('span', { className: 'fst-insp-caret', 'aria-hidden': 'true' }, '▍')
+                    ),
+                    React.createElement('div', { className: 'fst-insp-mini', 'aria-hidden': 'true' },
+                        ...LAYERS.map((l, i) => ({ l, i })).reverse().map(({ l, i }) =>
+                            React.createElement('span', { key: l.id, className: `fst-mini-bar${i === idx ? ' is-on' : ''}` }))
+                    ),
+                    React.createElement('button', {
+                        type: 'button', className: 'fst-insp-close',
+                        'aria-label': PA ? '收合面板' : 'Collapse panel',
+                        onClick: () => setActive(null),
+                    }, '×')
                 ),
-                React.createElement('div', { className: 'fst-insp-mini', 'aria-hidden': 'true' },
-                    ...LAYERS.map((l, i) => ({ l, i })).reverse().map(({ l, i }) =>
-                        React.createElement('span', { key: l.id, className: `fst-mini-bar${i === idx ? ' is-on' : ''}` }))
-                ),
-                React.createElement('button', {
-                    type: 'button', className: 'fst-insp-close',
-                    'aria-label': PA ? '收合面板' : 'Collapse panel',
-                    onClick: () => setActive(null),
-                }, '×')
+                React.createElement('div', { className: 'fst-spec' },
+                    specCell(PA ? '識別碼' : 'ID', layer.sig),
+                    specCell(PA ? '層深' : 'DEPTH', `${String(idx + 1).padStart(2, '0')}/06`),
+                    specCell(PA ? '連結' : 'LINKS', String(linkCount).padStart(2, '0')),
+                    React.createElement('div', { className: 'fst-spec-cell is-status' },
+                        React.createElement('span', { className: 'fst-spec-k' }, PA ? '狀態' : 'STATUS'),
+                        React.createElement('span', { className: 'fst-spec-v' },
+                            React.createElement('span', { className: 'fst-spec-dot', 'aria-hidden': 'true' }),
+                            PA ? '檢視中' : 'ACTIVE'
+                        )
+                    )
+                )
             ),
             React.createElement('div', { className: 'fst-insp-body', key: idx },
                 ...bodyRows.map((el, i) => React.cloneElement(el, { style: { ...(el.props.style || {}), '--i': i } }))
@@ -262,7 +334,7 @@ export default function SkillsSection({ navigate }) {
             React.createElement('div', { className: 'fst-insp-foot' },
                 React.createElement('button', { type: 'button', className: 'fst-insp-nav', onClick: () => cycle(-1) },
                     React.createElement('span', { 'aria-hidden': 'true' }, '←'), PA ? '上一層' : 'Prev'),
-                React.createElement('span', { className: 'fst-insp-pos' }, `${layer.num} · ${PA ? layer.zhShort : layer.short}`),
+                React.createElement('span', { className: 'fst-insp-pos' }, layer.sig),
                 React.createElement('button', { type: 'button', className: 'fst-insp-nav', onClick: () => cycle(1) },
                     PA ? '下一層' : 'Next', React.createElement('span', { 'aria-hidden': 'true' }, '→'))
             )
@@ -270,6 +342,12 @@ export default function SkillsSection({ navigate }) {
     };
 
     return React.createElement(MotionSection, { className: 'skills-ng', id: 'skills' },
+        React.createElement('div', { className: 'fst-bg', 'aria-hidden': 'true' },
+            React.createElement('div', { className: 'fst-bg-grid' }),
+            React.createElement('div', { className: 'fst-bg-ghost' }, 'STACK'),
+            React.createElement('span', { className: 'fst-bg-orb orb-a' }),
+            React.createElement('span', { className: 'fst-bg-orb orb-b' })
+        ),
         React.createElement('div', { className: 'container' },
             React.createElement('div', { className: 'fs-head' },
                 React.createElement('div', null,
@@ -300,7 +378,12 @@ export default function SkillsSection({ navigate }) {
                         ? (PA ? `檢視中 — 共 6 層能力堆疊` : `Inspecting — 6-layer capability stack`)
                         : (PA ? `立體剖面 — 點擊任一層開始檢視` : `Exploded view — select a layer to inspect`)
                 ),
-                React.createElement('div', { className: 'fst-index', role: 'group', 'aria-label': PA ? '能力層索引' : 'Capability layer index' },
+                React.createElement('div', {
+                    className: `fst-index${inspecting ? ' has-active' : ''}`,
+                    role: 'group', 'aria-label': PA ? '能力層索引' : 'Capability layer index',
+                    style: { '--pos': active == null ? 0 : active },
+                },
+                    React.createElement('span', { className: 'fst-index-slider', 'aria-hidden': 'true' }),
                     ...LAYERS.map(indexBtn)
                 )
             )
