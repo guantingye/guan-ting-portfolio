@@ -3723,7 +3723,12 @@ img { max-width: 100%; height: auto; }
   font-family: var(--emobot-meta);
 }
 .proj-page[data-theme="emobot"] .proj-hero::before {
-  background: linear-gradient(120deg, rgba(183,200,255,0.13), transparent 58%);
+  background: radial-gradient(
+    ellipse 86% 72% at 28% 34%,
+    rgba(183,200,255,0.14) 0%,
+    rgba(183,200,255,0.065) 42%,
+    transparent 78%
+  );
 }
 .emobot-case { margin: 18px 0 86px; }
 .emobot-case-section {
