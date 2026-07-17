@@ -45,7 +45,7 @@ export default function HomePage({ navigate }) {
                     t('workTitle1'), ' ', React.createElement('em', null, t('workTitleEm')), t('workTitle2')),
                 React.createElement('div', { className: 'work-grid' },
                     PROJECTS.map((p, i) => React.createElement(ProjectCard, { key: p.slug, project: p, index: i, navigate, lang }))))),
-        React.createElement(SkillsSection, null),
+        React.createElement(SkillsSection, { navigate }),
         React.createElement(AwardsSection, null),
         React.createElement(MotionSection, { className: 'contact-section', id: 'contact' },
             React.createElement('div', { className: 'contact-ghost', 'aria-hidden': 'true' }, 'SIGNAL'),
