@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import Icon from '../ui/Icon.jsx';
+import EmobotAtelier from './EmobotAtelier.jsx';
 
 const publicAsset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
 
@@ -11,7 +12,6 @@ const personaAvatarImages = {
   Clara: new URL('../../../assets/persona_clara.png', import.meta.url).href,
 };
 
-const systemArchitectureWireframe = new URL('../../../assets/System architecture wireframe.png', import.meta.url).href;
 const emobotLogo = new URL('../../../assets/emobot LOGO.png', import.meta.url).href;
 const awardCeremonyPhoto = new URL('../../../assets/emobot/award-ceremony.webp', import.meta.url).href;
 const awardCertificate = new URL('../../../assets/emobot/award-certificate.webp', import.meta.url).href;
@@ -245,6 +245,7 @@ export default function EmobotCaseStudy({ lang }) {
       ],
     },
   ];
+
 
   const flow = [
     { title: 'Anonymous Entry', zhTitle: '匿名入口', body: 'The first screen avoids diagnostic pressure and invites a small emotional check-in.', zhBody: '首屏避免診斷壓力，以低壓的情緒檢核開啟互動。' },
@@ -912,24 +913,7 @@ export default function EmobotCaseStudy({ lang }) {
         )
       ),
       React.createElement('div', { className: 'arch-diagram-wrap' },
-
-        React.createElement('div', { className: 'arch-sketch-card' },
-          React.createElement('div', { className: 'arch-sketch-img-container' },
-            React.createElement('img', {
-              src: systemArchitectureWireframe,
-              alt: PA ? '系統架構草稿圖' : 'System architecture wireframe draft',
-              loading: 'lazy', decoding: 'async',
-            })
-          ),
-          React.createElement('div', { className: 'arch-sketch-text' },
-            React.createElement('span', { className: 'arch-sketch-stamp' }, 'DRAFT WIREFRAME · 草稿圖'),
-            React.createElement('p', { className: 'arch-sketch-note' },
-              PA
-                ? '初期架構草稿，用於驗證服務邊界與資料流規劃。'
-                : 'Initial wireframe to validate service boundaries and data flow.'
-            )
-          )
-        ),
+        React.createElement(EmobotAtelier, { lang, onZoom: setLightboxExhibit }),
 
         React.createElement('div', { className: 'arch-abs-wrap', ref: archWrapRef },
           React.createElement('div', { className: 'arch-abs-outer', style: { zoom: archScale } },
