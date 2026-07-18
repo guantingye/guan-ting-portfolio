@@ -1,6 +1,7 @@
 export const TRANSLATIONS = {
     en: {
         navStory: 'Story', navWork: 'Work', navSkills: 'Skills', navAwards: 'Awards', navContact: 'Contact',
+        openMenu: 'Open menu', closeMenu: 'Close menu',
         heroStatusActive: 'ITRI / ISTI', heroStatusOpen: 'OPEN TO NEW ROLES',
         heroEyebrow: 'Deep Tech Translator · Taipei, Taiwan',
         heroTitle1: 'I turn frontier‑tech signals into',
@@ -69,6 +70,7 @@ export const TRANSLATIONS = {
     },
     zh: {
         navStory: '故事', navWork: '作品', navSkills: '技能', navAwards: '獎項', navContact: '聯繫',
+        openMenu: '開啟選單', closeMenu: '關閉選單',
         heroStatusActive: '工研院 / 產科國際所', heroStatusOpen: '開放新機會',
         heroEyebrow: '深科技翻譯者 · 台灣台北',
         heroTitle1: '我將前沿技術信號，轉化為',
