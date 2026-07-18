@@ -40,7 +40,7 @@ function useActiveStage(count) {
   return [active, refs];
 }
 
-export default function EmobotAtelier({ lang, onZoom }) {
+export default function EmobotAtelier({ lang, onZoom, children }) {
   const PA = lang === 'zh';
   const t = (en, zh) => (PA ? zh : en);
 
@@ -165,6 +165,24 @@ export default function EmobotAtelier({ lang, onZoom }) {
         { key: 'match', label: t('Match', '媒合'), path: t('  ·  signed-in area', '  ·  登入區'), code: 'PRODUCT / MATCH', title: t('Amanda match result', 'Amanda 媒合結果'), src: matchResult, alt: 'Emobot match result with Amanda persona and radar chart', zhAlt: '含 Amanda 人格卡與雷達圖的媒合結果' },
         { key: 'crisis', label: t('Safety', '危機'), path: t('  ·  signed-in area', '  ·  登入區'), code: 'PRODUCT / SAFETY', title: t('Niko crisis-support response', 'Niko 危機支持回應'), src: crisisChat, alt: 'Emobot Niko AI chat with crisis-support resources', zhAlt: '含危機支持資源的 Niko AI 對話' },
       ],
+    },
+    {
+      id: 'system',
+      step: '05',
+      icon: 'layers',
+      tool: 'K8s · FastAPI',
+      label: t('Deliver the system', '交付系統'),
+      claim: t('The final deliverable is not a screen — it is the system.', '最後交付的不是畫面，而是整套系統。'),
+      story: t(
+        'Beneath every screen sits a set of separated services. A FastAPI gateway fronts an event-driven mesh of AI services, each holding its own datastore, all orchestrated on Kubernetes — so safety routing never leans on a single chat service or one database. It began as a hand sketch; this is the architecture that shipped.',
+        '每一個畫面之下，都是一組被拆分的服務。FastAPI 統一閘道對接事件驅動的 AI 服務網格，各自持有獨立資料庫，全部由 Kubernetes 編排——讓安全轉介永遠不依賴單一對話服務或單一資料庫。一切始於一張手繪草圖，而這是最後交付上線的架構。'
+      ),
+      badge: 'recon',
+      provenance: t('Formal redraw of the original architecture spec', '依原始架構規格正式重繪'),
+      constraint: t('Safety routing cannot lean on one chat service or one database.', '安全轉介不能只依賴單一對話服務或單一資料庫。'),
+      decision: t('Separate matching, emotion chat, avatar, risk detection, and referral.', '拆分媒合、情緒對話、Avatar、風險偵測與轉介的責任。'),
+      output: t('Client · gateway · AI services · data · referral', '客戶端 · 閘道 · AI 服務 · 資料 · 轉介'),
+      sketch: { code: 'SOURCE / SYSTEM', title: 'Original Emobot system architecture sketch', zhTitle: 'Emobot 原始系統架構草圖', src: systemSketch, alt: 'Original Emobot system architecture sketch', zhAlt: 'Emobot 原始系統架構草圖' },
     },
   ];
 
@@ -349,26 +367,38 @@ export default function EmobotAtelier({ lang, onZoom }) {
       h('p', null, n.v))),
   );
 
+  const blueprintSource = (stage) => h('div', { className: 'atelier-blueprint-source' },
+    h('figure', { className: 'blueprint-source-fig' },
+      h('span', { className: 'blueprint-source-stamp' }, badgeStamp('recon', 'Source artifact', '原始素材')),
+      h('img', { src: stage.sketch.src, alt: PA ? stage.sketch.zhAlt : stage.sketch.alt, loading: 'lazy', decoding: 'async' })),
+    h('div', { className: 'blueprint-source-copy' },
+      h('span', { className: 'blueprint-source-k' }, t('Where it began', '起點')),
+      h('p', null, t('The hand sketch the services started from — the delivered blueprint below was drawn straight off it.', '服務最初的手繪草圖——下方正式交付的系統藍圖，就是照著它畫出來的。'))),
+    h('span', { className: 'blueprint-source-arrow', 'aria-hidden': 'true' }),
+  );
+
+  const blueprintFrame = () => h('div', { className: 'atelier-frame frame-blueprint' },
+    h('div', { className: 'blueprint-bar' },
+      h('span', { className: 'blueprint-title-main' }, t('SYSTEM BLUEPRINT', '系統架構藍圖')),
+      h('span', { className: 'blueprint-grid-badge', 'aria-hidden': 'true' },
+        h(Icon, { name: 'layers' }), t('DELIVERED', '交付版')),
+      h('span', { className: 'blueprint-title-meta' }, 'SHT-05 · FINAL')),
+    h('div', { className: 'blueprint-board' }, children),
+  );
+
   const frameFor = (stage) => {
     if (stage.id === 'canvas') return canvasFrame(stage);
     if (stage.id === 'lofi') return lofiFrame(stage);
     if (stage.id === 'hifi') return hifiFrame(stage);
+    if (stage.id === 'system') return blueprintFrame();
     return liveFrame(stage);
   };
 
   return h('section', { className: 'emobot-atelier', 'aria-label': t('How Emobot+ was made', 'Emobot+ 開發歷程') },
-    // header
-    h('header', { className: 'atelier-head' },
-      h('span', { className: 'atelier-overline' }, t('MAKING OF', '開發歷程')),
-      h('h4', null, t('From one canvas, into a live Emobot+.', '從一張畫布，長成上線的 Emobot+。')),
-      h('p', null, t(
-        'Four workbenches, in the tools they were made in — planning canvas, wireflow, high-fidelity study, and the deployed build. Not a gallery: a continuous trail from decision to shipped behavior.',
-        '四座工作檯，各自留在它被製作時所用的工具裡——規劃畫布、線稿流程、高保真探索，以及上線成品。這不是作品集，而是一條從決策到成品行為的連續軌跡。'
-      )),
-      h('div', { className: 'atelier-legend' },
-        h('span', { className: 'atelier-legend-item' }, h('span', { className: 'atelier-stamp-ring' }), t('Reconstruction — reverse-built from the real product', '重建稿——依實際成品逆向重建')),
-        h('span', { className: 'atelier-legend-item' }, h('span', { className: 'atelier-stamp-dot' }), t('Live capture — from the deployed build', '實機紀錄——擷取自上線版本'))),
-    ),
+    // legend strip (title duties belong to the section head above)
+    h('div', { className: 'atelier-legend' },
+      h('span', { className: 'atelier-legend-item' }, h('span', { className: 'atelier-stamp-ring' }), t('Reconstruction — reverse-built from the real product', '重建稿 — 依實際成品逆向重建')),
+      h('span', { className: 'atelier-legend-item' }, h('span', { className: 'atelier-stamp-dot' }), t('Live capture — from the deployed build', '實機紀錄 — 擷取自上線版本'))),
     // body
     h('div', { className: 'atelier-body' },
       // sticky spine
@@ -407,6 +437,7 @@ export default function EmobotAtelier({ lang, onZoom }) {
               h('span', { className: 'atelier-plate-prov' }, stage.provenance))),
           (stage.id === 'canvas' || stage.id === 'lofi') && h('div', { className: 'atelier-iter-wrap' },
             iterToggle(stage), activeIterNote(stage)),
+          stage.id === 'system' && blueprintSource(stage),
           frameFor(stage),
           stage.id === 'hifi' && h('div', { className: 'atelier-carry' },
             h('span', { className: 'atelier-carry-h' }, t('Carried into the product', '帶進實際成品')),
@@ -420,23 +451,6 @@ export default function EmobotAtelier({ lang, onZoom }) {
           noteCards(stage),
         )),
       ),
-    ),
-    // bridge into the system diagram
-    h('div', { className: 'atelier-bridge' },
-      h('div', { className: 'atelier-bridge-copy' },
-        h('span', { className: 'atelier-bridge-k' }, t('Beneath the screens', '畫面之下')),
-        h('p', null, t(
-          'Under the interface sits a set of separated services — matching, conversation, data, and referral. Safety routing can\'t lean on one chat service or one database. The original system sketch became the technical architecture below.',
-          '介面之下是一組被拆分的服務——媒合、對話、資料與轉介。安全轉介不能只依賴單一對話服務或單一資料庫。最初的系統草圖，成為下方的技術架構圖。'
-        ))),
-      h('button', {
-        className: 'atelier-bridge-sketch', type: 'button',
-        onClick: () => onZoom?.({ code: 'SOURCE / SYSTEM', title: 'Original Emobot system architecture sketch', zhTitle: 'Emobot 原始系統架構草圖', src: systemSketch, alt: 'Original Emobot system architecture sketch', zhAlt: 'Emobot 原始系統架構草圖' }),
-        'aria-label': t('Enlarge: original system sketch', '放大檢視：原始系統草圖'),
-      },
-        h('img', { src: systemSketch, alt: t('Original Emobot system architecture sketch', 'Emobot 原始系統架構草圖'), loading: 'lazy', decoding: 'async' }),
-        h('span', { className: 'atelier-bridge-tag' }, badgeStamp('recon', 'Source artifact', '原始素材'))),
-      h('span', { className: 'atelier-bridge-arrow', 'aria-hidden': 'true' }),
     ),
   );
 }

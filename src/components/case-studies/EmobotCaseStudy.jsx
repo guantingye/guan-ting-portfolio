@@ -548,7 +548,7 @@ export default function EmobotCaseStudy({ lang }) {
             React.createElement('h2', { className: 'emobot-case-title' },
               PA ? '把校園心理支持，設計成一個' : 'Designing campus mental health as a ',
               React.createElement('span', null, PA ? '可被信任的產品系統' : 'trusted product system'),
-              PA ? '。' : '.'
+              PA ? '' : ''
             ),
             React.createElement('p', { className: 'emobot-case-lead' },
               PA
@@ -901,20 +901,18 @@ export default function EmobotCaseStudy({ lang }) {
     React.createElement('div', { className: 'proj-section reveal emobot-case-section' },
       React.createElement('div', { className: 'emobot-section-head' },
         React.createElement('div', null,
-          React.createElement('div', { className: 'emobot-section-kicker' }, PA ? '05 / 系統架構' : '05 / System architecture'),
+          React.createElement('div', { className: 'emobot-section-kicker' }, PA ? '05 / 開發歷程與系統交付' : '05 / Making-of & system delivery'),
           React.createElement('h3', { className: 'emobot-section-title' },
-            PA ? '微服務架構，連結 AI 推論、資料持久化與安全轉介。' : 'Microservices architecture connecting AI reasoning, data persistence, and safe professional handoff.'
+            PA ? '從一張畫布，到交付上線的完整系統。' : 'From one canvas to a complete, delivered system.'
           )
         ),
         React.createElement('p', { className: 'emobot-section-copy' },
           PA
-            ? 'Kubernetes 編排的微服務設計：FastAPI 統一閘道、事件驅動 AI 服務網格、獨立資料庫策略，以及知情同意後的結構化轉介輸出。'
-            : 'Kubernetes-orchestrated microservices: a FastAPI unified gateway, event-driven AI service mesh, database-per-service strategy, and consent-based structured referral output.'
+            ? '五座工作檯，各自留在它被製作時所用的工具裡——規劃畫布、線稿流程、高保真探索、上線實測，最後收束於正式交付的系統藍圖。重建稿與實機紀錄，全程分開標示。'
+            : 'Five workbenches, each kept in the tool it was made in — planning canvas, wireflow, hi-fi study, the live build, and finally the delivered system blueprint. Reconstructions and live captures stay stamped apart throughout.'
         )
       ),
-      React.createElement('div', { className: 'arch-diagram-wrap' },
-        React.createElement(EmobotAtelier, { lang, onZoom: setLightboxExhibit }),
-
+      React.createElement(EmobotAtelier, { lang, onZoom: setLightboxExhibit },
         React.createElement('div', { className: 'arch-abs-wrap', ref: archWrapRef },
           React.createElement('div', { className: 'arch-abs-outer', style: { zoom: archScale } },
             React.createElement('div', { className: 'arch-abs-canvas' },
