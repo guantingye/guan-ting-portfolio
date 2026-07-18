@@ -5,6 +5,7 @@ import { PROJECTS, PROJECT_THEMES } from '../data/projects.js';
 import Icon from '../components/ui/Icon.jsx';
 import StorytellingCaseStudy from '../components/case-studies/StorytellingCaseStudy.jsx';
 import ProjectExtraSection from '../components/case-studies/ProjectExtraSection.jsx';
+import CertificateWall from '../components/cert-wall/CertificateWall.jsx';
 
 function ProjectBackLink({ label, navigate }) {
     return React.createElement('a', {
@@ -103,6 +104,9 @@ export default function ProjectPage({ slug, navigate }) {
                         React.createElement('div', { className: 'award-badge-text' },
                             React.createElement('div', { className: 'award-badge-title' }, a.title),
                             a.desc)))),
+                p.certWall && p.certWall.length > 0 && React.createElement(CertificateWall, {
+                    certs: p.certWall, lang, title: t('projCertWall'),
+                }),
                 React.createElement('div', { className: 'proj-nav' },
                     prevP ? React.createElement('a', {
                         href: `#/project/${prevP.slug}`,

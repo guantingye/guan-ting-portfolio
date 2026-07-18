@@ -495,11 +495,6 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
         ],
         pullQuote: 'The challenge was not collecting more data. It was turning unstable public signals into a reusable research asset.',
         zhPullQuote: '真正的挑戰不是蒐集更多資料，而是把不穩定的公開訊號整理成可重複使用的研究資產。',
-        // Deep links from the story into the Research Database Console modules below.
-        evidenceSlots: [
-            { iconKey: 'layers', title: 'Entity Resolution Workbench', zhTitle: '實體解析工作台', desc: 'Open the merge workbench: alias clusters, a confidence-threshold slider, and an accept/hold review queue you operate yourself.', zhDesc: '打開合併工作台：別名群組、可信度門檻滑桿，以及由你自己操作的接受／保留審核佇列。', anchor: 'dt-m03', anchorNum: '03' },
-            { iconKey: 'database', title: 'Provenance Ledger', zhTitle: '溯源台帳', desc: 'Open the audit ledger: pick an output field and trace it, row by row, back to the source that produced it.', zhDesc: '打開稽核台帳：選擇一個輸出欄位，逐列追溯回產生它的來源。', anchor: 'dt-m06', anchorNum: '06' },
-        ],
         awards: [],
     },
     {
@@ -604,11 +599,16 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
         ],
         pullQuote: 'The strongest AI launch story is not “we used AI.” It is “we changed a decision, reduced a risk, and learned faster than the old workflow.”',
         zhPullQuote: 'AI 產品真正有說服力的上市敘事，不是「我們應用了 AI」，而是它改善了哪個決策、降低了什麼風險，以及如何讓團隊比舊流程更快學習',
-        // Evidence slots replaced by the Working Evidence modules; credentials stay as a text-only list.
-        credentials: [
-            { iconKey: 'cpu', name: 'IBM AI Product Manager', issuer: 'IBM', relevance: 'AI product strategy, model risk, productization judgment — applied in the risk register and model card (Module 05)' },
-            { iconKey: 'target', name: 'Google Project Management', issuer: 'Google', relevance: 'Roadmap planning, stakeholder communication, launch governance — applied in the decision gates (Module 01)' },
-            { iconKey: 'chart', name: 'Google Advanced Data Analytics', issuer: 'Google', relevance: 'Metric design, experiment framing, evidence-backed decisions — applied in the metric tree (Module 02)' },
+        certWall: [
+            { img: 'ibm-ai-product-manager.webp', name: 'IBM AI Product Manager', zhName: 'IBM AI 產品經理專業證書', issuer: 'IBM',
+                focus: 'AI product strategy, model risk, productization judgment — applied in the risk register and model card (Module 05)',
+                zhFocus: 'AI 產品策略、模型風險與產品化判斷——應用於風險登錄與模型卡（Module 05）' },
+            { img: 'google-project-management.webp', name: 'Google Project Management', zhName: 'Google 專案管理專業證書', issuer: 'Google',
+                focus: 'Roadmap planning, stakeholder communication, launch governance — applied in the decision gates (Module 01)',
+                zhFocus: '路線圖規劃、利害關係人溝通與上市治理——應用於決策門檻（Module 01）' },
+            { img: 'google-advanced-data-analytics.webp', name: 'Google Advanced Data Analytics', zhName: 'Google 進階資料分析專業證書', issuer: 'Google',
+                focus: 'Metric design, experiment framing, evidence-backed decisions — applied in the metric tree (Module 02)',
+                zhFocus: '指標設計、實驗框架與證據導向決策——應用於指標樹（Module 02）' },
         ],
         awards: [],
     },
@@ -759,15 +759,16 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
         ],
         pullQuote: 'Good HMI does not ask users to think harder. It shapes the system so the next correct action becomes easier to see.',
         zhPullQuote: '好的 HMI 不是要求使用者更努力思考，而是讓系統本身把下一個正確行動變得更容易被看見。',
-        // Superseded by the live Evidence Lab below — each card jumps to the working module.
-        evidenceSlots: [
-            { iconKey: 'monitor', title: 'Working MVP', zhTitle: '可操作 MVP', desc: 'Open the live pressure console: streaming telemetry, an injectable fault, and a recovery flow you complete.', zhDesc: '打開即時壓力主控台：串流遙測、可注入的故障，以及由你完成的復原流程。', anchor: 'gx-m06', anchorNum: '06' },
-            { iconKey: 'layers', title: 'State Matrix', zhTitle: '狀態矩陣', desc: 'Open the real matrix: 7 interface states across 4 operating contexts, each rendered live with its spec.', zhDesc: '打開真正的矩陣：7 種介面狀態 × 4 種操作情境，每格即時渲染並附規格。', anchor: 'gx-m02', anchorNum: '02' },
-        ],
-        credentials: [
-            { iconKey: 'book', name: 'Google UX Design', issuer: 'Google', relevance: 'UX process, research synthesis, usability and interaction design' },
-            { iconKey: 'monitor', name: 'Meta Full Stack Developer', issuer: 'Meta', relevance: 'Frontend prototyping, implementation thinking, UI behavior' },
-            { iconKey: 'layers', name: 'IBM Systems & Solutions Architect', issuer: 'IBM', relevance: 'System constraints, architecture thinking, HMI integration logic' },
+        certWall: [
+            { img: 'google-ux-design.webp', name: 'Google UX Design', zhName: 'Google UX 設計專業證書', issuer: 'Google',
+                focus: 'UX process, research synthesis, usability and interaction design',
+                zhFocus: 'UX 流程、研究整合、可用性與互動設計——應用於情境鏡頭與七態介面設計' },
+            { img: 'meta-full-stack-developer.webp', name: 'Meta Full Stack Developer', zhName: 'Meta 全端工程師專業證書', issuer: 'Meta',
+                focus: 'Frontend prototyping, implementation thinking, UI behavior',
+                zhFocus: '前端原型、實作思維與 UI 行為——應用於可操作的壓力主控台（Module 06）' },
+            { img: 'ibm-system-and-solutions-architect.webp', name: 'IBM Systems & Solutions Architect', zhName: 'IBM 系統與解決方案架構師證書', issuer: 'IBM',
+                focus: 'System constraints, architecture thinking, HMI integration logic',
+                zhFocus: '系統限制、架構思維與 HMI 整合邏輯——支撐狀態機與情境矩陣的設計' },
         ],
         awards: [],
     },
@@ -1109,9 +1110,16 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
         ],
         pullQuote: 'The most honest sentence an AI product can say is "unverified." DeepScout is designed around the moments it has to say it.',
         zhPullQuote: 'AI 產品最誠實的一句話是「未驗證」。DeepScout 的整套設計，都圍繞著它必須說出這句話的時刻。',
-        evidenceSlots: [
-            { iconKey: 'monitor', title: 'Live copilot, real states', zhTitle: '可操作的實品', desc: 'Open the eight real chapters — the scan, the states, the risk register, the graph — and check every claim on this page against the running site.', zhDesc: '打開八個真實章節——掃描、狀態、風險登錄、圖譜——對照運作中的網站檢查這一頁的每一項宣稱。', anchor: 'ds-mb', anchorNum: '11' },
-            { iconKey: 'layers', title: 'Same brief, four passes', zhTitle: '一份 brief，四道工序', desc: 'The same company brief carried through four passes — hand wireframe to shipped screenshot — each one captioned with what that pass decided.', zhDesc: '同一份 brief 走過四道工序——手繪線框到上線截圖——每一道都標註那一輪決定了什麼。', anchor: 'ds-m04', anchorNum: '04' },
+        certWall: [
+            { img: 'ibm-ai-engineering.webp', name: 'IBM AI Engineering', zhName: 'IBM AI 工程專業證書', issuer: 'IBM',
+                focus: 'Model behavior, evaluation, and failure modes — the grounding behind the refusal states and the verification-first copilot design',
+                zhFocus: '模型行為、評估與失效模式——支撐拒答狀態與「先驗證再回答」的 copilot 設計' },
+            { img: 'ibm-ai-product-manager.webp', name: 'IBM AI Product Manager', zhName: 'IBM AI 產品經理專業證書', issuer: 'IBM',
+                focus: 'AI product scoping and risk judgment — applied in the six-step core loop and the product-level human-verification rule',
+                zhFocus: 'AI 產品範圍界定與風險判斷——應用於六步核心迴圈與人工驗證的產品層硬規則' },
+            { img: 'meta-full-stack-developer.webp', name: 'Meta Full Stack Developer', zhName: 'Meta 全端工程師專業證書', issuer: 'Meta',
+                focus: 'Frontend implementation discipline — the shipped React interface, its designed states, and the quality gates behind it',
+                zhFocus: '前端實作紀律——上線的 React 介面、精心設計的狀態，與背後的自動化品質關卡' },
         ],
         awards: [],
     },
@@ -1196,11 +1204,6 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
         ],
         pullQuote: 'The field taught the lesson no tool teaches: a form, a board, or a report has to work for someone who cannot tell you it doesn\'t.',
         zhPullQuote: '田野教了工具教不了的事：一張表單、一塊溝通板、一份報告，必須為「沒辦法告訴你它不好用」的人工作。',
-        evidenceSlots: [
-            { iconKey: 'map', title: 'Walk the three stations', zhTitle: '走一遍三站', desc: 'A journey map and one chapter per institution — duties, operable artifacts, and the field note each station left behind.', zhDesc: '一張旅程地圖、一站一章——職責、可操作的產出物，和每一站留下的田野筆記。', anchor: 'fj-c02', anchorNum: '02' },
-            { iconKey: 'book', title: 'Open the field album', zhTitle: '翻開田野相簿', desc: 'Frames reserved for the boards, spreads, and rooms — captions first, scans as they surface.', zhDesc: '為溝通板、報告攤頁與活動現場預留的相框——圖說先到，掃描檔陸續出土。', anchor: 'fj-c06', anchorNum: '06' },
-            { iconKey: 'trend', title: 'See what carried forward', zhTitle: '看哪些被帶走了', desc: 'Five field skills, each drawn as a line pointing at the portfolio projects where it lives now.', zhDesc: '五條田野能力線，每一條都指向它現在住的作品集專案。', anchor: 'fj-c07', anchorNum: '07' },
-        ],
         awards: [],
     },
     {
@@ -1282,11 +1285,6 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
         ],
         pullQuote: 'Most of what we know about the brain comes from rooms built to remove everything natural from it. This thesis let the brain do what it actually does, then read the answer through two lenses most labs weren\'t using yet.',
         zhPullQuote: '我們對大腦的理解，多半來自被設計來移除一切自然元素的房間。這篇論文讓大腦做它實際會做的事，再用兩個多數實驗室還沒用上的視角，去讀那個答案。',
-        evidenceSlots: [
-            { iconKey: 'zap', title: 'See the real methodology', zhTitle: '看真實的方法論', desc: 'The actual functional-connectivity and machine-learning-classification figures from the thesis — not a mockup built for this page.', zhDesc: '碩論中實際的功能性連結與機器學習分類圖版——不是為這頁另外做的示意圖。', anchor: 'bl-c04', anchorNum: '04' },
-            { iconKey: 'award', title: 'Read the two conference records', zhTitle: '讀兩場會議紀錄', desc: 'The Excellent Award at TSCN 2025, then an international poster at OHBM Brisbane — both walked through with real photos.', zhDesc: 'TSCN 2025 優等獎，接著 OHBM 布里斯本國際海報——都附上真實照片完整走過。', anchor: 'bl-c06', anchorNum: '06' },
-            { iconKey: 'trend', title: 'See where the research leads', zhTitle: '看研究通往哪裡', desc: 'Four research skills, each drawn as a line pointing at the portfolio projects where it lives now.', zhDesc: '四條研究能力線，每一條都指向它現在住的作品集專案。', anchor: 'bl-c09', anchorNum: '09' },
-        ],
         awards: [
             { iconKey: 'award', title: 'The Excellent Award — Master\'s Thesis', desc: '2025 Taiwan Society for Cognitive Neuroscience Annual Meeting (TSCN)' },
         ],

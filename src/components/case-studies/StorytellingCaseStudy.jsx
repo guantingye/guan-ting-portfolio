@@ -30,7 +30,7 @@ export default function StorytellingCaseStudy({ project: p, lang }) {
                 React.createElement('div', { className: 'story-case-media-glass' },
                     React.createElement('span', null, PA ? '案例封面' : 'CASE COVER'),
                     React.createElement('strong', null, projectTitle),
-                    React.createElement('small', null, PA ? '產品產出 / 證照 / 原型佐證' : 'Product artifacts / credentials / prototype evidence')))),
+                    React.createElement('small', null, PA ? '產品產出 / 原型佐證' : 'Product artifacts / prototype evidence')))),
         deck && React.createElement('div', { className: 'story-case-live' },
             React.createElement('div', { className: 'story-case-cockpit' },
                 React.createElement('div', { className: 'story-case-live-top' },
@@ -81,34 +81,5 @@ export default function StorytellingCaseStudy({ project: p, lang }) {
                     React.createElement(Icon, { name: current.iconKey || 'layers' }),
                     React.createElement('span', null, PA ? '可交付產出' : 'Artifact'),
                     React.createElement('strong', null, chapterArtifact))),
-            quote && React.createElement('blockquote', { className: 'story-case-quote' }, quote)),
-        p.evidenceSlots && p.evidenceSlots.length > 0 && React.createElement('div', { className: 'story-case-section' },
-            React.createElement('div', { className: 'story-case-section-title' }, PA ? '實作證據' : 'Working Evidence'),
-            React.createElement('div', { className: 'story-case-evidence-grid' },
-                p.evidenceSlots.map(slot => {
-                    const inner = [
-                        slot.image
-                            ? React.createElement('div', { className: 'story-case-evidence-visual', key: 'v' },
-                                React.createElement('img', { src: slot.image, alt: `${PA ? slot.zhTitle || slot.title : slot.title} visual`, loading: 'lazy', decoding: 'async' }),
-                                React.createElement(Icon, { name: slot.iconKey || 'check' }))
-                            : React.createElement('div', { className: 'story-case-evidence-icon', key: 'i' }, React.createElement(Icon, { name: slot.iconKey || 'check' })),
-                        React.createElement('div', { className: 'story-case-evidence-title', key: 't' }, PA ? slot.zhTitle || slot.title : slot.title),
-                        React.createElement('p', { key: 'd' }, PA ? slot.zhDesc || slot.desc : slot.desc),
-                        slot.anchor && React.createElement('span', { className: 'story-case-evidence-link', key: 'l' }, `${PA ? '開啟模組' : 'Open module'} ${slot.anchorNum} →`),
-                    ];
-                    return slot.anchor
-                        ? React.createElement('button', {
-                            className: 'story-case-evidence is-link', key: slot.title, type: 'button',
-                            onClick: () => document.getElementById(slot.anchor)?.scrollIntoView({ behavior: 'smooth', block: 'start' }),
-                        }, ...inner)
-                        : React.createElement('div', { className: 'story-case-evidence', key: slot.title }, ...inner);
-                }))),
-        p.credentials && p.credentials.length > 0 && React.createElement('div', { className: 'story-case-section' },
-            React.createElement('div', { className: 'story-case-section-title' }, PA ? '證照佐證' : 'Credential Evidence'),
-            React.createElement('div', { className: 'story-case-credential-grid' },
-                p.credentials.map(cred => React.createElement('div', { className: 'story-case-credential', key: cred.name },
-                    React.createElement('div', { className: 'story-case-credential-icon' }, React.createElement(Icon, { name: cred.iconKey || 'award' })),
-                    React.createElement('div', { className: 'story-case-credential-name' }, cred.name),
-                    React.createElement('div', { className: 'story-case-credential-issuer' }, cred.issuer),
-                    React.createElement('p', null, cred.relevance))))));
+            quote && React.createElement('blockquote', { className: 'story-case-quote' }, quote)));
 }
