@@ -15,12 +15,16 @@ export default function StorytellingCaseStudy({ project: p, lang }) {
     const quote = PA ? p.zhPullQuote || p.pullQuote : p.pullQuote;
     const deck = p.caseDeck;
     const deckSignals = deck ? (PA ? deck.zhSignals || deck.signals : deck.signals) : [];
-    return React.createElement('div', { className: 'story-case reveal' },
+    const intro = p.storyIntro || {};
+    const introKicker = (PA ? intro.zhKicker || intro.kicker : intro.kicker) || (PA ? '章節式案例' : 'CINEMATIC CASE STUDY');
+    const introTitle = (PA ? intro.zhTitle || intro.title : intro.title) || (PA ? '用章節式敘事呈現產品思考' : 'A chapter-led product story');
+    const introLead = (PA ? intro.zhLead || intro.lead : intro.lead) || (PA ? '沿著產品決策的順序，說明如何從問題定義、訊號整理、產品原型、互動設計到上市驗證，建立一套可被討論與執行的 AI 產品流程' : 'This section uses a richer case-study rhythm: problem framing, decision logic, interaction evidence, and visual proof points.');
+    return React.createElement('div', { className: 'story-case reveal', 'data-motif': intro.motif || undefined },
         React.createElement('div', { className: 'story-case-hero' },
             React.createElement('div', { className: 'story-case-copy' },
-                React.createElement('div', { className: 'story-case-kicker' }, PA ? '章節式案例' : 'CINEMATIC CASE STUDY'),
-                React.createElement('h2', { className: 'story-case-title' }, PA ? '用章節式敘事呈現產品思考' : 'A chapter-led product story'),
-                React.createElement('p', { className: 'story-case-lead' }, PA ? '沿著產品決策的順序，說明如何從問題定義、訊號整理、產品原型、互動設計到上市驗證，建立一套可被討論與執行的 AI 產品流程' : 'This section uses a richer case-study rhythm: problem framing, decision logic, interaction evidence, and visual proof points.')),
+                React.createElement('div', { className: 'story-case-kicker' }, introKicker),
+                React.createElement('h2', { className: 'story-case-title' }, introTitle),
+                React.createElement('p', { className: 'story-case-lead' }, introLead)),
             React.createElement('div', { className: 'story-case-media' },
                 React.createElement('img', { src: p.caseHeroImage, alt: `${projectTitle} case study cover`, loading: 'lazy', decoding: 'async' }),
                 React.createElement('div', { className: 'story-case-media-glass' },
@@ -42,10 +46,13 @@ export default function StorytellingCaseStudy({ project: p, lang }) {
                 React.createElement('div', { className: 'story-case-signal-cloud' },
                     deckSignals.map(signal => React.createElement('span', { key: signal }, signal)))),
             React.createElement('div', { className: 'story-case-moment-grid' },
-                (p.storyMoments || []).map(moment => React.createElement('article', { className: 'story-case-moment', key: moment.title },
-                    React.createElement('div', { className: 'story-case-moment-icon' }, React.createElement(Icon, { name: moment.iconKey || 'zap' })),
-                    React.createElement('h4', null, PA ? moment.zhTitle || moment.title : moment.title),
-                    React.createElement('p', null, PA ? moment.zhBody || moment.body : moment.body))))),
+                (p.storyMoments || []).map((moment, mi) => React.createElement('article', { className: 'story-case-moment', key: moment.title },
+                    React.createElement('div', { className: 'story-case-moment-rail' },
+                        React.createElement('span', { className: 'story-case-moment-num' }, String(mi + 1).padStart(2, '0')),
+                        React.createElement('div', { className: 'story-case-moment-icon' }, React.createElement(Icon, { name: moment.iconKey || 'zap' }))),
+                    React.createElement('div', { className: 'story-case-moment-text' },
+                        React.createElement('h4', null, PA ? moment.zhTitle || moment.title : moment.title),
+                        React.createElement('p', null, PA ? moment.zhBody || moment.body : moment.body)))))),
         p.caseGallery && p.caseGallery.length > 0 && React.createElement('div', { className: 'story-case-gallery', 'aria-label': PA ? '案例圖片集' : 'Case image gallery' },
             p.caseGallery.map((img, i) => React.createElement('figure', { className: `story-case-gallery-card${i === 0 ? ' featured' : ''}`, key: img.src },
                 React.createElement('img', { src: img.src, alt: `${PA ? img.zhTitle || img.title : img.title} preview`, loading: 'lazy', decoding: 'async' }),

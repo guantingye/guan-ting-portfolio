@@ -1,3 +1,24 @@
+// Shared polish vocabulary for every hand-drawn hero cover below: a corner accent
+// wash, a dark vignette, a faint dot-grid texture, and a panel gradient — each
+// parameterized by the project's own accent so the ten covers read as one system
+// while staying visually distinct per theme.
+const heroBackdrop = (accent) => (
+    '<defs>'
+    + `<radialGradient id="hv" cx="0.5" cy="0.5" r="0.75"><stop offset="0" stop-color="${accent}" stop-opacity="0.055"/><stop offset="1" stop-color="${accent}" stop-opacity="0"/></radialGradient>`
+    + '<radialGradient id="hg" cx="0.5" cy="0.5" r="0.72"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.4"/></radialGradient>'
+    + '<linearGradient id="hp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#171B22"/><stop offset="1" stop-color="#12151B"/></linearGradient>'
+    + '<pattern id="hd" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.1" fill="#181C24"/></pattern>'
+    + '</defs>'
+    + '<rect width="1600" height="900" fill="#0C0E12"/>'
+    + '<rect width="1600" height="900" fill="url(#hd)"/>'
+    + '<rect width="1600" height="900" fill="url(#hv)"/>'
+    + '<rect width="1600" height="900" fill="url(#hg)"/>'
+);
+const heroCorners = '<g stroke="#262B35" stroke-width="1.5" fill="none" opacity="0.85">'
+    + '<path d="M20,44 L20,20 L44,20"/><path d="M1580,44 L1580,20 L1556,20"/>'
+    + '<path d="M20,856 L20,880 L44,880"/><path d="M1580,856 L1580,880 L1556,880"/>'
+    + '</g>';
+
 // Self-drawn SVG cover for the deeptech-database case (no stock photos): a data-room
 // console wireframe — 8 registered sources converging into a relational core, then
 // diverging into 4 decision surfaces — in the Neural Signal OS palette.
@@ -5,29 +26,45 @@ const DEEPTECH_SOURCE_YS = [92, 182, 272, 362, 452, 542, 632, 722];
 const DEEPTECH_OUTPUT_YS = [170, 320, 470, 620];
 const DEEPTECH_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">'
-    + '<rect width="1600" height="900" fill="#0C0E12"/>'
-    + '<g stroke="#262B35" stroke-width="3" fill="#14171D">'
+    + heroBackdrop('#35C2B0') + heroCorners
+    + '<g stroke="#2A3140" stroke-width="3" fill="url(#hp)">'
     + DEEPTECH_SOURCE_YS.map(y => `<rect x="110" y="${y}" width="260" height="52" rx="10"/>`).join('')
+    + '</g>'
+    + '<g fill="rgba(255,255,255,0.05)">'
+    + DEEPTECH_SOURCE_YS.map(y => `<rect x="111" y="${y + 1}" width="258" height="1" rx="0.5"/>`).join('')
     + '</g>'
     + '<g>'
     + DEEPTECH_SOURCE_YS.map((y, i) => `<circle cx="126" cy="${y + 26}" r="5" fill="${i === 7 ? '#E8A33D' : '#35C2B0'}"/>`).join('')
     + '</g>'
+    + '<g fill="#6B7280" font-family="monospace" font-size="11" letter-spacing="1.5">'
+    + DEEPTECH_SOURCE_YS.map((y, i) => `<text x="140" y="${y + 30}">SRC ${String(i + 1).padStart(2, '0')}</text>`).join('')
+    + '</g>'
+    + '<g stroke="#35C2B0" stroke-width="6" fill="none" opacity="0.14">'
+    + DEEPTECH_SOURCE_YS.slice(0, 7).map(y => `<path d="M370,${y + 26} C 480,${y + 26} 520,420 620,420"/>`).join('')
+    + '</g>'
     + '<g stroke="#35C2B0" stroke-width="2" fill="none" opacity="0.5">'
     + DEEPTECH_SOURCE_YS.slice(0, 7).map(y => `<path d="M370,${y + 26} C 480,${y + 26} 520,420 620,420"/>`).join('')
     + '</g>'
-    + `<path d="M370,${DEEPTECH_SOURCE_YS[7] + 26} C 480,${DEEPTECH_SOURCE_YS[7] + 26} 520,420 620,420" stroke="#E8A33D" stroke-width="2.5" fill="none" opacity="0.75"/>`
-    + '<g stroke="#333A47" stroke-width="4" fill="#1C2028">'
+    + `<path d="M370,${DEEPTECH_SOURCE_YS[7] + 26} C 480,${DEEPTECH_SOURCE_YS[7] + 26} 520,420 620,420" stroke="#E8A33D" stroke-width="9" fill="none" opacity="0.18"/>`
+    + `<path d="M370,${DEEPTECH_SOURCE_YS[7] + 26} C 480,${DEEPTECH_SOURCE_YS[7] + 26} 520,420 620,420" stroke="#E8A33D" stroke-width="2.5" fill="none" opacity="0.8"/>`
+    + '<g stroke="#333A47" stroke-width="4" fill="url(#hp)">'
     + '<ellipse cx="800" cy="230" rx="180" ry="28"/>'
     + '<rect x="620" y="230" width="360" height="430"/>'
     + '<ellipse cx="800" cy="660" rx="180" ry="28"/>'
     + '</g>'
+    + '<ellipse cx="800" cy="230" rx="180" ry="28" fill="none" stroke="#3D4658" stroke-width="1.5" opacity="0.6"/>'
+    + '<ellipse cx="800" cy="236" rx="164" ry="20" fill="rgba(255,255,255,0.05)"/>'
+    + '<text x="712" y="200" fill="#6B7280" font-family="monospace" font-size="13" letter-spacing="2">RELATIONAL CORE</text>'
     + '<g fill="#2A303C">'
     + [280, 340, 400, 460, 520, 580].map((y, i) => `<rect x="660" y="${y}" width="${[280, 220, 260, 180, 240, 200][i]}" height="14" rx="7"/>`).join('')
     + '</g>'
     + '<rect x="660" y="340" width="140" height="14" rx="7" fill="#35C2B0" opacity="0.6"/>'
     + '<rect x="660" y="460" width="110" height="14" rx="7" fill="#35C2B0" opacity="0.6"/>'
-    + '<g stroke="#262B35" stroke-width="3" fill="#14171D">'
+    + '<g stroke="#2A3140" stroke-width="3" fill="url(#hp)">'
     + DEEPTECH_OUTPUT_YS.map(y => `<rect x="1180" y="${y}" width="280" height="90" rx="12"/>`).join('')
+    + '</g>'
+    + '<g fill="rgba(255,255,255,0.06)">'
+    + DEEPTECH_OUTPUT_YS.map(y => `<rect x="1181" y="${y + 1}" width="278" height="1"/>`).join('')
     + '</g>'
     + '<g fill="#35C2B0">'
     + DEEPTECH_OUTPUT_YS.slice(0, 3).map(y => `<circle cx="1204" cy="${y + 45}" r="6"/>`).join('')
@@ -37,6 +74,7 @@ const DEEPTECH_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
     + DEEPTECH_OUTPUT_YS.slice(0, 3).map(y => `<path d="M980,420 C 1080,420 1100,${y + 45} 1180,${y + 45}"/>`).join('')
     + '</g>'
     + `<path d="M980,420 C 1080,420 1100,${DEEPTECH_OUTPUT_YS[3] + 45} 1180,${DEEPTECH_OUTPUT_YS[3] + 45}" stroke="#E8A33D" stroke-width="2.5" fill="none" opacity="0.75"/>`
+    + '<text x="1180" y="750" fill="#6B7280" font-family="monospace" font-size="16" letter-spacing="3">8 SOURCES · 8 TABLES · 230+ COMPANIES</text>'
     + '</svg>');
 
 // Self-drawn SVG cover for the Strategy Intelligence Platform case (no stock
@@ -46,37 +84,45 @@ const DEEPTECH_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
 const ISP_ROW_YS = [268, 342, 416, 490, 564];
 const ISP_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">'
-    + '<rect width="1600" height="900" fill="#0C0E12"/>'
-    + '<circle cx="270" cy="450" r="190" fill="#14171D" stroke="#262B35" stroke-width="2"/>'
+    + heroBackdrop('#35C2B0') + heroCorners
+    + '<defs><radialGradient id="ggl" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#35C2B0" stop-opacity="0.22"/><stop offset="1" stop-color="#35C2B0" stop-opacity="0"/></radialGradient></defs>'
+    + '<circle cx="270" cy="450" r="235" fill="url(#ggl)"/>'
+    + '<circle cx="270" cy="450" r="190" fill="url(#hp)" stroke="#2A3140" stroke-width="2"/>'
     + '<g stroke="#262B35" stroke-width="1" fill="none" opacity="0.8">'
     + '<ellipse cx="270" cy="450" rx="190" ry="66"/><ellipse cx="270" cy="450" rx="190" ry="140"/>'
     + '<ellipse cx="270" cy="450" rx="66" ry="190"/><ellipse cx="270" cy="450" rx="140" ry="190"/>'
     + '</g>'
-    + '<circle cx="270" cy="450" r="190" fill="none" stroke="#333A47" stroke-width="2"/>'
+    + '<circle cx="270" cy="450" r="190" fill="none" stroke="#3D4658" stroke-width="1.5" opacity="0.7"/>'
     + '<g fill="#35C2B0"><circle cx="196" cy="366" r="6"/><circle cx="360" cy="522" r="6"/></g>'
     + '<circle cx="318" cy="384" r="10" fill="none" stroke="#E8A33D" stroke-width="2.5"/>'
     + '<circle cx="318" cy="384" r="4.5" fill="#E8A33D"/>'
-    + '<g stroke="#35C2B0" stroke-width="1.5" fill="none" opacity="0.55">'
+    + '<g stroke="#35C2B0" stroke-width="5" fill="none" opacity="0.12">'
+    + '<path d="M330,392 C 420,430 470,440 520,440"/><path d="M362,522 C 440,500 470,470 520,455"/>'
+    + '</g>'
+    + '<g stroke="#35C2B0" stroke-width="1.5" fill="none" opacity="0.6" stroke-dasharray="1 7" stroke-linecap="round">'
     + '<path d="M330,392 C 420,430 470,440 520,440"/>'
     + '<path d="M362,522 C 440,500 470,470 520,455"/>'
     + '</g>'
-    + '<rect x="520" y="240" width="460" height="420" rx="14" fill="#14171D" stroke="#262B35" stroke-width="2"/>'
-    + '<rect x="552" y="272" width="220" height="16" rx="8" fill="#2A303C"/>'
-    + '<rect x="552" y="300" width="330" height="10" rx="5" fill="#1C2028"/>'
+    + '<rect x="520" y="240" width="460" height="420" rx="14" fill="url(#hp)" stroke="#2A3140" stroke-width="2"/>'
+    + '<circle cx="552" cy="256" r="5" fill="#35C2B0"/>'
+    + '<text x="568" y="261" fill="#6B7280" font-family="monospace" font-size="12" letter-spacing="2">BRIEF</text>'
+    + '<rect x="552" y="282" width="220" height="16" rx="8" fill="#2A303C"/>'
+    + '<rect x="552" y="310" width="330" height="10" rx="5" fill="#1C2028"/>'
     + '<g fill="#35C2B0" opacity="0.85">'
-    + '<rect x="552" y="336" width="10" height="10" rx="2"/><rect x="552" y="358" width="10" height="10" rx="2"/><rect x="552" y="380" width="10" height="10" rx="2"/>'
+    + '<rect x="552" y="346" width="10" height="10" rx="2"/><rect x="552" y="368" width="10" height="10" rx="2"/><rect x="552" y="390" width="10" height="10" rx="2"/>'
     + '</g>'
     + '<g fill="#2A303C">'
-    + '<rect x="574" y="338" width="360" height="8" rx="4"/><rect x="574" y="360" width="330" height="8" rx="4"/><rect x="574" y="382" width="300" height="8" rx="4"/>'
+    + '<rect x="574" y="348" width="360" height="8" rx="4"/><rect x="574" y="370" width="330" height="8" rx="4"/><rect x="574" y="392" width="300" height="8" rx="4"/>'
     + '</g>'
     + '<rect x="552" y="420" width="380" height="1" fill="#262B35"/>'
     + '<g fill="#1C2028"><rect x="552" y="444" width="380" height="8" rx="4"/><rect x="552" y="464" width="360" height="8" rx="4"/><rect x="552" y="484" width="340" height="8" rx="4"/><rect x="552" y="504" width="320" height="8" rx="4"/></g>'
     + '<rect x="552" y="580" width="380" height="34" rx="8" fill="#12241F" stroke="#35C2B0"/>'
     + '<text x="572" y="602" fill="#35C2B0" font-family="monospace" font-size="16">▸ ask the database a question</text>'
-    + '<g stroke="#E8A33D" stroke-width="1.5" fill="none" opacity="0.6">'
-    + '<path d="M980,420 C 1030,420 1030,340 1080,340"/>'
-    + '</g>'
-    + '<g stroke="#262B35" stroke-width="2" fill="#14171D">'
+    + '<rect x="908" y="589" width="9" height="16" fill="#35C2B0" opacity="0.75"/>'
+    + '<g stroke="#E8A33D" stroke-width="5" fill="none" opacity="0.16"><path d="M980,420 C 1030,420 1030,340 1080,340"/></g>'
+    + '<g stroke="#E8A33D" stroke-width="1.5" fill="none" opacity="0.6"><path d="M980,420 C 1030,420 1030,340 1080,340"/></g>'
+    + '<g>' + ISP_ROW_YS.map((y, i) => (i % 2 === 0 ? `<rect x="1080" y="${y}" width="360" height="56" rx="10" fill="rgba(255,255,255,0.02)"/>` : '')).join('') + '</g>'
+    + '<g stroke="#2A3140" stroke-width="2" fill="url(#hp)">'
     + ISP_ROW_YS.map(y => `<rect x="1080" y="${y}" width="360" height="56" rx="10"/>`).join('')
     + '</g>'
     + '<g>' + ISP_ROW_YS.map((y, i) => `<circle cx="1104" cy="${y + 28}" r="6" fill="${i === 1 ? '#E8A33D' : '#35C2B0'}"/>`).join('') + '</g>'
@@ -92,25 +138,40 @@ const ISP_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
 // firehose resolving into a dated, sourced briefing, in the Neural Signal OS palette.
 const NEWS_SOURCE_YS = [150, 250, 350, 450, 550, 650];
 const NEWS_STAGE_YS = [252, 360, 468, 576];
+const NEWS_STAGE_LABELS = ['EXTRACT', 'SCORE', 'SUMMARISE', 'PUBLISH'];
 const NEWS_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">'
-    + '<rect width="1600" height="900" fill="#0C0E12"/>'
-    + '<g stroke="#262B35" stroke-width="2" fill="#14171D">'
+    + heroBackdrop('#35C2B0') + heroCorners
+    + '<g stroke="#2A3140" stroke-width="2" fill="url(#hp)">'
     + NEWS_SOURCE_YS.map(y => `<rect x="90" y="${y}" width="250" height="60" rx="10"/>`).join('')
     + '</g>'
     + '<g>' + NEWS_SOURCE_YS.map((y, i) => `<circle cx="114" cy="${y + 30}" r="6" fill="${i === 5 ? '#E8A33D' : '#35C2B0'}"/>`).join('') + '</g>'
     + '<g fill="#2A303C">' + NEWS_SOURCE_YS.map(y => `<rect x="134" y="${y + 18}" width="150" height="9" rx="4"/><rect x="134" y="${y + 34}" width="110" height="7" rx="3"/>`).join('') + '</g>'
+    + '<g stroke="#35C2B0" stroke-width="6" fill="none" opacity="0.1">'
+    + NEWS_SOURCE_YS.map(y => `<path d="M340,${y + 30} C 460,${y + 30} 500,450 620,450"/>`).join('')
+    + '</g>'
     + '<g stroke="#35C2B0" stroke-width="2" fill="none" opacity="0.42">'
     + NEWS_SOURCE_YS.map(y => `<path d="M340,${y + 30} C 460,${y + 30} 500,450 620,450"/>`).join('')
     + '</g>'
-    + '<rect x="620" y="196" width="360" height="508" rx="16" fill="#14171D" stroke="#262B35" stroke-width="2"/>'
-    + '<text x="648" y="238" fill="#6B7280" font-family="monospace" font-size="16" letter-spacing="2">PIPELINE</text>'
+    + '<rect x="620" y="196" width="360" height="508" rx="16" fill="url(#hp)" stroke="#2A3140" stroke-width="2"/>'
+    + '<circle cx="648" cy="222" r="5" fill="#35C2B0"/>'
+    + '<text x="664" y="238" fill="#6B7280" font-family="monospace" font-size="16" letter-spacing="2">PIPELINE</text>'
+    + '<rect x="620" y="410" width="360" height="34" fill="#35C2B0" opacity="0.04"/>'
     + '<g>' + NEWS_STAGE_YS.map((y, i) => `<rect x="648" y="${y}" width="304" height="76" rx="10" fill="#0C0E12" stroke="#232A36"/><rect x="648" y="${y}" width="5" height="76" rx="2" fill="${i === 3 ? '#E8A33D' : '#35C2B0'}"/>`).join('') + '</g>'
-    + '<g fill="#2A303C">' + NEWS_STAGE_YS.map(y => `<rect x="674" y="${y + 24}" width="150" height="10" rx="5"/><rect x="674" y="${y + 46}" width="220" height="8" rx="4"/>`).join('') + '</g>'
+    + '<g fill="#6B7280" font-family="monospace" font-size="9" letter-spacing="1.5">'
+    + NEWS_STAGE_YS.map((y, i) => `<text x="674" y="${y + 16}">${String(i + 1).padStart(2, '0')} · ${NEWS_STAGE_LABELS[i]}</text>`).join('')
+    + '</g>'
+    + '<g fill="#2A303C">' + NEWS_STAGE_YS.map(y => `<rect x="674" y="${y + 30}" width="150" height="10" rx="5"/><rect x="674" y="${y + 52}" width="220" height="8" rx="4"/>`).join('') + '</g>'
+    + '<g fill="#4A5262" font-family="monospace" font-size="13">'
+    + [328, 436, 544].map(y => `<text x="792" y="${y}">⌄</text>`).join('')
+    + '</g>'
+    + '<g stroke="#E8A33D" stroke-width="6" fill="none" opacity="0.14"><path d="M980,450 C 1060,450 1080,360 1160,360"/><path d="M980,450 C 1060,450 1080,560 1160,560"/></g>'
     + '<g stroke="#E8A33D" stroke-width="2" fill="none" opacity="0.6"><path d="M980,450 C 1060,450 1080,360 1160,360"/><path d="M980,450 C 1060,450 1080,560 1160,560"/></g>'
-    + '<g stroke="#262B35" stroke-width="2" fill="#14171D"><rect x="1160" y="300" width="330" height="120" rx="12"/><rect x="1160" y="500" width="330" height="120" rx="12"/></g>'
+    + '<g stroke="#2A3140" stroke-width="2" fill="url(#hp)"><rect x="1160" y="300" width="330" height="120" rx="12"/><rect x="1160" y="500" width="330" height="120" rx="12"/></g>'
     + '<g fill="#35C2B0"><circle cx="1188" cy="330" r="6"/><circle cx="1188" cy="530" r="6"/></g>'
     + '<g fill="#2A303C"><rect x="1206" y="324" width="160" height="12" rx="6"/><rect x="1184" y="356" width="280" height="8" rx="4"/><rect x="1184" y="374" width="250" height="8" rx="4"/><rect x="1184" y="392" width="265" height="8" rx="4"/><rect x="1206" y="524" width="180" height="12" rx="6"/><rect x="1184" y="556" width="280" height="8" rx="4"/><rect x="1184" y="574" width="235" height="8" rx="4"/><rect x="1184" y="592" width="255" height="8" rx="4"/></g>'
+    + '<rect x="1420" y="316" width="56" height="18" rx="9" fill="#12241F" stroke="#35C2B0" opacity="0.8"/><text x="1430" y="329" fill="#35C2B0" font-family="monospace" font-size="9">TODAY</text>'
+    + '<rect x="1420" y="516" width="56" height="18" rx="9" fill="#12241F" stroke="#35C2B0" opacity="0.8"/><text x="1430" y="529" fill="#35C2B0" font-family="monospace" font-size="9">TODAY</text>'
     + '<text x="90" y="770" fill="#6B7280" font-family="monospace" font-size="18" letter-spacing="3">AI NEWS INTELLIGENCE · 6 SOURCES · DAILY</text>'
     + '</svg>');
 
@@ -122,27 +183,41 @@ const STARTUP_CRAWLER_YS = [230, 340, 450, 560];
 const STARTUP_BARS = [70, 110, 90, 150, 120, 170];
 const STARTUP_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">'
-    + '<rect width="1600" height="900" fill="#0C0E12"/>'
+    + heroBackdrop('#35C2B0') + heroCorners
+    + '<defs><radialGradient id="getl" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#35C2B0" stop-opacity="0.32"/><stop offset="1" stop-color="#35C2B0" stop-opacity="0"/></radialGradient></defs>'
+    + '<circle cx="164" cy="192" r="4" fill="#35C2B0" opacity="0.7"/>'
     + '<text x="90" y="210" fill="#6B7280" font-family="monospace" font-size="15" letter-spacing="2">CRAWLERS</text>'
-    + '<g stroke="#262B35" stroke-width="2" fill="#14171D">'
+    + '<g stroke="#2A3140" stroke-width="2" fill="url(#hp)">'
     + STARTUP_CRAWLER_YS.map(y => `<rect x="90" y="${y}" width="210" height="60" rx="10"/>`).join('')
     + '</g>'
     + '<g>' + STARTUP_CRAWLER_YS.map(y => `<circle cx="114" cy="${y + 30}" r="6" fill="#35C2B0"/>`).join('') + '</g>'
     + '<g fill="#2A303C">' + STARTUP_CRAWLER_YS.map(y => `<rect x="132" y="${y + 24}" width="130" height="10" rx="5"/>`).join('') + '</g>'
+    + '<g stroke="#35C2B0" stroke-width="6" fill="none" opacity="0.1">' + STARTUP_CRAWLER_YS.map(y => `<path d="M300,${y + 30} C 360,${y + 30} 380,430 440,430"/>`).join('') + '</g>'
     + '<g stroke="#35C2B0" stroke-width="2" fill="none" opacity="0.42">' + STARTUP_CRAWLER_YS.map(y => `<path d="M300,${y + 30} C 360,${y + 30} 380,430 440,430"/>`).join('') + '</g>'
-    + '<rect x="440" y="382" width="150" height="96" rx="12" fill="#12241F" stroke="#35C2B0" stroke-width="2"/>'
+    + '<circle cx="515" cy="430" r="72" fill="url(#getl)"/>'
+    + '<rect x="440" y="382" width="150" height="96" rx="12" fill="url(#hp)" stroke="#35C2B0" stroke-width="2"/>'
+    + '<rect x="440" y="382" width="150" height="96" rx="12" fill="none" stroke="#35C2B0" stroke-width="1" opacity="0.5"><animate attributeName="opacity" values="0.5;0.05;0.5" dur="2.6s" repeatCount="indefinite"/></rect>'
     + '<text x="474" y="438" fill="#35C2B0" font-family="monospace" font-size="22" letter-spacing="2">ETL</text>'
+    + '<g stroke="#E8A33D" stroke-width="6" fill="none" opacity="0.14"><path d="M590,430 C 660,430 680,430 740,430"/></g>'
     + '<g stroke="#E8A33D" stroke-width="2" fill="none" opacity="0.6"><path d="M590,430 C 660,430 680,430 740,430"/></g>'
-    + '<g fill="#1C2028" stroke="#333A47" stroke-width="3"><ellipse cx="850" cy="330" rx="110" ry="26"/><rect x="740" y="330" width="220" height="200"/><ellipse cx="850" cy="530" rx="110" ry="26"/></g>'
-    + '<ellipse cx="850" cy="330" rx="110" ry="26" fill="#14171D" stroke="#35C2B0" stroke-width="2"/>'
-    + '<g stroke="#262B35" stroke-width="1.5" fill="none"><path d="M740,400 a110,26 0 0 0 220,0"/><path d="M740,460 a110,26 0 0 0 220,0"/></g>'
+    + '<g fill="url(#hp)" stroke="#333A47" stroke-width="3"><ellipse cx="850" cy="330" rx="110" ry="26"/><rect x="740" y="330" width="220" height="200"/><ellipse cx="850" cy="530" rx="110" ry="26"/></g>'
+    + '<ellipse cx="850" cy="330" rx="110" ry="26" fill="none" stroke="#35C2B0" stroke-width="2"/>'
+    + '<ellipse cx="850" cy="324" rx="96" ry="18" fill="rgba(255,255,255,0.05)"/>'
+    + '<g stroke="#333A47" stroke-width="1.5" fill="none" opacity="0.7"><path d="M740,400 a110,26 0 0 0 220,0"/><path d="M740,460 a110,26 0 0 0 220,0"/></g>'
     + '<text x="808" y="602" fill="#6B7280" font-family="monospace" font-size="16" letter-spacing="2">SQL</text>'
+    + '<g stroke="#35C2B0" stroke-width="6" fill="none" opacity="0.12"><path d="M960,430 C 1030,430 1050,430 1120,430"/></g>'
     + '<g stroke="#35C2B0" stroke-width="2" fill="none" opacity="0.6"><path d="M960,430 C 1030,430 1050,430 1120,430"/></g>'
-    + '<rect x="1120" y="240" width="380" height="420" rx="16" fill="#14171D" stroke="#262B35" stroke-width="2"/>'
-    + '<text x="1148" y="286" fill="#6B7280" font-family="monospace" font-size="15" letter-spacing="2">DASHBOARD</text>'
+    + '<rect x="1120" y="240" width="380" height="420" rx="16" fill="url(#hp)" stroke="#2A3140" stroke-width="2"/>'
+    + '<circle cx="1148" cy="266" r="5" fill="#35C2B0"/>'
+    + '<text x="1164" y="286" fill="#6B7280" font-family="monospace" font-size="15" letter-spacing="2">DASHBOARD</text>'
+    + '<g stroke="#232A36" stroke-width="1">' + [440, 480, 520].map(y => `<line x1="1148" y1="${y}" x2="1476" y2="${y}"/>`).join('') + '</g>'
     + '<g fill="#35C2B0">' + STARTUP_BARS.map((h, i) => `<rect x="${1150 + i * 44}" y="${520 - h}" width="26" height="${h}" rx="4" opacity="${i === 3 ? 1 : 0.55}"/>`).join('') + '</g>'
+    + '<g fill="#4A5262">' + STARTUP_BARS.map((h, i) => `<rect x="${1150 + i * 44}" y="${520 - h}" width="26" height="2" rx="1" opacity="0.6"/>`).join('') + '</g>'
     + '<line x1="1148" y1="520" x2="1476" y2="520" stroke="#262B35" stroke-width="2"/>'
+    + '<g fill="#4A5262" font-family="monospace" font-size="8">' + [150, 190, 230].map((v, i) => `<text x="1120" y="${524 - i * 40}" text-anchor="end">${v}</text>`).join('') + '</g>'
+    + '<polyline points="1150,614 1214,594 1278,602 1342,568 1406,586 1476,546" fill="none" stroke="#E8A33D" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.16"/>'
     + '<polyline points="1150,614 1214,594 1278,602 1342,568 1406,586 1476,546" fill="none" stroke="#E8A33D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>'
+    + '<circle cx="1476" cy="546" r="12" fill="#E8A33D" opacity="0.16"/>'
     + '<circle cx="1476" cy="546" r="6" fill="#E8A33D"/>'
     + '<text x="90" y="770" fill="#6B7280" font-family="monospace" font-size="18" letter-spacing="3">STARTUP INTELLIGENCE · REAL-TIME · SOLO-BUILT</text>'
     + '</svg>');
@@ -157,7 +232,8 @@ const DEEPSCOUT_FIELD_YS = [178, 274, 370, 466, 562];
 const DEEPSCOUT_FIELDS_SVG = DEEPSCOUT_FIELD_YS.map((y, i) => {
     const flagged = i === 3;
     const accent = flagged ? '#E8A33D' : '#35C2B0';
-    return `<rect x="1072" y="${y}" width="406" height="64" rx="10" fill="#0C0E12" stroke="#232A36"/>`
+    return (flagged ? `<rect x="1068" y="${y - 3}" width="414" height="70" rx="12" fill="none" stroke="#E8A33D" stroke-width="6" opacity="0.14"/>` : '')
+        + `<rect x="1072" y="${y}" width="406" height="64" rx="10" fill="#0C0E12" stroke="#232A36"/>`
         + `<rect x="1072" y="${y}" width="4" height="64" rx="2" fill="${accent}"/>`
         + `<circle cx="1454" cy="${y + 20}" r="4" fill="${accent}"/>`
         + `<rect x="1092" y="${y + 14}" width="130" height="9" rx="4.5" fill="#6B7280"/>`
@@ -165,8 +241,8 @@ const DEEPSCOUT_FIELDS_SVG = DEEPSCOUT_FIELD_YS.map((y, i) => {
 }).join('');
 const DEEPSCOUT_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">'
-    + '<rect width="1600" height="900" fill="#0C0E12"/>'
-    + '<g stroke="#262B35" stroke-width="2" fill="#14171D">'
+    + heroBackdrop('#35C2B0') + heroCorners
+    + '<g stroke="#2A3140" stroke-width="2" fill="url(#hp)">'
     + DEEPSCOUT_SOURCE_YS.map(y => `<rect x="80" y="${y}" width="220" height="90" rx="12"/>`).join('')
     + '</g>'
     + '<g>' + DEEPSCOUT_SOURCE_YS.map(y => `<circle cx="104" cy="${y + 30}" r="5" fill="#35C2B0"/>`).join('') + '</g>'
@@ -174,25 +250,32 @@ const DEEPSCOUT_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
     + DEEPSCOUT_SOURCE_YS.map((y, i) => `<text x="122" y="${y + 35}">${DEEPSCOUT_SOURCE_LABELS[i]}</text>`).join('')
     + '</g>'
     + '<g fill="#2A303C">' + DEEPSCOUT_SOURCE_YS.map(y => `<rect x="104" y="${y + 52}" width="150" height="10" rx="5"/>`).join('') + '</g>'
+    + '<g stroke="#35C2B0" stroke-width="6" fill="none" opacity="0.1">'
+    + DEEPSCOUT_SOURCE_YS.map(y => `<path d="M300,${y + 45} C 420,${y + 45} 480,450 620,450"/>`).join('')
+    + '</g>'
     + '<g stroke="#35C2B0" stroke-width="2" fill="none" opacity="0.4">'
     + DEEPSCOUT_SOURCE_YS.map(y => `<path d="M300,${y + 45} C 420,${y + 45} 480,450 620,450"/>`).join('')
     + '</g>'
-    + '<rect x="650" y="170" width="330" height="560" rx="16" fill="#14171D" stroke="#262B35" stroke-width="2"/>'
+    + '<rect x="650" y="170" width="330" height="560" rx="16" fill="url(#hp)" stroke="#2A3140" stroke-width="2"/>'
     + '<circle cx="680" cy="204" r="5" fill="#35C2B0"/>'
     + '<text x="696" y="209" fill="#F2F0EB" font-family="monospace" font-size="14" letter-spacing="2">DEEPSCOUT</text>'
     + '<text x="680" y="250" fill="#6B7280" font-family="monospace" font-size="12" letter-spacing="2">SCANNING SIGNAL SOURCES</text>'
     + '<rect x="680" y="272" width="270" height="150" rx="8" fill="#0C0E12" stroke="#232A36"/>'
+    + '<defs><linearGradient id="dscan" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#35C2B0" stop-opacity="0"/><stop offset="0.5" stop-color="#35C2B0" stop-opacity="0.14"/><stop offset="1" stop-color="#35C2B0" stop-opacity="0"/></linearGradient></defs>'
+    + '<rect x="680" y="272" width="270" height="150" fill="url(#dscan)"/>'
+    + '<polyline points="690,360 720,352 745,330 770,375 795,340 820,352 845,320 870,346 895,335 920,352 940,346" fill="none" stroke="#35C2B0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.16"/>'
     + '<polyline points="690,360 720,352 745,330 770,375 795,340 820,352 845,320 870,346 895,335 920,352 940,346" fill="none" stroke="#35C2B0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>'
     + '<text x="680" y="456" fill="#6B7280" font-family="monospace" font-size="11" letter-spacing="1.5">RESOLVING STRUCTURED BRIEF</text>'
     + '<rect x="680" y="474" width="270" height="8" rx="4" fill="#1C2028"/>'
     + '<rect x="680" y="474" width="168" height="8" rx="4" fill="#35C2B0"/>'
+    + '<g stroke="#333A47" stroke-width="1">' + [0, 67.5, 135, 202.5, 270].map(x => `<line x1="${680 + x}" y1="486" x2="${680 + x}" y2="490"/>`).join('') + '</g>'
     + '<g fill="#2A303C">'
     + [520, 552, 584].map((y, i) => `<rect x="680" y="${y}" width="${[220, 190, 150][i]}" height="9" rx="4.5"/>`).join('')
     + '</g>'
     + '<rect x="680" y="654" width="150" height="34" rx="17" fill="#12241F" stroke="#35C2B0"/>'
     + '<text x="704" y="676" fill="#35C2B0" font-family="monospace" font-size="11" letter-spacing="1.5">SCAN SIGNALS</text>'
     + '<g stroke="#35C2B0" stroke-width="2" fill="none" opacity="0.55"><path d="M980,450 C 1010,450 1010,450 1040,450"/></g>'
-    + '<rect x="1040" y="120" width="470" height="660" rx="16" fill="#14171D" stroke="#262B35" stroke-width="2"/>'
+    + '<rect x="1040" y="120" width="470" height="660" rx="16" fill="url(#hp)" stroke="#2A3140" stroke-width="2"/>'
     + '<text x="1072" y="164" fill="#E8A33D" font-family="monospace" font-size="12" letter-spacing="2">SNAPSHOT</text>'
     + '<rect x="1072" y="180" width="230" height="16" rx="4" fill="#2A303C"/>'
     + DEEPSCOUT_FIELDS_SVG
@@ -207,16 +290,22 @@ const DEEPSCOUT_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
 // is only hinted at before the page itself makes the turn.
 const FIELD_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">'
-    + '<rect width="1600" height="900" fill="#0C0E12"/>'
-    // dotted route, lower-left to upper-right
+    + heroBackdrop('#D97841') + heroCorners
+    // dotted route, lower-left to upper-right (glow layer beneath the crisp dashes)
+    + '<path d="M60,790 C 200,730 240,650 330,608 C 470,545 650,525 800,438 C 950,350 1100,365 1270,308 C 1390,266 1470,225 1540,185" fill="none" stroke="#8A7E68" stroke-width="12" stroke-linecap="round" opacity="0.1"/>'
     + '<path d="M60,790 C 200,730 240,650 330,608 C 470,545 650,525 800,438 C 950,350 1100,365 1270,308 C 1390,266 1470,225 1540,185" fill="none" stroke="#8A7E68" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 26" opacity="0.85"/>'
-    // station dots on the route
+    // station dots on the route, each with a soft halo ring
+    + '<circle cx="330" cy="608" r="22" fill="none" stroke="#D97841" stroke-width="1.5" opacity="0.3"/>'
+    + '<circle cx="800" cy="438" r="22" fill="none" stroke="#7A8B4E" stroke-width="1.5" opacity="0.3"/>'
+    + '<circle cx="1270" cy="308" r="22" fill="none" stroke="#B08D57" stroke-width="1.5" opacity="0.3"/>'
     + '<circle cx="330" cy="608" r="11" fill="#D97841" stroke="#0C0E12" stroke-width="4"/>'
     + '<circle cx="800" cy="438" r="11" fill="#7A8B4E" stroke="#0C0E12" stroke-width="4"/>'
     + '<circle cx="1270" cy="308" r="11" fill="#B08D57" stroke="#0C0E12" stroke-width="4"/>'
     // station 1 card — hospital
     + '<g transform="rotate(-2 330 460)">'
+    + '<rect x="222" y="398" width="236" height="164" rx="14" fill="#000" opacity="0.32"/>'
     + '<rect x="212" y="386" width="236" height="164" rx="14" fill="#F6EFE0"/>'
+    + '<rect x="222" y="382" width="64" height="20" rx="2" fill="#D97841" opacity="0.35" transform="rotate(-6 254 392)"/>'
     + '<rect x="240" y="414" width="56" height="44" rx="5" fill="none" stroke="#D97841" stroke-width="4"/>'
     + '<path d="M268,424 v24 M256,436 h24" stroke="#D97841" stroke-width="4" stroke-linecap="round"/>'
     + '<rect x="316" y="418" width="104" height="12" rx="6" fill="#D8CCB2"/>'
@@ -226,7 +315,9 @@ const FIELD_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
     + '</g>'
     // station 2 card — house
     + '<g transform="rotate(1.6 800 290)">'
+    + '<rect x="692" y="228" width="236" height="164" rx="14" fill="#000" opacity="0.32"/>'
     + '<rect x="682" y="216" width="236" height="164" rx="14" fill="#F6EFE0"/>'
+    + '<rect x="852" y="212" width="64" height="20" rx="2" fill="#7A8B4E" opacity="0.35" transform="rotate(5 884 222)"/>'
     + '<path d="M708,262 L738,236 L768,262 M714,260 v28 h48 v-28" fill="none" stroke="#7A8B4E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>'
     + '<rect x="786" y="248" width="104" height="12" rx="6" fill="#D8CCB2"/>'
     + '<rect x="786" y="270" width="76" height="12" rx="6" fill="#D8CCB2"/>'
@@ -235,7 +326,9 @@ const FIELD_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
     + '</g>'
     // station 3 card — civic hall
     + '<g transform="rotate(-1.4 1270 160)">'
+    + '<rect x="1162" y="98" width="236" height="164" rx="14" fill="#000" opacity="0.32"/>'
     + '<rect x="1152" y="86" width="236" height="164" rx="14" fill="#F6EFE0"/>'
+    + '<rect x="1322" y="82" width="64" height="20" rx="2" fill="#B08D57" opacity="0.35" transform="rotate(-4 1354 92)"/>'
     + '<path d="M1178,124 L1208,106 L1238,124 M1184,130 v26 M1200,130 v26 M1216,130 v26 M1232,130 v26 M1178,160 h60" fill="none" stroke="#B08D57" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>'
     + '<rect x="1256" y="118" width="104" height="12" rx="6" fill="#D8CCB2"/>'
     + '<rect x="1256" y="140" width="76" height="12" rx="6" fill="#D8CCB2"/>'
@@ -250,7 +343,7 @@ const FIELD_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
 // analysis figure, on the same dark hero ground as every other cover.
 const BRAIN_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">'
-    + '<rect width="1600" height="900" fill="#0C0E12"/>'
+    + heroBackdrop('#5B6CF0') + heroCorners
     + '<defs>'
     + '<linearGradient id="eA" x1="0" y1="1" x2="0.5" y2="0">'
     + '<stop offset="0" stop-color="#5B6CF0"/><stop offset="1" stop-color="#E5734E"/>'
@@ -279,6 +372,15 @@ const BRAIN_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
     + '<path d="M960,340 C 1040,420 1100,480 1150,540" stroke="url(#eB)" stroke-width="6" opacity="0.9"/>'
     + '<path d="M570,620 C 750,650 950,650 1120,620" stroke="url(#eC)" stroke-width="5" opacity="0.75"/>'
     + '</g>'
+    + '<circle cx="473" cy="620" r="60" fill="url(#gFPN)"/>'
+    + '<circle cx="913" cy="297" r="60" fill="url(#gSN)"/>'
+    + '<circle cx="1187" cy="597" r="60" fill="url(#gDMN)"/>'
+    + '<g stroke="#5B6CF0" stroke-width="1" fill="none" opacity="0.25">'
+    + '<path d="M480,560 C 460,600 440,630 440,660"/><path d="M480,560 C 495,600 500,620 500,640"/>'
+    + '</g>'
+    + '<g stroke="#E5734E" stroke-width="1" fill="none" opacity="0.25">'
+    + '<path d="M880,300 C 900,280 915,265 920,260"/><path d="M920,260 C 930,290 935,310 940,330"/>'
+    + '</g>'
     + '<g fill="#5B6CF0">'
     + '<circle cx="480" cy="560" r="14"/><circle cx="500" cy="640" r="14"/><circle cx="440" cy="660" r="10"/>'
     + '</g>'
@@ -288,9 +390,13 @@ const BRAIN_HERO_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
     + '<g fill="#E8A33D">'
     + '<circle cx="1160" cy="560" r="14"/><circle cx="1180" cy="640" r="14"/><circle cx="1220" cy="590" r="10"/>'
     + '</g>'
+    + '<g fill="#6B7280" font-family="monospace" font-size="12" letter-spacing="2">'
+    + '<text x="410" y="700">FPN</text><text x="870" y="222">SN</text><text x="1150" y="690">DMN</text>'
+    + '</g>'
     + '<g stroke="#262B35" stroke-width="2" opacity="0.7">'
     + [180, 260, 340, 420].map((y) => `<line x1="90" y1="${y}" x2="230" y2="${y}"/>`).join('')
     + '</g>'
+    + '<g stroke="#35C2B0" stroke-width="7" fill="none" opacity="0.14"><path d="M1350,780 C 1380,740 1400,810 1420,770 C 1440,730 1460,800 1480,760 C 1500,730 1510,780 1520,750"/></g>'
     + '<g stroke="#35C2B0" stroke-width="2.5" fill="none" opacity="0.55">'
     + '<path d="M1350,780 C 1380,740 1400,810 1420,770 C 1440,730 1460,800 1480,760 C 1500,730 1510,780 1520,750"/>'
     + '</g>'
@@ -335,7 +441,7 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
         hook: 'From fragmented deep-tech signals to a research-grade ecosystem intelligence database.',
         zhHook: '在工研院產科所的研究工作中，協助將分散在政府資料、公司登記、產業名錄與網頁來源裡的深科技資訊，整理成研究團隊能查找、比對與分析的資料庫。',
         stack: ['Python', 'Pandas', 'Playwright', 'SQL', 'Entity Resolution', 'Data Governance'],
-        role: 'Research Assistant / Data Pipeline & Ecosystem Intelligence', zhRole: '研究助理 / 資料管線與產業情報系統',
+        role: 'Research Assistant / Data Pipeline & Ecosystem Intelligence', zhRole: '資料管線與產業情報系統',
         timeline: '2024-Present', status: 'ITRI/ISTI research workflow', zhStatus: 'ITRI/ISTI 研究資料流程',
         impact: '230+ companies tracked / enriched', zhImpact: '230+ 家公司追蹤與資料補強',
         overview: "I built a research-oriented data workflow that consolidates fragmented deep-tech and semiconductor ecosystem signals into a structured intelligence database. The system supports company tracking, source traceability, entity normalization, enrichment, and dashboard-ready outputs for research and strategic analysis.\n\nDeep-tech ecosystem research rarely starts with clean data. Company names change across sources, public pages have inconsistent formats, hiring and financial signals live in separate systems, and manual spreadsheets quickly become difficult to maintain.\n\nThis case reconstructs the work as a portfolio-safe data-system study. It shows source acquisition, raw staging, cleaning, entity resolution, relational database modeling, quality controls, and the research outputs enabled by the database.",
@@ -345,6 +451,13 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
         tech: [{ label: 'Acquisition', val: 'Playwright for dynamic pages, structured requests for stable pages, manual spreadsheet ingestion, cache fallback' }, { label: 'Cleaning', val: 'Pandas normalization, missing-value flags, deduplication, alias mapping, column and type standardization' }, { label: 'Database Modeling', val: 'Canonical company entities, alias tables, source registry, source rows, join tables, update logs' }, { label: 'Quality Controls', val: 'Source traceability, stale-source checks, conflict handling, review queue, field-level confidence indicators' }, { label: 'Visualization', val: 'Power BI-ready tables, HTML ecosystem map, filterable intelligence views, research brief exports' }, { label: 'Portfolio Boundary', val: 'Public-safe reconstruction with sample displays instead of confidential company-level records' }],
         // Self-drawn SVG cover (no stock photos): a data-room console wireframe in the Neural Signal OS palette.
         caseHeroImage: DEEPTECH_HERO_IMAGE,
+        storyIntro: {
+            kicker: 'DATA ROOM DOSSIER', zhKicker: '資料室檔案',
+            title: 'Every number keeps its receipt', zhTitle: '每個數字都留有出處',
+            lead: 'Eight registered sources, eight relational tables, 230+ tracked companies — the pipeline that turns unstable public records into a database a research team can cite without flinching.',
+            zhLead: '八個登錄來源、八張關聯資料表、230+ 家追蹤公司——這條管線，把不穩定的公開紀錄變成研究團隊敢放心引用的資料庫。',
+            motif: 'grid',
+        },
         caseDeck: {
             eyebrow: 'Data room',
             zhEyebrow: '資料室',
@@ -408,28 +521,52 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
         // Self-drawn SVG cover (no stock photos on this case): cockpit wireframe in the Neural Signal OS palette.
         caseHeroImage: 'data:image/svg+xml;utf8,' + encodeURIComponent(
             '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">'
-            + '<rect width="1600" height="900" fill="#14171D"/>'
-            + '<g stroke="#566173" stroke-width="4" fill="#1C2028">'
+            + heroBackdrop('#35C2B0') + heroCorners
+            + '<g stroke="#2A3140" stroke-width="3" fill="url(#hp)">'
             + '<rect x="120" y="140" width="340" height="620" rx="16"/>'
             + '<rect x="520" y="140" width="560" height="620" rx="16"/>'
             + '<rect x="1140" y="140" width="340" height="620" rx="16"/>'
             + '</g>'
-            + '<g stroke="#4A5262" stroke-width="5" stroke-linecap="round">'
-            + '<path d="M160 240h260M160 320h220M160 400h260M160 480h190M160 560h240"/>'
-            + '<path d="M1180 260h200M1180 380h160M1180 500h220M1180 620h180"/>'
+            + '<g fill="#3D4658">'
+            + '<circle cx="150" cy="170" r="5"/><circle cx="550" cy="170" r="5"/><circle cx="1170" cy="170" r="5"/>'
             + '</g>'
+            + '<g fill="#6B7280" font-family="monospace" font-size="12" letter-spacing="2">'
+            + '<text x="170" y="175">ROADMAP</text><text x="570" y="175">LAUNCH COCKPIT</text><text x="1190" y="175">SIGNALS</text>'
+            + '</g>'
+            + '<g fill="#35C2B0">'
+            + '<circle cx="160" cy="238" r="4"/><circle cx="160" cy="318" r="4"/><circle cx="160" cy="398" r="4"/><circle cx="160" cy="478" r="4"/>'
+            + '</g>'
+            + '<circle cx="160" cy="558" r="4" fill="#E8A33D"/>'
+            + '<g stroke="#4A5262" stroke-width="5" stroke-linecap="round">'
+            + '<path d="M180 240h240M180 320h200M180 400h240M180 480h170M180 560h220"/>'
+            + '</g>'
+            + '<circle cx="1350" cy="230" r="46" fill="none" stroke="#232A36" stroke-width="10"/>'
+            + '<circle cx="1350" cy="230" r="46" fill="none" stroke="#35C2B0" stroke-width="10" stroke-linecap="round" stroke-dasharray="215 289" transform="rotate(-90 1350 230)"/>'
+            + '<text x="1350" y="238" fill="#F2F0EB" font-family="monospace" font-size="20" text-anchor="middle">74%</text>'
+            + '<g stroke="#35C2B0" stroke-width="10" stroke-linecap="round" fill="none" opacity="0.14"><path d="M560 640l90-70 80 30 110-90 90 20 100-60"/></g>'
             + '<g stroke="#35C2B0" stroke-width="6" stroke-linecap="round" fill="none">'
             + '<path d="M560 640l90-70 80 30 110-90 90 20 100-60"/>'
             + '<circle cx="560" cy="240" r="12" fill="#35C2B0" stroke="none"/>'
             + '<circle cx="560" cy="320" r="12" fill="#35C2B0" stroke="none" opacity="0.6"/>'
             + '</g>'
+            + '<circle cx="1000" cy="580" r="7" fill="#35C2B0" opacity="0.16"/>'
+            + '<circle cx="1000" cy="580" r="12" fill="#E8A33D" opacity="0.18"/><circle cx="1000" cy="580" r="6" fill="#E8A33D"/>'
             + '<g fill="#35C2B0"><circle cx="1160" cy="260" r="9"/><circle cx="1160" cy="380" r="9"/><circle cx="1160" cy="500" r="9"/></g>'
             + '<circle cx="1160" cy="620" r="9" fill="#E8A33D"/>'
             + '<rect x="620" y="220" width="360" height="18" rx="9" fill="#2A303C"/>'
             + '<rect x="620" y="220" width="230" height="18" rx="9" fill="#35C2B0" opacity="0.7"/>'
+            + '<text x="990" y="234" fill="#6B7280" font-family="monospace" font-size="11">64%</text>'
             + '<rect x="620" y="300" width="360" height="18" rx="9" fill="#2A303C"/>'
             + '<rect x="620" y="300" width="150" height="18" rx="9" fill="#35C2B0" opacity="0.5"/>'
+            + '<text x="990" y="314" fill="#6B7280" font-family="monospace" font-size="11">42%</text>'
             + '</svg>'),
+        storyIntro: {
+            kicker: 'LAUNCH CONTROL', zhKicker: '上市控制室',
+            title: 'Make the bet testable', zhTitle: '把賭注拆成可驗證的節奏',
+            lead: 'A launch cockpit that turns scattered signals — customer urgency, model risk, rollout timing — into one wall a team can argue from before committing resources.',
+            zhLead: '一座上市駕駛艙，把使用者急迫性、模型風險與推進節奏整理成同一面牆，讓團隊在投入資源前，能對著同一份依據討論。',
+            motif: 'pulse',
+        },
         caseDeck: {
             eyebrow: 'Launch cockpit',
             zhEyebrow: '上市駕駛艙',
@@ -492,6 +629,13 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
         zhOutcomes: ['建立 6 源爬蟲，以 Playwright + Trafilatura 處理 JS 密集與靜態頁面', '多階段 LLM 管線：相關性評分 → 實體提取 → 策略摘要', '原生雙語輸出（EN + ZH-TW），格式一致', '自動化 Notion 發布，建立結構化資料庫條目', '成本優化：GPT-4o → Gemini，每次執行成本降低約 75%'],
         tech: [{ label: 'Crawler', val: 'Playwright, Trafilatura, feedparser, httpx' }, { label: 'AI Layer', val: 'Gemini 1.5 Pro, GPT-4o (legacy), prompt chaining' }, { label: 'Pipeline', val: 'Python async, multi-stage processing, retry logic' }, { label: 'Output', val: 'Notion API, structured database, Markdown reports' }, { label: 'Sources', val: 'TechCrunch, MIT TR, TechNews, INSIDE, TNW + feeds' }, { label: 'Quality', val: 'Entity deduplication, relevance scoring, date normalization' }],
         caseHeroImage: NEWS_HERO_IMAGE,
+        storyIntro: {
+            kicker: 'DAILY SIGNAL DESK', zhKicker: '每日訊號台',
+            title: 'The firehose, filed by breakfast', zhTitle: '早餐前，馴服新聞消防栓',
+            lead: 'Six sources, five pipeline stages, one dated bilingual briefing a day — from raw crawl to a claim a strategy team can trace back to the article that made it.',
+            zhLead: '六個來源、五段管線、每天一份有日期的雙語簡報——從爬取原文，到策略團隊能追溯回原始報導的主張。',
+            motif: 'wave',
+        },
         caseDeck: {
             eyebrow: 'Newsroom pipeline', zhEyebrow: '編輯室管線',
             title: 'From a global news firehose to a dated, sourced briefing',
@@ -541,21 +685,27 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
         // Self-drawn SVG cover (no stock photos): a pressure-console preview in the Neural Signal OS palette.
         caseHeroImage: 'data:image/svg+xml;utf8,' + encodeURIComponent(
             '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">'
-            + '<rect width="1600" height="900" fill="#0C0E12"/>'
-            + '<rect x="120" y="96" width="1360" height="64" rx="12" fill="#14171D" stroke="#262B35"/>'
+            + heroBackdrop('#35C2B0') + heroCorners
+            + '<rect x="120" y="96" width="1360" height="64" rx="12" fill="url(#hp)" stroke="#2A3140"/>'
             + '<circle cx="164" cy="128" r="9" fill="#35C2B0"/>'
             + '<rect x="192" y="119" width="190" height="18" rx="9" fill="#2A303C"/>'
             + '<rect x="1300" y="112" width="140" height="32" rx="16" fill="#12241F" stroke="#35C2B0"/>'
             + '<circle cx="1326" cy="128" r="6" fill="#35C2B0"/><rect x="1342" y="122" width="78" height="12" rx="6" fill="#35C2B0" opacity="0.6"/>'
-            + '<rect x="120" y="196" width="840" height="512" rx="16" fill="#14171D" stroke="#262B35"/>'
+            + '<rect x="120" y="196" width="840" height="512" rx="16" fill="url(#hp)" stroke="#2A3140"/>'
             + '<rect x="152" y="230" width="776" height="196" rx="8" fill="#0C0E12" stroke="#232A36"/>'
-            + '<rect x="152" y="300" width="776" height="60" fill="#35C2B0" opacity="0.06"/>'
+            + '<g stroke="#232A36" stroke-width="1">' + [270, 300, 330, 360, 390].map(y => `<line x1="152" y1="${y}" x2="928" y2="${y}"/>`).join('') + '</g>'
+            + '<rect x="152" y="300" width="776" height="60" fill="#E8A33D" opacity="0.07"/>'
+            + '<line x1="152" y1="255" x2="928" y2="255" stroke="#E8A33D" stroke-width="1.5" stroke-dasharray="2 6" opacity="0.6"/>'
+            + '<text x="792" y="250" fill="#E8A33D" font-family="monospace" font-size="10" letter-spacing="1.5" text-anchor="end" opacity="0.85">THRESHOLD</text>'
+            + '<polyline points="152,340 230,332 300,318 370,300 440,255 510,232 580,244 650,300 720,336 792,330 860,334 928,332" fill="none" stroke="#E8A33D" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.14"/>'
             + '<polyline points="152,340 230,332 300,318 370,300 440,255 510,232 580,244 650,300 720,336 792,330 860,334 928,332" fill="none" stroke="#E8A33D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>'
             + '<circle cx="928" cy="332" r="7" fill="#E8A33D"/>'
             + '<rect x="152" y="452" width="776" height="196" rx="8" fill="#0C0E12" stroke="#232A36"/>'
+            + '<g stroke="#232A36" stroke-width="1">' + [490, 520, 550, 580, 610] .map(y => `<line x1="152" y1="${y}" x2="928" y2="${y}"/>`).join('') + '</g>'
+            + '<polyline points="152,560 230,548 300,566 370,552 440,558 510,544 580,560 650,550 720,566 792,552 860,560 928,556" fill="none" stroke="#35C2B0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.12"/>'
             + '<polyline points="152,560 230,548 300,566 370,552 440,558 510,544 580,560 650,550 720,566 792,552 860,560 928,556" fill="none" stroke="#35C2B0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>'
             + '<circle cx="928" cy="556" r="7" fill="#35C2B0"/>'
-            + '<g fill="#14171D" stroke="#262B35">'
+            + '<g fill="url(#hp)" stroke="#2A3140">'
             + '<rect x="1000" y="196" width="480" height="90" rx="12"/><rect x="1000" y="300" width="480" height="90" rx="12"/>'
             + '<rect x="1000" y="404" width="480" height="90" rx="12"/><rect x="1000" y="508" width="480" height="90" rx="12"/>'
             + '<rect x="1000" y="612" width="480" height="96" rx="12"/></g>'
@@ -565,9 +715,21 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
             + '<circle cx="1036" cy="449" r="7" fill="#E8A33D"/>'
             + '<g fill="#2A303C"><rect x="1060" y="232" width="150" height="16" rx="8"/><rect x="1060" y="336" width="120" height="16" rx="8"/>'
             + '<rect x="1060" y="440" width="170" height="16" rx="8"/><rect x="1060" y="544" width="130" height="16" rx="8"/></g>'
+            + '<rect x="1370" y="228" width="72" height="22" rx="11" fill="#12241F" stroke="#35C2B0"/><text x="1382" y="243" fill="#35C2B0" font-family="monospace" font-size="10">NOTICE</text>'
+            + '<rect x="1370" y="332" width="72" height="22" rx="11" fill="#12241F" stroke="#35C2B0"/><text x="1388" y="347" fill="#35C2B0" font-family="monospace" font-size="10">OK</text>'
+            + '<rect x="1360" y="436" width="82" height="22" rx="11" fill="#2A1712" stroke="#E8A33D"/><text x="1372" y="451" fill="#E8A33D" font-family="monospace" font-size="10">ALERT</text>'
+            + '<rect x="1362" y="540" width="78" height="22" rx="11" fill="#12241F" stroke="#35C2B0"/><text x="1374" y="555" fill="#35C2B0" font-family="monospace" font-size="10">RECOVER</text>'
+            + '<rect x="1024" y="640" width="180" height="40" rx="8" fill="#35C2B0" opacity="0.18"/>'
             + '<rect x="1024" y="640" width="180" height="40" rx="8" fill="#35C2B0"/>'
             + '<rect x="1224" y="640" width="150" height="40" rx="8" fill="none" stroke="#E8A33D"/>'
             + '</svg>'),
+        storyIntro: {
+            kicker: 'INTERACTION LAB', zhKicker: '互動實驗室',
+            title: 'Design for the worst minute', zhTitle: '為最緊繃的一分鐘設計',
+            lead: 'When attention runs out before the interface does, design becomes triage — seven interface states built to keep people calm and correct under pressure.',
+            zhLead: '當注意力比介面先耗盡，設計就是分流——七種介面狀態，讓人在壓力下依然保持冷靜與正確。',
+            motif: 'grid',
+        },
         caseDeck: {
             eyebrow: 'Interaction lab',
             zhEyebrow: '互動實驗室',
@@ -645,6 +807,13 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
             { label: 'RAG design', val: 'Typed chunking, hybrid structured + semantic retrieval, citation and refusal (concept)' },
         ],
         caseHeroImage: ISP_HERO_IMAGE,
+        storyIntro: {
+            kicker: 'STRATEGY OBSERVATORY', zhKicker: '策略觀測站',
+            title: '201 companies, one verdict each', zhTitle: '201 家公司，各一個判斷',
+            lead: 'A self-built Crunchbase for frontier tech — ten fields, six analyst-written sections, a stated verdict per row — plus an honestly-labelled AI strategist designed to keep that depth at scale.',
+            zhLead: '一座自建的前沿科技 Crunchbase——每列十個欄位、六段分析師書寫、一個明確判斷——加上一層誠實標為概念的 AI 策略師，用來讓這種深度規模化。',
+            motif: 'orbit',
+        },
         caseDeck: {
             eyebrow: 'Strategy observatory', zhEyebrow: '策略觀測站',
             title: 'From 201 curated companies to a strategist you can question',
@@ -699,6 +868,13 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
         zhOutcomes: ['獨立設計並建構全端架構（Python 後端 + JS 前端）', '自動化網路爬蟲定期抓取最新新創基盤數據', 'ETL 管線處理、標準化數據並載入 SQL 資料庫', '互動式視覺化儀表板支援團隊數據驅動決策', '平台影響力受認可，獲選 2025 年工研院育星計畫種子培育'],
         tech: [{ label: 'Backend', val: 'Python, SQL database management & maintenance' }, { label: 'Frontend', val: 'JavaScript, interactive data visualization' }, { label: 'Crawler', val: 'Automated web scraper for startup ecosystem data' }, { label: 'Pipeline', val: 'ETL (Extract, Transform, Load) workflow' }, { label: 'Database', val: 'SQL with automated refresh cycle' }, { label: 'Context', val: 'Internal platform at ITRI/ISTI Innovation Division' }],
         caseHeroImage: STARTUP_HERO_IMAGE,
+        storyIntro: {
+            kicker: 'ECOSYSTEM COCKPIT', zhKicker: '生態系駕駛艙',
+            title: 'The spreadsheet retires', zhTitle: '讓試算表光榮退休',
+            lead: 'One developer, one pipeline: crawlers, ETL, SQL, and a live dashboard that gave an ITRI team its first real-time window into Taiwan\'s startup ecosystem.',
+            zhLead: '一位開發者、一條管線：爬蟲、ETL、SQL 與即時儀表板，讓工研院團隊第一次擁有俯瞰台灣新創生態的即時視窗。',
+            motif: 'pulse',
+        },
         caseDeck: {
             eyebrow: 'Ecosystem cockpit', zhEyebrow: '生態系駕駛艙',
             title: 'From manual spreadsheets to a real-time window on the ecosystem',
@@ -770,16 +946,19 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
         // profile radar feeding a ranked, score-barred shortlist.
         caseHeroImage: 'data:image/svg+xml;utf8,' + encodeURIComponent(
             '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">'
-            + '<rect width="1600" height="900" fill="#0C0E12"/>'
-            + '<g stroke="#242A34" stroke-width="1"><path d="M120 150h1360" opacity="0"/></g>'
-            + '<rect x="120" y="150" width="560" height="600" rx="16" fill="#14171D" stroke="#262B35"/>'
-            + '<rect x="900" y="150" width="580" height="600" rx="16" fill="#14171D" stroke="#262B35"/>'
+            + heroBackdrop('#35C2B0') + heroCorners
+            + '<defs><radialGradient id="pmr" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#35C2B0" stop-opacity="0.14"/><stop offset="1" stop-color="#35C2B0" stop-opacity="0"/></radialGradient>'
+            + '<linearGradient id="pmb" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#35C2B0"/><stop offset="1" stop-color="#7FE0D0"/></linearGradient></defs>'
+            + '<rect x="120" y="150" width="560" height="600" rx="16" fill="url(#hp)" stroke="#2A3140"/>'
+            + '<rect x="900" y="150" width="580" height="600" rx="16" fill="url(#hp)" stroke="#2A3140"/>'
             + '<text x="152" y="196" fill="#6B7280" font-family="monospace" font-size="20" letter-spacing="3">FIG · INTAKE PROFILE</text>'
             + '<text x="932" y="196" fill="#6B7280" font-family="monospace" font-size="20" letter-spacing="3">RANKED MATCH · TOP 4</text>'
+            + '<circle cx="400" cy="455" r="210" fill="url(#pmr)"/>'
             + '<g fill="none" stroke="#2A303C" stroke-width="2">'
             + '<polygon points="400,270 548,344 588,502 486,632 314,632 212,502 252,344"/>'
             + '<polygon points="400,340 474,377 494,456 443,521 357,521 306,456 326,377"/></g>'
             + '<g stroke="#2A303C" stroke-width="1"><path d="M400,455 L400,270M400,455 L548,344M400,455 L588,502M400,455 L486,632M400,455 L314,632M400,455 L212,502M400,455 L252,344"/></g>'
+            + '<polygon points="400,300 470,399 517,482 461,581 365,527 273,484 353,418" fill="rgba(53,194,176,0.16)" stroke="#35C2B0" stroke-width="7" opacity="0.16"/>'
             + '<polygon points="400,300 470,399 517,482 461,581 365,527 273,484 353,418" fill="rgba(53,194,176,0.16)" stroke="#35C2B0" stroke-width="3"/>'
             + '<g fill="#35C2B0"><circle cx="400" cy="300" r="6"/><circle cx="470" cy="399" r="6"/><circle cx="517" cy="482" r="6"/><circle cx="461" cy="581" r="6"/><circle cx="365" cy="527" r="6"/><circle cx="273" cy="484" r="6"/><circle cx="353" cy="418" r="6"/></g>'
             + '<g stroke="#35C2B0" stroke-width="5" fill="none" stroke-linecap="round"><path d="M700 450 h150"/><path d="M832 434 l22 16 l-22 16"/></g>'
@@ -789,25 +968,36 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
             + '<rect x="936" y="228" width="508" height="112" rx="12" fill="#12241F" stroke="#35C2B0" stroke-width="2"/>'
             + '<circle cx="992" cy="284" r="30" fill="#1C2028" stroke="#35C2B0" stroke-width="2"/>'
             + '<rect x="1040" y="256" width="220" height="16" rx="8" fill="#2A303C"/>'
-            + '<rect x="1040" y="286" width="404" height="20" rx="10" fill="#0C0E12" stroke="#232A36"/><rect x="1040" y="286" width="404" height="20" rx="10" fill="#35C2B0"/>'
-            + '<circle cx="1416" cy="252" r="9" fill="#E8A33D"/>'
+            + '<rect x="1040" y="286" width="404" height="20" rx="10" fill="#0C0E12" stroke="#232A36"/><rect x="1040" y="286" width="404" height="20" rx="10" fill="url(#pmb)"/>'
+            + '<text x="1408" y="301" fill="#08120F" font-family="monospace" font-size="11" text-anchor="end">1.00</text>'
+            + '<circle cx="1416" cy="252" r="15" fill="#E8A33D" opacity="0.22"/><circle cx="1416" cy="252" r="9" fill="#E8A33D"/>'
             // row 2
             + '<rect x="936" y="356" width="508" height="112" rx="12" fill="#0C0E12" stroke="#262B35"/>'
             + '<circle cx="992" cy="412" r="30" fill="#1C2028" stroke="#333A47" stroke-width="2"/>'
             + '<rect x="1040" y="384" width="180" height="16" rx="8" fill="#2A303C"/>'
-            + '<rect x="1040" y="414" width="404" height="20" rx="10" fill="#0C0E12" stroke="#232A36"/><rect x="1040" y="414" width="300" height="20" rx="10" fill="#35C2B0" opacity="0.55"/>'
+            + '<rect x="1040" y="414" width="404" height="20" rx="10" fill="#0C0E12" stroke="#232A36"/><rect x="1040" y="414" width="300" height="20" rx="10" fill="url(#pmb)" opacity="0.65"/>'
+            + '<text x="1408" y="429" fill="#6B7280" font-family="monospace" font-size="11" text-anchor="end">0.74</text>'
             // row 3
             + '<rect x="936" y="484" width="508" height="112" rx="12" fill="#0C0E12" stroke="#262B35"/>'
             + '<circle cx="992" cy="540" r="30" fill="#1C2028" stroke="#333A47" stroke-width="2"/>'
             + '<rect x="1040" y="512" width="150" height="16" rx="8" fill="#2A303C"/>'
-            + '<rect x="1040" y="542" width="404" height="20" rx="10" fill="#0C0E12" stroke="#232A36"/><rect x="1040" y="542" width="210" height="20" rx="10" fill="#35C2B0" opacity="0.4"/>'
+            + '<rect x="1040" y="542" width="404" height="20" rx="10" fill="#0C0E12" stroke="#232A36"/><rect x="1040" y="542" width="210" height="20" rx="10" fill="url(#pmb)" opacity="0.5"/>'
+            + '<text x="1408" y="557" fill="#6B7280" font-family="monospace" font-size="11" text-anchor="end">0.52</text>'
             // row 4
             + '<rect x="936" y="612" width="508" height="112" rx="12" fill="#0C0E12" stroke="#262B35"/>'
             + '<circle cx="992" cy="668" r="30" fill="#1C2028" stroke="#333A47" stroke-width="2"/>'
             + '<rect x="1040" y="640" width="196" height="16" rx="8" fill="#2A303C"/>'
-            + '<rect x="1040" y="670" width="404" height="20" rx="10" fill="#0C0E12" stroke="#232A36"/><rect x="1040" y="670" width="150" height="20" rx="10" fill="#35C2B0" opacity="0.3"/>'
+            + '<rect x="1040" y="670" width="404" height="20" rx="10" fill="#0C0E12" stroke="#232A36"/><rect x="1040" y="670" width="150" height="20" rx="10" fill="url(#pmb)" opacity="0.35"/>'
+            + '<text x="1408" y="685" fill="#6B7280" font-family="monospace" font-size="11" text-anchor="end">0.37</text>'
             + '</g>'
             + '</svg>'),
+        storyIntro: {
+            kicker: 'MATCHING BENCH', zhKicker: '媒合工作台',
+            title: 'A score you can read out loud', zhTitle: '一個能唸出來的分數',
+            lead: 'Seven intake topics, four weighted criteria, one transparent ranking — the instrument and the algorithm behind recommending a psychologist while leaving the choice human.',
+            zhLead: '七題量表、四個加權準則、一份透明排序——推薦心理師的同時，把量表與演算法攤開，選擇權仍留給人。',
+            motif: 'orbit',
+        },
         caseDeck: {
             eyebrow: 'Matching bench', zhEyebrow: '媒合台',
             title: 'From a needs profile to a defensible shortlist',
@@ -876,6 +1066,13 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
             { label: 'Quality', val: 'verify.mjs: console sweep, 360px overflow scan, axe a11y, EN/中 smoke test' },
         ],
         caseHeroImage: DEEPSCOUT_HERO_IMAGE,
+        storyIntro: {
+            kicker: 'SCOUTING CONSOLE', zhKicker: '偵搜主控台',
+            title: 'The brief that shows its doubt', zhTitle: '敢說未驗證的偵搜簡報',
+            lead: 'Four signal sources, four designed AI states, fourteen real startups — the design record behind a live scouting copilot that cites, dates, and sometimes refuses.',
+            zhLead: '四路訊號、四種 AI 狀態、十四家真實新創——一個上線偵搜副駕背後的設計檔案：附來源、標日期，必要時拒答。',
+            motif: 'orbit',
+        },
         caseDeck: {
             eyebrow: 'Scouting console', zhEyebrow: '偵搜主控台',
             title: 'From scattered signal to a brief you can defend',
@@ -956,6 +1153,13 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
             { label: 'Coordination', val: 'Team strategy, cross-department and cross-institution resource integration' },
         ],
         caseHeroImage: FIELD_HERO_IMAGE,
+        storyIntro: {
+            kicker: 'FIELD NOTES', zhKicker: '田野筆記',
+            title: 'Three stations, one practice', zhTitle: '三站田野，一條手藝',
+            lead: 'A hospital floor, a small association, a ministry-level center — three years of care work, packaged with the same discipline as the other cases: a journey, operable artifacts, and the skills that carried forward.',
+            zhLead: '醫院第一線、小協會、部級中心——三年田野現場，用和其他案例相同的紀律整理：一段旅程、可操作的重建產出，與被帶走的能力。',
+            motif: 'paper',
+        },
         caseDeck: {
             eyebrow: 'Field log', zhEyebrow: '田野日誌',
             title: 'Three institutions, one continuous practice',
@@ -1035,6 +1239,13 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
             { label: 'Academic Communication', val: 'Oral presentation (TSCN 2025), international poster (OHBM 2025), academic report writing' },
         ],
         caseHeroImage: BRAIN_HERO_IMAGE,
+        storyIntro: {
+            kicker: 'RESEARCH RECORD', zhKicker: '研究紀錄',
+            title: 'Let the brain do what it does', zhTitle: '讓大腦做它會做的事',
+            lead: 'A naturalistic fMRI study — 43 participants, one continuous lecture, three networks — read through functional connectivity and a classifier, then defended at TSCN and OHBM Brisbane.',
+            zhLead: '一項自然情境 fMRI 研究——43 名受試者、一段連續講課、三個腦網絡——以功能性連結與分類器解讀，並於 TSCN 與 OHBM 布里斯本公開檢驗。',
+            motif: 'wave',
+        },
         caseDeck: {
             eyebrow: 'Research record', zhEyebrow: '研究紀錄',
             title: 'Two years, one flagship study',
