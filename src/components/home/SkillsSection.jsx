@@ -117,7 +117,7 @@ export default function SkillsSection({ navigate }) {
     const { t, lang } = useLang();
     const PA = lang === 'zh';
     const [animated, setAnimated] = useState(false);
-    const [active, setActive] = useState(() => (isNarrow() ? 0 : null)); // null = overview; index = inspecting
+    const [active, setActive] = useState(null); // null = overview; index = inspecting (both viewports start in overview)
     const [hot, setHot] = useState(null);
     const [closing, setClosing] = useState(false); // playing the dissipation effect before the drawer collapses
     const sceneRef = useRef(null);
@@ -203,7 +203,7 @@ export default function SkillsSection({ navigate }) {
         return React.createElement('button', {
             key: layer.id, type: 'button',
             className: `fst-layer${state}`,
-            style: { '--z': animated ? `${i * 54}px` : '0px', transitionDelay: `${i * 0.05}s` },
+            style: { '--zi': animated ? i : 0, transitionDelay: `${i * 0.05}s` },
             'aria-pressed': i === active,
             'aria-expanded': i === active,
             'aria-label': `${layer.num} ${PA ? layer.zhTitle : layer.title}`,
@@ -383,7 +383,6 @@ export default function SkillsSection({ navigate }) {
     return React.createElement(MotionSection, { className: 'skills-ng', id: 'skills' },
         React.createElement('div', { className: 'fst-bg', 'aria-hidden': 'true' },
             React.createElement('div', { className: 'fst-bg-grid' }),
-            React.createElement('div', { className: 'fst-bg-ghost' }, 'STACK'),
             React.createElement('span', { className: 'fst-bg-orb orb-a' }),
             React.createElement('span', { className: 'fst-bg-orb orb-b' })
         ),

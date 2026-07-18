@@ -1962,21 +1962,6 @@ img { max-width: 100%; height: auto; }
   mask-image: radial-gradient(ellipse 62% 100% at 50% 100%, #000 6%, transparent 74%);
   opacity: 0.55;
 }
-.fst-bg-ghost {
-  position: absolute;
-  right: -3%;
-  top: 6%;
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 600;
-  font-size: clamp(9rem, 24vw, 26rem);
-  line-height: 0.8;
-  letter-spacing: -0.02em;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(240,239,249,0.045);
-  text-stroke: 1px rgba(240,239,249,0.045);
-  user-select: none;
-}
 .fst-bg-orb {
   position: absolute;
   border-radius: 50%;
@@ -2181,7 +2166,9 @@ img { max-width: 100%; height: auto; }
   border-radius: 16px;
   background: transparent;
   transform-style: preserve-3d;
-  transform: translateZ(var(--z, 0px));
+  /* explode height per layer; --z-step is overridden smaller on mobile to keep the stack compact */
+  --z: calc(var(--zi, 0) * var(--z-step, 54px));
+  transform: translateZ(var(--z));
   transition: transform 0.85s var(--ease-out), opacity 0.5s var(--ease-out);
   will-change: transform;
 }
@@ -2820,23 +2807,35 @@ img { max-width: 100%; height: auto; }
 .fst-idx-btn.is-active .fst-idx-alt-bar.on { background: var(--amber); box-shadow: 0 0 6px rgba(255,179,71,0.5); }
 .fst-idx-btn:focus-visible { outline: 1px solid rgba(0,229,192,0.6); outline-offset: -1px; }
 
-/* ── responsive ── */
+/* ── responsive ──
+   Mobile/tablet reflows the desktop drawer into a vertical reading column:
+   theatre uses display:contents to promote stage + inspector into the container
+   flex, then `order` sequences them  stack → index → panel  for a natural
+   top-to-bottom read. Desktop layout is untouched. */
 @media (max-width: 1024px) {
-  .fs-head { grid-template-columns: 1fr; gap: 18px; }
-  .fst-theatre { display: block; min-height: 0; margin: 44px 0 26px; }
-  .fst-stage, .fst-theatre.is-inspecting .fst-stage { flex: none; width: 100%; }
-  .fst-scene { min-height: 420px; }
-  .fst-theatre.is-inspecting .fst-scene { transform: scale(0.86); }
+  .fs-head { grid-template-columns: 1fr; gap: 18px; order: 0; }
+  .skills-ng .container { display: flex; flex-direction: column; }
+  .fst-theatre { display: contents; }
+  .fst-stack { --z-step: 42px; }
+  .fst-stage, .fst-theatre.is-inspecting .fst-stage { flex: none; width: 100%; order: 1; margin-top: 40px; }
+  .fst-scene { min-height: 340px; }
+  .fst-theatre.is-inspecting .fst-scene { transform: none; }
+  .fst-console { order: 2; margin-top: 14px; }
   .fst-inspector-wrap,
-  .fst-theatre.is-inspecting .fst-inspector-wrap { flex: none; width: 100%; overflow: visible; display: block; }
-  .fst-inspector { min-width: 0; margin-left: 0; margin-top: 20px; }
-  .fst-insp-close { display: none; }
-  .fst-bg-ghost { font-size: 12rem; }
+  .fst-theatre.is-inspecting .fst-inspector-wrap { flex: none; width: 100%; overflow: visible; display: block; order: 3; }
+  .fst-inspector {
+    min-width: 0;
+    margin-left: 0;
+    margin-top: 18px;
+    transform: translateY(18px);
+    transition: opacity 0.45s var(--ease-out), transform 0.5s var(--ease-out);
+  }
+  .fst-inspector-wrap.is-open .fst-inspector { transform: none; }
   .fst-flank { display: none; }
 }
 @media (max-width: 640px) {
-  .fst-scene { min-height: 360px; }
-  .fst-stack { transform: rotateX(59deg) rotateZ(-44deg) scale(0.74); }
+  .fst-scene { min-height: 300px; }
+  .fst-stack { transform: rotateX(59deg) rotateZ(-44deg) scale(0.72); --z-step: 34px; }
   .fst-inspector { padding: 24px 20px 18px; }
   .fst-spec { grid-template-columns: repeat(2, 1fr); }
   .fst-spec-cell:nth-child(2) { border-right: 0; }
