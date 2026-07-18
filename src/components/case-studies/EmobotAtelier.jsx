@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import Icon from '../ui/Icon.jsx';
 
 // Design-evidence assets (bundled from repo-root /assets via Vite new URL)
@@ -192,6 +193,25 @@ export default function EmobotAtelier({ lang, onZoom, children }) {
   const [openPin, setOpenPin] = useState(null);
   const tabsRef = useRef(null);
 
+  // Mobile: the dense architecture diagram is collapsed into a card that opens a fullscreen, pannable overlay.
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.matchMedia('(max-width: 680px)').matches);
+  const [blueprintOpen, setBlueprintOpen] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 680px)');
+    const onChange = () => setIsMobile(mq.matches);
+    mq.addEventListener?.('change', onChange);
+    return () => mq.removeEventListener?.('change', onChange);
+  }, []);
+  useEffect(() => {
+    if (!blueprintOpen) return;
+    const onKey = (e) => { if (e.key === 'Escape') setBlueprintOpen(false); };
+    window.addEventListener('keydown', onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { window.removeEventListener('keydown', onKey); document.body.style.overflow = prev; };
+  }, [blueprintOpen]);
+  useEffect(() => { if (!isMobile) setBlueprintOpen(false); }, [isMobile]);
+
   const scrollToStage = (i) => {
     stageRefs.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
@@ -383,7 +403,19 @@ export default function EmobotAtelier({ lang, onZoom, children }) {
       h('span', { className: 'blueprint-grid-badge', 'aria-hidden': 'true' },
         h(Icon, { name: 'layers' }), t('DELIVERED', '交付版')),
       h('span', { className: 'blueprint-title-meta' }, 'SHT-05 · FINAL')),
-    h('div', { className: 'blueprint-board' }, children),
+    h('div', { className: 'blueprint-board' },
+      isMobile
+        ? h('button', {
+            className: 'blueprint-collapsed', type: 'button',
+            onClick: () => setBlueprintOpen(true),
+            'aria-label': t('Open the full system architecture diagram', '展開完整系統架構圖'),
+          },
+            h('span', { className: 'blueprint-collapsed-grid', 'aria-hidden': 'true' }),
+            h('span', { className: 'blueprint-collapsed-ic' }, h(Icon, { name: 'layers' })),
+            h('strong', null, t('System architecture', '系統架構全圖')),
+            h('small', null, t('Client · gateway · AI mesh · data · referral', '客戶端 · 閘道 · AI 網格 · 資料 · 轉介')),
+            h('span', { className: 'blueprint-collapsed-cta' }, h(Icon, { name: 'maximize' }), t('Tap to explore the full diagram', '點開瀏覽完整互動全圖')))
+        : children),
   );
 
   const frameFor = (stage) => {
@@ -394,7 +426,8 @@ export default function EmobotAtelier({ lang, onZoom, children }) {
     return liveFrame(stage);
   };
 
-  return h('section', { className: 'emobot-atelier', 'aria-label': t('How Emobot+ was made', 'Emobot+ 開發歷程') },
+  return h(React.Fragment, null,
+    h('section', { className: 'emobot-atelier', 'aria-label': t('How Emobot+ was made', 'Emobot+ 開發歷程') },
     // legend strip (title duties belong to the section head above)
     h('div', { className: 'atelier-legend' },
       h('span', { className: 'atelier-legend-item' }, h('span', { className: 'atelier-stamp-ring' }), t('Reconstruction — reverse-built from the real product', '重建稿 — 依實際成品逆向重建')),
@@ -452,5 +485,22 @@ export default function EmobotAtelier({ lang, onZoom, children }) {
         )),
       ),
     ),
+    ),
+    isMobile && blueprintOpen ? createPortal(
+      h('div', {
+        className: 'blueprint-overlay', role: 'dialog', 'aria-modal': 'true',
+        'aria-label': t('System architecture blueprint', '系統架構藍圖'),
+        onClick: () => setBlueprintOpen(false),
+      },
+        h('div', { className: 'blueprint-overlay-bar' },
+          h('span', { className: 'blueprint-overlay-title' },
+            h(Icon, { name: 'layers' }), t('System blueprint', '系統架構全圖')),
+          h('button', {
+            className: 'blueprint-overlay-close', type: 'button',
+            onClick: () => setBlueprintOpen(false), 'aria-label': t('Close', '關閉'),
+          }, '×')),
+        h('div', { className: 'blueprint-overlay-scroll', onClick: (e) => e.stopPropagation() }, children),
+        h('span', { className: 'blueprint-overlay-hint' }, t('Swipe to pan the full diagram', '滑動即可瀏覽完整全圖'))),
+      document.body) : null
   );
 }
