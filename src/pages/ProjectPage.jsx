@@ -44,6 +44,25 @@ export default function ProjectPage({ slug, navigate }) {
     const status = lang === 'zh' ? p.zhStatus : p.status;
     const impact = lang === 'zh' ? p.zhImpact : p.impact;
     const category = lang === 'zh' ? p.zhCategory : p.category;
+    const heroBrief = p.heroBrief;
+    const heroMetaItems = heroBrief
+        ? [
+            { key: 'context', label: lang === 'zh' ? '使用情境' : 'Use context' },
+            { key: 'problem', label: lang === 'zh' ? '核心問題' : 'Core problem' },
+            { key: 'strategy', label: lang === 'zh' ? '解法策略' : 'Strategy' },
+            { key: 'delivery', label: lang === 'zh' ? '實際交付' : 'Delivered' },
+        ].map(item => ({
+            label: item.label,
+            value: lang === 'zh'
+                ? heroBrief[`zh${item.key.charAt(0).toUpperCase()}${item.key.slice(1)}`] ?? heroBrief[item.key]
+                : heroBrief[item.key],
+        }))
+        : [
+            { label: t('projRole'), value: role },
+            { label: t('projTimeline'), value: p.timeline },
+            { label: t('projStatus'), value: status },
+            { label: t('projImpact'), value: impact },
+        ];
     const heroMain = React.createElement('div', { className: 'proj-hero-copy' },
         React.createElement(ProjectBackLink, { label: t('projBack'), navigate }),
         React.createElement('p', { className: 'proj-category reveal' }, category),
@@ -51,19 +70,10 @@ export default function ProjectPage({ slug, navigate }) {
         React.createElement('p', { className: 'proj-hook reveal reveal-delay-2' }, hook),
         React.createElement('div', { className: 'proj-stack reveal reveal-delay-2' },
             p.stack.map(s => React.createElement('span', { className: 'stack-tag', key: s }, s))),
-        React.createElement('div', { className: 'proj-meta reveal reveal-delay-3' },
-            React.createElement('div', { className: 'proj-meta-item' },
-                React.createElement('div', { className: 'proj-meta-key' }, t('projRole')),
-                React.createElement('div', { className: 'proj-meta-val' }, role)),
-            React.createElement('div', { className: 'proj-meta-item' },
-                React.createElement('div', { className: 'proj-meta-key' }, t('projTimeline')),
-                React.createElement('div', { className: 'proj-meta-val' }, p.timeline)),
-            React.createElement('div', { className: 'proj-meta-item' },
-                React.createElement('div', { className: 'proj-meta-key' }, t('projStatus')),
-                React.createElement('div', { className: 'proj-meta-val' }, status)),
-            React.createElement('div', { className: 'proj-meta-item' },
-                React.createElement('div', { className: 'proj-meta-key' }, t('projImpact')),
-                React.createElement('div', { className: 'proj-meta-val' }, impact))));
+        !p.hideHeroMeta && React.createElement('div', { className: 'proj-meta reveal reveal-delay-3' },
+            heroMetaItems.map(item => React.createElement('div', { className: 'proj-meta-item', key: item.label },
+                React.createElement('div', { className: 'proj-meta-key' }, item.label),
+                React.createElement('div', { className: 'proj-meta-val' }, item.value)))));
     useEffect(() => {
         document.title = `${title} · GT.YE`;
         return () => { document.title = 'Guan-Ting Ye · Neural Signal OS'; };
