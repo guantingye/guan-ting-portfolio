@@ -37,8 +37,8 @@ export default function ProjectPage({ slug, navigate }) {
     const nextP = idx < PROJECTS.length - 1 && !PROJECTS[idx + 1].comingSoon ? PROJECTS[idx + 1] : null;
     const L = n => lang === 'zh' ? p['zh' + n.charAt(0).toUpperCase() + n.slice(1)] ?? p[n] : p[n];
     const title = L('title');
-    const hook = L('hook');
     const overview = L('overview');
+    const overviewSingle = L('overviewSingle') || overview.split('\n\n').map(para => para.trim()).join(' ');
     const outcomes = lang === 'zh' ? p.zhOutcomes : p.outcomes;
     const role = lang === 'zh' ? p.zhRole : p.role;
     const status = lang === 'zh' ? p.zhStatus : p.status;
@@ -67,7 +67,6 @@ export default function ProjectPage({ slug, navigate }) {
         React.createElement(ProjectBackLink, { label: t('projBack'), navigate }),
         React.createElement('p', { className: 'proj-category reveal' }, category),
         React.createElement('h1', { className: 'proj-title reveal reveal-delay-1' }, title),
-        React.createElement('p', { className: 'proj-hook reveal reveal-delay-2' }, hook),
         React.createElement('div', { className: 'proj-stack reveal reveal-delay-2' },
             p.stack.map(s => React.createElement('span', { className: 'stack-tag', key: s }, s))),
         !p.hideHeroMeta && React.createElement('div', { className: 'proj-meta reveal reveal-delay-3' },
@@ -78,14 +77,22 @@ export default function ProjectPage({ slug, navigate }) {
         document.title = `${title} · GT.YE`;
         return () => { document.title = 'Guan-Ting Ye · Neural Signal OS'; };
     }, [title]);
-    return React.createElement('div', { className: 'proj-page page-enter', 'data-theme': PROJECT_THEMES[slug] || 'data' },
+    return React.createElement('div', { className: `proj-page page-enter${p.flushHeroToOverview ? ' proj-page--flush-overview' : ''}`, 'data-theme': PROJECT_THEMES[slug] || 'data' },
         React.createElement('div', { className: 'proj-hero' },
             React.createElement('div', { className: 'container' }, heroMain)),
         React.createElement('div', { className: 'proj-body' },
             React.createElement('div', { className: 'container' },
-                React.createElement('div', { className: 'proj-section reveal' },
-                    React.createElement('div', { className: 'proj-section-title' }, t('projOverview')),
-                    overview.split('\n\n').map((para, i) => React.createElement('p', { className: 'proj-body-text', key: i }, para))),
+                React.createElement('div', { className: 'proj-section proj-section-overview reveal' },
+                    React.createElement('div', { className: 'proj-overview-masthead' },
+                        React.createElement('div', { className: 'proj-section-title' }, t('projOverview')),
+                        React.createElement('span', { className: 'proj-overview-rule', 'aria-hidden': 'true' }),
+                        React.createElement('span', { className: 'proj-overview-folio' }, p.num)),
+                    React.createElement('div', { className: 'proj-overview-body' },
+                        React.createElement('p', { className: 'proj-body-text proj-overview-single' }, overviewSingle),
+                        React.createElement('span', {
+                            className: 'proj-overview-end-rule',
+                            'aria-hidden': 'true',
+                        }))),
                 React.createElement(StorytellingCaseStudy, { project: p, lang }),
                 React.createElement(ProjectExtraSection, { slug, lang }),
                 React.createElement('div', { className: 'proj-section reveal' },
