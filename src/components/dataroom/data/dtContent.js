@@ -6,7 +6,7 @@
 export const MODULES = [
   {
     id: 'dt-m01', key: 'M01', num: '01', tone: 'var(--dt-sky)', badge: 'reconstructed',
-    roles: ['TPM', 'UXR'],
+    labels: ['Source Governance', 'Research Operations'],
     kicker: { en: 'SOURCE MANAGEMENT', zh: '來源管理' },
     type: { en: 'Intake registry', zh: '來源登錄' },
     title: { en: 'Data Source Login', zh: '資料來源登入' },
@@ -17,7 +17,7 @@ export const MODULES = [
   },
   {
     id: 'dt-m02', key: 'M02', num: '02', tone: 'var(--dt-teal)', badge: 'reconstructed',
-    roles: ['TPM', 'FE'],
+    labels: ['Pipeline Orchestration', 'Observability'],
     kicker: { en: 'DATA PIPELINE CONSOLE', zh: '資料管線主控台' },
     type: { en: 'Pipeline run', zh: '管線執行' },
     title: { en: 'Data Pipeline Console', zh: '資料管線主控台' },
@@ -28,7 +28,7 @@ export const MODULES = [
   },
   {
     id: 'dt-m03', key: 'M03', num: '03', tone: 'var(--dt-amber)', badge: 'reconstructed',
-    roles: ['AIPD', 'UXR'],
+    labels: ['Entity Resolution', 'Human Review'],
     kicker: { en: 'COMPANY ENTITY RESOLUTION', zh: '企業實體解析' },
     type: { en: 'Entity resolution', zh: '實體解析' },
     title: { en: 'Company Entity Resolution Workbench', zh: '企業實體解析工作台' },
@@ -39,7 +39,7 @@ export const MODULES = [
   },
   {
     id: 'dt-m04', key: 'M04', num: '04', tone: 'var(--dt-iris)', badge: 'reconstructed',
-    roles: ['TPM', 'FE'],
+    labels: ['Relational Modeling', 'Data Architecture'],
     kicker: { en: 'SCHEMA MODEL', zh: '資料模型' },
     type: { en: 'Data modeling', zh: '資料建模' },
     title: { en: 'Data Model & Relationship Explorer', zh: '資料模型與關聯導覽' },
@@ -50,10 +50,10 @@ export const MODULES = [
   },
   {
     id: 'dt-m05', key: 'M05', num: '05', tone: 'var(--dt-teal)', badge: 'simulated',
-    roles: ['TPM'],
-    kicker: { en: 'QUALITY GATES', zh: '品質閘門' },
+    labels: ['Data Quality', 'Audit Workflow'],
+    kicker: { en: 'DATA QUALITY', zh: '資料品質' },
     type: { en: 'QA checks', zh: '品質檢核' },
-    title: { en: 'Quality Gate Board', zh: '品質閘門看板' },
+    title: { en: 'Data Quality Review Console', zh: '資料品質檢核台' },
     badgeNote: {
       en: 'Gate definitions are project-real; pass/warn/fail outcomes are deterministic simulated runs.',
       zh: '閘門定義為專案真實設計；通過／警告／失敗結果為確定性模擬執行。',
@@ -61,10 +61,10 @@ export const MODULES = [
   },
   {
     id: 'dt-m06', key: 'M06', num: '06', tone: 'var(--dt-sky)', badge: 'simulated',
-    roles: ['TPM', 'AIPD'],
-    kicker: { en: 'AUDIT LEDGER', zh: '溯源台帳' },
+    labels: ['Data Lineage', 'Provenance'],
+    kicker: { en: 'DATA PROVENANCE', zh: '資料溯源' },
     type: { en: 'Lineage trace', zh: '血緣追溯' },
-    title: { en: 'Provenance Ledger', zh: '溯源台帳' },
+    title: { en: 'Data Provenance Ledger', zh: '資料溯源台' },
     badgeNote: {
       en: 'Table relationships are project-real; ledger rows are simulated sample lineage, not exported records.',
       zh: '資料表關聯為專案真實設計；台帳列為模擬血緣樣本，非匯出紀錄。',
@@ -72,10 +72,10 @@ export const MODULES = [
   },
   {
     id: 'dt-m07', key: 'M07', num: '07', tone: 'var(--dt-amber)', badge: 'reconstructed',
-    roles: ['PD', 'FE'],
-    kicker: { en: 'OUTPUT GALLERY', zh: '輸出藝廊' },
+    labels: ['Research Delivery', 'Data Product'],
+    kicker: { en: 'RESEARCH OUTPUTS', zh: '研究輸出' },
     type: { en: 'Decision surfaces', zh: '決策輸出' },
-    title: { en: 'Decision Surfaces Gallery', zh: '決策輸出藝廊' },
+    title: { en: 'Research Outputs Overview', zh: '研究輸出總覽' },
     badgeNote: {
       en: 'Artifact list is project-real; card previews are self-drawn reconstructions, not screenshots.',
       zh: '輸出清單為專案真實項目；卡片預覽為自繪重建，非實際截圖。',

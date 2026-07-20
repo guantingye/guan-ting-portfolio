@@ -9,13 +9,13 @@ import { useI18n } from './shared/useI18n.js';
 
 const COPY = {
     en: {
-        title: 'Working Evidence',
-        intro: 'Every claim in the case above maps to something you can open and operate. Six interactive modules replace the placeholder gallery — no stock photos, no screenshots, all DOM and SVG.',
+        title: 'Interactive Prototypes & Implementation Evidence',
+        intro: 'To keep the case from stopping at strategy narrative, I split the key pre-launch work for an AI product into six operable modules. From launch decisions, metric decomposition, research evidence, and product specifications to AI risk governance and design systems, each module maps to a reviewable product output and shows how strategy progressively takes shape in documents, interfaces, and decision flows.',
         badge: 'INTERACTIVE — CLICK TO EXPLORE',
     },
     zh: {
-        title: '實作證據',
-        intro: '為了避免產品案例只停留在敘事層面，我將 AI 產品上市流程拆成六個可操作的互動模組。每個模組都對應一種產品產出：從決策儀表板、指標樹、研究證據、PRD、AI 風險登錄到設計系統切片，讓策略、證據與介面能被一起檢視。',
+        title: '互動原型與實作證據',
+        intro: '為了讓案例不只停留在策略敘述，我將 AI 產品上市前的關鍵工作拆成六個可操作模組。從上市決策、指標拆解、研究證據與產品規格，到 AI 風險治理與設計系統，每個模組都對應一項可以檢視的產品產出，呈現策略如何逐步落到文件、介面與決策流程。',
         badge: 'INTERACTIVE — CLICK TO EXPLORE',
     },
 };
@@ -23,12 +23,12 @@ const COPY = {
 // Page order per spec 5.3: Cockpit → Metric Tree → Research Hub → PRD →
 // Risk Register → Specimen (the specimen mounts after Technical Approach).
 const MODULES = [
-    { id: 'los-module-cockpit', num: '01', thumb: 'cockpit', title: { en: 'Launch Decision Cockpit', zh: '上市決策儀表板' }, desc: { en: 'Signals, weighted scoring, seven gates — linked', zh: '將市場訊號、機會評分與決策門檻串在一起，判斷哪個產品方向值得推進' } },
-    { id: 'los-module-metric-tree', num: '02', thumb: 'tree', title: { en: 'Metric Tree Explorer', zh: '指標樹瀏覽器' }, desc: { en: 'North star to leaf metrics, with guardrails', zh: '從 North Star Metric 拆解到子指標與 guardrails，讓成效判斷更可追蹤' } },
-    { id: 'los-module-research', num: '03', thumb: 'research', title: { en: 'UX Research Evidence Hub', zh: '研究證據庫' }, desc: { en: 'Quotes → insights → decisions, traceable', zh: '將訪談引述、研究洞察與產品決策連在一起，保留每個判斷的來源' } },
-    { id: 'los-module-prd', num: '04', thumb: 'prd', title: { en: 'PRD-lite Document', zh: 'PRD-lite 文件' }, desc: { en: 'A full PRD with decision notes in the margin', zh: '用輕量 PRD 梳理功能範圍、設計取捨與版本邊界' } },
-    { id: 'los-module-risk', num: '05', thumb: 'risk', title: { en: 'AI Risk Register & Model Card', zh: 'AI 風險登錄簿與 Model Card' }, desc: { en: 'Heat map, mitigations, human-in-the-loop', zh: '記錄模型限制、風險等級、緩解策略與 human-in-the-loop 判斷' } },
-    { id: 'los-module-specimen', num: '06', thumb: 'specimen', title: { en: 'Design System Specimen', zh: '設計系統切片' }, desc: { en: 'Tokens, states, a11y notes, engineering calls', zh: '整理核心 tokens、元件狀態、可近用性與前端實作筆記' } },
+    { id: 'los-module-cockpit', num: '01', thumb: 'cockpit', title: { en: 'Launch Decision Cockpit', zh: '上市決策儀表板' }, desc: { en: 'Bring market signals, opportunity assessments, and launch gates together so the team can compare product directions and determine which assumptions merit continued validation and investment.', zh: '整合市場訊號、機會評估與上市門檻，協助團隊比較不同產品方向，判斷哪些假設值得繼續驗證與投入。' } },
+    { id: 'los-module-metric-tree', num: '02', thumb: 'tree', title: { en: 'Metric Tree Explorer', zh: '指標樹瀏覽器' }, desc: { en: 'Break down from the north-star metric to driver and guardrail metrics, showing how product value is measured while keeping the team from pursuing a single growth number.', zh: '從北極星指標向下拆解至驅動指標與防護指標，說明產品價值如何被衡量，也避免團隊只追求單一成長數字。' } },
+    { id: 'los-module-research', num: '03', thumb: 'research', title: { en: 'UX Research Evidence Hub', zh: '研究證據庫' }, desc: { en: 'Connect interview quotes, research insights, product assumptions, and decision outcomes while retaining the source, applicable context, and downstream impact of every judgment.', zh: '將訪談引述、研究洞察、產品假設與決策結果串接起來，保留每項判斷的來源、適用情境與後續影響。' } },
+    { id: 'los-module-prd', num: '04', thumb: 'prd', title: { en: 'Lightweight Product Specification (PRD-lite Document)', zh: '輕量產品規格（PRD-lite 文件）' }, desc: { en: 'Use a lightweight specification to organize product goals, use cases, feature scope, design trade-offs, and version boundaries, keeping the team aligned without adding excessive documentation overhead.', zh: '以輕量規格文件整理產品目標、使用情境、功能範圍、設計取捨與版本邊界，讓團隊在不增加過多文件負擔的情況下維持共識。' } },
+    { id: 'los-module-risk', num: '05', thumb: 'risk', title: { en: 'AI Risk Register & Model Card', zh: 'AI 風險登錄與 Model Card' }, desc: { en: 'Record model capability boundaries, possible failure scenarios, risk levels, mitigations, and conditions for human intervention so AI behavior and release accountability can be inspected and discussed.', zh: '記錄模型能力邊界、可能失敗的情境、風險等級、緩解措施與人工介入條件，讓 AI 行為與上線責任可以被檢查和討論。' } },
+    { id: 'los-module-specimen', num: '06', thumb: 'specimen', title: { en: 'Design System & Frontend Specifications', zh: '設計系統與前端規格' }, desc: { en: 'Organize core design tokens, component states, interaction rules, accessibility considerations, and frontend implementation notes to verify that product strategy can become a consistent, maintainable interface.', zh: '整理核心設計變數、元件狀態、互動規則、無障礙考量與前端實作備註，驗證產品策略能否落成一致且可維護的操作介面。' } },
 ];
 
 // Hand-drawn layout sketches — deliberately wireframe-like, never screenshots.

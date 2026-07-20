@@ -477,13 +477,13 @@ const findEntry = id => ALL_NODES.find(entry => entry.node.id === id);
 // ---- COPY -------------------------------------------------------------------
 const COPY = {
     en: {
-        eyebrow: 'MODULE 02 — METRIC SYSTEM',
+        eyebrow: 'MODULE 02 — PRODUCT METRIC SYSTEM',
         title: 'Metric Tree Explorer',
         lead: [
-            'This module turns a broad launch question into a metric system: what should the team measure to know whether the AI product is actually becoming useful?',
-            'Each node includes a definition, a formula, and a guardrail that makes clear what the team should not sacrifice just to make the number look better.',
+            'This module turns the question “Is AI truly improving support work?” into a traceable metric tree, linking adoption, workflow efficiency, and user trust to sustained use and risk control.',
+            'Each metric node includes a clear definition, calculation method, relationship to its parent objective, and a guardrail that prevents the metric from being optimized in the wrong way. The team can therefore see not only growth, but also the risks and trade-offs behind the numbers.',
         ],
-        context: 'Scenario: “Meridian”, the same fictional B2B support assistant from Module 01. Each node includes a 12-week simulated trend.',
+        context: 'Scenario: This module continues the Meridian support-reply assistant and uses 12 weeks of simulated data to show how teams define product value, track adoption behavior, and avoid overlooking quality and safety while pursuing growth.',
         signature: 'Signature interaction: select a metric and the path back to the North Star is highlighted.',
         detailTitle: 'NODE DETAIL',
         definition: 'Definition',
@@ -511,13 +511,13 @@ const COPY = {
         lowerBetter: 'down = better',
     },
     zh: {
-        eyebrow: 'MODULE 02 — METRIC SYSTEM',
+        eyebrow: 'MODULE 02 — PRODUCT METRIC SYSTEM',
         title: '指標樹瀏覽器',
         lead: [
-            '這個模組把「AI 產品是否真的有用」拆成一棵可以追蹤的指標樹。',
-            '每個節點都包含定義、計算方式，以及一條「不能為了衝高數字而犧牲什麼」的護欄，讓團隊不只看成長，也能看見風險與取捨。',
+            '這個模組將「AI 是否真正改善客服工作」拆成一套可追蹤的指標樹，從導入、流程效益與使用者信任，一路連結到持續使用與風險控制。',
+            '每個指標節點都包含明確定義、計算方式、與上層目標的關係，以及一項防止數字被錯誤優化的護欄條件。團隊因此不只看見成長，也能理解數字背後的風險與取捨。',
         ],
-        context: '情境：「Meridian」延續 Module 01 的虛構 B2B 客服回覆輔助工具。每個節點都附上 12 週模擬趨勢，用來呈現指標如何被追蹤。',
+        context: '案例情境：本模組延續 Meridian 客服回覆輔助工具，使用 12 週模擬資料，示範團隊如何定義產品價值、追蹤採用行為，並避免在追求成長時忽略品質與安全。',
         signature: '點選任一指標，系統會標示它如何一路連回 North Star。',
         detailTitle: 'NODE DETAIL',
         definition: '定義',

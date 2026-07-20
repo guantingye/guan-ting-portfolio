@@ -6,19 +6,19 @@ const MOD = MODULES.find(m => m.key === 'M07');
 
 const ARTIFACTS = [
   { id: 'index', type: 'index', title: { en: 'Startup / DeepTech Company Index', zh: 'Startup / DeepTech Company Index' },
-    desc: { en: 'Searchable table and company profile structure with aliases, tags, and review state.', zh: '可搜尋公司表與 profile 結構，包含別名、標籤與審核狀態。' },
+    desc: { en: 'Search companies by name, aliases, industry tags, and review status to quickly access company profiles for research.', zh: '依公司名稱、別名、產業標籤與審核狀態搜尋企業，快速查詢供研究使用的公司檔案。' },
     tables: ['companies', 'company_aliases', 'company_tags'] },
   { id: 'map', type: 'map', title: { en: 'Taiwan Semiconductor / DeepTech Map', zh: 'Taiwan Semiconductor / DeepTech Map' },
-    desc: { en: 'Region-based mapping supported by normalized city, park, latitude, and longitude fields.', zh: '以標準化城市、園區、緯度與經度欄位支援區域地圖。' },
+    desc: { en: 'Show company distribution by city, park, coordinates, and industry tags to support regional comparison and industry-cluster analysis.', zh: '依城市、園區、經緯度與產業標籤呈現企業分布，支援區域比較或與產業聚落分析。' },
     tables: ['company_profiles', 'companies'] },
   { id: 'dashboard', type: 'dashboard', title: { en: 'Ecosystem Segmentation Dashboard', zh: 'Ecosystem Segmentation Dashboard' },
-    desc: { en: 'Category distribution, region clusters, source coverage, and trend filters for analysis.', zh: '呈現類別分布、區域群聚、來源覆蓋與趨勢篩選。' },
+    desc: { en: 'Compare company categories, regional clusters, source coverage, and development trends to support industry mapping and research presentations.', zh: '比較企業類別、區域群聚、來源覆蓋率與發展趨勢，支援產業盤點與研究簡報。' },
     tables: ['company_tags', 'companies'] },
   { id: 'brief', type: 'brief', title: { en: 'Research Brief Materials', zh: 'Research Brief Materials' },
-    desc: { en: 'Analysis-ready exports for internal research, meetings, and stakeholder communication.', zh: '為內部研究、會議與利害關係人溝通準備的分析輸出。' },
+    desc: { en: 'Turn the data into charts, summaries, and key findings for internal research, presentation meetings, and stakeholder communication.', zh: '將資料整理為可供內部研究、會議簡報與利害關係人溝通使用的圖表、摘要與重點發現。' },
     tables: ['company_profiles', 'company_sources'] },
   { id: 'package', type: 'package', title: { en: 'Enriched Dataset Package', zh: 'Enriched Dataset Package' },
-    desc: { en: 'Clean CSV, XLSX, and SQL-ready tables with source metadata and update protocol.', zh: '整理為 CSV、XLSX 與 SQL-ready tables，附來源 metadata 與更新 protocol。' },
+    desc: { en: 'Export CSV, XLSX, and query-ready data tables with source metadata, field definitions, and update rules to support follow-on analysis and handoff.', zh: '輸出為 CSV、XLSX 與可直接查詢的資料表，並附上來源 Metadata、欄位說明與更新規則，支援後續分析與交接。' },
     tables: ['companies', 'company_profiles', 'company_tags', 'update_logs'] },
 ];
 
@@ -78,17 +78,19 @@ function OutputVisual({ type }) {
 
 const COPY = {
   en: {
-    title: 'Decision Surfaces Gallery',
-    lead: 'The database earns its keep here: five downstream surfaces, each traceable back to the tables that feed it.',
-    soWhat: 'Every card lists its source tables — so a stakeholder question about a map or dashboard number has a one-click answer, not a guess.',
-    fedBy: 'Fed by tables', dictionaryTitle: 'Field dictionary preview',
+    title: 'Research Outputs Overview',
+    lead: 'The database’s value ultimately lies in how it is used for subsequent research. Five outputs share the same company master records and source logs, allowing every map, chart, and data package to be traced back to its corresponding tables.',
+    soWhat: 'Every output clearly identifies its source tables and export conditions. When stakeholders question a map, dashboard, or research brief, they can quickly return to the source data and processing records for confirmation.',
+    soWhatLabel: 'Design focus →',
+    fedBy: 'Fed by tables', dictionaryTitle: 'Field Dictionary & Export Rules',
     field: 'Field', type: 'Type', source: 'Source', review: 'Review',
   },
   zh: {
-    title: '決策輸出藝廊',
-    lead: '資料庫的價值在此體現：五個下游輸出面，每一個都能追溯回供應它的資料表。',
-    soWhat: '每張卡片都列出來源資料表 — 讓利害關係人對地圖或儀表板數字的提問，能一鍵得到答案，而不是用猜的。',
-    fedBy: '來源資料表', dictionaryTitle: '欄位字典預覽',
+    title: '研究輸出總覽',
+    lead: '資料庫的價值，最終體現在後續研究如何使用它。五種輸出共用同一套企業主檔與來源紀錄，讓每張地圖、圖表與資料包都能回查到對應資料表。',
+    soWhat: '每項輸出都清楚標示來源資料表與匯出條件。當利害關係人對地圖、儀表板或研究摘要提出疑問時，可以快速回到資料來源與處理紀錄確認。',
+    soWhatLabel: '設計重點 →',
+    fedBy: '來源資料表', dictionaryTitle: '欄位字典與匯出規則',
     field: '欄位', type: '型別', source: '來源', review: '審核',
   },
 };
@@ -99,7 +101,7 @@ export default function M07_DecisionSurfaces() {
   const goToSchema = () => document.getElementById('dt-m04')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   return (
-    <SectionModule mod={MOD} title={c.title} lead={c.lead} soWhat={c.soWhat}>
+    <SectionModule mod={MOD} title={c.title} lead={c.lead} soWhat={c.soWhat} soWhatLabel={c.soWhatLabel}>
       <div className="dt-ds">
         <div className="dt-ds-grid">
           {ARTIFACTS.map(a => (

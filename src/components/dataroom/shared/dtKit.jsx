@@ -43,22 +43,14 @@ export function ProvenanceBadge({ tier, note }) {
     );
 }
 
-// ---- role chips (passive, tooltip only) ------------------------------------
-export const ROLE_LABELS = {
-    AIPD: { en: 'AI Product Designer', zh: 'AI 產品設計' },
-    UXR:  { en: 'UX Researcher',       zh: 'UX 研究員' },
-    PD:   { en: 'Product Designer',    zh: '產品設計師' },
-    FE:   { en: 'Front-End Engineer',  zh: '前端工程師' },
-    TPM:  { en: 'Technical PM',        zh: '技術 PM' },
-};
-
-export function RoleChips({ roles = [] }) {
+// ---- module focus chips ----------------------------------------------------
+export function FocusChips({ labels = [] }) {
     const { lang } = useI18n();
     return (
-        <div className="dt-role-map" aria-label={lang === 'zh' ? '適用職能' : 'Target roles'}>
-            {roles.map(role => (
-                <span className="dt-role-chip" key={role} title={(ROLE_LABELS[role] || {})[lang] || role}>
-                    {role}
+        <div className="dt-role-map" aria-label={lang === 'zh' ? '核心面向' : 'Focus areas'}>
+            {labels.map(label => (
+                <span className="dt-role-chip" key={label}>
+                    {label}
                 </span>
             ))}
         </div>
@@ -66,7 +58,7 @@ export function RoleChips({ roles = [] }) {
 }
 
 // ---- module frame -----------------------------------------------------------
-// mod = { id, num, tone, badge, badgeNote, roles, kicker: {en,zh} }
+// mod = { id, num, tone, badge, badgeNote, labels, kicker: {en,zh} }
 export default function SectionModule({ mod, title, lead, soWhat, soWhatLabel, children }) {
     const { lang } = useI18n();
     const accent = mod.tone || 'var(--dt-teal)';
@@ -84,7 +76,7 @@ export default function SectionModule({ mod, title, lead, soWhat, soWhatLabel, c
                     </div>
                     <h3 className="dt-display" id={`${mod.id}-t`}>{title}</h3>
                     {lead && <p className="dt-lead">{lead}</p>}
-                    <RoleChips roles={mod.roles} />
+                    <FocusChips labels={mod.labels} />
                 </div>
             </header>
             <div className="dt-rule" role="presentation" />
@@ -169,9 +161,9 @@ injectStyles('dt-shared', `
 .dt-mod-body { margin-top: 2px; }
 
 /* so-what strip */
-.dt-sowhat { display: flex; gap: 10px; align-items: baseline; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--dt-line-1); }
-.dt-sowhat-tag { flex: 0 0 auto; font-family: var(--dt-font-data); font-size: 10.5px; letter-spacing: 0.14em; color: var(--dt-accent, var(--dt-teal)); }
-.dt-sowhat p { margin: 0; font-size: 13.5px; line-height: 1.6; color: var(--dt-text-2); }
+.dt-sowhat { display: flex; gap: 10px; align-items: baseline; margin-top: 24px; padding-top: 34px; border-top: 1px solid var(--dt-line-1); }
+.dt-sowhat-tag { flex: 0 0 auto; font-family: var(--dt-font-data); font-size: 12.5px; letter-spacing: 0.14em; color: var(--dt-accent, var(--dt-teal)); }
+.dt-sowhat p { margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--dt-text-2); }
 
 /* reusable primitives */
 .dt-panel { background: var(--dt-bg-2); border: 1px solid var(--dt-line-1); border-radius: var(--dt-r-md); }

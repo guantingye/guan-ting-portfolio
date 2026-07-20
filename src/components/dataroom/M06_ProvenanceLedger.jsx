@@ -53,17 +53,19 @@ const FIELDS = [
 
 const COPY = {
   en: {
-    title: 'Provenance Ledger',
-    lead: 'Pick an output field or metric and trace it back — as a table, not an animation — to the exact source row that produced it.',
-    soWhat: 'A number without a lineage row is a number nobody can defend in a research review; this ledger is what makes every figure defensible.',
-    fieldLabel: 'Trace field', step: 'Step', table: 'Table', ref: 'Reference', verified: 'Verified', note: 'Note',
+    title: 'Data Provenance Ledger',
+    lead: 'Select any output field or analytical metric to trace its original source, transformation record, and verification time through the data tables and processing steps.',
+    soWhat: 'Only data that can be traced back to its source and processing records is suitable for research and decision outputs. This ledger lets every item be checked again instead of only presenting the final result.',
+    soWhatLabel: 'Design focus →',
+    fieldLabel: 'Trace field', step: 'Step', table: 'Table', ref: 'Reference details', verified: 'Verified', note: 'Processing status',
     announce: (label, n) => `Lineage loaded for ${label}: ${n} steps.`,
   },
   zh: {
-    title: '溯源台帳',
-    lead: '選擇一個輸出欄位或指標，以表格（而非動畫）方式追溯回產生它的原始資料列。',
-    soWhat: '沒有血緣紀錄的數字，是研究審查時無法被捍衛的數字；這份台帳讓每一個數字都可以被追溯與捍衛。',
-    fieldLabel: '追溯欄位', step: '步驟', table: '資料表', ref: '參照值', verified: '驗證時間', note: '備註',
+    title: '資料溯源台',
+    lead: '選擇任一輸出欄位或分析指標，即可沿著資料表與處理步驟，回查其原始來源、轉換紀錄與驗證時間。',
+    soWhat: '只有能回到來源與處理紀錄的數據，才適合進入研究與決策輸出。這份清單讓每項資料都能被重新核對，而不是只呈現最終結果。',
+    soWhatLabel: '設計重點 →',
+    fieldLabel: '追溯欄位', step: '步驟', table: '資料表', ref: '參照內容', verified: '驗證時間', note: '處理狀態',
     announce: (label, n) => `已載入 ${label} 的血緣：共 ${n} 個步驟。`,
   },
 };
@@ -76,7 +78,7 @@ export default function M06_ProvenanceLedger() {
   const announce = useMemo(() => c.announce(field.label, field.rows.length), [field, c]);
 
   return (
-    <SectionModule mod={MOD} title={c.title} lead={c.lead} soWhat={c.soWhat}>
+    <SectionModule mod={MOD} title={c.title} lead={c.lead} soWhat={c.soWhat} soWhatLabel={c.soWhatLabel}>
       <div className="dt-pl">
         <label className="dt-data-sm dt-pl-label" htmlFor="dt-pl-select">{c.fieldLabel}</label>
         <select id="dt-pl-select" className="dt-pl-select" value={fieldId} onChange={e => setFieldId(e.target.value)}>
