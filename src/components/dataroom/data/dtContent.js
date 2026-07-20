@@ -77,8 +77,8 @@ export const MODULES = [
     type: { en: 'Decision surfaces', zh: '決策輸出' },
     title: { en: 'Research Outputs Overview', zh: '研究輸出總覽' },
     badgeNote: {
-      en: 'Artifact list is project-real; card previews are self-drawn reconstructions, not screenshots.',
-      zh: '輸出清單為專案真實項目；卡片預覽為自繪重建，非實際截圖。',
+      en: 'Artifact list and figures are the real project deliverables; each chart’s underlying values are simulated for display.',
+      zh: '輸出清單與圖表為專案真實交付成果；各圖中的數據為模擬展示。',
     },
   },
 ];
