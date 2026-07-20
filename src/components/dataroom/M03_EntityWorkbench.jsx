@@ -55,23 +55,25 @@ const PRESETS = [
 
 const COPY = {
   en: {
-    title: 'Entity Resolution Workbench',
-    lead: 'Alias candidates are scored against a canonical company profile. Move the confidence threshold to see how many candidates auto-merge versus fall into manual review — then accept or hold any candidate yourself.',
-    soWhat: 'The threshold is a judgment call, not a fixed constant: the Vantage cluster shows why a permissive threshold can merge two unrelated companies into one profile.',
+    title: 'Company Entity Resolution Workbench',
+    lead: 'The system compares company names from different sources with canonical company profiles, then proposes merges based on name origin and confidence scores. Users can still review and confirm, keep, or exclude candidate records to prevent incorrect merges.',
+    soWhat: 'Matching thresholds are adjustable decision rules, not absolute answers. The interface deliberately retains edge cases so users can see the incorrect merges an overly permissive threshold may cause.',
+    soWhatLabel: 'Design focus →',
     canonical: 'Canonical profile', threshold: 'Confidence threshold', preset: 'Preset',
     candidate: 'Candidate', confidence: 'Confidence', status: 'Status', source: 'Source',
     autoMerge: 'Auto-merge', review: 'Review', accepted: 'Accepted', held: 'Held',
-    accept: 'Accept', hold: 'Hold', clear: 'Clear override',
+    accept: 'Merge', hold: 'Keep record', clear: 'Clear override',
     why: 'Why', announce: (auto, review) => `${auto} candidates auto-merge, ${review} sent to review at this threshold.`,
   },
   zh: {
-    title: '實體解析工作台',
-    lead: '別名候選會依標準公司檔案評分。調整可信度門檻，觀察多少候選會自動合併、多少會進入人工審核，也可以自行接受或保留任一候選。',
-    soWhat: '門檻是一個判斷，而不是固定常數：Vantage 群組示範了寬鬆門檻如何把兩家不相關公司誤判為同一檔案。',
+    title: '企業實體解析工作台',
+    lead: '系統會將不同來源中的公司名稱與標準企業主檔進行比對，依名稱來源與可信度分數提出合併建議。使用者仍可審查確認、保留或排除候選紀錄，避免錯誤合併。',
+    soWhat: '匹配門檻是一項可以調整的決策規則，而不是絕對答案。介面刻意保留邊界案例，讓使用者看見門檻過寬時可能造成的錯誤合併。',
+    soWhatLabel: '設計重點 →',
     canonical: '標準公司檔案', threshold: '可信度門檻', preset: '快速設定',
     candidate: '候選別名', confidence: '可信度', status: '狀態', source: '來源',
     autoMerge: '自動合併', review: '待審核', accepted: '已接受', held: '已保留',
-    accept: '接受', hold: '保留', clear: '清除覆寫',
+    accept: '合併', hold: '保留紀錄', clear: '清除覆寫',
     why: '判斷依據', announce: (auto, review) => `此門檻下 ${auto} 個候選自動合併，${review} 個進入審核。`,
   },
 };
@@ -99,7 +101,7 @@ export default function M03_EntityWorkbench() {
   const setOverride = (id, val) => setOverrides(o => ({ ...o, [id]: o[id] === val ? null : val }));
 
   return (
-    <SectionModule mod={MOD} title={c.title} lead={c.lead} soWhat={c.soWhat}>
+    <SectionModule mod={MOD} title={c.title} lead={c.lead} soWhat={c.soWhat} soWhatLabel={c.soWhatLabel}>
       <div className="dt-ew">
         <div className="dt-ew-clusters">
           {CLUSTERS.map(cl => (

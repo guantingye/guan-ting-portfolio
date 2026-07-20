@@ -67,7 +67,7 @@ export function RoleChips({ roles = [] }) {
 
 // ---- module frame -----------------------------------------------------------
 // mod = { id, num, tone, badge, badgeNote, roles, kicker: {en,zh} }
-export default function SectionModule({ mod, title, lead, soWhat, children }) {
+export default function SectionModule({ mod, title, lead, soWhat, soWhatLabel, children }) {
     const { lang } = useI18n();
     const accent = mod.tone || 'var(--dt-teal)';
     const kicker = mod.kicker ? mod.kicker[lang] : '';
@@ -91,7 +91,7 @@ export default function SectionModule({ mod, title, lead, soWhat, children }) {
             <div className="dt-mod-body">{children}</div>
             {soWhat && (
                 <footer className="dt-sowhat">
-                    <span className="dt-sowhat-tag">{lang === 'zh' ? '重點 →' : 'READ →'}</span>
+                    <span className="dt-sowhat-tag">{soWhatLabel || (lang === 'zh' ? '重點 →' : 'READ →')}</span>
                     <p>{soWhat}</p>
                 </footer>
             )}

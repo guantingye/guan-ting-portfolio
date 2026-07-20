@@ -5,7 +5,7 @@ import { MODULES } from './data/dtContent.js';
 const MOD = MODULES.find(m => m.key === 'M02');
 
 const STAGES = [
-  { step: '00', key: 'source', title: { en: 'Source Signals', zh: '來源訊號' },
+  { step: '00', key: 'source', title: { en: 'Source Retrieval', zh: '來源讀取' },
     inputs: { en: ['Public registries', 'MOPS disclosures', '104 job pages', 'Startup lists', 'Manual sheets'], zh: ['公開登記資料', 'MOPS 揭露', '104 徵才頁', '新創名單', '人工表格'] },
     ops: { en: ['Source registry lookup', 'Fetch-timestamp log', 'Access notes'], zh: ['來源登錄查詢', '擷取時間戳記錄', '接入備註'] },
     outputs: { en: ['Source metadata', 'Candidate rows'], zh: ['來源 metadata', '候選資料列'] } },
@@ -17,7 +17,7 @@ const STAGES = [
     inputs: { en: ['Raw company names', 'Addresses', 'Sector labels'], zh: ['原始公司名', '地址', '產業標籤'] },
     ops: { en: ['Name normalization', 'Missing-value flags', 'Region parsing'], zh: ['名稱標準化', '缺失值標記', '區域解析'] },
     outputs: { en: ['Clean staging table', 'Review queue'], zh: ['乾淨暫存表', '審核佇列'] } },
-  { step: '03', key: 'resolution', title: { en: 'Entity Resolution', zh: '實體解析' },
+  { step: '03', key: 'resolution', title: { en: 'Company Entity Resolution', zh: '企業實體解析' },
     inputs: { en: ['Company names', 'Aliases', 'URLs'], zh: ['公司名稱', '別名', '網址'] },
     ops: { en: ['Alias mapping', 'Duplicate candidates', 'Confidence scoring'], zh: ['別名映射', '重複候選', '可信度評分'] },
     outputs: { en: ['Canonical profile', 'company_aliases'], zh: ['標準公司檔案', 'company_aliases'] } },
@@ -29,11 +29,11 @@ const STAGES = [
     inputs: { en: ['Clean rows', 'Canonical entities', 'Source evidence'], zh: ['清理後資料', '標準實體', '來源證據'] },
     ops: { en: ['Relational indexing', 'Source linkage', 'Version snapshots'], zh: ['關聯式索引', '來源鏈接', '版本快照'] },
     outputs: { en: ['companies', 'source_rows', 'company_sources'], zh: ['companies', 'source_rows', 'company_sources'] } },
-  { step: '06', key: 'analysis', title: { en: 'Analysis Mart', zh: '分析資料層' },
+  { step: '06', key: 'analysis', title: { en: 'Analysis Data Layer', zh: '分析資料層' },
     inputs: { en: ['Filtered entities', 'Quality summary', 'Tag groups'], zh: ['篩選實體', '品質摘要', '標籤群組'] },
     ops: { en: ['Ecosystem segmentation', 'Value-chain view', 'Geography distribution'], zh: ['生態分群', '價值鏈視圖', '地理分布'] },
     outputs: { en: ['Analysis views', 'Dashboard tables'], zh: ['分析視圖', '儀表板資料表'] } },
-  { step: '07', key: 'outputs', title: { en: 'Dashboards & Outputs', zh: '儀表板與輸出' },
+  { step: '07', key: 'outputs', title: { en: 'Dashboard & Research Outputs', zh: '儀表板與研究輸出' },
     inputs: { en: ['Analysis mart', 'Map-ready fields', 'Briefing tables'], zh: ['分析資料層', '地圖欄位', '簡報資料表'] },
     ops: { en: ['Power BI views', 'HTML map export', 'Research brief'], zh: ['Power BI 視圖', 'HTML 地圖匯出', '研究 brief'] },
     outputs: { en: ['Ecosystem map', 'Dashboard dataset'], zh: ['生態地圖', '儀表板資料集'] } },
@@ -48,23 +48,25 @@ const ROW_DELTAS = STAGES.map((_, i) => {
 
 const COPY = {
   en: {
-    title: 'Pipeline Run Console',
-    lead: 'Eight stages carry a batch from raw source signal to dashboard-ready output. Step through the run to inspect what each stage reads, does, and writes — including simulated row-count deltas.',
-    soWhat: 'Making every stage inspectable — not just the final table — is what makes a stalled or corrupted run debuggable instead of a black box.',
-    step: 'Step', run: 'Run all', reset: 'Reset', prev: '← Prev', next: 'Next →',
+    title: 'Data Pipeline Console',
+    lead: 'Eight processing stages show how a batch of data moves from its original sources into the research database. Users can run the workflow step by step or complete it at once, and inspect each stage’s inputs, outputs, and changes in record counts.',
+    soWhat: 'Every processing stage can be inspected and rerun. When record counts are abnormal or the workflow is interrupted, users can quickly locate the problem instead of inferring the cause from the final output alone.',
+    soWhatLabel: 'Design focus →',
+    step: 'Run this stage', run: 'Run full workflow', reset: 'Reset workflow', prev: '← Prev', next: 'Next →',
     inputs: 'Inputs', operations: 'Operations', outputs: 'Outputs',
     rowsLabel: 'Simulated row count', rowsIn: 'in', rowsOut: 'out', dropped: 'filtered/merged',
-    idle: 'Idle — select a stage or press Run all.',
+    idle: 'Not yet run. Select a processing stage or start the full workflow.',
     announce: (i, title) => `Stage ${i} of 8: ${title}`,
   },
   zh: {
-    title: '管線執行主控台',
-    lead: '八個階段將一批資料從原始來源訊號帶到儀表板可用的輸出。逐步執行以檢視每個階段讀取、處理與輸出的內容，包含模擬的資料列數變化。',
-    soWhat: '讓每個階段都可被檢視，而不只是看最終資料表，這讓執行卡住或資料異常時可以被追查，而不是黑箱。',
-    step: '單步', run: '全部執行', reset: '重設', prev: '← 上一步', next: '下一步 →',
+    title: '資料管線主控台',
+    lead: '以八個處理階段呈現一批資料如何從原始來源進入研究資料庫。使用者可以逐步執行或一次完成流程，並查看各階段的輸入、輸出與資料筆數變化。',
+    soWhat: '每個處理階段都可以被檢視與重新執行。當資料筆數異常或流程中斷時，使用者能快速定位問題，而不是只能從最終輸出反推原因。',
+    soWhatLabel: '設計重點 →',
+    step: '執行此階段', run: '執行完整流程', reset: '重置流程', prev: '← 上一步', next: '下一步 →',
     inputs: '輸入', operations: '處理', outputs: '輸出',
     rowsLabel: '模擬資料列數', rowsIn: '輸入', rowsOut: '輸出', dropped: '過濾／合併',
-    idle: '尚未開始 — 選擇一個階段或按下全部執行。',
+    idle: '尚未執行。請選擇一個處理階段，或啟動完整流程。',
     announce: (i, title) => `第 ${i} / 8 階段：${title}`,
   },
 };
@@ -79,7 +81,7 @@ export default function M02_RunConsole() {
   const announce = useMemo(() => active ? c.announce(cursor + 1, active.title[lang]) : c.idle, [active, cursor, lang, c]);
 
   return (
-    <SectionModule mod={MOD} title={c.title} lead={c.lead} soWhat={c.soWhat}>
+    <SectionModule mod={MOD} title={c.title} lead={c.lead} soWhat={c.soWhat} soWhatLabel={c.soWhatLabel}>
       <div className="dt-rc">
         <div className="dt-rc-controls">
           <button type="button" className="dt-btn" onClick={() => setCursor(v => Math.max(0, v - 1))} disabled={cursor <= 0}>{c.prev}</button>

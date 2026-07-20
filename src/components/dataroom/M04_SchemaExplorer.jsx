@@ -28,18 +28,20 @@ const RELATIONS = [
 
 const COPY = {
   en: {
-    title: 'Schema Explorer',
-    lead: 'Eight relational tables carry the database — not a stack of spreadsheets. Select a table for its fields, or a relation for a plain-language join explanation.',
-    soWhat: 'A relational model with explicit joins is what makes "why does this record say this?" answerable in one query instead of a spreadsheet hunt.',
-    fields: 'Fields', relations: 'Relations', selectTable: 'Select a table to see its fields.',
-    selectRelation: 'Select a relation to see how the join works.', pk: 'PK', fk: 'FK',
+    title: 'Data Model & Relationship Explorer',
+    lead: 'Eight relational tables form the core of the database. Select any table to view its fields, primary keys, and purpose; select a relationship between tables to understand how data is connected through indexes and join conditions.',
+    soWhat: 'A clear relational model makes the links between companies, sources, aliases, and enrichment data directly queryable, without repeatedly comparing fields across a large spreadsheet.',
+    soWhatLabel: 'Design focus →',
+    fields: 'Fields', relations: 'Relations', selectTable: 'Select a table to view its field structure and purpose.',
+    selectRelation: 'Select a table relationship to view its join conditions and data flow.', pk: 'PK', fk: 'FK',
   },
   zh: {
-    title: '資料模型導覽',
-    lead: '八個關聯式資料表構成資料庫，而不是一堆試算表。點選資料表檢視欄位，或點選關聯查看白話的 join 說明。',
-    soWhat: '明確的關聯式模型讓「這筆資料為什麼是這樣」可以用一次查詢回答，而不是在試算表裡大海撈針。',
-    fields: '欄位', relations: '關聯', selectTable: '選擇一個資料表以檢視欄位。',
-    selectRelation: '選擇一個關聯以檢視 join 如何運作。', pk: 'PK', fk: 'FK',
+    title: '資料模型與關聯導覽',
+    lead: '八張關聯式資料表共同構成資料庫核心。選擇任一資料表，可以查看欄位、主鍵與用途；選擇表間關聯，則能理解資料如何透過索引與 Join 條件被串接。',
+    soWhat: '清楚的關聯式模型，讓企業、來源、別名與補強資料之間的關係可以直接查詢，不需要在大型試算表中反覆比對欄位。',
+    soWhatLabel: '設計重點 →',
+    fields: '欄位', relations: '關聯', selectTable: '選擇一張資料表，查看欄位結構與用途。',
+    selectRelation: '選擇一組資料表關聯，查看 Join 條件與資料流向。', pk: 'PK', fk: 'FK',
   },
 };
 
@@ -53,7 +55,7 @@ export default function M04_SchemaExplorer() {
   const relation = RELATIONS.find(r => r.id === relationId);
 
   return (
-    <SectionModule mod={MOD} title={c.title} lead={c.lead} soWhat={c.soWhat}>
+    <SectionModule mod={MOD} title={c.title} lead={c.lead} soWhat={c.soWhat} soWhatLabel={c.soWhatLabel}>
       <div className="dt-se">
         <div className="dt-se-grid">
           {TABLES.map(t => (

@@ -446,9 +446,9 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
     },
     {
         slug: 'deeptech-database', num: '02',
-        category: 'Data Engineering · Ecosystem Intelligence', zhCategory: '資料工程 · 產業生態情報',
-        title: 'Global DeepTech Database', subtitle: 'Ecosystem Intelligence Infrastructure',
-        zhTitle: '全球深科技資料庫', zhSubtitle: '產業生態情報資料基礎建設',
+        category: 'Data Engineering · Deep Tech Industry Intelligence', zhCategory: '資料工程 · 深科技產業情報',
+        title: 'Global Deep Tech Company Database', subtitle: 'Ecosystem Intelligence Infrastructure',
+        zhTitle: '全球深科技企業資料庫', zhSubtitle: '產業生態情報資料基礎建設',
         hook: 'From fragmented deep-tech signals to a research-grade ecosystem intelligence database.',
         zhHook: '在工研院產科所的研究工作中，協助將分散在政府資料、公司登記、產業名錄與網頁來源裡的深科技資訊，整理成研究團隊能查找、比對與分析的資料庫。',
         stack: ['Python', 'Pandas', 'Playwright', 'SQL', 'Entity Resolution', 'Data Governance'],
@@ -456,19 +456,27 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
         timeline: '2024-Present', status: 'ITRI/ISTI research workflow', zhStatus: 'ITRI/ISTI 研究資料流程',
         impact: '230+ companies tracked / enriched', zhImpact: '230+ 家公司追蹤與資料補強',
         heroBrief: {
-            context: 'Cross-source company intelligence for research teams.',
-            zhContext: '研究團隊需要跨來源查找、比對公司訊號。',
-            problem: 'Inconsistent identities and stale spreadsheet data.',
-            zhProblem: '公司別名與欄位不一致，人工表格難以維護。',
-            strategy: 'Canonical entities with provenance and quality gates.',
-            zhStrategy: '標準化公司實體，加入來源溯源與品質閘門。',
-            delivery: '8 sources · 8 tables · 230+ companies.',
-            zhDelivery: '8 個來源・8 張資料表・230+ 家公司。',
+            context: 'Research teams need to find, verify, and track company information across sources.',
+            zhContext: '研究團隊需要跨來源查找、核對與追蹤企業資訊。',
+            problem: 'Inconsistent field schemas make manual spreadsheets difficult to maintain.',
+            zhProblem: '欄位規格不一，人工表格難以維護。',
+            strategy: 'Build a company master record with data lineage and quality-check workflows.',
+            zhStrategy: '建立企業主檔、資料溯源與品質檢核流程。',
+            delivery: '8 source categories integrated · 8 tables · 230+ companies tracked.',
+            zhDelivery: '整合 8 類來源、8 張資料表，追蹤 230+ 家企業。',
         },
         overview: "I built a research-oriented data workflow that consolidates fragmented deep-tech and semiconductor ecosystem signals into a structured intelligence database. The system supports company tracking, source traceability, entity normalization, enrichment, and dashboard-ready outputs for research and strategic analysis.\n\nDeep-tech ecosystem research rarely starts with clean data. Company names change across sources, public pages have inconsistent formats, hiring and financial signals live in separate systems, and manual spreadsheets quickly become difficult to maintain.\n\nThis case reconstructs the work as a portfolio-safe data-system study. It shows source acquisition, raw staging, cleaning, entity resolution, relational database modeling, quality controls, and the research outputs enabled by the database.",
         zhOverview: "我建立一套研究導向的資料流程，將分散的深科技與半導體生態訊號整合成結構化情報資料庫。系統支援公司追蹤、來源追溯、實體標準化、欄位補強與儀表板輸出，協助研究與策略分析流程更有效率地運作。\n\n深科技生態研究通常不是從乾淨資料開始。公司名稱在不同來源中不一致，公開頁面格式不穩定，徵才與財務訊號分散在不同系統，手動表格也很快變得難以維護。\n\n本案例以作品集安全方式重構這段工作，呈現來源擷取、原始暫存、資料清理、實體解析、關聯式資料庫建模、品質控制，以及資料庫支援的研究輸出。",
-        overviewSingle: "Deep-tech ecosystem research rarely begins with clean data: company identities vary across sources, public pages use inconsistent formats, and financial, hiring, and technology signals remain scattered. I built a research-oriented workflow that turns those fragments into a traceable intelligence database through source acquisition, raw staging, entity normalization, relational modeling, enrichment, and quality controls. The system supports company tracking, field-level provenance, dashboard-ready outputs, and strategic analysis across more than 230 companies, presented here as a portfolio-safe reconstruction of the original research workflow.",
-        zhOverviewSingle: "深科技生態研究很少從乾淨資料開始：公司名稱在不同來源中不一致，公開頁面格式不穩定，財務、徵才與技術訊號也分散在各處。我建立一套研究導向流程，涵蓋來源擷取、原始暫存、實體標準化、關聯式建模、欄位補強與品質控制，將碎片資訊整理成可追溯的情報資料庫；系統目前支援 230+ 家公司的追蹤、欄位溯源、儀表板輸出與策略分析，並以作品集安全方式重構呈現。",
+        overviewSingle: `Deep-tech industry research rarely starts with complete and consistent data. The same company may use different names across sources, and public-page formats change frequently; financial, hiring, and technology information is scattered across different platforms, forcing researchers to repeatedly search, verify, and update records.
+
+To reduce this repetitive work, I built a research-oriented data workflow covering source registration, raw-data preservation, company entity resolution, relational modeling, field enrichment, and quality checks. It turns fragmented information into an industry intelligence database that is queryable, comparable, and traceable.
+
+The system currently supports ongoing tracking of 230+ companies, field-level provenance, dashboard outputs, and strategic analysis. This case reconstructs and presents its core workflow and design decisions without exposing sensitive internal data.`,
+        zhOverviewSingle: `深科技產業研究，很少從完整且一致的資料開始。相同企業在不同來源中可能使用不同名稱，公開頁面的格式也經常改變；財務、徵才與技術資訊則分散在不同平台，使研究人員必須反覆搜尋、核對與更新資料。
+
+為了降低這些重複工作，我建立一套研究導向的資料流程，涵蓋來源登錄、原始資料保存、企業實體解析、關聯式建模、欄位補強與品質檢核，將零散資訊整理成可查詢、可比對且可追溯的產業情報資料庫。
+
+目前系統支援 230+ 家企業的持續追蹤、欄位溯源、儀表板輸出與策略分析。本案例在不揭露內部敏感資料的前提下，重構並呈現其中的核心流程與設計決策。`,
         outcomes: ['Consolidated fragmented public and manually maintained ecosystem signals into a reusable research database workflow', 'Modeled stable company entities with aliases, source rows, company-source relationships, profiles, tags, and update logs', 'Designed source traceability and quality controls around missing fields, stale sources, duplicate candidates, and conflicting values', 'Prepared dashboard-ready and map-ready outputs for company indexes, ecosystem segmentation, research briefs, and enriched dataset packages', 'Translated data engineering work into a high-fidelity portfolio case for AI product, UX research, frontend, and data platform roles'],
         zhOutcomes: ['將分散的公開與人工維護產業訊號整合成可重複使用的研究資料庫流程', '以公司實體為核心建模，串接 aliases、source_rows、company_sources、profiles、tags 與 update_logs', '圍繞缺失欄位、來源過期、重複候選與衝突值設計來源追溯與品質控制', '準備可接入儀表板與地圖的輸出，支援公司索引、生態分群、研究 brief 與補強資料包', '將資料工程工作轉譯為 AI 產品、UX 研究、前端與資料平台職能都能理解的高擬真案例'],
         tech: [{ label: 'Acquisition', val: 'Playwright for dynamic pages, structured requests for stable pages, manual spreadsheet ingestion, cache fallback' }, { label: 'Cleaning', val: 'Pandas normalization, missing-value flags, deduplication, alias mapping, column and type standardization' }, { label: 'Database Modeling', val: 'Canonical company entities, alias tables, source registry, source rows, join tables, update logs' }, { label: 'Quality Controls', val: 'Source traceability, stale-source checks, conflict handling, review queue, field-level confidence indicators' }, { label: 'Visualization', val: 'Power BI-ready tables, HTML ecosystem map, filterable intelligence views, research brief exports' }, { label: 'Portfolio Boundary', val: 'Public-safe reconstruction with sample displays instead of confidential company-level records' }],
@@ -476,30 +484,32 @@ Emobot+ 並不是要取代專業諮商，而是協助校園中尚未正式求助
         caseHeroImage: DEEPTECH_HERO_IMAGE,
         storyIntro: {
             kicker: 'DATA ROOM DOSSIER', zhKicker: '資料室檔案',
-            title: 'Every number keeps its receipt', zhTitle: '每個數字都留有出處',
-            lead: 'Eight registered sources, eight relational tables, 230+ tracked companies — the pipeline that turns unstable public records into a database a research team can cite without flinching.',
-            zhLead: '八個登錄來源、八張關聯資料表、230+ 家追蹤公司——這條管線，把不穩定的公開紀錄變成研究團隊敢放心引用的資料庫。',
+            title: 'Every record can be traced back to its source', zhTitle: '每筆資料，都能回到它的來源',
+            lead: 'Eight source categories, eight relational tables, and records for 230+ companies turn continuously changing public information into a data foundation that research teams can query, verify, and reuse.',
+            zhLead: '整合 8 類資料來源、8 張關聯式資料表與 230+ 家企業紀錄，將持續變動的公開資訊整理成研究團隊可查詢、可核對、可重複使用的資料基礎。',
             motif: 'grid',
         },
+        caseCoverCaption: 'Data workflow / interactive prototype / system evidence',
+        zhCaseCoverCaption: '資料流程 / 互動原型 / 系統證據',
         caseDeck: {
             eyebrow: 'Data room',
             zhEyebrow: '資料室',
-            title: 'From fragmented public records to a queryable research database',
-            zhTitle: '把分散的公開紀錄，整理成可查詢的研究資料庫',
-            body: 'A relational core where every field can point back to the source row that proved it — built for a research team that needs to trust a number before citing it.',
-            zhBody: '一個關聯式資料核心，每個欄位都能指回證明它的來源列 — 為需要在引用數字前先信任它的研究團隊而建。',
+            title: 'Turn fragmented public information into trustworthy research data',
+            zhTitle: '把分散的公開資訊，整理成可信的研究資料',
+            body: 'Built around a canonical company record, the system connects raw source records with enriched fields. Every record retains its origin, update time, and processing status, so research teams can see not only the cleaned result but also return to the original source data to verify it.',
+            zhBody: '以企業主檔為核心，串接來源原始紀錄與補強欄位。每筆資料都保留出處、更新時間與處理狀態，讓研究團隊不只看見整理後的結果，也能回到原始資料進行核對。',
             kpis: [
                 { label: 'Sources', value: '8', zhLabel: '來源' },
                 { label: 'Tables', value: '8', zhLabel: '資料表' },
                 { label: 'Companies', value: '230+', zhLabel: '公司數' },
             ],
-            signals: ['Intake', 'Resolve', 'Model', 'Gate', 'Deliver'],
-            zhSignals: ['登錄', '解析', '建模', '把關', '交付'],
+            signals: ['Source registration', 'Entity resolution', 'Data modeling', 'Quality checks', 'Research delivery'],
+            zhSignals: ['來源登錄', '實體解析', '資料建模', '品質檢核', '研究交付'],
         },
         storyMoments: [
-            { iconKey: 'database', title: 'Every source becomes a signal', zhTitle: '每個來源都成為一個訊號', body: 'Company registries, job pages, association lists, and manual sheets get registered with an access method, a cadence, and a trust boundary — not treated as one undifferentiated pile.', zhBody: '公司登記、徵才頁、協會名單與人工表格，都被登錄成有取得方式、更新頻率與信任邊界的訊號，而不是混在一起的資料堆。' },
-            { iconKey: 'layers', title: 'Identity becomes stable', zhTitle: '身份變得穩定', body: 'Aliases resolve into one canonical company profile, with a confidence score and a source trail attached to every merge decision.', zhBody: '別名解析為單一標準公司檔案，每個合併判斷都附帶可信度分數與來源軌跡。' },
-            { iconKey: 'check', title: 'Every number stays defensible', zhTitle: '每個數字都可以被捍衛', body: 'A quality gate and a provenance ledger sit between the raw data and the dashboard, so a stakeholder question always has a traceable answer.', zhBody: '品質閘門與溯源台帳銜接在原始資料與儀表板之間，讓利害關係人的提問總能得到可追溯的答案。' },
+            { iconKey: 'database', title: 'Separate sources before integrating information', zhTitle: '先分清來源，再整合資訊', body: 'Company registries, job pages, industry directories, and manual spreadsheets are recorded separately with their access methods, update frequencies, and use restrictions before entering subsequent processing, preventing data with different levels of reliability from being directly mixed.', zhBody: '公司登記、徵才頁、產業名錄與人工表格，會分別記錄取得方式、更新頻率與使用限制，再進入後續整理流程，避免不同可信程度的資料被直接混用。' },
+            { iconKey: 'layers', title: 'Identify the same company clearly', zhTitle: '把同一家公司辨認清楚', body: 'Through company-name normalization, alias management, and cross-source comparison, records from different websites are consolidated into a consistent company master record. Each merge retains its rationale and source trail, reducing duplicate records and incorrect matches.', zhBody: '透過公司名稱正規化、別名整理與跨來源比對，將不同網站中的紀錄歸併至一致的企業主檔。每次合併都保留判斷依據與來源軌跡，降低重複建檔與錯誤配對。' },
+            { iconKey: 'check', title: 'Make every data point evidence-backed', zhTitle: '讓每項資料都有證據', body: 'Add field checks, version records, and source tracking between the raw data and the dashboard. When researchers question a specific value, they can quickly return to the original source and processing record to verify it.', zhBody: '在原始資料與儀表板之間加入欄位檢核、版本記錄與來源追蹤。當研究人員對某項數據提出疑問時，可以快速回到原始來源與處理紀錄進行確認。' },
         ],
         // Outcomes deep-link into the Research Database Console modules (src/components/dataroom/).
         outcomeModules: [

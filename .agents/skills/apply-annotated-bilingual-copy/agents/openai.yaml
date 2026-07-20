@@ -1,0 +1,4 @@
+interface:
+  display_name: "Apply Annotated Bilingual Copy"
+  short_description: "Apply marked Chinese copy and sync its English pair"
+  default_prompt: "Use $apply-annotated-bilingual-copy to apply the Chinese copy changes in my annotated screenshot and update the corresponding English frontend copy."

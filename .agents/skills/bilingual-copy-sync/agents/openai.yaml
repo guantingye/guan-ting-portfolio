@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bilingual Copy Sync"
+  short_description: "Sync annotated Chinese copy into bilingual frontend content"
+  default_prompt: "Use $bilingual-copy-sync to apply annotated Chinese copy changes and update the matching English frontend text."

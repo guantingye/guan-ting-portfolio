@@ -36,24 +36,26 @@ const VOLATILITY_LABEL = {
 
 const COPY = {
   en: {
-    title: 'Source Signal Intake',
-    lead: 'Every source is registered as a signal — not just a URL — with its access method, update cadence, volatility, and the fields it is trusted to supply.',
-    soWhat: 'Treating sources as registered, faceted records (not ad-hoc scripts) is what let the pipeline survive a source going stale or changing its page layout without silently corrupting downstream data.',
-    accessLabel: 'Access method', volLabel: 'Volatility',
+    title: 'Data Source Login',
+    lead: 'Treat every source as a maintainable data asset, recording its access method, update cadence, stability, and usable fields so that subsequent collection, updates, and exception handling all have a clear basis.',
+    soWhat: 'Register sources first, then collect data. Even if a website fails, fields change, or a page is redesigned, the team can identify which data is affected and which processing steps need adjustment next.',
+    soWhatLabel: 'Design focus →',
+    accessLabel: 'Access method', volLabel: 'Source stability',
     all: 'All', count: n => `Showing ${n} of ${SOURCES.length} sources`,
-    detailHint: 'Select a source to see its trusted fields and limits.',
-    trustedFields: 'Trusted fields', cadence: 'Update cadence', limits: 'Limit',
-    limitText: 'Fields outside this list are not treated as authoritative for this source.',
+    detailHint: 'Select a source to review its usable fields and usage limits.',
+    trustedFields: 'Usable fields', cadence: 'Update cadence', limits: 'Usage limits',
+    limitText: 'Only confirmed fields are included in the research data; all other content still requires cross-checking against a second source.',
   },
   zh: {
-    title: '來源訊號登錄',
-    lead: '每個來源都被登錄為一個訊號，而不只是一個網址——記錄取得方式、更新頻率、波動程度，以及可被信任提供的欄位。',
-    soWhat: '把來源當作有面向標記的登錄紀錄（而非臨時腳本）處理，讓管線在來源失效或改版時不會靜默污染下游資料。',
-    accessLabel: '取得方式', volLabel: '波動程度',
+    title: '資料來源登入',
+    lead: '將每個來源視為可持續維護的資料資產，記錄其取得方式、更新頻率、穩定程度與可採用欄位，讓後續擷取、更新與異常處理都有明確依據。',
+    soWhat: '先登錄來源，再執行資料擷取。即使網站失效、欄位異動或頁面改版，團隊仍能辨認受影響的資料，以及後續需要調整的處理流程。',
+    soWhatLabel: '設計重點 →',
+    accessLabel: '取得方式', volLabel: '來源穩定度',
     all: '全部', count: n => `顯示 ${n} / ${SOURCES.length} 個來源`,
-    detailHint: '選擇一個來源以檢視其可信欄位與限制。',
-    trustedFields: '可信欄位', cadence: '更新頻率', limits: '限制',
-    limitText: '清單以外的欄位不被視為此來源的權威資料。',
+    detailHint: '選擇一個來源以檢視其可採用欄位與使用限制。',
+    trustedFields: '可採用欄位', cadence: '更新頻率', limits: '使用限制',
+    limitText: '僅將已確認的欄位納入研究資料；其他內容仍需透過第二來源交叉核對。',
   },
 };
 
@@ -72,7 +74,7 @@ export default function M01_SourceIntake() {
   const nameOf = s => (typeof s.name === 'string' ? s.name : s.name[lang]);
 
   return (
-    <SectionModule mod={MOD} title={c.title} lead={c.lead} soWhat={c.soWhat}>
+    <SectionModule mod={MOD} title={c.title} lead={c.lead} soWhat={c.soWhat} soWhatLabel={c.soWhatLabel}>
       <div className="dt-si">
         <div className="dt-si-facets">
           <div className="dt-si-facet-group">

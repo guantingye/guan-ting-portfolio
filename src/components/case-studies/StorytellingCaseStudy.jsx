@@ -22,6 +22,9 @@ export default function StorytellingCaseStudy({ project: p, lang }) {
     const introKicker = (PA ? intro.zhKicker || intro.kicker : intro.kicker) || (PA ? '章節式案例' : 'CINEMATIC CASE STUDY');
     const introTitle = (PA ? intro.zhTitle || intro.title : intro.title) || (PA ? '用章節式敘事呈現產品思考' : 'A chapter-led product story');
     const introLead = (PA ? intro.zhLead || intro.lead : intro.lead) || (PA ? '沿著產品決策的順序，說明如何從問題定義、訊號整理、產品原型、互動設計到上市驗證，建立一套可被討論與執行的 AI 產品流程' : 'This section uses a richer case-study rhythm: problem framing, decision logic, interaction evidence, and visual proof points.');
+    const coverCaption = PA
+        ? p.zhCaseCoverCaption || p.caseCoverCaption || '產品產出 / 原型佐證'
+        : p.caseCoverCaption || 'Product artifacts / prototype evidence';
     return React.createElement('div', { className: `story-case reveal${compact ? ' story-case-compact' : ''}`, 'data-motif': intro.motif || undefined },
         React.createElement('div', { className: 'story-case-hero' },
             React.createElement('div', { className: 'story-case-copy' },
@@ -33,7 +36,7 @@ export default function StorytellingCaseStudy({ project: p, lang }) {
                 React.createElement('div', { className: 'story-case-media-glass' },
                     React.createElement('span', null, PA ? '案例封面' : 'CASE COVER'),
                     React.createElement('strong', null, projectTitle),
-                    React.createElement('small', null, PA ? '產品產出 / 原型佐證' : 'Product artifacts / prototype evidence')))),
+                    React.createElement('small', null, coverCaption)))),
         deck && React.createElement('div', { className: 'story-case-live' },
             React.createElement('div', { className: 'story-case-cockpit' },
                 React.createElement('div', { className: 'story-case-live-top' },
