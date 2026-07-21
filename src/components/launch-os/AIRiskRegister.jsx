@@ -248,15 +248,16 @@ const COPY = {
         eyebrow: 'MODULE 05 — RESPONSIBLE AI',
         title: 'AI Risk Register & Model Card',
         lead: [
-            'This module shows how the AI assistant is allowed to behave, where it should stop, and who is responsible for checking the remaining risks.',
-            'The risk register keeps the highest-risk failure cases visible. The model card explains the intended use, out-of-scope use, assumptions, limitations, human review path, and fallback behavior.',
+            'This module organizes the AI assistant’s capability boundaries, failure scenarios, and ongoing monitoring responsibilities into a document that product, engineering, and governance teams can review together.',
+            'The risk register prioritizes each risk by likelihood and impact, and assigns preventive measures, an accountable role, review cadence, and residual risk that still requires attention. The Model Card then clarifies the product’s appropriate and inappropriate uses, data assumptions, known limitations, human-intervention conditions, and fallback behavior during failure.',
         ],
-        context: 'Scenario: “Meridian”, the same fictional B2B support reply assistant used across the previous modules.',
+        context: 'Scenario: This module continues the Meridian customer-support reply assistant, using simulated data to show how an AI product can establish a traceable risk-governance foundation before entering a pilot.',
         signature: 'Signature interaction: select a risk dot on the heat map and the matching risk detail opens in the register.',
         tabRegister: 'RISK REGISTER',
         tabCard: 'MODEL CARD',
         axisX: 'LIKELIHOOD →',
         axisY: 'IMPACT →',
+        axisLegend: 'L = Likelihood | I = Impact',
         heatmapAria: 'Risk heat map: five risks plotted by likelihood and impact',
         srTableCaption: 'Risks by likelihood and impact',
         srHeaders: { risk: 'Risk', likelihood: 'Likelihood', impact: 'Impact' },
@@ -293,17 +294,18 @@ const COPY = {
     },
     zh: {
         eyebrow: 'MODULE 05 — RESPONSIBLE AI',
-        title: 'AI 風險登錄簿與 Model Card',
+        title: 'AI 風險登錄與 Model Card',
         lead: [
-            '這個模組整理 AI 助理可以做什麼、應該在哪裡停下來，以及哪些風險需要由誰持續檢查。',
-            '風險登錄簿讓高風險情境不會只停留在口頭提醒；Model Card 則說清楚產品適合的用途、不適合的用途、資料假設、已知限制、人工審查流程與備援處理。',
+            '這個模組將 AI 助理的能力邊界、失效情境與持續監測責任，整理成可供產品、工程與治理團隊共同審查的文件。',
+            '風險登錄表依照發生可能性與影響程度排列優先順序，並為每項風險指定預防措施、負責角色、檢查頻率與仍需留意的殘餘風險。Model Card 則進一步說明產品適合與不適合的用途、資料假設、已知限制、人工介入條件與失效時的備援方式。',
         ],
-        context: '情境：「Meridian」延續前面模組中的虛構 B2B 客服回覆輔助工具。',
+        context: '案例情境：本模組延續 Meridian 客服回覆輔助工具，使用模擬資料呈現 AI 產品在進入試點前，如何建立可追蹤的風險治理基礎。',
         signature: '點選熱度圖上的風險點，右側會展開對應的風險說明。',
         tabRegister: '風險登錄',
         tabCard: 'MODEL CARD',
         axisX: '發生可能性 →',
         axisY: '影響程度 →',
+        axisLegend: 'L = 發生可能性（Likelihood）｜I = 影響程度（Impact）',
         heatmapAria: '風險熱度圖：五項風險依發生可能性與影響程度標示',
         srTableCaption: '各風險的發生可能性與影響程度',
         srHeaders: { risk: '風險', likelihood: '發生可能性', impact: '影響程度' },
@@ -494,6 +496,10 @@ function HeatMap({ t, lang, selectedId, onSelect }) {
                     ))}
                 </tbody>
             </table>
+
+            <p className="los-data-sm los-m3-axis-legend">
+                {t.axisLegend}
+            </p>
         </div>
     );
 }
@@ -897,6 +903,7 @@ injectStyles('los-m3-styles', `
 }
 .los-m3-heatwrap { position: relative; }
 .los-m3-heatmap { width: 100%; height: auto; display: block; }
+.los-m3-axis-legend { color: var(--text-3); margin: 8px 0 0; }
 .los-m3-axis-num { font-family: var(--font-data); font-size: 10px; fill: var(--text-3); }
 .los-m3-axis-label { font-family: var(--font-data); font-size: 10px; letter-spacing: 0.12em; fill: var(--text-3); }
 .los-m3-dotgroup { cursor: pointer; }

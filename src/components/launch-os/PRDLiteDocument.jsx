@@ -16,14 +16,14 @@ const SECTIONS = [
         },
         body: {
             en: [
-                'Meridian is designed for frontline support teams that answer a high volume of repeat questions every day. In the accounts we are targeting, agents often handle 40–60 tickets per shift. A large share of those tickets are not new problems — they are familiar requests like password resets, plan changes, invoice copies, and export limits.',
-                'The work looks simple from the outside because the answers already exist. But that is exactly where mistakes happen. When agents answer the same question for the fifth or sixth time in a day, attention drops, small details are easier to miss, and the cost of a wrong reply still lands on the person who sends it.',
-                'The opportunity is not to replace the agent. It is to help the agent stay careful at the moment when the work has become repetitive.',
+                'Meridian’s frontline support agents handle a high volume of similar tickets every day. Each agent completes roughly 40–60 tickets per shift; a substantial share are not new problems but recurring requests such as password resets, plan changes, invoice copies, and export limits.',
+                'These tasks do not look complex on the surface, but the real risk emerges after high repetition. When agents rewrite similar content many times in a day, attention gradually declines: they may miss conditional differences, cite outdated information, or fail to reconfirm crucial details before sending. Even when the answer already exists, the agent still bears responsibility for an incorrect reply.',
+                'Meridian v1’s opportunity is not to replace agents. It is to offer a source-backed, editable reply draft that must be human-confirmed at the moments when repetitive work most readily drains attention—helping agents start faster while retaining final judgment.',
             ],
             zh: [
-                'Meridian 服務的是每天需要處理大量重複問題的一線客服團隊。在目標客戶中，客服一個班次通常要處理 40–60 張工單，其中相當多並不是全新的問題，而是密碼重設、方案變更、發票副本、匯出上限這類反覆出現的請求。',
-                '從外部看，這些工作好像很簡單，因為答案早就存在。但真正容易出錯的地方也在這裡：當客服一天中第五次、第六次回答類似問題時，注意力會下降，細節更容易看漏，而錯誤回覆的責任仍然會落在送出的人身上。',
-                '這個產品的機會不是取代客服，而是在工作變得重複、注意力開始消耗的時候，幫助客服維持原本的謹慎。',
+                'Meridian 的第一線客服每天需要處理大量內容相似的工單。每位客服一個班次約需完成 40–60 張工單，其中相當一部分並不是新的問題，而是密碼重設、方案異動、發票副本與匯出限制等反覆出現的請求。',
+                '這些工作表面上並不複雜，真正的風險卻出現在高度重複之後。當客服在一天內多次重新撰寫相似內容，注意力會逐漸下降，容易漏掉條件差異、引用過期資訊，或在送出前沒有再次確認關鍵細節。即使答案早已存在，最後承擔錯誤責任的仍是客服本人。',
+                'Meridian v1 的機會不是取代客服，而是在重複工作最容易消耗注意力的時刻，提供一份有來源、可修改且必須由人工確認的回覆草稿，協助客服更快開始，同時保留最後判斷權。',
             ],
         },
     },
@@ -35,19 +35,21 @@ const SECTIONS = [
         },
         body: {
             en: [
-                'It is 4:10 on a Thursday. Ren has already closed thirty-nine tickets. The next one is another export-limit question — the third time today. She knows the answer, so she starts typing quickly, half-reading the details, and accidentally uses the limit for the wrong plan.',
-                'The customer replies twenty minutes later, polite but confused. What should have been an easy ticket has now become a repair job.',
-                'Meridian should help in exactly that moment: when the answer is familiar enough to make the agent move fast, but still specific enough that the details matter. The assistant should offer a careful draft, show where the answer comes from, and leave the final judgment to Ren.',
+                'At 4:10 p.m. on Thursday, support agent Ren has already handled more than thirty tickets. The next is another familiar export-limit issue—the third similar request she has answered today.',
+                'She knows the correct answer. The hard part is not understanding the question, but remembering to check plan differences, applicable conditions, and cited sources even as fatigue accumulates. She quickly rewrites a familiar reply, but omits the export limit for that customer’s plan.',
+                'Twenty minutes later, the customer replies to point out that the information was wrong. Ren not only needs to explain again; she also has to bear the loss of trust caused by the incorrect reply.',
+                'Meridian should help at this moment: generate a draft from the current ticket and verified knowledge sources, clearly label citations and confidence status, and keep the final editing and sending decision with Ren.',
             ],
             zh: [
-                '星期四下午四點十分。Ren 已經處理完三十九張工單，下一張又是匯出上限的問題，今天第三次。她其實知道答案，所以開始很快地打字，只大概掃過細節，結果不小心用了錯誤方案的上限數字。',
-                '二十分鐘後，客戶回信了，語氣禮貌但困惑。原本應該很快解決的一張工單，現在變成需要補救的問題。',
-                'Meridian 要介入的正是這個時刻：答案熟到讓客服容易加速，但細節又重要到不能出錯。助理應該提供一份謹慎的草稿，清楚標出答案來源，並把最後判斷留給 Ren。',
+                '星期四下午四點十分，客服 Ren 已經處理超過三十張工單。下一張仍然是常見的匯出限制問題，也是她今天第三次回答相似請求。',
+                '她知道正確答案，真正困難的不是理解問題，而是在疲勞累積之後，仍然記得檢查方案差異、適用條件與引用來源。她快速重寫了一段熟悉的回覆，卻漏掉該客戶方案的匯出上限。',
+                '二十分鐘後，客戶回信指出資訊有誤。Ren 不只需要重新說明，也必須承擔錯誤回覆造成的信任損失。',
+                'Meridian 應在這個時刻提供協助：根據當前工單與已驗證的知識來源產生草稿，清楚標示引用依據與信心狀態，並將最後的修改與送出決定保留給 Ren。',
             ],
         },
         annotation: {
-            en: 'This scene shaped the rest of the PRD. The product is not mainly about typing faster. It is about helping agents stay accurate when repetitive work makes accuracy harder.',
-            zh: '這個場景決定了後面的需求方向。這個產品的核心不是讓客服打字更快，而是在重複工作讓人更容易分心時，幫助客服維持準確。',
+            en: 'Decision rationale | This scenario establishes the core value of v1: not merely enabling agents to respond faster, but providing a verifiable starting point when fatigue and repetitive work heighten error risk so they can maintain judgment quality.',
+            zh: '決策理由｜這個情境確立了第一版的核心價值：不是讓客服單純回覆得更快，而是在疲勞與重複工作增加錯誤風險時，提供可核對的起稿協助，幫助客服維持判斷品質。',
         },
     },
     {
@@ -60,14 +62,16 @@ const SECTIONS = [
             label: { en: 'Goals', zh: '目標' },
             items: {
                 en: [
-                    'Reduce the median handling time for common support tickets without increasing reopen rates.',
-                    'Keep the agent as the visible author. Every sent reply should still reflect an explicit human review or edit.',
-                    'Help agents understand when to trust a draft and when to slow down.',
+                    'Shorten drafting time for common questions without increasing ticket reopen rates.',
+                    'Ensure agents always make the final decision; every reply must be viewed by a human before it is sent.',
+                    'Let agents know what a draft is based on, and when to reduce trust, verify again, or handle the case manually.',
+                    'Retain draft edit records as evidence for later improvements to knowledge sources and product quality.',
                 ],
                 zh: [
-                    '降低常見客服工單的處理時間，同時不提高工單重開率。',
-                    '讓客服始終是可見的作者。每一封送出的回覆，都必須經過明確的人類檢查或編輯。',
-                    '幫助客服判斷什麼時候可以相信草稿，什麼時候應該放慢速度再確認。',
+                    '縮短常見問題的回覆起稿時間，同時不提高工單重新開啟率。',
+                    '確保客服始終是最後決定者；所有回覆在送出前都必須經過人工查看。',
+                    '讓客服知道草稿根據哪些內容產生，以及何時應降低信任、重新查證或改由人工處理。',
+                    '保留草稿修改紀錄，作為後續改善知識來源與產品品質的依據。',
                 ],
             },
         },
@@ -75,20 +79,24 @@ const SECTIONS = [
             label: { en: 'Non-goals', zh: '非目標' },
             items: {
                 en: [
-                    'Meridian v1 will not send replies automatically. If the product cannot create value while a human reviews every draft, it has not earned more autonomy.',
-                    'Meridian will not rank or monitor agents. Usage data is for product improvement, not people evaluation.',
-                    'Meridian v1 will not cover complex billing disputes or highly customized support cases. Those may look draftable, but “sometimes plausible” is not safe enough for launch.',
+                    'Do not automatically send any customer reply. The first version does not pursue unattended automation.',
+                    'Do not include agent ranking or performance scoring in product scope. Usage data is used only to improve the product and workflow.',
+                    'Do not handle tickets that are highly contentious, highly customized, or require cross-functional judgment. These cases should return to existing human workflows.',
+                    'Do not automatically adjust tone according to customer demographic attributes. The first version generates drafts only from account type, ticket context, and confirmed information.',
+                    'Do not support multilingual output that has not completed quality validation. The first version focuses on the established support scope for Chinese and English.',
                 ],
                 zh: [
-                    'Meridian v1 不做自動送出。如果這個產品在每封回覆都有人類檢查的情況下都無法創造價值，那它還沒有資格談更高程度的自動化。',
-                    'Meridian 不用來排名或監控客服。使用資料只用於產品改善，不作為人員評比。',
-                    'Meridian v1 不涵蓋複雜帳務爭議或高度客製化的客服案件。這些情境有時看起來也能生成草稿，但「偶爾看似合理」還不足以上線。',
+                    '不自動送出任何客戶回覆。第一版不追求無人介入的自動化。',
+                    '不將客服人員排名或績效評分納入產品範圍。使用資料只用於改善產品與流程。',
+                    '不處理高爭議、高客製或需要跨部門判斷的工單。這些情境應回到既有人工流程。',
+                    '不依不同客戶人口屬性自動調整語氣。第一版只依帳戶類型、工單情境與已確認資訊產生草稿。',
+                    '不支援尚未完成品質驗證的多語言輸出。第一版先聚焦中文與英文的既定支援範圍。',
                 ],
             },
         },
         annotation: {
-            en: 'The non-goals matter because they protect the product from becoming a surveillance tool or an unsafe automation feature. They also make the first version easier to evaluate.',
-            zh: '非目標很重要，因為它們保護產品不會變成監控工具，也避免第一版過早走向不安全的自動化。範圍清楚，第一版才更容易被驗證。',
+            en: 'Decision rationale | Non-goals protect the safety boundary of the first version. Explicitly stating what the product will not do prevents it from prematurely moving toward auto-send, performance monitoring, or complex situations it cannot handle reliably, and makes validation results easier to interpret.',
+            zh: '決策理由｜非目標用來保護第一版的安全邊界。明確說明不做什麼，可以避免產品過早走向自動送出、績效監控或無法穩定處理的複雜情境，也讓驗證結果更容易解讀。',
         },
     },
     {
@@ -99,55 +107,57 @@ const SECTIONS = [
         },
         scopeIn: {
             en: [
-                'Draft replies for the most common support ticket types',
-                'Source passages shown beside each draft',
-                'A simple three-level trust indicator',
-                'A human review path when the assistant is unsure',
-                'Agent edits captured as product feedback',
+                'Generate editable reply drafts for common, low-contention tickets.',
+                'Show the cited knowledge sources and applicable content beside each draft.',
+                'Present confidence status with high / medium / low labels.',
+                'Prioritize human review when sources are incomplete, content conflicts, or confidence is insufficient.',
+                'Record agents’ edits and final adoption status as signals for product improvement.',
+                'Embed drafts directly in the existing ticket reply interface rather than requiring agents to switch tools.',
             ],
             zh: [
-                '為最常見的客服工單提供回覆草稿',
-                '在每份草稿旁顯示答案來源段落',
-                '提供簡單的三段式信任提示',
-                '當助理不確定時，導向人工優先檢查',
-                '將客服的編輯紀錄作為產品改善回饋',
+                '為常見、低爭議工單產生可編輯的回覆草稿。',
+                '在每份草稿旁標示所引用的知識來源與適用內容。',
+                '以高／中／低三段式標籤呈現信心狀態。',
+                '在來源不完整、內容衝突或信心不足時，優先提示人工檢查。',
+                '將客服的修改與最終採用狀態記錄為產品改善訊號。',
+                '將草稿直接嵌入現有工單回覆介面，不要求客服切換工具。',
             ],
         },
         scopeOut: {
             en: [
                 {
                     item: 'Automatic sending',
-                    why: 'Replies should not reach customers without a human review in v1.',
+                    why: 'Every reply must be reviewed and actively sent by an agent before it reaches the customer.',
                 },
                 {
                     item: 'Shift-level summaries',
-                    why: 'Research shows agents need help inside the ticket they are currently handling, not in a separate summary view.',
+                    why: 'The first version focuses on real-time assistance in the current ticket and does not add a summary dashboard that must be opened separately.',
                 },
                 {
-                    item: 'Tone personalization based on customer demographics',
-                    why: 'This introduces unnecessary risk. Account type and ticket context are enough for v1.',
+                    item: 'Tone adjustment based on demographic attributes',
+                    why: 'The first version does not rewrite tone according to age, gender, or other demographic attributes, avoiding unnecessary inference and bias.',
                 },
                 {
-                    item: 'Additional languages beyond English and Traditional Chinese',
-                    why: 'Mixed-language tickets are already complex enough for the first release.',
+                    item: 'Multilingual generation outside validated scope',
+                    why: 'Languages that have not completed data-quality and language evaluation are not included in the first-version generation scope.',
                 },
             ],
             zh: [
                 {
                     item: '自動送出',
-                    why: 'v1 不讓任何回覆在未經人類檢查的情況下直接送到客戶端。',
+                    why: '所有回覆在送達客戶前，都必須由客服查看並主動送出。',
                 },
                 {
                     item: '班次層級摘要',
-                    why: '研究顯示，客服需要的是眼前這張工單中的協助，而不是另一個需要額外打開的摘要畫面。',
+                    why: '第一版聚焦當前工單中的即時協助，不新增需要額外開啟的摘要儀表板。',
                 },
                 {
-                    item: '依客戶人口屬性調整語氣',
-                    why: '這會帶來不必要的風險。第一版只需要依照帳戶類型與工單情境調整即可。',
+                    item: '依人口屬性調整語氣',
+                    why: '第一版不根據年齡、性別或其他人口屬性改寫語氣，以避免不必要的推測與偏誤。',
                 },
                 {
-                    item: '英文與繁中以外的語言',
-                    why: '中英混合工單已經是第一版需要處理的高複雜情境，不應在尚未穩定前繼續擴張語言範圍。',
+                    item: '超出驗證範圍的多語言生成',
+                    why: '尚未完成資料品質與語言評估的語言，不納入第一版產生範圍。',
                 },
             ],
         },
@@ -165,12 +175,24 @@ const SECTIONS = [
                     zh: '信任提示',
                 },
                 body: {
-                    en: 'Each draft shows one of three trust levels. When the system is confident, the draft opens with source passages beside it. When the system is unsure, the draft appears in a more cautious state: the agent can still open and edit it, but cannot send it without making at least one change.',
-                    zh: '每份草稿都會顯示三段式信任提示。當系統判斷把握較高時，草稿會完整展開，旁邊附上來源段落。當系統不確定時，草稿會以較謹慎的狀態呈現：客服仍然可以打開與編輯，但至少要修改過一次，才能送出。',
+                    en: [
+                        'Every draft should display a high / medium / low three-level confidence indicator.',
+                        'High confidence: The draft can be fully expanded and identifies its primary sources.',
+                        'Medium confidence: The agent can continue editing, but must modify at least one key piece of information.',
+                        'Low confidence: The system explicitly recommends human review and should not use a default state that encourages direct sending.',
+                        'Confidence indicators must be paired with sources and rationale; they cannot simply show a precise-looking score that cannot be explained.',
+                    ],
+                    zh: [
+                        '每份草稿都應顯示高／中／低三段式信心提示。',
+                        '高信心：草稿可完整展開，並標示主要來源。',
+                        '中信心：客服能持續可編輯，但至少要修改一次關鍵資訊。',
+                        '低信心：系統明確建議人工檢查，不應以預設狀態鼓勵直接送出。',
+                        '信心提示必須搭配來源與理由，不能只呈現一個看似精確、卻無法解釋的分數。',
+                    ],
                 },
                 annotation: {
-                    en: 'I chose a simple trust indicator instead of a numeric confidence score because decimals can create false authority. Agents need a review cue, not a score that pretends to be precise.',
-                    zh: '我選擇簡單的信任提示，而不是數值化信心分數，因為小數點很容易製造過度精準的錯覺。客服需要的是檢查提醒，而不是一個看起來像絕對答案的分數。',
+                    en: 'Decision rationale | Use a simple three-level indicator rather than show a numeric confidence score. Early testing showed that precise figures easily create unnecessary authority; what agents really need is a clear cue for when they may continue and when they should stop to review.',
+                    zh: '決策理由｜採用簡單的三段式提示，而不顯示數值信心分數。前期測試顯示，精確數字容易製造不必要的權威感；客服真正需要的是何時可以繼續、何時應該停下來檢查的明確提示。',
                 },
             },
             {
@@ -179,12 +201,24 @@ const SECTIONS = [
                     zh: '備援狀態',
                 },
                 body: {
-                    en: 'If the assistant is slow, unavailable, or unable to verify its sources, the editor should clearly explain what changed. In the lightest case, the system can show template suggestions. If source verification fails, the citation should be removed or marked. If the assistant is fully unavailable, the editor should return to the normal pre-AI experience.',
-                    zh: '當助理變慢、暫時無法使用，或無法確認答案來源時，編輯器必須清楚告訴客服目前發生了什麼。最輕微的情況下，系統可以改提供範本建議；如果來源無法驗證，引用應該被移除或標示；如果助理完全不可用，編輯器應回到原本沒有 AI 的使用狀態。',
+                    en: [
+                        'Whenever system latency is too high, it cannot produce a draft temporarily, or it cannot verify the knowledge source, the interface must clearly explain its current state and the next available action.',
+                        'With mild delays, it may provide verified baseline templates, but must not present them as complete personalized recommendations.',
+                        'When sources cannot be verified, remove or mark relevant citations and remind agents to verify them independently.',
+                        'If the system becomes completely unavailable, the reply editor must continue functioning normally so agents can return to their existing manual workflow.',
+                        'Do not show unfinished, truncated, or source-unknown drafts.',
+                    ],
+                    zh: [
+                        '當系統延遲過高、暫時無法產生草稿，或無法確認知識來源時，介面必須清楚說明目前狀態與可採取的下一步。',
+                        '延遲輕微時，可提供已驗證的基礎範本，但不得假裝為完整的個人化建議。',
+                        '來源無法驗證時，應移除或標記相關引用，並提醒客服自行查證。',
+                        '系統完全不可用時，回覆編輯器應維持正常運作，讓客服能回到原有人工作流程。',
+                        '不得顯示未完成、截斷或來源不明的草稿。',
+                    ],
                 },
                 annotation: {
-                    en: 'Fallback is a user experience requirement, not only an engineering concern. Agents make their next move based on whether a draft is coming, so the product must be honest about its state.',
-                    zh: '備援不是單純的工程問題，而是使用者體驗問題。客服會根據「草稿到底會不會出現」來決定下一步，因此產品必須誠實呈現自己的狀態。',
+                    en: 'Decision rationale | Fallback is not a narrow engineering exception; it is a complete user experience. Agents decide whether to trust a draft based on the state they see, so the system must truthfully disclose its limits and must not retain an apparently normal interface when it fails.',
+                    zh: '決策理由｜備援不是單純的工程例外，而是完整的使用者體驗。客服會根據畫面狀態決定是否信任草稿，因此系統必須如實呈現能力限制，不能在失效時維持看似正常的介面。',
                 },
             },
             {
@@ -193,8 +227,22 @@ const SECTIONS = [
                     zh: '錯誤回覆的補救流程',
                 },
                 body: {
-                    en: 'If a sent reply is later found to be wrong, the agent or lead can flag it inside the same ticket. The product should open a correction template, save the draft, the sources, and the edit history, and route the case to review. If the same ticket type produces repeated confirmed errors, drafting for that ticket type should be paused until it is reviewed.',
-                    zh: '如果已送出的回覆事後被發現有誤，客服或主管可以在同一張工單內標記。產品應開啟更正範本，保存原草稿、來源與編輯紀錄，並將該案例送入審查。如果同一種工單類型重複出現確認錯誤，該類型應暫停產生草稿，直到重新檢查完成。',
+                    en: [
+                        'If a sent reply is later found to be wrong, an agent or lead should be able to flag the issue in the original ticket and start a recovery workflow:',
+                        'Create a corrected version and send it to the customer.',
+                        'Preserve the original draft, cited sources, agent edits, and sent version.',
+                        'Send the case to human review to determine whether the issue came from the model, knowledge source, or operating workflow.',
+                        'If similar errors recur, suspend draft generation for the related ticket type until the review is complete.',
+                        'The recovery workflow must remain in context with the original ticket, avoiding error records scattered across other systems.',
+                    ],
+                    zh: [
+                        '若已送出的回覆後續被發現有誤，客服或主管應能在原工單中標記問題，並啟動補救流程：',
+                        '建立更正版本並回覆客戶。',
+                        '保存原始草稿、引用來源、客服修改內容與送出版本。',
+                        '將案例送入人工審核，確認問題來自模型、知識來源或操作流程。',
+                        '若同類錯誤重複出現，暫停相關工單類型的草稿產生，直到檢查完成。',
+                        '補救流程應與原工單保留在同一脈絡中，避免錯誤紀錄散落於其他系統。',
+                    ],
                 },
             },
             {
@@ -203,12 +251,20 @@ const SECTIONS = [
                     zh: '從客服編輯中學習',
                 },
                 body: {
-                    en: 'Agent edits should be treated as context and tone feedback, not automatic proof that the original draft was factually wrong. A sample of edits should be reviewed weekly and used to improve future drafts. Acceptance metrics are for product improvement only and should never appear in people-performance dashboards.',
-                    zh: '客服的編輯應被視為情境與語氣回饋，而不是自動判定原草稿事實錯誤。團隊應每週抽樣檢視編輯紀錄，並用來改善後續草稿。採用率與編輯資料只能用於產品改善，不能出現在人員績效儀表板中。',
+                    en: [
+                        'Agent edits to drafts should be treated as signals for product improvement, not automatically as a declaration that model output was wrong.',
+                        'The team can regularly sample and review edit content, identifying common tone adjustments, information additions, or knowledge-base gaps as evidence for later improvements to the knowledge base and drafting behavior.',
+                        'This data may be used only to improve the product and process. It must not evaluate individual agent performance or automatically be written back as new standard answers without review.',
+                    ],
+                    zh: [
+                        '客服對草稿的修改應被視為產品改善訊號，而不是自動判定模型輸出錯誤。',
+                        '團隊可定期抽樣檢視修改內容，辨識常見的語氣調整、資訊補充或知識庫落差，作為後續改善知識庫與草稿行為的依據。',
+                        '這些資料只能用於產品與流程改善，不得直接用來評估客服個人績效，也不能在未經審核的情況下自動回寫為新的標準答案。',
+                    ],
                 },
                 annotation: {
-                    en: 'An edit can make a wrong answer sound more convincing. That is why edits should inform tone and workflow learning, but should not be blindly treated as factual correction data.',
-                    zh: '一次編輯可能只是讓錯誤答案聽起來更有說服力。因此，編輯可以幫助產品理解語氣與工作流程，但不能被盲目當作事實修正資料。',
+                    en: 'Decision rationale | An agent’s edits may correct an error, or they may add context, tone, and responsibility judgment. Edit records can help the team understand the product and workflow, but they must not be blindly treated as factual annotation data.',
+                    zh: '決策理由｜客服修改草稿，可能是在修正錯誤，也可能是在補足情境、語氣與責任判斷。編輯紀錄能協助團隊理解產品與工作流程，但不能被盲目視為事實標註資料。',
                 },
             },
         ],
@@ -221,24 +277,26 @@ const SECTIONS = [
         },
         criteria: {
             en: [
-                'When an agent opens a common support ticket, the reply editor should show a draft with source passages within 2 seconds. If it cannot, the fallback state should appear instead.',
-                'When a draft is marked as uncertain, the agent should be able to open and edit it, but sending should stay disabled until at least one edit is made.',
-                'When the assistant is unavailable, the editor should clearly show that state and avoid displaying partial or unfinished drafts.',
-                'When an agent edits a draft and sends the reply, the edit history should be saved with the ticket as product feedback.',
-                'When a draft includes a policy reference, the product should only show that reference if it passes source verification.',
-                'When a ticket thread is too long or too complex for the current version, the product should not offer a draft and should return to the standard editor.',
-                'When an agent accepts nearly all drafts without editing over a week, support ops should receive a coaching signal. This should never become an automatic lockout or performance penalty.',
-                'When a sent reply is flagged as wrong, the correction template and reporting path should open inside the same ticket view.',
+                'When an agent opens a common, low-contention ticket, the reply draft should appear within 2 seconds. If it exceeds that limit, the interface must show a clear loading or degraded state.',
+                'Every draft must show a high / medium / low confidence indicator and at least one viewable cited source.',
+                'Before sending a medium- or low-confidence draft, the agent must make at least one edit or actively confirm it; low-confidence drafts must not be directly sendable by default.',
+                'When the draft service is temporarily unavailable, the existing reply editor and manual workflow must continue to function normally, without unfinished or partial drafts.',
+                'After an agent edits and sends a draft, the system must save the original draft, final version, cited sources, and key interaction records.',
+                'Only policy or knowledge content that passes source verification may be shown as formal citations; unverified content must be clearly marked or removed.',
+                'When ticket content is outside the first version’s support scope, the system must not generate a draft and should guide the agent back to the standard manual workflow.',
+                'If a specific agent directly adopts drafts multiple times in a week, Support Operations may receive an alert to arrange a usage review; this alert must not be used for individual performance discipline.',
+                'If a sent reply is marked as incorrect, an agent can create a corrected reply in the original ticket and start the issue-reporting flow.',
             ],
             zh: [
-                '客服打開常見類型的工單時，回覆編輯器應在 2 秒內顯示附來源段落的草稿；如果無法做到，應顯示清楚的備援狀態。',
-                '當草稿被標記為不確定時，客服仍可打開與編輯，但在至少修改一次之前，送出按鈕應保持停用。',
-                '當助理暫時無法使用時，編輯器應清楚顯示目前狀態，並避免出現半完成或殘缺的草稿。',
-                '客服修改草稿並送出後，編輯紀錄應與工單一起保存，作為後續產品改善回饋。',
-                '當草稿引用政策或文件內容時，只有通過來源驗證的引用才應顯示。',
-                '當工單對話太長或情境超出第一版能力範圍時，產品不應提供草稿，並應回到標準編輯器。',
-                '如果某位客服一週內幾乎都原文接受草稿，support ops 應收到 coaching 提醒；這不應成為自動鎖定或績效懲罰。',
-                '當已送出的回覆被標記為錯誤時，更正範本與回報路徑應在同一張工單視圖內開啟。',
+                '開啟常見、低爭議工單時，回覆草稿應在 2 秒內顯示；若超時，介面需顯示明確的載入或降級狀態。',
+                '每份草稿都必須顯示高／中／低信心提示，以及至少一項可檢視的引用來源。',
+                '中信心或低信心草稿在送出前，客服必須至少進行一次編輯或主動確認；低信心草稿不得預設為可直接送出。',
+                '當草稿服務暫時無法使用時，原有回覆編輯器與人工流程仍可正常運作，不得出現未完成或殘缺草稿。',
+                '客服修改並送出草稿後，系統需保存原始草稿、最終版本、引用來源與主要操作紀錄。',
+                '只有通過來源驗證的政策或知識內容，才能顯示為正式引用；無法驗證的內容必須明確標示或移除。',
+                '當工單內容超出第一版支援範圍時，系統不產生草稿，並引導客服回到標準人工流程。',
+                '若特定客服一週內多次直接採用草稿，Support Operations 可收到提醒以安排使用回顧；此提醒不得被用作個人績效處分。',
+                '已送出的回覆若被標記為錯誤，客服可在原工單中建立更正回覆並啟動問題回報流程。',
             ],
         },
     },
@@ -248,16 +306,34 @@ const SECTIONS = [
             en: '7 · Open questions',
             zh: '7 · 未決問題',
         },
-        body: {
+        questions: {
             en: [
-                'Should the trust threshold be adjusted by team, ticket type, or individual agent behavior? The pilot suggests team-level settings, but there may be meaningful variation within the same team.',
-                'Does a correction template actually repair customer trust, or does it only help the internal team close the loop? We still need outcome data from real correction cases.',
-                'If AI drafts quietly compensate for outdated help-center articles, are we hiding a documentation problem that should be fixed at the source?',
+                {
+                    title: 'Q1 | Should confidence thresholds vary by context?',
+                    body: 'Should different confidence thresholds be set by support team, ticket type, or risk level? Current test results come mainly from a single team, which is not enough to determine whether the same threshold works in every context.',
+                },
+                {
+                    title: 'Q2 | Can the correction workflow repair customer trust?',
+                    body: 'Correction templates and recovery workflows may make internal handling more consistent, but whether they can reduce customer dissatisfaction and loss of trust still needs to be observed through real error cases.',
+                },
+                {
+                    title: 'Q3 | Could AI mask knowledge-base problems?',
+                    body: 'If AI drafts continually compensate for outdated or missing documentation, the team may feel more efficient in the short term while delaying real knowledge maintenance. Future work needs to distinguish which issues AI should assist with and which should return to content-governance workflows.',
+                },
             ],
             zh: [
-                '信任門檻應該依團隊、工單類型，還是個別客服行為調整？試點結果目前偏向團隊層級，但同一團隊內也可能存在重要差異。',
-                '更正範本真的能修復客戶信任，還是只是幫內部團隊把流程補完？我們仍需要來自真實更正案例的結果資料。',
-                '如果 AI 草稿默默補上了過期說明文件的缺口，我們是不是反而把一個本該從源頭修正的文件問題藏起來了？',
+                {
+                    title: 'Q1｜信心門檻是否需要依情境調整？',
+                    body: '是否應依客服團隊、工單類型或風險等級設定不同的信心門檻？目前測試結果主要來自單一團隊，尚不足以判斷相同門檻能否適用於所有情境。',
+                },
+                {
+                    title: 'Q2｜更正流程能否修復客戶信任？',
+                    body: '更正範本與補救流程可能讓內部處理更一致，但是否能降低客戶的不滿與信任損失，仍需觀察真實錯誤案例。',
+                },
+                {
+                    title: 'Q3｜AI 是否會掩蓋知識庫問題？',
+                    body: '若 AI 草稿持續補足過期或缺漏的說明文件，團隊可能短期內感覺效率提升，卻延後真正的知識維護。後續需要區分哪些問題應由 AI 協助，哪些問題應回到內容治理流程處理。',
+                },
             ],
         },
     },
@@ -271,46 +347,46 @@ const SECTIONS = [
             {
                 date: '2026-03-14',
                 decision: {
-                    en: 'Use a three-level trust indicator',
-                    zh: '採用三段式信任提示',
+                    en: 'Adopt high / medium / low three-level confidence indicators.',
+                    zh: '採用高／中／低三段式信心提示。',
                 },
                 rejected: {
-                    en: 'Numeric confidence score',
-                    zh: '數值化信心分數',
+                    en: 'Display a 0–100 numeric confidence score.',
+                    zh: '顯示 0–100 數值信心分數。',
                 },
                 reason: {
-                    en: 'In testing, numeric scores made uncertain drafts feel more authoritative than they were.',
-                    zh: '測試中，數值分數讓不確定的草稿看起來比實際上更有權威感。',
+                    en: 'Testing showed that numeric scores can make uncertain model output appear overly precise, increasing the risk that users directly accept low-confidence drafts. Three-level indicators are better for communicating the next action than pretending to be precise.',
+                    zh: '測試顯示，數值分數容易讓不確定的模型輸出看起來過度精確，增加使用者直接接受低信心草稿的風險。三段式提示更適合傳達後續行動，而不是假裝精準。',
                 },
             },
             {
                 date: '2026-04-02',
                 decision: {
-                    en: 'Evaluate trust per ticket',
-                    zh: '逐張工單判斷可信度',
+                    en: 'Evaluate confidence per ticket and per draft.',
+                    zh: '信心提示依單張工單與單次草稿判斷。',
                 },
                 rejected: {
-                    en: 'Session-level average score',
-                    zh: '班次層級平均分數',
+                    en: 'Show confidence as shift- or team-level average scores.',
+                    zh: '以班次或團隊平均分數呈現信心。',
                 },
                 reason: {
-                    en: 'Agents make decisions one ticket at a time. Averages can hide the exact cases that need caution.',
-                    zh: '客服一次只判斷一張工單。平均分數可能剛好藏住最需要小心的個案。',
+                    en: 'Agents handle one specific ticket at a time. Average scores can conceal a small number of high-risk cases and cannot help agents judge whether the draft in front of them is reliable.',
+                    zh: '客服一次處理的是一張具體工單；平均分數可能掩蓋少數高風險案例，也無法協助客服判斷眼前草稿是否可靠。',
                 },
             },
             {
                 date: '2026-04-21',
                 decision: {
-                    en: 'Require an edit before sending uncertain drafts',
-                    zh: '不確定草稿送出前必須經過編輯',
+                    en: 'Require human review before sending medium- or low-confidence drafts; low-confidence drafts must not be directly sendable by default.',
+                    zh: '中、低信心草稿在送出前必須經過人工查看；低信心草稿不得預設直接送出。',
                 },
                 rejected: {
-                    en: 'Hard block all uncertain drafts',
-                    zh: '直接封鎖所有不確定草稿',
+                    en: 'Completely lock all uncertain drafts and prevent agents from using them.',
+                    zh: '完全鎖定所有不確定草稿，禁止客服使用。',
                 },
                 reason: {
-                    en: 'A hard block removes judgment from the workflow. Requiring an edit keeps the agent in control while still slowing down risky sends.',
-                    zh: '直接封鎖會把人的判斷從流程中拿掉。要求編輯可以讓客服保有控制權，同時放慢高風險送出的速度。',
+                    en: 'A blanket block removes human judgment from the workflow and may delay valid use cases. Preserving the right to edit and confirm keeps agents in control while reducing the risk of unchecked direct sending.',
+                    zh: '全面封鎖會把人工判斷從流程中移除，也可能延誤合理使用情境。保留編輯與確認權，既能維持客服控制，也能降低未經檢查直接送出的風險。',
                 },
             },
         ],
@@ -320,13 +396,13 @@ const SECTIONS = [
 // ---- COPY -------------------------------------------------------------------
 const COPY = {
     en: {
-        eyebrow: 'MODULE 04 — LAUNCH ARTIFACT',
-        title: 'PRD-lite: Draft Reply Assistant',
+        eyebrow: 'MODULE 04 — PRODUCT REQUIREMENTS',
+        title: 'PRD-lite: Customer Support Reply Draft Assistant',
         lead: [
-            'This module presents a lightweight product requirements document for Meridian’s first release.',
-            'Instead of showing a blank PRD template, it demonstrates how product decisions, AI boundaries, user moments, scope trade-offs, and acceptance criteria can be written clearly enough for design, engineering, and business teams to review together.',
+            'This is a lightweight product requirements document for Meridian’s first release, translating the product opportunities, research insights, and risk constraints validated earlier into a specification that cross-functional teams can review together.',
+            'It focuses on what the first version genuinely needs to align on: the problem it solves, where it provides assistance, what AI can and cannot do, and how the team judges readiness for testing. Rather than a complete specification, it is an execution baseline sufficient to support design, engineering, and product decisions.',
         ],
-        context: 'Scenario: “Meridian” v1, the draft-reply opportunity selected as the safest first build in Module 01.',
+        context: 'Scenario: This document extends Module 01’s opportunity prioritization, defining the “Draft-reply assistant for common questions” as Meridian v1’s priority validation direction. It uses a simulated case to show how product judgment is translated into an executable specification.',
         signature: 'Signature interaction: review the acceptance criteria like a product reviewer and check them off as you go.',
         readingTime: 'Reading time: 6 min',
         tocLabel: 'CONTENTS',
@@ -334,20 +410,20 @@ const COPY = {
         outLabel: 'OUT — with rationale',
         logHeaders: {
             date: 'Date',
-            decision: 'Decision',
-            rejected: 'Rejected option',
-            reason: 'Why',
+            decision: 'Final decision',
+            rejected: 'Not selected',
+            reason: 'Decision basis',
         },
         criteriaHint: 'Checkboxes are local to this visit — nothing is saved.',
     },
     zh: {
-        eyebrow: 'MODULE 04 — LAUNCH ARTIFACT',
-        title: 'PRD-lite：客服草稿回覆助手',
+        eyebrow: 'MODULE 04 — PRODUCT REQUIREMENTS',
+        title: 'PRD-lite：客服回覆草稿助手',
         lead: [
-            '這個模組是一份為 Meridian 第一版設計的輕量產品需求文件。',
-            '它不是空白 PRD 範本，而是示範如何把產品判斷、AI 邊界、使用者情境、範圍取捨與驗收條件，寫成設計、工程與商業團隊都能一起審查的文件。',
+            '這是一份為 Meridian 第一版設計的輕量產品需求文件，將前面確認的產品機會、研究洞察與風險限制，轉化為可供跨職能團隊共同審閱的產品規格。',
+            '文件聚焦於第一版真正需要對齊的內容：產品要解決什麼問題、在哪些情境中提供協助、AI 可以做什麼與不能做什麼，以及團隊如何判斷它具備測試條件。它不是完整規格書，而是一份足以支援設計、工程與產品決策的執行基準。',
         ],
-        context: '情境：「Meridian」v1，延續 Module 01 中被選為最適合先做的草稿回覆機會。',
+        context: '案例情境：本文件延續 Module 01 的產品機會排序，將「常見問題回覆草稿助手」定義為 Meridian v1 的優先驗證方向。內容使用模擬案例，重點在於呈現產品判斷如何轉化為可執行規格。',
         signature: '你可以像產品審查者一樣逐條檢查驗收條件，並在閱讀過程中勾選確認。',
         readingTime: '閱讀時間：6 分鐘',
         tocLabel: 'CONTENTS',
@@ -355,9 +431,9 @@ const COPY = {
         outLabel: 'OUT——每一項附上原因',
         logHeaders: {
             date: '日期',
-            decision: '決策',
-            rejected: '放棄的選項',
-            reason: '理由',
+            decision: '最終決策',
+            rejected: '未採用方案',
+            reason: '決策依據',
         },
         criteriaHint: '勾選狀態僅存在於本次瀏覽——不會被儲存。',
     },
@@ -377,6 +453,13 @@ function SectionBody({ section, lang, t, checks, onCheck }) {
             {(section.body?.[lang] || []).map((para, i) => (
                 <p className="los-m5-para" key={i}>
                     {para}
+                </p>
+            ))}
+
+            {section.questions?.[lang].map(question => (
+                <p className="los-m5-para" key={question.title}>
+                    <strong>{question.title}</strong><br />
+                    {question.body}
                 </p>
             ))}
 
@@ -436,9 +519,11 @@ function SectionBody({ section, lang, t, checks, onCheck }) {
                     <h5 className="los-m5-req-name">
                         {req.name[lang]}
                     </h5>
-                    <p className="los-m5-para">
-                        {req.body[lang]}
-                    </p>
+                    {(Array.isArray(req.body[lang]) ? req.body[lang] : [req.body[lang]]).map((paragraph, paragraphIndex) => (
+                        <p className="los-m5-para" key={paragraphIndex}>
+                            {paragraph}
+                        </p>
+                    ))}
                     {req.annotation && (
                         <Annotation text={req.annotation[lang]} />
                     )}

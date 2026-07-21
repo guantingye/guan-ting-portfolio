@@ -16,8 +16,8 @@ const CLUSTERS = [
     {
         id: 'c1',
         title: {
-            en: 'One visible mistake can reset trust',
-            zh: '一次明顯錯誤，就足以讓信任重來',
+            en: 'One visible mistake can change how people use it afterward',
+            zh: '一次明顯錯誤，可能改變後續使用方式',
         },
         notes: [
             {
@@ -26,8 +26,8 @@ const CLUSTERS = [
                 round: 1,
                 insight: 'i1',
                 quote: {
-                    en: 'It once used an old refund policy. Since then, I check every number before I send anything.',
-                    zh: '它有一次用了舊的退款規則。從那之後，它給我的每個數字我都會再查一次。',
+                    en: 'Once it cited an outdated refund policy. Since then, I double-check nearly every number.',
+                    zh: '有一次它引用了舊的退款規則。從那之後，我幾乎每個數字都會再確認一次。',
                 },
             },
             {
@@ -36,8 +36,8 @@ const CLUSTERS = [
                 round: 1,
                 insight: 'i1',
                 quote: {
-                    en: 'At first I thought it was impressive. Then it made up a plan name, and I stopped trusting it so easily.',
-                    zh: '一開始我覺得它很厲害。後來它編了一個不存在的方案名稱，我就不敢太快相信它了。',
+                    en: 'At first I thought it was impressive. Then it made up a plan name that did not exist, and I no longer felt comfortable trusting it directly.',
+                    zh: '一開始我覺得它很厲害，後來它編出一個不存在的方案名稱，我就不太敢直接相信了。',
                 },
             },
             {
@@ -46,8 +46,8 @@ const CLUSTERS = [
                 round: 2,
                 insight: 'i1',
                 quote: {
-                    en: 'People remember the bad drafts. Good drafts just disappear into the workday.',
-                    zh: '大家會記得錯的草稿。好的草稿反而就這樣融進工作裡，不會特別被提起。',
+                    en: 'People remember drafts that go wrong. Good drafts, by contrast, quickly become routine and are rarely mentioned.',
+                    zh: '大家會記得出錯的草稿。好的草稿反而很快就被當成例行工作，不太會特別提起。',
                 },
             },
             {
@@ -56,8 +56,8 @@ const CLUSTERS = [
                 round: 2,
                 insight: 'i1',
                 quote: {
-                    en: 'If a wrong reply goes to an enterprise customer, I’m the one who has to explain what happened.',
-                    zh: '如果錯誤回覆送到企業客戶那邊，最後要解釋的人會是我。',
+                    en: 'If an incorrect reply actually goes to an enterprise customer, I am still the one who has to explain it.',
+                    zh: '如果錯誤回覆真的送到企業客戶那邊，最後需要出面解釋的人還是我。',
                 },
             },
             {
@@ -66,8 +66,8 @@ const CLUSTERS = [
                 round: 1,
                 insight: 'i1',
                 quote: {
-                    en: 'For password questions, I usually trust it. For billing questions, I slow down.',
-                    zh: '密碼問題我通常會相信它。可是遇到帳務問題，我就會放慢速度再確認。',
+                    en: 'I usually trust it on password issues, but when it comes to billing, I slow down and check again.',
+                    zh: '密碼類問題我通常會相信，但遇到帳務問題，就會放慢速度重新確認。',
                 },
             },
             {
@@ -76,8 +76,8 @@ const CLUSTERS = [
                 round: 2,
                 insight: 'i1',
                 quote: {
-                    en: 'The second rollout was harder. We were not introducing it anymore; we were asking people to try trusting it again.',
-                    zh: '第二次推行比較難。那已經不是介紹新功能，而是在請大家重新試著相信它。',
+                    en: 'The second rollout was harder than the first, because it was no longer about introducing a new feature; it was about rebuilding trust.',
+                    zh: '第二次推行比第一次更困難，因為那已經不是介紹新功能，而是重新建立信任。',
                 },
             },
         ],
@@ -85,8 +85,8 @@ const CLUSTERS = [
     {
         id: 'c2',
         title: {
-            en: 'Agents care about voice, not just speed',
-            zh: '客服在意的不只是速度，而是語氣與責任',
+            en: 'Efficiency has value, but agents still want to retain their voice and judgment',
+            zh: '效率有價值，但客服仍想保有語氣與判斷權',
         },
         notes: [
             {
@@ -95,8 +95,8 @@ const CLUSTERS = [
                 round: 1,
                 insight: 'i2',
                 quote: {
-                    en: 'Being fast is not the whole job. The customer needs to feel that someone understands them.',
-                    zh: '快不是這份工作的全部。客戶需要感覺到有人真的理解他。',
+                    en: 'Speed is not all there is to this job. Customers still need to feel that someone truly understands them.',
+                    zh: '速度不是這份工作的全部。客戶還是需要感覺到有人真的理解他。',
                 },
             },
             {
@@ -105,8 +105,8 @@ const CLUSTERS = [
                 round: 2,
                 insight: 'i2',
                 quote: {
-                    en: 'I rewrite the opening almost every time. It has to sound like something I would actually say.',
-                    zh: '開頭我幾乎每次都會重寫。它要聽起來像我真的會說的話。',
+                    en: 'I rewrite the opening almost every time because it sounds too much like a template.',
+                    zh: '開頭我幾乎每次都會重寫，因為它聽起來太像制式回覆。',
                 },
             },
             {
@@ -115,8 +115,8 @@ const CLUSTERS = [
                 round: 2,
                 insight: 'i2',
                 quote: {
-                    en: 'If I send the draft as-is and something is wrong, the customer will not blame the tool. They will blame me.',
-                    zh: '如果我原封不動送出結果錯了，客戶不會怪工具，會怪我。',
+                    en: 'If I send it directly and the content is wrong, customers will not blame the tool; they will still come to me.',
+                    zh: '如果我直接送出，結果內容有錯，客戶不會怪工具，最後還是會找我。',
                 },
             },
             {
@@ -125,8 +125,8 @@ const CLUSTERS = [
                 round: 2,
                 insight: 'i2',
                 quote: {
-                    en: 'The draft is usually okay. But “okay” is not always good enough for a tense customer.',
-                    zh: '草稿通常還可以。但遇到情緒緊繃的客戶，「還可以」不一定夠。',
+                    en: 'The draft is broadly usable, but for customers with stronger emotions, merely “okay” is usually not enough.',
+                    zh: '草稿大致可用，但遇到情緒比較強烈的客戶，只是「還可以」通常不夠。',
                 },
             },
         ],
@@ -134,8 +134,8 @@ const CLUSTERS = [
     {
         id: 'c3',
         title: {
-            en: 'The help has to meet the ticket they are on',
-            zh: '協助必須出現在客服正在處理的那張工單上',
+            en: 'Assistance must appear inside the existing workflow',
+            zh: '協助必須出現在既有工作流程裡',
         },
         notes: [
             {
@@ -144,8 +144,8 @@ const CLUSTERS = [
                 round: 2,
                 insight: 'i3',
                 quote: {
-                    en: 'I don’t really choose what to work on next. The queue decides that for me.',
-                    zh: '我其實不是自己決定下一張要處理什麼。是佇列把工單丟給我。',
+                    en: 'I do not separately decide which ticket to handle next; the system sends tickets to me in sequence.',
+                    zh: '我不是另外決定下一張要處理什麼，而是系統依序把工單送到我面前。',
                 },
             },
             {
@@ -154,8 +154,8 @@ const CLUSTERS = [
                 round: 1,
                 insight: 'i3',
                 quote: {
-                    en: 'A shift summary is nice, but it does not help someone who is stuck on the ticket in front of them.',
-                    zh: '班次摘要不錯，但幫不了正在卡在眼前那張工單的人。',
+                    en: 'A shift summary is nice, but it does not help the person handling the ticket in front of them.',
+                    zh: '班次摘要不錯，但它幫不了正在眼前處理這張工單的人。',
                 },
             },
             {
@@ -164,8 +164,8 @@ const CLUSTERS = [
                 round: 2,
                 insight: 'i3',
                 quote: {
-                    en: 'After dozens of tickets, I am not opening another dashboard. I need help inside the reply flow.',
-                    zh: '處理了幾十張工單之後，我不會再打開另一個 dashboard。我需要的是回覆流程裡的協助。',
+                    en: 'After handling dozens of tickets, I am not going to open another dashboard. What I need is help that appears directly in the reply flow.',
+                    zh: '處理了幾十張工單之後，我不會再開另一個儀表板。我需要的是直接出現在回覆流程裡的協助。',
                 },
             },
             {
@@ -174,8 +174,8 @@ const CLUSTERS = [
                 round: 1,
                 insight: 'i3',
                 quote: {
-                    en: 'Routing is decided by the organization. Agents work on what lands in their queue.',
-                    zh: '派單規則是公司層級決定的。客服就是處理落到自己佇列裡的東西。',
+                    en: 'Routing rules are an organization-level decision; agents simply handle what has been assigned to their queue.',
+                    zh: '派單規則是公司層級的決定，客服只是處理分配到自己佇列裡的內容。',
                 },
             },
         ],
@@ -183,8 +183,8 @@ const CLUSTERS = [
     {
         id: 'c4',
         title: {
-            en: 'When docs go stale, agents work from memory',
-            zh: '文件過期後，客服就改靠記憶工作',
+            en: 'When knowledge documents fail, teams create informal workarounds',
+            zh: '知識文件失效後，團隊會建立非正式替代方式',
         },
         notes: [
             {
@@ -193,8 +193,8 @@ const CLUSTERS = [
                 round: 1,
                 insight: 'i4',
                 quote: {
-                    en: 'That article has been wrong for months. At this point, everyone just knows not to use it.',
-                    zh: '那篇文章錯了好幾個月。現在大家都知道不要照著它用。',
+                    en: 'That article has had problems for months. Now everyone knows not to reply according to it.',
+                    zh: '那篇文章幾個月前就有問題了。現在大家都知道不要照著它回覆。',
                 },
             },
             {
@@ -203,8 +203,8 @@ const CLUSTERS = [
                 round: 1,
                 insight: 'i4',
                 quote: {
-                    en: 'I asked the docs team to fix the same page a few times. After a while, I stopped asking.',
-                    zh: '同一頁我請文件團隊修過幾次。後來我就不再問了。',
+                    en: 'I asked the documentation team to fix the same page several times, and eventually stopped reporting it.',
+                    zh: '同一頁我請文件團隊修過幾次，後來就不再回報了。',
                 },
             },
             {
@@ -213,8 +213,8 @@ const CLUSTERS = [
                 round: 2,
                 insight: 'i4',
                 quote: {
-                    en: 'I answer from memory because searching our own docs takes longer.',
-                    zh: '我會直接憑記憶回答，因為搜尋我們自己的文件反而更慢。',
+                    en: 'I answer directly from memory because searching our own documents is slower instead.',
+                    zh: '我會直接憑記憶回答，因為搜尋自己的文件反而更慢。',
                 },
             },
             {
@@ -223,8 +223,8 @@ const CLUSTERS = [
                 round: 1,
                 insight: 'i5',
                 quote: {
-                    en: 'A new agent asked why the doc said something different. I told him to ignore the doc for that case.',
-                    zh: '新人問我為什麼文件寫得不一樣。我跟他說，那種情況先不要看那篇。',
+                    en: 'When a new agent asks why the documentation says something different, I simply remind them not to look at that article for that situation.',
+                    zh: '新人問為什麼文件寫得不一樣時，我只會提醒他，那種情況不要看那一篇。',
                 },
             },
             {
@@ -233,8 +233,8 @@ const CLUSTERS = [
                 round: 2,
                 insight: 'i5',
                 quote: {
-                    en: 'New agents sometimes read the AI drafts like examples of how we answer customers.',
-                    zh: '新進客服有時候會把 AI 草稿當成範例，看我們應該怎麼回客戶。',
+                    en: 'New support agents sometimes treat AI drafts as standard examples and watch how senior colleagues usually reply.',
+                    zh: '新進客服有時會把 AI 草稿當成標準範例，觀察資深同事平常怎麼回覆。',
                 },
             },
         ],
@@ -248,8 +248,8 @@ const INSIGHTS = [
         id: 'i1',
         confidence: 'high',
         statement: {
-            en: 'Trust is shaped by memorable failures, not average performance. A single visible mistake can make agents review every future draft more carefully.',
-            zh: '客服對 AI 的信任，往往不是由平均表現決定，而是被那些記得住的錯誤影響。一次明顯失誤，就可能讓他們之後重新檢查每一份草稿。',
+            en: 'Trust in AI is often shaped by a small number of major errors rather than overall average performance. One obvious error can cause users to recheck every future suggestion.',
+            zh: '客服對 AI 的信任，往往受到少數重大錯誤影響，而不是由整體平均表現決定。一次明顯的錯誤，就可能讓使用者之後重新檢查每一則建議。',
         },
         decisions: ['d1', 'd2'],
     },
@@ -257,8 +257,8 @@ const INSIGHTS = [
         id: 'i2',
         confidence: 'medium',
         statement: {
-            en: 'Agents edit drafts to protect their tone and accountability. An edited draft can still be a success signal if it helps them start faster without losing their voice.',
-            zh: '客服修改草稿，不一定是因為 AI 錯了，而是為了保留自己的語氣與責任感。只要草稿能幫他們更快開始，且仍能保有自己的表達，被修改後採用仍然是成功訊號。',
+            en: 'When agents edit AI drafts, it does not necessarily mean the suggestion failed. If a draft shortens the time needed to begin writing while preserving the agent’s own voice and sense of responsibility, adoption after editing is still a valuable usage outcome.',
+            zh: '客服修改 AI 草稿，不一定代表建議失敗。只要草稿能縮短起稿時間，同時保留客服自己的語氣與責任感，修改後採用仍然是具有價值的使用結果。',
         },
         decisions: ['d3'],
     },
@@ -266,8 +266,8 @@ const INSIGHTS = [
         id: 'i3',
         confidence: 'medium',
         statement: {
-            en: 'Support work is driven by the ticket queue. Assistance works best when it appears inside the current ticket, not in a separate summary view.',
-            zh: '客服工作是被工單佇列推著走的。協助最好出現在正在處理的那張工單裡，而不是另一個需要額外打開的摘要畫面。',
+            en: 'Support work is driven by the ticket queue, so AI assistance should appear directly in the current ticket and reply interface rather than requiring users to open a separate summary or analytics tool.',
+            zh: '客服工作由工單佇列推動，因此 AI 協助應直接出現在當前工單與回覆介面中，而不是要求使用者額外開啟另一套摘要或分析工具。',
         },
         decisions: ['d4', 'd5'],
     },
@@ -275,8 +275,8 @@ const INSIGHTS = [
         id: 'i4',
         confidence: 'medium',
         statement: {
-            en: 'Outdated help-center content creates hidden support load. Agents work around the docs from memory, which makes the documentation problem less visible to the people who can fix it.',
-            zh: '過期的說明文件會製造隱性的客服負擔。客服用記憶繞過文件，反而讓真正能修文件的人不容易看見問題有多嚴重。',
+            en: 'Outdated or contradictory knowledge documents force agents to rely on memory, colleague experience, and informal workarounds. These substitute processes make the problem harder to see and increase the cost of onboarding new staff and keeping replies consistent.',
+            zh: '過期或互相矛盾的知識文件，會迫使客服依賴記憶、同事經驗與非正式處理方式。這些替代流程讓問題難以被看見，也增加新進人員學習與一致回覆的成本。',
         },
         decisions: [],
     },
@@ -285,8 +285,8 @@ const INSIGHTS = [
         confidence: 'emerging',
         followUp: true,
         statement: {
-            en: 'New agents may be learning from AI drafts as examples of “how we answer customers.” If this pattern holds, draft quality affects onboarding, not only response speed.',
-            zh: '新進客服可能會把 AI 草稿當成「我們通常怎麼回客戶」的範例。如果這個現象成立，草稿品質影響的就不只是回覆速度，也會影響新人如何學會產品與服務語氣。',
+            en: 'New support agents may treat AI drafts as “standard answers,” learning product knowledge and service tone from them. If this behavior exists, draft quality affects not only individual replies but may also influence how new agents work afterward.',
+            zh: '新進客服可能把 AI 草稿視為「標準答案」，進而從中學習產品知識與服務語氣。如果這項行為確實存在，草稿品質影響的就不只是單次回覆，也可能影響新人後續的工作方式。',
         },
         decisions: [],
     },
@@ -296,36 +296,36 @@ const DECISIONS = [
     {
         id: 'd1',
         label: {
-            en: 'Launch check — wrong-suggestion recovery path required before rollout',
-            zh: '上線檢查——正式推出前，必須先設計錯誤建議的回報與補救流程',
+            en: 'Launch requirement | Before formal release, establish reporting, human handoff, and remediation flows for incorrect suggestions.',
+            zh: '上線條件｜正式推出前，必須建立錯誤建議的回報、人工接手與補救流程。',
         },
     },
     {
         id: 'd2',
         label: {
-            en: 'PRD — use a simple three-level confidence label instead of a numeric score',
-            zh: 'PRD——採用三段式信心標記，不使用容易造成過度信任的數值分數',
+            en: 'Interface specification | Use high / medium / low three-level confidence labels; do not show precise numeric scores that can encourage over-trust.',
+            zh: '介面規格｜採用高 / 中 / 低三段式信心標籤，不呈現容易造成過度信任的精確數值分數。',
         },
     },
     {
         id: 'd3',
         label: {
-            en: 'PRD — treat agent edits as tone and context feedback, not only error correction',
-            zh: 'PRD——將客服編輯視為語氣與情境回饋，而不只當成錯誤修正',
+            en: 'Success definition | Track “as-is adoption” and “adoption after editing” separately; as long as a draft shortens writing time while preserving agent judgment, adoption after editing still counts as effective use.',
+            zh: '成效定義｜將「原文採用」與「修改後採用」分開追蹤；只要草稿縮短起稿時間並保留客服判斷，修改後採用仍計入有效使用。',
         },
     },
     {
         id: 'd4',
         label: {
-            en: 'Scope decision — prioritize per-ticket assistance and remove session summaries from v1',
-            zh: '範圍決策——v1 優先做逐張工單協助，暫時拿掉班次摘要',
+            en: 'Scope decision | The first version prioritizes reply assistance for the current ticket and does not treat shift summaries as a core capability.',
+            zh: '範圍決策｜第一版優先提供當前工單的回覆協助，暫不將班次摘要列為核心功能。',
         },
     },
     {
         id: 'd5',
         label: {
-            en: 'Workflow decision — place support inside the reply editor',
-            zh: '流程決策——將 AI 協助放進既有回覆編輯器，而不是新增獨立 dashboard',
+            en: 'Workflow design | Embed AI suggestions in the existing reply editor instead of adding a separate dashboard.',
+            zh: '流程設計｜將 AI 建議嵌入既有回覆編輯器，不另外新增獨立儀表板。',
         },
     },
 ];
@@ -345,28 +345,28 @@ const insightStats = insight => {
 // ---- COPY -------------------------------------------------------------------
 const COPY = {
     en: {
-        eyebrow: 'MODULE 03 — RESEARCH SYSTEM',
+        eyebrow: 'MODULE 03 — RESEARCH EVIDENCE SYSTEM',
         title: 'UX Research Evidence Hub',
         lead: [
-            'This module shows how interview evidence becomes product direction, not just research notes.',
-            'The flow connects raw quotes, affinity clusters, synthesized insights, and the product decisions they influenced — including findings that are important but not ready to become decisions yet.',
+            'This module shows how interview data moves from scattered quotes into research insights and design decisions that product teams can adopt. Raw quotes are first organized into affinity clusters, then synthesized into insight cards with confidence levels and source evidence, before being connected to actual product decisions.',
+            'Readers see not only the conclusions, but can trace each judgment back to the participants, contexts, and original quotes that support it.',
         ],
-        context: 'Scenario: “Meridian” pilot research across two interview rounds. Quotes are simulated; the research workflow is the portfolio artifact.',
+        context: 'Scenario: This module continues the Meridian support-reply assistant. It simulates two rounds of internal interviews; all quotes and research materials are for demonstration purposes, with the focus on showing how research evidence is organized, evaluated, and translated into product decisions.',
         signature: 'Signature interaction: open an insight’s source quotes and the affinity map highlights the notes behind it.',
         method: [
             { label: 'METHOD', value: 'Semi-structured interviews, 45 minutes, remote' },
-            { label: 'PARTICIPANTS', value: 'n=8 — 5 support agents, 2 team leads, 1 ops manager' },
+            { label: 'PARTICIPANTS', value: '8 internal participants: 5 support agents, 2 support leads, 1 operations manager' },
             { label: 'RECRUITMENT', value: 'Internal participants with at least 6 months of support experience' },
             { label: 'ANALYSIS', value: 'Open coding → affinity clustering → insight synthesis → decision mapping' },
         ],
         tabs: {
-            affinity: 'A · AFFINITY MAP',
-            insights: 'B · INSIGHTS',
-            trace: 'C · DECISION TRACE',
+            affinity: 'A · SOURCE QUOTES & AFFINITY MAP',
+            insights: 'B · RESEARCH INSIGHT CARDS',
+            trace: 'C · INSIGHT & DECISION TRACE',
         },
         feedsInsight: 'supports',
         roundLabel: 'R',
-        confidenceRule: 'Confidence level: High = repeated across roles · Medium = repeated by several participants · Emerging = early pattern that needs follow-up',
+        confidenceRule: 'Confidence level: High = repeated across multiple participants and roles, with multiple supporting quotes · Medium = mentioned by multiple participants, but mainly concentrated in specific roles or contexts · Emerging = limited evidence so far and needs confirmation through further research',
         confidenceWord: {
             high: 'HIGH',
             medium: 'MEDIUM',
@@ -374,36 +374,36 @@ const COPY = {
         },
         statsLine: s => `${s.peopleCount}/8 participants · ${s.roleCount} ${s.roleCount > 1 ? 'roles' : 'role'} · ${s.quoteCount} quotes`,
         viewQuotes: 'View source quotes',
-        followUp: 'Needs follow-up research before it becomes a product decision.',
+        followUp: 'Evidence is still limited, so it is not being directly converted into a product decision yet.',
         insightsCol: 'INSIGHTS',
         decisionsCol: 'PRODUCT DECISIONS',
         informed: 'informed',
         noDecision: 'not yet mapped to a decision',
-        backlogNote: 'Insights not mapped to a decision yet — kept in the research backlog:',
+        backlogNote: ids => `Unvalidated insights | ${ids} remain in the research backlog until evidence is sufficient to assess whether they should become product decisions.`,
     },
     zh: {
-        eyebrow: 'MODULE 03 — RESEARCH SYSTEM',
+        eyebrow: 'MODULE 03 — RESEARCH EVIDENCE SYSTEM',
         title: '研究證據庫',
         lead: [
-            '這個模組展示訪談資料如何從零散引述，整理成可以影響產品方向的研究洞察。',
-            '它把原始引述、親和圖分群、洞察卡與產品決策串在一起，讓讀者看見每個產品判斷背後的使用者證據，也保留那些重要但還不適合立刻變成決策的發現。',
+            '這個模組呈現訪談資料如何從零散引述，逐步整理成可供產品團隊採用的研究洞察與設計決策。原始引述先依主題整理成親和圖，再彙整為附有信心等級與來源證據的洞察卡，最後連結到實際產品決策。',
+            '讀者不只看見結論，也能回查每項判斷由哪些受訪者、情境與原始引述支持。',
         ],
-        context: '情境：「Meridian」試點研究，兩輪訪談。引述為模擬內容；這個作品重點在於研究整理與決策轉譯的方法。',
+        context: '案例情境：本模組延續 Meridian 客服回覆輔助工具，模擬兩輪內部訪談；引述與研究資料皆為展示用途，重點在於呈現研究證據如何被整理、評估並轉化為產品決策。',
         signature: '點開洞察的來源引述，親和圖會標示出支持這個洞察的便箋。',
         method: [
             { label: '研究方法', value: '半結構式訪談，45 分鐘，遠端進行' },
-            { label: '受訪者', value: 'n=8——5 位客服、2 位團隊主管、1 位營運經理' },
+            { label: '受訪者', value: '8 位內部受訪者：5 位客服人員、2 位客服主管、1 位營運經理' },
             { label: '招募條件', value: '內部受訪者，皆具備至少 6 個月客服相關經驗' },
             { label: '分析方式', value: '開放編碼 → 親和圖分群 → 洞察整理 → 決策對應' },
         ],
         tabs: {
-            affinity: 'A · 親和圖',
-            insights: 'B · 洞察卡',
-            trace: 'C · 決策追溯',
+            affinity: 'A · 原始引述與親和圖',
+            insights: 'B · 研究洞察卡',
+            trace: 'C · 洞察與決策追蹤',
         },
         feedsInsight: '支持洞察',
         roundLabel: '第',
-        confidenceRule: '信心等級：高 = 跨角色重複出現 · 中 = 多位受訪者提及 · 初步 = 早期跡象，仍需後續研究確認',
+        confidenceRule: '信心水準：高 = 在多位受訪者與不同角色中重複出現，且有多則引述支持 · 中 = 由多位受訪者提及，但主要集中於特定角色或情境 · 初步 = 目前僅有少量證據，需透過後續研究確認',
         confidenceWord: {
             high: '高',
             medium: '中',
@@ -411,12 +411,12 @@ const COPY = {
         },
         statsLine: s => `${s.peopleCount}/8 位受訪者 · ${s.roleCount} 種角色 · ${s.quoteCount} 句引述`,
         viewQuotes: '查看來源引述',
-        followUp: '這個發現仍需要後續研究確認，暫時不直接轉成產品決策。',
+        followUp: '目前證據仍有限，暫不直接轉為產品決策。',
         insightsCol: '研究洞察',
         decisionsCol: '產品決策',
         informed: '影響了',
         noDecision: '尚未對應到產品決策',
-        backlogNote: '尚未轉成決策的洞察——先保留在研究 backlog：',
+        backlogNote: ids => `尚待驗證的洞察｜${ids} 暫留於研究待辦，待補足證據後再評估是否轉為產品決策。`,
     },
 };
 
@@ -607,6 +607,7 @@ function TraceView({ t, lang, viewport }) {
     });
 
     const backlog = INSIGHTS.filter(insight => insight.decisions.length === 0);
+    const backlogIds = backlog.map(item => item.id.toUpperCase()).join(lang === 'zh' ? '、' : ', ');
 
     if (viewport === 'mobile') {
         return (
@@ -637,7 +638,7 @@ function TraceView({ t, lang, viewport }) {
                 ))}
 
                 <p className="los-data-sm los-m4-backlog">
-                    {t.backlogNote} {backlog.map(item => item.id.toUpperCase()).join(', ')}
+                    {t.backlogNote(backlogIds)}
                 </p>
             </div>
         );
@@ -697,7 +698,7 @@ function TraceView({ t, lang, viewport }) {
             </div>
 
             <p className="los-data-sm los-m4-backlog">
-                {t.backlogNote} {backlog.map(item => item.id.toUpperCase()).join(', ')}
+                {t.backlogNote(backlogIds)}
             </p>
         </div>
     );

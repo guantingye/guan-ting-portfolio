@@ -136,12 +136,12 @@ const ENGINEERING_NOTES = [
 const COPY = {
     en: {
         eyebrow: 'MODULE 06 — SYSTEM SPECIMEN',
-        title: 'Design System Slice & Engineering Notes',
+        title: 'Design System & Engineering Decisions',
         lead: [
-            'This module shows the system behind the portfolio itself: the colors, type scale, component states, accessibility checks, and engineering decisions that make the work feel consistent and usable.',
-            'Instead of treating the interface as decoration, this section explains how the visual language, interaction states, and technical choices support readability, accessibility, and long-term maintainability.',
+            'This module explains how the entire portfolio maintains readability, operability, and future maintenance efficiency through a consistent design language and frontend rules.',
+            'Content covers color and type scales, component interaction states, keyboard focus, color contrast, reduced-motion settings, and responsive behavior, while documenting the engineering trade-offs made during implementation. The point is not to treat the interface as decoration, but to show how visual, interaction, and technical decisions together support the user experience.',
         ],
-        context: 'Color contrast is calculated against --bg-1 (#0C0E12) using the WCAG 2.1 formula. One supporting text token is intentionally marked for labels only, not body copy.',
+        context: 'Color contrast is calculated using the WCAG 2.1 formula against the primary background --bg-1 (#0C0E12). One secondary text color is suitable only for labels and large text, and is not used for long-form body copy.',
         signature: 'Signature interaction: hover a color swatch to preview it, or click to copy its hex value.',
         sections: {
             tokens: 'A · DESIGN TOKENS',
@@ -174,12 +174,12 @@ const COPY = {
     },
     zh: {
         eyebrow: 'MODULE 06 — SYSTEM SPECIMEN',
-        title: '設計系統切片與工程筆記',
+        title: '設計系統與工程決策',
         lead: [
-            '這個模組展示作品集背後的系統：色彩、字級、元件狀態、無障礙檢查，以及讓整個網站維持一致與可用的工程取捨。',
-            '它不是把介面當成裝飾，而是說明視覺語言、互動狀態與技術選擇如何一起支撐閱讀性、可及性與後續維護。',
+            '這個模組說明整個作品集如何透過一致的設計語言與前端規則，維持可讀性、可操作性與後續維護效率。',
+            '展示內容包含色彩與字級數、元件互動狀態、鍵盤焦點、色彩對比、減少動態設定與響應式處理，也記錄實作過程中的工程取捨。重點不是把介面當成裝飾，而是說明視覺、互動與技術決策如何共同支撐使用體驗。',
         ],
-        context: '色彩對比以 WCAG 2.1 公式，對 --bg-1（#0C0E12）實際計算。其中一個輔助文字色只適合標籤與大字，不建議用於長篇內文。',
+        context: '色彩對比依 WCAG 2.1 的計算方式，針對主要背景色 --bg-1（#0C0E12）進行檢查，其中一組次要文字色只適合標籤與大型文字，不使用於長篇正文。',
         signature: '懸停色票可以預覽色碼，點擊即可複製 hex。',
         sections: {
             tokens: 'A · 設計變數',
