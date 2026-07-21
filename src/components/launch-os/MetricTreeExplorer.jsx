@@ -14,8 +14,8 @@ const TREE = {
     goodDirection: 'up',
     spark: [2.1, 2.2, 2.4, 2.3, 2.6, 2.7, 2.9, 3.0, 3.1, 3.2, 3.3, 3.4],
     name: {
-        en: 'Usable insights adopted per active team / week',
-        zh: '每週被團隊採用的可用洞察',
+        en: 'Effective AI suggestions adopted per week',
+        zh: '每週被採用的有效 AI 建議數',
     },
     definition: {
         en: 'The average number of AI-assisted insights that reach a team and are actually used in a decision each week.',
@@ -34,7 +34,7 @@ const TREE = {
             value: '71%',
             goodDirection: 'up',
             spark: [52, 55, 58, 57, 60, 63, 64, 66, 68, 69, 70, 71],
-            name: { en: 'Activation', zh: '導入啟用' },
+            name: { en: 'Adoption & activation', zh: '導入與啟用' },
             headline: {
                 en: 'Teams reaching a working setup within 14 days',
                 zh: '14 天內完成可用設定的團隊',
@@ -136,7 +136,7 @@ const TREE = {
             value: '5.6 h',
             goodDirection: 'up',
             spark: [3.1, 3.4, 3.6, 3.9, 4.1, 4.4, 4.6, 4.9, 5.1, 5.3, 5.5, 5.6],
-            name: { en: 'Workflow value', zh: '流程價值' },
+            name: { en: 'Workflow efficiency', zh: '工作流程效益' },
             headline: {
                 en: 'Agent-hours saved per team / week',
                 zh: '每團隊每週節省的客服工時',
@@ -211,7 +211,7 @@ const TREE = {
             value: '64%',
             goodDirection: 'up',
             spark: [48, 50, 53, 52, 55, 57, 58, 60, 61, 62, 63, 64],
-            name: { en: 'Trust quality', zh: '信任品質' },
+            name: { en: 'Trust & quality', zh: '信任與品質' },
             headline: {
                 en: 'Agents who say suggestions are usually reliable',
                 zh: '認為建議通常可靠的客服比例',
@@ -237,17 +237,17 @@ const TREE = {
                     goodDirection: 'up',
                     spark: [41, 43, 46, 45, 48, 50, 52, 53, 55, 56, 57, 58],
                     name: {
-                        en: 'Suggestion acceptance rate',
-                        zh: '建議採用率',
+                        en: 'AI suggestion adoption rate',
+                        zh: 'AI 建議採用率',
                     },
                     definition: {
-                        en: 'The share of AI suggestions that agents accept, reported together with whether they edited the draft first.',
-                        zh: '客服採用 AI 建議的比例，並同時區分是否有先修改草稿。',
+                        en: 'Among all AI suggestions provided to agents, the share adopted either directly or after editing. The system distinguishes “as-is adoption” from “adoption after editing” so that different levels of trust are not treated as the same behavior.',
+                        zh: '在所有提供給客服的 AI 建議中，被直接採用或修改後採用的比例。系統同時區分「原文採用」與「修改後採用」，避免把兩種不同程度的信任視為相同行為。',
                     },
                     formula: 'accepted / offered, split edited | as_is',
                     guardrail: {
-                        en: 'A high acceptance rate is not always good. If agents accept too many drafts without editing, it may signal over-trust rather than product quality.',
-                        zh: '採用率高不一定代表好。如果客服大量原文接受草稿，這可能代表過度信任，而不是品質真的更好。',
+                        en: 'A rising adoption rate does not necessarily mean product quality has improved. If agents accept large numbers of AI drafts as-is while error rates, customer complaints, or policy violations also rise, that may indicate over-trust rather than better suggestion quality.',
+                        zh: '採用率上升不一定代表產品品質變好。若客服大量原文採用 AI 草稿，但錯誤率、客訴或政策違規也同步增加，這可能代表過度信任，而不是建議品質提升。',
                     },
                     laddersUp: {
                         en: 'This captures trust through behavior, while the branch-level survey captures trust through attitude.',
@@ -255,12 +255,12 @@ const TREE = {
                     },
                     experiment: {
                         title: {
-                            en: 'Confidence display format',
-                            zh: '信心程度顯示方式',
+                            en: 'How AI confidence information affects adoption decisions',
+                            zh: 'AI 信心資訊如何影響採用判斷',
                         },
                         hypothesis: {
-                            en: 'Showing a numeric confidence score will help agents make better review decisions.',
-                            zh: '如果顯示數值化信心分數，客服應該能更精準地判斷哪些建議可以採用。',
+                            en: 'Compared with tiered labels, numeric confidence scores may help agents more accurately decide which suggestions to adopt directly, revise, or send for human review.',
+                            zh: '相較於分段式標籤，數值化信心分數可能讓客服更準確地判斷哪些建議可以直接採用、需要修改，或應送交人工複核。',
                         },
                         variant: {
                             en: 'A: three-level label · B: numeric score',
@@ -313,7 +313,7 @@ const TREE = {
             value: '74%',
             goodDirection: 'up',
             spark: [61, 63, 64, 66, 67, 68, 70, 71, 72, 73, 73, 74],
-            name: { en: 'Continued use', zh: '持續使用' },
+            name: { en: 'Sustained adoption', zh: '持續採用' },
             headline: {
                 en: 'Teams still active in week 8',
                 zh: '第八週仍持續使用的團隊',
@@ -388,7 +388,7 @@ const TREE = {
             value: '1.8',
             goodDirection: 'down',
             spark: [4.1, 3.8, 3.6, 3.4, 3.1, 2.9, 2.7, 2.5, 2.3, 2.1, 1.9, 1.8],
-            name: { en: 'Risk reduction', zh: '風險降低' },
+            name: { en: 'Safety & compliance', zh: '安全與合規' },
             headline: {
                 en: 'Wrong suggestions per 1,000 accepted drafts',
                 zh: '每千次採用中的錯誤建議數',
@@ -488,7 +488,7 @@ const COPY = {
         detailTitle: 'NODE DETAIL',
         definition: 'Definition',
         formula: 'Formula',
-        guardrail: 'What not to sacrifice',
+        guardrail: 'Quality guardrail',
         laddersUp: 'Why this affects the upper metric',
         experiment: 'Validation experiment',
         expFields: {
@@ -522,7 +522,7 @@ const COPY = {
         detailTitle: 'NODE DETAIL',
         definition: '定義',
         formula: '計算方式',
-        guardrail: '不能犧牲的事',
+        guardrail: '品質護欄',
         laddersUp: '為什麼影響上層指標',
         experiment: '驗證實驗',
         expFields: {
