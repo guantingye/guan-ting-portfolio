@@ -1841,6 +1841,7 @@ html.lang-zh .proj-back-label { letter-spacing: 0.08em; }
   letter-spacing: 0.12em; text-transform: uppercase;
 }
 .tech-item-val { font-family: var(--font-mono); font-size: 13px; color: var(--gray); line-height: 1.7; }
+.tech-item-desc { margin-top: 8px; font-size: 13px; line-height: 1.65; color: var(--muted); }
 .proj-award {
   padding: 24px 28px; background: var(--amber-dim); border: 1px solid rgba(255,179,71,0.2);
   border-radius: var(--radius); display: flex; align-items: center; gap: 16px;

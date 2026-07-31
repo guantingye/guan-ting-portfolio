@@ -4,10 +4,10 @@ import ModuleFrame, { injectStyles, useI18n, usePrefersReducedMotion, STATUS, St
 const STRINGS = {
     en: {
         eyebrow: 'RESEARCH METHOD',
-        title: 'Glance Test: Can You Spot the Change?',
-        intent: 'This small simulator turns one HMI question into a hands-on test: when a status changes quickly, can people notice it in three seconds?',
-        a11yNote: 'This demo is mainly visual, but every round result is also announced in text for screen-reader users.',
-        run: 'Start 3-second test',
+        title: 'Three-second recognition test: Can you spot a state change immediately?',
+        intent: 'This module turns “can a state change be noticed quickly?” into a small interactive test. Each round changes only one state cue, observing whether users can find the change within three seconds and comparing recognition when color is the only cue with recognition when icons, text, and other redundant cues are added.',
+        a11yNote: 'The test centers on visual recognition, but each round’s state change and answer result are also updated in text so screen-reader users can understand the test content.',
+        run: 'Start the three-second recognition test',
         round: 'Round',
         watch: 'Watch the panel…',
         which: 'Which tile changed?',
@@ -23,7 +23,7 @@ const STRINGS = {
         rateMulti: 'Changes shown with more than one cue',
         caught: 'noticed',
         takeaway: 'Important status changes should not rely on color alone. People detect them faster when color, icon, and value change together.',
-        simNote: 'Scripted 5-round demo · Built to show the method, not to claim statistical significance.',
+        simNote: 'Five rounds shown with a fixed script. This module demonstrates a comparison method and design differences; it is not a statistical inference.',
         tiles: [
             { name: 'Pump pressure', val: '4.2 bar' },
             { name: 'Flow rate', val: '62 %' },
@@ -35,20 +35,20 @@ const STRINGS = {
         notes: [
             {
                 tag: 'Design decision / 設計判斷',
-                text: 'I used a fixed sequence instead of full randomization, so the comparison between “color only” and “multiple cues” stays controlled.',
+                text: 'I use a fixed script rather than complete randomization so the comparison conditions for “color only” and “multiple cues added” remain consistent, avoiding stimulus differences that could interfere with recognition results.',
             },
             {
                 tag: 'Reading note / 閱讀提醒',
-                text: 'Five rounds are not enough for statistical proof. This module is a method demonstration: it helps viewers feel why HMI states need more than color.',
+                text: 'The five rounds are not intended to estimate a user’s recognition rate. They let readers experience directly why a critical state cannot depend on color alone.',
             },
         ],
     },
     zh: {
         eyebrow: '研究方法',
-        title: '一眼辨識測試：你看得出哪裡變了嗎？',
-        intent: '這個小模擬器把一個 HMI 問題變成可以親自體驗的測試：當狀態快速改變時，人能不能在三秒內注意到？',
-        a11yNote: '這個示範主要測試視覺辨識，但每回合結果也會用文字播報，讓螢幕閱讀器使用者能理解測試結果。',
-        run: '開始 3 秒測試',
+        title: '三秒辨識測試：你能立即看出狀態變化嗎？',
+        intent: '這個模組把「狀態變化是否能被快速察覺」轉成一個可操作的微型測試。每回合只改變一項狀態線索，觀察使用者能否在三秒內找到變化，並比較僅使用顏色與加入圖示、文字等多重線索時的辨識差異。',
+        a11yNote: '測試以視覺辨識為主，但每回合的狀態變化與操作結果都會同步以文字更新，讓使用螢幕閱讀器的使用者也能理解測試內容。',
+        run: '開始三秒辨識測試',
         round: '回合',
         watch: '請注視面板…',
         which: '哪一格剛剛變了？',
@@ -64,7 +64,7 @@ const STRINGS = {
         rateMulti: '使用多種線索提示的變化',
         caught: '次看出',
         takeaway: '重要狀態不應該只靠顏色。當顏色、圖示與數值一起變化，人更快看出差異。',
-        simNote: '固定腳本的 5 回合示範 · 用來展示方法，不宣稱統計顯著。',
+        simNote: '共 5 回合，使用固定腳本呈現。此模組用於示範比較方法與設計差異，不作為統計推論。',
         tiles: [
             { name: '泵浦壓力', val: '4.2 bar' },
             { name: '流量', val: '62 %' },
@@ -76,11 +76,11 @@ const STRINGS = {
         notes: [
             {
                 tag: 'Design decision / 設計判斷',
-                text: '我使用固定腳本，而不是完全隨機，讓「只靠顏色」與「多重線索」之間的比較能保持受控。',
+                text: '我採用固定腳本而非完全隨機，確保「僅使用顏色」與「加入多重線索」的比較條件一致，避免刺激差異干擾辨識結果。',
             },
             {
                 tag: 'Reading note / 閱讀提醒',
-                text: '五回合不足以做統計推論。這個模組是方法示範，目的是讓觀看者實際感受到：HMI 狀態不能只靠顏色傳達。',
+                text: '五回合的目的不是估計使用者的辨識率，而是讓讀者直接感受：關鍵狀態不能只依賴顏色傳達。',
             },
         ],
     },

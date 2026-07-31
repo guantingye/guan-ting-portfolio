@@ -1,0 +1,4 @@
+interface:
+  display_name: "Refine Screenshot Bilingual Copy"
+  short_description: "Rewrite screenshot-selected portfolio copy bilingually"
+  default_prompt: "Use $refine-screenshot-bilingual-copy to rewrite the portfolio copy in my screenshot and synchronize the corresponding English text."

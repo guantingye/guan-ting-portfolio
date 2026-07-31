@@ -8,7 +8,7 @@ const MOD = MODULES.find(m => m.key === 'M04');
 // and an eval scorecard graded on a 50-article golden set (human, by GT).
 const VERSIONS = [
     {
-        id: 'v1', tag: 'baseline',
+        id: 'v1', tag: 'Baseline',
         failure: { en: 'Naive prompt. Merged multi-company stories and drifted off Traditional Chinese.', zh: '最陽春的提示。會把多公司故事合併，繁中也會走鐘。' },
         diff: [
             { t: 'ctx', s: 'You are a tech-news analyst.' },
@@ -18,7 +18,7 @@ const VERSIONS = [
         evals: { acc: 71, halluc: 6, tokens: 240, cost: 0.9 },
     },
     {
-        id: 'v2', tag: 'one entity',
+        id: 'v2', tag: 'Single-entity Focus',
         failure: { en: 'v1 blended two funding rounds into one item — added a one-story-one-entity rule.', zh: 'v1 把兩輪募資混成一則——加入「一則一主體」規則。' },
         diff: [
             { t: 'ctx', s: 'You are a tech-news analyst.' },
@@ -30,7 +30,7 @@ const VERSIONS = [
         evals: { acc: 79, halluc: 5, tokens: 265, cost: 1.0 },
     },
     {
-        id: 'v3', tag: 'bilingual + JSON',
+        id: 'v3', tag: 'Bilingual Structured Output',
         failure: { en: 'Free-text output was unparseable downstream — forced structured, bilingual JSON.', zh: '自由文字下游難解析——改為結構化、雙語 JSON。' },
         diff: [
             { t: 'ctx', s: 'Summarise ONE primary company/entity per item.' },
@@ -42,7 +42,7 @@ const VERSIONS = [
         evals: { acc: 84, halluc: 4, tokens: 310, cost: 1.2 },
     },
     {
-        id: 'v4', tag: 'no hallucinated numbers',
+        id: 'v4', tag: 'Source-grounded Facts',
         failure: { en: 'Model invented a funding amount. Numbers must be verbatim, with a null fallback.', zh: '模型自己編了募資金額。數字必須逐字引用，並設 null 退路。' },
         diff: [
             { t: 'ctx', s: 'Return JSON: {title_en, title_zh, summary_en, summary_zh}.' },
@@ -53,7 +53,7 @@ const VERSIONS = [
         evals: { acc: 88, halluc: 1, tokens: 340, cost: 1.3 },
     },
     {
-        id: 'v5', tag: 'taxonomy + confidence',
+        id: 'v5', tag: 'Taxonomy & Confidence Routing',
         failure: { en: 'Tags were free-form. Constrained to the taxonomy and added a confidence flag.', zh: '標籤原本自由發揮。改為受分類法約束，並加入信心旗標。' },
         diff: [
             { t: 'ctx', s: 'Quote any figure VERBATIM; null if absent.' },
@@ -67,10 +67,10 @@ const VERSIONS = [
 
 const COPY = {
     en: {
-        title: 'Prompt engineering lab',
-        lead: 'Five versions of the summarise-and-classify prompt. Each one was a fix for a specific failure I hit, and each was graded on the same 50-article set, so I could tell whether a change actually helped or just felt better.',
+        title: 'Prompt versioning & evaluation lab',
+        lead: 'I split the summarization and classification prompt into five comparable versions. Each change addresses a failure case observed in the prior version, then is re-evaluated against the same fixed set of 50 test articles to confirm it improves output quality, not just how complete the wording looks. The evaluation also tracks classification accuracy, unsupported factual errors, output length, and inference cost—so prompts can be versioned, tested, and traced like product components.',
         versionRail: 'Prompt versions',
-        diffLabel: 'Unified diff vs. previous',
+        diffLabel: 'Prompt rule changes',
         failLabel: 'What motivated this version',
         evalLabel: 'Eval scorecard',
         metrics: [
@@ -81,13 +81,13 @@ const COPY = {
         ],
         methodToggle: 'Eval method',
         method: 'Golden set: 50 hand-picked articles (mixed EN/zh, single- and multi-entity). I graded each output against a rubric: correct entity split, faithful figures, valid taxonomy tag, natural zh-TW. Human-graded by me — small and self-scored, so I read the trend, not the decimal.',
-        soWhat: 'I treat prompts like versioned, evaluated code — not lucky guesses.',
+        soWhat: 'I treat prompts as versioned, testable product components — not one-off instructions.',
     },
     zh: {
-        title: '提示工程實驗室',
-        lead: '摘要與分類提示的五個版本。每一版都是為了修掉我實際遇到的某個失敗，而且都在同一份 50 篇的測試集上評分，這樣我才分得出改動是真的有用，還是只是感覺變好。',
+        title: '提示版本與評測實驗室',
+        lead: '我將摘要與分類提示拆成五個可比較的版本。每次改動都針對前一版實際出現的失敗案例，並使用同一組 50 篇固定測試資料重新評估，確認改動改善的是輸出品質，而不只是文字看起來更完整。評測同時觀察分類正確性、無來源事實錯誤、輸出長度與推論成本，讓提示詞能像產品元件一樣被版本控制、測試與回溯。',
         versionRail: '提示版本',
-        diffLabel: '對上一版的 unified diff',
+        diffLabel: '提示規則差異',
         failLabel: '這一版由什麼驅動',
         evalLabel: '評測計分卡',
         metrics: [
@@ -98,7 +98,7 @@ const COPY = {
         ],
         methodToggle: '評測方法',
         method: 'Golden set：50 篇手選文章（中英混、單一與多主體）。我依評分準則逐項打分：主體切分正確、數字忠實、分類標籤合法、繁中自然。由我人工評分——樣本小且自評，所以我看趨勢，不看小數點。',
-        soWhat: '我把提示當成有版本、要評測的程式碼在對待，而不是碰運氣。',
+        soWhat: '我把提示詞視為有版本、可測試的產品元件，而不是一次性的指令。',
     },
 };
 
@@ -132,7 +132,7 @@ export default function M04_PromptLab() {
                 </div>
 
                 <div className="ni-m4-main">
-                    <span className="ni-caption">{t.diffLabel} · {v.id}</span>
+                    <span className="ni-caption">{idx > 0 ? `${VERSIONS[idx - 1].id} → ${v.id}｜${t.diffLabel}` : t.diffLabel}</span>
                     <pre className="ni-m4-diff" aria-label={`${t.diffLabel} ${v.id}`}>
                         {v.diff.map((d, i) => (
                             <div key={i} className={`ni-m4-line ni-m4-line--${d.t}`}>

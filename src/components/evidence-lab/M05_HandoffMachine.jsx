@@ -4,26 +4,26 @@ import ModuleFrame, { injectStyles, useI18n, usePrefersReducedMotion, StatusIcon
 const STRINGS = {
     en: {
         eyebrow: 'SYSTEM MODEL',
-        title: 'Control Handoff Machine',
-        intent: 'This module turns human–automation handoff into an interface you can operate. It keeps three questions visible at all times: who has control now, what move is allowed next, and when the system should block a shortcut for safety.',
+        title: 'Human–automation control handoff state machine',
+        intent: 'This module organizes control transfer between an operator and an automated system into a state machine that can be operated and inspected. Each state answers three questions clearly: who is leading now, what transition is allowed next, and under what conditions the system must block or withdraw unsafe automation.',
         levels: [
             {
-                name: 'Manual',
+                name: 'Human control',
                 control: 'Operator is fully in control',
                 tone: 'var(--gx-sky)',
             },
             {
-                name: 'Assisted',
+                name: 'System assistance',
                 control: 'Operator controls the system with assistance',
                 tone: 'var(--gx-teal)',
             },
             {
-                name: 'Supervised auto',
+                name: 'Supervised automation',
                 control: 'Automation is acting; operator is supervising',
                 tone: 'var(--gx-gold)',
             },
             {
-                name: 'Full auto',
+                name: 'High automation',
                 control: 'Automation is currently in control',
                 tone: 'var(--gx-iris)',
             },
@@ -57,36 +57,36 @@ const STRINGS = {
         notes: [
             {
                 tag: 'Decision / 設計判斷',
-                text: 'Every automation level keeps “who has control” visible. The point of this model is to prevent mode confusion, not to show off a complex taxonomy.',
+                text: 'At every automation level, the interface continues to show the current controller, available actions, and the route back to human control. The model is not meant to display a complex classification; it reduces mode confusion and the risk that users assume the system has already taken over.',
             },
             {
-                tag: 'Trade-off / 取捨',
-                text: 'I used four levels instead of six SAE-style levels. In an interface, a smaller set of states that people can actually distinguish is more useful than a complete classification that slows them down.',
+                tag: 'Trade-off / 設計取捨',
+                text: 'This model uses four control levels that are easy to distinguish and operate rather than applying SAE’s six-level taxonomy in full. It trades some theoretical granularity for a clearer mental model and state-transition rules that are easier to test.',
             },
         ],
     },
     zh: {
         eyebrow: '系統模型',
-        title: '控制權交接狀態機',
-        intent: '這個模組把人與自動化之間的控制權交接，做成一個可以操作的介面。它持續回答三個問題：現在誰在控制、下一步允許做什麼、什麼情況下系統應該阻擋不安全的捷徑。',
+        title: '人機控制權交接狀態機',
+        intent: '這個模組將操作員與自動化系統之間的控制權轉移，整理成一套可以操作與檢視的狀態機。每個狀態都清楚回答三個問題：目前由誰主導、下一步允許如何轉換，以及在什麼條件下，系統必須阻擋或撤回不安全的自動化。',
         levels: [
             {
-                name: '手動',
+                name: '人工控制',
                 control: '操作員完全持有控制權',
                 tone: 'var(--gx-sky)',
             },
             {
-                name: '輔助',
+                name: '系統輔助',
                 control: '操作員控制系統，介面提供輔助',
                 tone: 'var(--gx-teal)',
             },
             {
-                name: '監督自動',
+                name: '監督自動化',
                 control: '自動化正在執行，操作員負責監督',
                 tone: 'var(--gx-gold)',
             },
             {
-                name: '完全自動',
+                name: '高度自動化',
                 control: '目前由自動化持有控制權',
                 tone: 'var(--gx-iris)',
             },
@@ -120,11 +120,11 @@ const STRINGS = {
         notes: [
             {
                 tag: 'Decision / 設計判斷',
-                text: '每個自動化層級都持續顯示「目前誰在控制」。這個模型要避免的是模式混淆，而不是展示一套很複雜的分類表。',
+                text: '無論處於哪一個自動化層級，介面都持續顯示目前的控制者、可用操作與返回人工控制的路徑。這套模型的目的不是展示複雜分類，而是降低模式混淆，以及使用者誤以為系統已經接手的風險。',
             },
             {
-                tag: 'Trade-off / 取捨',
-                text: '這裡使用四個層級，而不是完整複製 SAE 式的六級分類。對介面來說，人能真正分辨並操作的少數狀態，通常比完整但難以理解的分類更有用。',
+                tag: 'Trade-off / 設計取捨',
+                text: '這裡採用四個容易辨識與操作的控制層級，而不是完整套用 SAE 的六級分類。這樣在部分理論上的細緻度，換取更清楚的心理模型，以及更容易被測試的狀態轉換規則。',
             },
         ],
     },

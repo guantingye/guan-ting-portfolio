@@ -45,14 +45,14 @@ const TICKER = {
 
 const DEMO = {
     en: [
-        { route: 'home', tab: '/ · Home', look: 'The front door — where the whole thing comes together for a first-time reader.' },
-        { route: 'insights', tab: '/insights', look: 'Where this system lands: the daily briefings, e.g. the AI-chip analysis traced end to end in module 07.' },
-        { route: 'startups', tab: '/startups', look: 'The directory. Try the sector filter — that is the bilingual taxonomy from module 06, running live.' },
+        { route: 'home', tab: '/ · Home', look: 'Orients first-time visitors to the product, its core functions, and the main paths of use, then leads into daily intelligence and the company directory.' },
+        { route: 'insights', tab: '/insights', look: 'See the classifications, summaries, and source information produced by the news pipeline. The AI-chip example traced in module 07 is rendered here on the front end.' },
+        { route: 'startups', tab: '/startups', look: 'Browse and find deep-tech companies by industry, and see how the bilingual taxonomy from module 06 supports filtering and data presentation in practice.' },
     ],
     zh: [
-        { route: 'home', tab: '/ · Home', look: '前門——所有東西在這裡為第一次來的讀者收攏成一頁。' },
-        { route: 'insights', tab: '/insights', look: '這套系統的落地處：每日簡報，例如模組 07 從頭追到尾的 AI 晶片分析。' },
-        { route: 'startups', tab: '/startups', look: '目錄。試試產業篩選——那正是模組 06 的雙語分類法，在線上運作。' },
+        { route: 'home', tab: '/ · Home', look: '為首次造訪者整理產品定位、核心功能與主要使用路徑，並引導進入每日情報與企業目錄。' },
+        { route: 'insights', tab: '/insights', look: '查看由新聞管線產出的分類、摘要與來源資訊；模組 07 追蹤的 AI 晶片案例，也在這裡完成前端呈現。' },
+        { route: 'startups', tab: '/startups', look: '依產業分類瀏覽與查找深科技企業，並查看 Module 06 的雙語分類架構如何實際支援篩選與資料呈現。' },
     ],
 };
 

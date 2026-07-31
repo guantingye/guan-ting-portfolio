@@ -14,16 +14,16 @@ const M09 = lazy(() => import('./M09_TokenSpecimen.jsx'));
 const SHELL = {
     en: {
         eyebrow: 'APPLIED HMI EVIDENCE',
-        title: 'UX/HMI Interaction Design Lab',
-        stand: 'A set of nine working artifacts that turn HMI design principles into something you can try, inspect, and evaluate. Each module is rendered live in React, so the page behaves like a small interaction lab rather than a static case-study screenshot.',
-        meta: ['9 interactive modules', 'live React artifacts', 'keyboard accessible', 'reduced-motion aware'],
+        title: 'UX/HMI Interaction Design & Validation Lab',
+        stand: 'This HMI design case is composed of nine interactive modules. It turns principles such as state recognition, alert escalation, operating context, and accessibility into interactive prototypes that readers can operate, compare, and examine firsthand. Every screen is rendered live in React rather than substituted with static screenshots, so readers can directly observe how different design choices affect recognition speed, attention allocation, and operational safety.',
+        meta: ['9 interactive modules', 'live React rendering', 'full keyboard operation', 'reduced-motion support'],
         navLabel: 'Evidence modules',
     },
     zh: {
         eyebrow: 'HMI 設計證據',
-        title: 'UX/HMI 互動設計實驗室',
-        stand: '這是一組由九個可操作模組組成的作品切片，把 HMI 設計原則轉成可以親自操作、觀察與驗證的互動證據。每個畫面都由 React 即時渲染，因此它不是靜態截圖，而是一個可以被測試的小型互動實驗室。',
-        meta: ['9 個互動模組', 'React 即時渲染', '支援鍵盤操作', '尊重減少動態'],
+        title: 'UX/HMI 互動設計與驗證實驗室',
+        stand: '這是一組由九個可操作模組構成的 HMI 設計案例，將狀態辨識、警報升級、操作情境與無障礙等原則，轉化為可以親自操作、比較與檢驗的互動原型。所有畫面皆由 React 即時渲染，不以靜態截圖代替實際互動；讀者可以直接觀察不同設計選擇，如何影響辨識速度、注意力分配與操作安全。',
+        meta: ['9 個可操作模組', 'React 即時渲染', '完整鍵盤操作', '支援減少動態'],
         navLabel: '實作證據模組',
     },
 };
@@ -36,7 +36,7 @@ const MODULES = [
         tone: 'var(--gx-sky)',
         Comp: M01,
         type: { en: 'Research method', zh: '研究驗證' },
-        title: { en: 'Glance Recognition Test', zh: '一眼辨識測試' },
+        title: { en: 'Rapid State Recognition', zh: '快速狀態辨識' },
     },
     {
         id: 'gx-m02',

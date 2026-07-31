@@ -4,9 +4,9 @@ import ModuleFrame, { injectStyles, useI18n, usePrefersReducedMotion } from './s
 const STRINGS = {
     en: {
         eyebrow: 'DESIGN PROCESS',
-        title: 'Fidelity Ladder',
-        intent: 'This module shows how the same pump-station screen evolves from a rough idea into a more testable interface. Each step keeps the previous version visible, so the design process reads as a series of decisions rather than a sudden jump to a polished screen.',
-        stops: ['Sketch', 'Wireframe', 'Hi-fi'],
+        title: 'Interface Fidelity and Decision Evolution',
+        intent: 'Using the same pump-station monitoring interface as a baseline, this module shows how it develops from a sketch and wireframe into a high-fidelity prototype that can be tested, discussed, and delivered. Each stage improves visual fidelity while preserving the information hierarchy, risk assumptions, and design trade-offs of that moment, so the evolution is not simply about becoming prettier but about progressively clarifying problems and decisions.',
+        stops: ['Draft', 'Wireframe', 'Hi-fi'],
         stageLabel: 'Pump-station overview',
         of: 'Fidelity',
         compare: 'Compare with previous version',
@@ -14,34 +14,34 @@ const STRINGS = {
         sliderLabel: 'Reveal slider — previous version versus current version',
         prev: 'previous',
         curr: 'current',
-        annTitle: 'What changed in this version',
+        annTitle: 'Three design changes',
         change: 'Change',
         reason: 'Why it changed',
-        paperNote: 'Early sketch — intentionally shown on a light paper surface to separate exploration from production UI.',
+        paperNote: 'The early version deliberately retains a pencil-drawn visual language to distinguish assumptions still under exploration from the interface decisions that are refined later.',
         notes: [
             {
                 tag: 'Decision / 設計判斷',
                 text: 'The ladder is rebuilt in code instead of exported as static images. That makes the portfolio itself part of the frontend evidence, not just a place to display screenshots.',
             },
             {
-                tag: 'Trade-off / 取捨',
-                text: 'Recreating rough sketches in SVG takes more time than pasting screenshots, but it makes the design process sharper, responsive, and easier to inspect.',
+                tag: 'Trade-off / 設計取捨',
+                text: 'Recreating the interface in SVG and DOM takes more time than using static images, but it makes design differences inspectable and reduces ambiguity about intended behavior.',
             },
         ],
         ann: [
             [
                 {
-                    title: 'Start with one column',
+                    title: 'Clarify the information hierarchy first',
                     change: 'Placed every readout in a single vertical flow.',
-                    reason: 'Before choosing a layout, I needed to understand what information the screen had to carry.',
+                    reason: 'Before defining the layout grid, I confirmed which information the screen needed to carry.',
                 },
                 {
-                    title: 'Keep alerts visible',
-                    change: 'Placed the alarm area on the right edge in the first sketch.',
-                    reason: 'This was the first layout instinct. The next step was to test whether it matched how people actually scan the screen.',
+                    title: 'Keep alerts within the field of view',
+                    change: 'Placed the alert area on the right side of the first sketch.',
+                    reason: 'This was an early layout configuration, not a final placement. The next step was to test whether it matched how people actually scan the screen.',
                 },
                 {
-                    title: 'Choose one main value',
+                    title: 'Establish the primary information layer',
                     change: 'Made pressure the primary value on the screen.',
                     reason: 'The scenario is about a pressure incident, so the other values should support that reading instead of competing with it.',
                 },
@@ -84,9 +84,9 @@ const STRINGS = {
     },
     zh: {
         eyebrow: '設計流程',
-        title: '介面精細度演進',
-        intent: '這個模組展示同一個泵站監控畫面，如何從粗略想法一步步演進成更可測試、可討論、可交付的介面。每一階段都保留上一版作為對照，讓設計過程看起來不是突然變漂亮，而是一連串有理由的判斷。',
-        stops: ['草圖', '線框', '高精度'],
+        title: '介面精細度與決策演進',
+        intent: '這個模組以同一套泵站監控介面為基準，展示它如何從草圖、線框逐步發展為可測試、可討論、可交付的高擬真原型。每個階段不只提升視覺精細度，也保留當時的資訊排序、風險假設與設計取捨，讓介面的演進不是單純「變得更漂亮」，而是問題與決策逐步被釐清的過程。',
+        stops: ['草稿', '線框', '高保真'],
         stageLabel: '泵站總覽',
         of: '精細度',
         compare: '與上一版比較',
@@ -94,34 +94,34 @@ const STRINGS = {
         sliderLabel: '揭示滑桿——上一版與目前版比較',
         prev: '上一版',
         curr: '目前版',
-        annTitle: '這一版改了什麼',
+        annTitle: '三項設計改動',
         change: '變更',
         reason: '為什麼這樣改',
-        paperNote: '早期草圖——刻意使用淺色紙面，讓探索階段和正式介面區分開來。',
+        paperNote: '早期版本刻意保留鉛筆筆畫的視覺語言，用來區分仍在探索的假設，以及後續逐步收斂的介面決策。',
         notes: [
             {
                 tag: 'Decision / 設計判斷',
-                text: '這座精細度階梯是用程式碼重新繪製，而不是直接貼上靜態截圖。這讓作品集本身也成為前端實作證據，而不只是展示圖片的容器。',
+                text: '這組介面設計以程式碼、SVG 與 DOM 重新建立，保留每個階段的畫面與互動邏輯；作品集因此不只是展示截圖，也能呈現介面如何被推敲、測試與收斂。',
             },
             {
-                tag: 'Trade-off / 取捨',
-                text: '用 SVG 重建草圖比貼截圖更花時間，但它讓設計過程更清楚、可響應，也更容易被檢查。',
+                tag: 'Trade-off / 設計取捨',
+                text: '以 SVG 與 DOM 重新建立畫面比直接使用圖片更花時間，但能讓設計差異與預期行為被逐項檢查，減少開發與溝通時的模糊空間。',
             },
         ],
         ann: [
             [
                 {
-                    title: '先用單欄整理資訊',
+                    title: '先釐清資訊層級',
                     change: '先把所有讀值放進單一垂直流程中。',
                     reason: '在決定版面格線之前，先確認這個畫面到底需要承載哪些資訊。',
                 },
                 {
-                    title: '先讓警示保持可見',
-                    change: '第一版先把警示區放在畫面右側。',
-                    reason: '這是最初的版面直覺；下一步再檢查它是否符合使用者實際掃視畫面的方式。',
+                    title: '讓警報維持在視線範圍',
+                    change: '第一版先將警報區放在畫面右側。',
+                    reason: '這是早期操作畫面的配置，不是最終位置；下一步再檢查它是否符合使用者實際掃視畫面的方式。',
                 },
                 {
-                    title: '選出主要數值',
+                    title: '建立主要資訊層級',
                     change: '把壓力設定為畫面中的主數值。',
                     reason: '這個情境處理的是壓力事件，因此其他資訊應該協助理解壓力，而不是一起搶注意力。',
                 },

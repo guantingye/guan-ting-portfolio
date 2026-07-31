@@ -6,17 +6,17 @@ const MOD = MODULES.find(m => m.key === 'M10');
 
 const COPY = {
     en: {
-        title: 'Hi-fi redesign comparator',
-        lead: 'Left is the Notion report era; right is the shipped platform’s /insights page. Both are rebuilt as DOM, not screenshots — drag the divider, or use the buttons and arrow keys.',
+        title: 'From Notion daily reports to a queryable interface',
+        lead: 'The left side recreates the early daily reports published in Notion; the right side is the redesigned /insights interface now live. Both versions are rebuilt as DOM components rather than static screenshots, so you can drag the divider or use the controls to experience the differences in information composition and reading patterns. The redesign did not add visual elements for their own sake: it reorganized information density, scan order, source evidence, and bilingual content so analysts can identify signals worth further reading more quickly.',
         beforeBtn: 'Before', afterBtn: 'After',
         beforeTag: 'Notion report era', afterTag: 'Shipped platform',
         divider: 'Comparison divider',
-        ledgerLabel: 'What changed and why',
+        ledgerLabel: 'Design adjustments and decision rationale',
         rows: [
-            { k: 'Density', before: 'One long page, everything inline', after: 'Filtered list + focused detail — more items per screen' },
-            { k: 'Scan order', before: 'Headline first, provenance buried', after: 'Confidence + date + tag before the headline' },
-            { k: 'Trust signals', before: 'Source link sometimes lost in copy-paste', after: 'Source span + category shown on every item' },
-            { k: 'Bilingual', before: 'EN and ZH mixed in the same paragraph', after: 'Parallel zh-TW / EN, switchable' },
+            { k: 'Density', before: 'All content sits on one page, with summaries, original text, and sources expanded at once; it is hard to scan quickly.', after: 'A dense list supports quick scanning, while the detail page expands the full content; more signals can be compared on the same screen.' },
+            { k: 'Scan order', before: 'Headlines draw attention first, but dates, categories, and sources have no fixed position, so judging credibility requires extra searching.', after: 'Dates, categories, and confidence information retain a fixed hierarchy, so users can judge freshness and relevance before reading the summary.' },
+            { k: 'Trust signals', before: 'After repeated copying and rearranging, source links can become separated from summaries, making verification more costly.', after: 'Every intelligence item retains its source link, original-text excerpt, and category information, so key claims can be checked directly.' },
+            { k: 'Bilingual', before: 'Traditional Chinese summaries and English originals are mixed together, interrupting reading rhythm and making comparison difficult.', after: 'Traditional Chinese summaries and English originals are layered separately, so users can switch or compare them as needed.' },
         ],
         beforeReport: {
             title: 'Daily tech report — 2025/01/15',
@@ -36,20 +36,20 @@ const COPY = {
             summaryLabel: '重點摘要',
             summary: '2024年全球AI晶片市場規模達530億美元，預計2028年突破1,200億美元，年複合成長率23.6%。',
         },
-        soWhat: 'The redesign is measurable in scan order and density.',
+        soWhat: 'Review the interface differences and design rationale before and after the redesign',
     },
     zh: {
-        title: '高保真改版對照',
-        lead: '左邊是 Notion 報告時期，右邊是已上線平台的 /insights 頁。兩邊都是用 DOM 重建的，不是截圖——拖動分隔線，或用按鈕和方向鍵。',
+        title: '從 Notion 日報到可查詢介面',
+        lead: '左側重現早期以 Notion 發布的每日報告，右側則是改版後實際上線的 /insights 介面。兩個版本皆以 DOM 元件重建，而不是靜態截圖，因此可以直接拖曳分隔線，或使用按鍵感受內容組成與閱讀方式的差異。這次改版的重點不是增加視覺元件，而是重新安排資訊密度、掃描順序、來源證據與雙語內容，讓分析師能更快判斷哪些訊號值得進一步閱讀。',
         beforeBtn: 'Before', afterBtn: 'After',
         beforeTag: 'Notion 報告時期', afterTag: '已上線平台',
         divider: '對照分隔線',
-        ledgerLabel: '改了什麼、為什麼',
+        ledgerLabel: '設計調整與判斷依據',
         rows: [
-            { k: '密度', before: '一頁長文，全部就地展開', after: '篩選清單 + 聚焦詳情——每頁更多項目' },
-            { k: '掃描順序', before: '標題優先，出處被埋沒', after: '信心 + 日期 + 標籤放在標題之前' },
-            { k: '信任訊號', before: '來源連結常在複製貼上中遺失', after: '每則都顯示來源片段 + 類別' },
-            { k: '雙語', before: '中英混在同一段', after: '繁中／英文並排，可切換' },
+            { k: '密度', before: '所有內容集中在一頁，摘要、原文與來源同時展開，難以快速掃描。', after: '以密集清單支援快速掃描，再於詳情頁展開完整內容，同一畫面能比較更多訊號。' },
+            { k: '掃描順序', before: '標題最先吸引注意，但日期、分類與來源位置不固定，判斷可信度需要額外搜尋。', after: '日期、分類與信心資訊維持固定層級，讓使用者在閱讀摘要前先判斷內容的新鮮度與相關性。' },
+            { k: '信任訊號', before: '內容經過多次複製與重排後，來源連結容易與摘要分離，回查成本較高。', after: '每則情報都保留來源連結、原文片段與分類資訊，讓關鍵敘述可以直接回查。' },
+            { k: '雙語', before: '繁中摘要與英文原文混排，閱讀節奏不一致，也不容易快速對照。', after: '繁中摘要與英文原文分層呈現，使用者可依閱讀需求切換或對照。' },
         ],
         beforeReport: {
             title: '每日科技報告 — 2025/01/15',
@@ -69,7 +69,7 @@ const COPY = {
             summaryLabel: '重點摘要',
             summary: '2024年全球AI晶片市場規模達530億美元，預計2028年突破1,200億美元，年複合成長率23.6%。',
         },
-        soWhat: '改版的成效可用掃描順序與密度衡量。',
+        soWhat: '查看改版前後的介面差異與設計依據',
     },
 };
 

@@ -9,49 +9,49 @@ const MOD = MODULES.find(m => m.key === 'M07');
 // the real /insights report on the live platform.
 const STAGES = [
     {
-        id: 'crawl', label: { en: 'Crawl', zh: '爬取' },
-        inCap: { en: 'Entering — source URL', zh: '進入——來源 URL' },
-        outCap: { en: 'Leaving — raw HTML', zh: '離開——原始 HTML' },
+        id: 'crawl', label: { en: 'Source retrieval', zh: '來源擷取' },
+        inCap: { en: 'Input | source URLs and subscriptions', zh: '輸入｜來源網址與訂閱項目' },
+        outCap: { en: 'Output | source snapshot with original HTML preserved', zh: '輸出｜保留原始 HTML 的來源快照' },
         in: 'GET tech&industry feed\n→ item: "AI chip market 2024…"',
         out: '<article><h1>AI 晶片市場…</h1>\n<div class="ad">…</div><p>隨著生成式AI…</p>',
     },
     {
-        id: 'clean', label: { en: 'Clean', zh: '清理' },
+        id: 'clean', label: { en: 'Content cleanup', zh: '內容清理' },
         inCap: { en: 'Entering — raw HTML', zh: '進入——原始 HTML' },
         outCap: { en: 'Leaving — plain text (Trafilatura)', zh: '離開——純文字（Trafilatura）' },
         in: '<article>…<div class="ad">…</div>\n<nav>…</nav><p>隨著生成式AI…</p>',
         out: '隨著生成式AI應用快速普及，AI晶片市場\n呈現爆炸性成長。2024年全球AI晶片市場\n規模達到530億美元…',
     },
     {
-        id: 'dedupe', label: { en: 'Dedupe', zh: '去重' },
+        id: 'dedupe', label: { en: 'Duplicate merging', zh: '重複合併' },
         inCap: { en: 'Entering — cleaned text', zh: '進入——清理後文字' },
         outCap: { en: 'Leaving — hash + verdict', zh: '離開——雜湊 + 判定' },
         in: 'title="全球半導體產業AI晶片市場趨勢分析"',
         out: 'sha1(title)=9f3c… · fuzzy=0.12\nverdict: UNIQUE (keep)',
     },
     {
-        id: 'classify', label: { en: 'Classify', zh: '分類' },
+        id: 'classify', label: { en: 'Topic classification', zh: '主題分類' },
         inCap: { en: 'Entering — text', zh: '進入——文字' },
         outCap: { en: 'Leaving — taxonomy JSON', zh: '離開——分類 JSON' },
         in: '隨著生成式AI…台灣半導體供應鏈…',
         out: '{ "primary": "Semiconductor",\n  "tags": ["AI","半導體","晶片設計","市場趨勢"],\n  "confidence": "high" }',
     },
     {
-        id: 'summarize', label: { en: 'Summarise', zh: '摘要' },
+        id: 'summarize', label: { en: 'Bilingual summary', zh: '雙語摘要' },
         inCap: { en: 'Entering — text + tags', zh: '進入——文字 + 標籤' },
         outCap: { en: 'Leaving — bilingual briefing', zh: '離開——雙語簡報' },
         in: 'prompt v5 · quote numbers verbatim, null if absent',
         out: '{ "summary_zh": "2024年AI晶片市場達530億美元，\n  2028年將突破1,200億美元，CAGR 23.6%…",\n  "figures": ["US$53B","US$120B","23.6%","80%"] }',
     },
     {
-        id: 'publish', label: { en: 'Publish', zh: '發布' },
+        id: 'publish', label: { en: 'Data publishing', zh: '資料發布' },
         inCap: { en: 'Entering — briefing JSON', zh: '進入——簡報 JSON' },
         outCap: { en: 'Leaving — structured record', zh: '離開——結構化紀錄' },
         in: '{ summary_zh, figures, tags, source_span }',
         out: 'DB row: { title, date:2025-01-15,\n  category:"Semiconductor", body, tags } → /insights',
     },
     {
-        id: 'platform', label: { en: 'Platform', zh: '平台' },
+        id: 'platform', label: { en: 'Frontend presentation', zh: '前端呈現' },
         inCap: { en: 'Entering — published record', zh: '進入——已發布紀錄' },
         outCap: { en: 'Leaving — live insight card (REAL)', zh: '離開——線上洞察卡（真實）' },
         in: 'record #… on /insights',
@@ -61,22 +61,22 @@ const STAGES = [
 
 const COPY = {
     en: {
-        title: 'Pipeline anatomy — live signal trace',
-        lead: 'Follow one real headline — the AI-chip market report — from the crawl all the way to its live card on /insights. Click any stage to freeze the trace and see exactly what went in and what came out.',
+        title: 'Data pipeline trace | From source news to product page',
+        lead: 'This module traces one real news story through its full path: source retrieval, content cleanup and deduplication, industry classification, bilingual summarization, publishing, and frontend presentation. Select any stage to see what data it receives, which transformations it performs, and how its output is handed to the next step. The pipeline is not just a background service—it is a product workflow that can be inspected, debugged, and traced.',
         run: 'Run trace', running: 'Tracing…',
         headlineLabel: 'Signal in transit',
         headline: '「全球半導體產業AI晶片市場趨勢分析」',
-        inspectLabel: 'Stage inspector',
-        soWhat: 'Every transformation in the system is inspectable.',
+        inspectLabel: 'Stage inspection',
+        soWhat: 'Review the seven processing stages and the record of data transformations',
     },
     zh: {
-        title: '管線解剖——即時訊號追蹤',
-        lead: '跟著一則真實新聞——AI 晶片市場報告——從爬取一路走到它在 /insights 上的線上卡片。點任一階段就會凍結追蹤，看清楚那一步進去什麼、又出來什麼。',
+        title: '資料管線追蹤｜從原始新聞到產品頁面',
+        lead: '這個模組追蹤一則真實新聞，從來源擷取、內容清理與去重，到產業分類、雙語摘要、發布與前端呈現的完整路徑。選取任一階段，即可查看該步驟接收了什麼資料、進行哪些轉換，以及產出如何交給下一個環節。這讓資料管線不只是背景服務，而是一套可以被檢查、除錯與追溯的產品流程。',
         run: '執行追蹤', running: '追蹤中…',
         headlineLabel: '傳輸中的訊號',
         headline: '「全球半導體產業AI晶片市場趨勢分析」',
-        inspectLabel: '階段檢視器',
-        soWhat: '系統裡每一次轉換都可被檢視。',
+        inspectLabel: '階段檢視',
+        soWhat: '查看七個處理階段與資料轉換紀錄',
     },
 };
 
@@ -179,7 +179,7 @@ export default function M07_PipelineAnatomy() {
 function Inspector({ s, lang, label }) {
     return (
         <div className="ni-m7-inspect" aria-live="polite">
-            {label && <span className="ni-caption ni-m7-inspect-label">{label} · {s.label[lang]}</span>}
+            {label && <span className="ni-caption ni-m7-inspect-label">{label}｜{s.label[lang]}</span>}
             <div className="ni-m7-io">
                 <div className="ni-m7-io-col">
                     <span className="ni-m7-io-cap ni-m7-io-cap--in">{s.inCap[lang]}</span>

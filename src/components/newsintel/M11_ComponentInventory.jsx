@@ -6,8 +6,8 @@ const MOD = MODULES.find(m => m.key === 'M11');
 
 const STATES = ['default', 'hover', 'focus', 'loading', 'empty', 'error'];
 const STATE_LABEL = {
-    en: { default: 'DEFAULT', hover: 'HOVER', focus: 'FOCUS', loading: 'LOADING', empty: 'EMPTY', error: 'ERROR' },
-    zh: { default: '預設', hover: '滑過', focus: '聚焦', loading: '載入', empty: '空', error: '錯誤' },
+    en: { default: 'DEFAULT', hover: 'MOUSE HOVER', focus: 'KEYBOARD FOCUS', loading: 'LOADING', empty: 'NO DATA', error: 'LOAD ERROR' },
+    zh: { default: '預設', hover: '滑鼠移入', focus: '鍵盤焦點', loading: '載入中', empty: '無資料', error: '載入錯誤' },
 };
 
 // Each component renders a small light-theme preview per state.
@@ -48,7 +48,7 @@ function FeedRow({ st, lang }) {
 
 const GROUPS = [
     {
-        id: 'card', name: { en: 'Insight card', zh: '洞察卡' }, render: InsightCard,
+        id: 'card', name: { en: 'Intelligence card', zh: '情報卡片' }, codeLabel: { en: 'InsightCard | State-branch logic', zh: 'InsightCard｜狀態分支邏輯' }, render: InsightCard,
         code: `function InsightCard({ item, status }) {
   if (status === 'loading') return <CardSkeleton />
   if (status === 'error')   return <CardError onRetry={refetch} />
@@ -62,10 +62,11 @@ const GROUPS = [
     </article>
   )
 }`,
-        note: { en: 'Every branch is a real state — the happy path is one of five, not the only one.', zh: '每個分支都是真實狀態——happy path 只是五分之一，不是唯一。' },
+        intro: { en: 'The component handles loading, error, and no-data states first, and renders its main content only when data is available. This keeps state logic from being scattered across page-level components.', zh: '元件先處理載入、錯誤與無資料狀態，只有在資料可用時才渲染主要內容，避免不同狀態的判斷散落在頁面元件中。' },
+        note: { en: 'The default state is only one part of a complete component; loading, no-data, error, and keyboard interactions also need to be formally designed.', zh: '預設狀態只是完整元件的一部分，載入、空資料、錯誤與鍵盤操作同樣需要被正式設計。' },
     },
     {
-        id: 'chip', name: { en: 'Filter chip', zh: '篩選晶片' }, render: FilterChip,
+        id: 'chip', name: { en: 'Filter condition chip', zh: '篩選條件籤' }, codeLabel: { en: 'FilterChip | State-branch logic', zh: 'FilterChip｜狀態分支邏輯' }, render: FilterChip,
         code: `<button role="tab"
         aria-selected={active === id}
         aria-controls="feed"
@@ -73,41 +74,44 @@ const GROUPS = [
         onClick={() => setActive(id)}>
   {label}
 </button>`,
+        intro: { en: 'The component handles loading, error, and no-data states first, and renders its main content only when data is available. This keeps state logic from being scattered across page-level components.', zh: '元件先處理載入、錯誤與無資料狀態，只有在資料可用時才渲染主要內容，避免不同狀態的判斷散落在頁面元件中。' },
         note: { en: 'Filters are real tabs: aria-selected + aria-controls tie the chip to the feed it drives.', zh: '篩選是真正的 tab：aria-selected + aria-controls 把晶片綁到它驅動的列表。' },
     },
     {
-        id: 'stamp', name: { en: 'Confidence stamp', zh: '信心標記' }, render: StampCell,
+        id: 'stamp', name: { en: 'Confidence status indicator', zh: '信心狀態標記' }, codeLabel: { en: 'ConfidenceStamp | State-branch logic', zh: 'ConfidenceStamp｜狀態分支邏輯' }, render: StampCell,
         code: `// Color is never the only channel.
 <span className={\`stamp stamp--\${level}\`}>
   <ShapeIcon level={level} aria-hidden />
   {level === 'low' ? 'low conf' : \`high · \${pct}%\`}
 </span>
 // low confidence also routes the item to manual review.`,
+        intro: { en: 'The component handles loading, error, and no-data states first, and renders its main content only when data is available. This keeps state logic from being scattered across page-level components.', zh: '元件先處理載入、錯誤與無資料狀態，只有在資料可用時才渲染主要內容，避免不同狀態的判斷散落在頁面元件中。' },
         note: { en: 'Confidence carries a shape and text, not just a color — it survives grayscale.', zh: '信心同時帶形狀與文字，不只顏色——灰階下也讀得出來。' },
     },
     {
-        id: 'row', name: { en: 'Feed row', zh: '列表列' }, render: FeedRow,
+        id: 'row', name: { en: 'Intelligence list row', zh: '情報列表列' }, codeLabel: { en: 'FeedRow | State-branch logic', zh: 'FeedRow｜狀態分支邏輯' }, render: FeedRow,
         code: `<div id="feed" aria-live="polite" aria-busy={loading}>
   {rows.map(r => <FeedRow key={r.id} item={r} />)}
 </div>
 // aria-live announces new items when the
 // morning crawl finishes and the feed updates.`,
+        intro: { en: 'The component handles loading, error, and no-data states first, and renders its main content only when data is available. This keeps state logic from being scattered across page-level components.', zh: '元件先處理載入、錯誤與無資料狀態，只有在資料可用時才渲染主要內容，避免不同狀態的判斷散落在頁面元件中。' },
         note: { en: 'The feed is an aria-live region — new items are announced, not silently swapped.', zh: '列表是 aria-live 區——新項目會被朗讀，而非默默替換。' },
     },
 ];
 
 const COPY = {
     en: {
-        title: 'Component & state inventory',
-        lead: 'Four platform components, each shown across six states and rendered live — with the piece of code from each that is actually worth a look.',
+        title: 'Component and state specifications',
+        lead: 'This module organizes four core platform components and uses actual frontend components to show six states: default, mouse hover, keyboard focus, loading, no data, and load error. Each state is rendered directly at the component layer and paired with the relevant code snippet, showing how design specifications become operable, accessible frontend behavior that can handle exceptions.',
         copy: 'Copy', copied: 'Copied',
-        soWhat: 'Components ship with all their states, not the happy path.',
+        soWhat: 'Review the state specifications and frontend logic for all four components',
     },
     zh: {
-        title: '元件與狀態清單',
-        lead: '四個平台元件，各自跨六種狀態、即時渲染——再附上每個元件裡真正值得一看的那段程式碼。',
+        title: '元件與狀態規格',
+        lead: '這個模組整理四個核心平台元件，並以實際前端元件呈現預設、滑入、鍵盤焦點、載入、無資料與載入錯誤等六種狀態。每個狀態都直接由元件層的程式渲染，並附上對應的程式片段，說明設計規格如何轉化為可操作、可存取且能處理異常的前端行為。',
         copy: '複製', copied: '已複製',
-        soWhat: '元件出貨時帶著它所有的狀態，不只 happy path。',
+        soWhat: '查看四個元件的狀態規格與前端邏輯',
     },
 };
 
@@ -144,9 +148,10 @@ export default function M11_ComponentInventory() {
 
             <div className="ni-c-code-wrap">
                 <div className="ni-c-code-head">
-                    <span className="ni-caption">{g.name[lang]} · logic</span>
+                    <span className="ni-caption">{g.codeLabel[lang]}</span>
                     <button className="ni-btn ni-c-copy" onClick={copy}>{copied ? t.copied : t.copy}</button>
                 </div>
+                <p className="ni-c-intro">{g.intro[lang]}</p>
                 <pre className="ni-c-code"><code>{g.code}</code></pre>
                 <p className="ni-c-note">{g.note[lang]}</p>
             </div>
@@ -203,6 +208,7 @@ injectStyles('ni-m11', `
 .ni-c-code-wrap { margin-top: 18px; }
 .ni-c-code-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
 .ni-c-copy { font-size: 11px; padding: 5px 12px; }
+.ni-c-intro { margin: 0 0 8px; font-size: 12.5px; line-height: 1.55; color: var(--ni-text-2); }
 .ni-c-code { margin: 0; padding: 14px; background: var(--ni-bg-0); border: 1px solid var(--ni-line-1); border-radius: var(--ni-r-md); overflow-x: auto; font-family: var(--ni-font-data); font-size: 11.5px; line-height: 1.65; color: var(--ni-text-2); }
 .ni-c-note { margin: 10px 0 0; font-size: 12.5px; line-height: 1.55; color: var(--ni-text-3); border-left: 2px solid var(--ni-teal); padding-left: 12px; }
 @media (max-width: 900px) { .ni-c-strip { grid-template-columns: repeat(3, 1fr); } }

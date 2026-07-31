@@ -31,8 +31,8 @@ const TREE = [
 
 const COPY = {
     en: {
-        title: 'Bilingual taxonomy design',
-        lead: 'Every category is a ZH↔EN pair, so a Taiwan-specific description maps onto a label an international reader can follow. The counts show roughly how the shipped set breaks down.',
+        title: 'Bilingual taxonomy architecture & boundary rules',
+        lead: 'I created Traditional Chinese–English pairs for each industry category so vocabulary commonly used in Taiwan maps to labels familiar to international readers while keeping filtering, analytics, and search consistent. Each category defines its hierarchy, inclusion criteria, exclusion criteria, and rules for ambiguous cases. The figures on the right show article counts by category in this case-study dataset, used to check the classification distribution; they do not represent real-world industry scale.',
         treeLabel: 'Classification tree — ZH ↔ EN',
         expand: 'expand', collapse: 'collapse',
         hardLabel: 'Hard cases & tie-break rules',
@@ -48,8 +48,8 @@ const COPY = {
         soWhat: 'I design the information model, not just the interface.',
     },
     zh: {
-        title: '雙語分類法設計',
-        lead: '每個類別都是 ZH↔EN 配對，讓在地的台灣描述能對應到國際讀者看得懂的標籤。數量大致反映出貨版本的分布。',
+        title: '雙語分類架構與邊界規則',
+        lead: '我為每個產業類別建立繁中與英文對照，讓台灣常用的產業語彙能映射到國際讀者熟悉的標籤，同時維持資料篩選、統計與搜尋的一致性。每個類別都包含層級、納入條件、排除條件與模糊案例處理規則。右側數字代表本案例資料集中各類別的文章筆數，用來檢查分類分布，不代表實際產業規模。',
         treeLabel: '分類樹——ZH ↔ EN',
         expand: '展開', collapse: '收合',
         hardLabel: '難例與 tie-break 規則',

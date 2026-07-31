@@ -15,7 +15,7 @@ const Callout = ({ x, y, c }) => (
 
 const PLATES = [
     {
-        id: 'home', title: { en: 'Platform home', zh: '平台首頁' },
+        id: 'home', title: { en: 'Product home and feature entry', zh: '產品首頁與功能入口' },
         svg: (
             <>
                 <rect x="8" y="8" width="184" height="16" {...G} />
@@ -33,7 +33,7 @@ const PLATES = [
         },
     },
     {
-        id: 'feed', title: { en: 'Insights feed — dense list', zh: '洞察列表——密集清單' }, shipped: true,
+        id: 'feed', title: { en: 'Intelligence list | Dense list', zh: '情報列表｜密集清單' }, shipped: true,
         svg: (
             <>
                 <rect x="8" y="8" width="30" height="12" {...G} /><rect x="42" y="8" width="30" height="12" {...G} /><rect x="76" y="8" width="30" height="12" {...G} />
@@ -47,7 +47,7 @@ const PLATES = [
         },
     },
     {
-        id: 'feed-grid', title: { en: 'Insights feed — card grid', zh: '洞察列表——卡片網格' }, reject: true,
+        id: 'feed-grid', title: { en: 'Intelligence list | Card grid', zh: '情報列表｜卡片網格' }, reject: true,
         reason: { en: 'Card grid rejected: scanning speed loses to a dense list when items are read daily.', zh: '卡片網格被否決：每日閱讀時，掃描速度輸給密集清單。' },
         svg: (
             <>
@@ -58,7 +58,7 @@ const PLATES = [
         callouts: { en: [['A', 'Big cards look nice, but halve the items per screen — fails the morning scan']], zh: [['A', '大卡片好看，卻讓每頁項目減半——過不了早晨掃描']] },
     },
     {
-        id: 'detail', title: { en: 'Insight detail — full page', zh: '洞察詳情——整頁' }, shipped: true,
+        id: 'detail', title: { en: 'Intelligence detail | Standalone page', zh: '情報詳情｜獨立頁面' }, shipped: true,
         svg: (
             <>
                 <rect x="20" y="10" width="130" height="9" {...G} />
@@ -76,7 +76,7 @@ const PLATES = [
         },
     },
     {
-        id: 'detail-modal', title: { en: 'Insight detail — modal', zh: '洞察詳情——彈窗' }, reject: true,
+        id: 'detail-modal', title: { en: 'Intelligence detail | Pop-up window', zh: '情報詳情｜彈出視窗' }, reject: true,
         reason: { en: 'Modal rejected: breaks deep-linking and print/PDF export — reports get shared as links.', zh: '彈窗被否決：破壞深連結與列印／PDF 匯出——報告會以連結分享。' },
         svg: (
             <>
@@ -90,7 +90,7 @@ const PLATES = [
         callouts: { en: [['A', 'Overlay traps the report — no URL to cite, no clean print']], zh: [['A', '覆蓋層把報告困住——沒有可引用的網址，也難乾淨列印']] },
     },
     {
-        id: 'filter', title: { en: 'Filter rail', zh: '篩選側欄' },
+        id: 'filter', title: { en: 'Industry filters and search sidebar', zh: '產業篩選與查詢側欄' },
         svg: (
             <>
                 <rect x="8" y="8" width="46" height="104" {...G} />
@@ -102,7 +102,7 @@ const PLATES = [
         callouts: { en: [['A', 'Industry filter mirrors the taxonomy from M6 — one model, two surfaces']], zh: [['A', '產業篩選對映 M6 的分類法——同一套模型，兩個介面']] },
     },
     {
-        id: 'empty', title: { en: 'Empty state', zh: '空狀態' },
+        id: 'empty', title: { en: 'Search and filter empty state', zh: '搜尋與篩選空狀態' },
         svg: (
             <>
                 <rect x="8" y="8" width="184" height="16" {...G} />
@@ -114,7 +114,7 @@ const PLATES = [
         callouts: { en: [['A', 'Empty ≠ broken — states why it is empty and what to do next']], zh: [['A', '空 ≠ 壞——說明為何為空，以及下一步該做什麼']] },
     },
     {
-        id: 'error', title: { en: 'Error state', zh: '錯誤狀態' },
+        id: 'error', title: { en: 'Data-loading error state', zh: '資料載入錯誤狀態' },
         svg: (
             <>
                 <rect x="8" y="8" width="184" height="16" {...G} />
@@ -129,17 +129,17 @@ const PLATES = [
 
 const COPY = {
     en: {
-        title: 'Lo-fi wireframe plates',
-        lead: 'Eight plates, two of them rejected on purpose. Open any one to read the decisions its callouts were arguing over.',
+        title: 'Lo-fi wireframes and layout trade-offs',
+        lead: 'These lo-fi wireframes compare content density, browsing patterns, and page hierarchy—not visual style. Of the eight layouts, two were removed after evaluation. Select any wireframe to see the questions discussed at the time, the reasons for adoption, and the basis for rejection, and understand how the final interface converged from different options.',
         open: 'Open plate', rejected: 'REJECTED', shipped: 'SHIPPED',
-        soWhat: 'Lo-fi was where arguments happened — cheaply.',
+        soWhat: 'Review the eight wireframe options and the reasons they were adopted',
         close: 'Close',
     },
     zh: {
-        title: '低保真線框圖',
-        lead: '八張圖，其中兩張是刻意否決的。打開任一張，讀它的標註當初在爭論的那些決定。',
+        title: '低保真線框圖與版型取捨',
+        lead: '這組低保真線框用來比較內容密度、瀏覽方式與頁面層級，而不是提前決定視覺風格。八個版型中，有兩個方案在評估後被排除。選取任一線框，可查看當時討論的問題、採用理由與否決依據，理解最終介面如何從不同方案中收斂。',
         open: '打開', rejected: 'REJECTED', shipped: 'SHIPPED',
-        soWhat: '低保真是論證發生的地方——而且便宜。',
+        soWhat: '查看八個線框方案與採用理由',
         close: '關閉',
     },
 };

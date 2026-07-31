@@ -6,21 +6,20 @@ const MOD = MODULES.find(m => m.key === 'M01');
 
 const COPY = {
     en: {
-        title: "The analyst's morning",
-        lead: 'Before I designed anything, I timed the problem. This is the 07:30–09:00 window before and after the system existed, from a 3-week diary study I ran on myself and two ISTI analysts.',
-        beforeLabel: 'BEFORE — 75 min / day', afterLabel: 'AFTER — 12 min / day',
-        hoverHint: 'Hover or focus a segment to read the friction it caused.',
+        title: "The analyst's morning intelligence workflow",
+        lead: 'Before designing a solution, I measured the problem itself. This record focuses on analysts’ daily 07:30–09:00 morning intelligence work, comparing the work steps and time spent before and after the tool was introduced.',
+        beforeLabel: 'BEFORE IMPLEMENTATION | AVG. 75 MIN / DAY', afterLabel: 'AFTER IMPLEMENTATION | AVG. 12 MIN / DAY',
         before: [
-            { id: 'tabs',   min: 8,  label: 'Open ~9 tabs',        quote: 'Nine sources, nine layouts. Half the time was just getting to the text.' },
-            { id: 'scan',   min: 22, label: 'Scan headlines',      quote: 'Skim everything, trust nothing. The relevant 10% is buried in vendor PR.' },
-            { id: 'dedupe', min: 11, label: 'Dedupe mentally',     quote: 'The same funding round, five times, three headline framings. I held it all in my head.' },
-            { id: 'notes',  min: 18, label: 'Copy into notes',     quote: 'Copy, paste, reformat, lose the source link, go back for the source link.' },
-            { id: 'trans',  min: 9,  label: 'Translate key EN',    quote: 'The team reads zh-TW. I hand-translated the parts that mattered, every day.' },
-            { id: 'slack',  min: 7,  label: 'Format for Slack',    quote: 'Re-formatting for Slack so it was skimmable ate the last of the morning.' },
+            { id: 'tabs',   min: 8,  label: 'Open sources' },
+            { id: 'scan',   min: 22, label: 'Filter headlines' },
+            { id: 'dedupe', min: 11, label: 'Identify duplicates' },
+            { id: 'notes',  min: 18, label: 'Organize notes' },
+            { id: 'trans',  min: 9,  label: 'Translate key points' },
+            { id: 'slack',  min: 7,  label: 'Reformat for publishing' },
         ],
         after: [
-            { id: 'read',  min: 9, label: 'Read briefing',    quote: 'The briefing is already deduped, tagged, and bilingual. I read, I do not assemble.' },
-            { id: 'check', min: 3, label: 'Spot-check 2 src', quote: 'I still verify two source links by hand — trust, but keep a hand on the wheel.' },
+            { id: 'read',  min: 9, label: 'Read the compiled results' },
+            { id: 'check', min: 3, label: 'Check sources and revise' },
         ],
         protocolToggle: 'Research protocol',
         protocolIntro: 'Method: 3-week diary study · n=3 (myself + 2 ISTI analysts) · self-logged.',
@@ -31,24 +30,23 @@ const COPY = {
             ['Sample', 'n=3 — small, internal, not a controlled trial'],
             ['Caveat', 'Self-observation is biased; I treat this as direction, not proof'],
         ],
-        soWhat: 'I measure the problem before designing for it.',
+        soWhat: 'Morning intelligence work may look like reading, but most of the time goes to searching, comparing, and reorganizing.',
     },
     zh: {
-        title: '分析師的早晨',
-        lead: '在動手設計之前，我先替問題計時。這是每天 07:30–09:00 這段時間、系統上線前後的對照，資料來自我對自己和兩位 ISTI 分析師做的三週日誌紀錄。',
-        beforeLabel: 'BEFORE — 每天 75 分鐘', afterLabel: 'AFTER — 每天 12 分鐘',
-        hoverHint: '將游標移到或聚焦某個區段，閱讀它造成的摩擦。',
+        title: '分析師的晨間情報工作流',
+        lead: '在設計解法之前，我先量測問題本身。這份紀錄聚焦分析師每天 07:30–09:00 的晨間情報整理，對照工具導入前後的工作步驟與耗時紀錄。',
+        beforeLabel: '導入前｜平均每日 75 分鐘', afterLabel: '導入後｜平均每日 12 分鐘',
         before: [
-            { id: 'tabs',   min: 8,  label: '開約 9 個分頁',   quote: '九個來源、九種版面。一半時間只是為了看到內文。' },
-            { id: 'scan',   min: 22, label: '掃描標題',        quote: '什麼都掃，什麼都不信。真正相關的 10% 埋在廠商公關稿裡。' },
-            { id: 'dedupe', min: 11, label: '心裡去重',        quote: '同一輪募資，五次，三種標題寫法，全靠腦袋記著。' },
-            { id: 'notes',  min: 18, label: '貼進筆記',        quote: '複製、貼上、重排、弄丟來源連結，再回去找來源連結。' },
-            { id: 'trans',  min: 9,  label: '翻譯關鍵英文',    quote: '團隊讀繁中，重要段落我每天手動翻譯。' },
-            { id: 'slack',  min: 7,  label: '排版給 Slack',    quote: '為了讓 Slack 好讀而重排，吃掉早晨最後一段時間。' },
+            { id: 'tabs',   min: 8,  label: '開啟來源' },
+            { id: 'scan',   min: 22, label: '篩選標題' },
+            { id: 'dedupe', min: 11, label: '辨識重複' },
+            { id: 'notes',  min: 18, label: '整理筆記' },
+            { id: 'trans',  min: 9,  label: '翻譯重點' },
+            { id: 'slack',  min: 7,  label: '重排發布' },
         ],
         after: [
-            { id: 'read',  min: 9, label: '讀簡報',       quote: '簡報已經去重、標好類、雙語。我只讀，不再組裝。' },
-            { id: 'check', min: 3, label: '抽查 2 來源',  quote: '我仍手動核對兩個來源連結——信任，但手要放在方向盤上。' },
+            { id: 'read',  min: 9, label: '閱讀整理結果' },
+            { id: 'check', min: 3, label: '核對來源與修正' },
         ],
         protocolToggle: '研究方法',
         protocolIntro: '方法：三週日誌研究 · n=3（我 + 兩位 ISTI 分析師）· 自我紀錄。',
@@ -59,15 +57,14 @@ const COPY = {
             ['樣本', 'n=3——小樣本、內部、非對照試驗'],
             ['限制', '自我觀察有偏誤；我視此為方向，而非證明'],
         ],
-        soWhat: '我在為問題設計之前，先量測它。',
+        soWhat: '晨間情報工作看似在閱讀，其實大部分時間都耗在尋找、比對與重新整理。',
     },
 };
 
-function TimeBar({ segments, total, active, setActive, tone }) {
+function TimeBar({ segments, active, setActive, tone }) {
     return (
         <div className="ni-m1-bar" role="list">
             {segments.map(s => {
-                const pct = (s.min / total) * 100;
                 const on = active === s.id;
                 return (
                     <button key={s.id} role="listitem"
@@ -78,7 +75,7 @@ function TimeBar({ segments, total, active, setActive, tone }) {
                         aria-pressed={on}
                         aria-label={`${s.label}, ${s.min} minutes`}>
                         <span className="ni-m1-seg-min">{s.min}′</span>
-                        {pct > 14 && <span className="ni-m1-seg-label">{s.label}</span>}
+                        <span className="ni-m1-seg-label">{s.label}</span>
                     </button>
                 );
             })}
@@ -91,27 +88,18 @@ export default function M01_AnalystMorning() {
     const t = COPY[lang] ?? COPY.en;
     const [active, setActive] = useState(t.before[1].id);
     const [open, setOpen] = useState(false);
-    const all = [...t.before, ...t.after];
-    const current = all.find(s => s.id === active) || t.before[1];
-
     return (
         <ModuleFrame mod={MOD} title={t.title} lead={t.lead} soWhat={t.soWhat}>
-            <p className="ni-caption ni-m1-hint">{t.hoverHint}</p>
             <div className="ni-m1-split">
                 <div className="ni-m1-col">
                     <span className="ni-m1-collabel ni-m1-collabel--before">{t.beforeLabel}</span>
-                    <TimeBar segments={t.before} total={75} active={active} setActive={setActive} tone="var(--ni-amber)" />
+                    <TimeBar segments={t.before} active={active} setActive={setActive} tone="var(--ni-amber)" />
                 </div>
                 <div className="ni-m1-col ni-m1-col--after">
                     <span className="ni-m1-collabel ni-m1-collabel--after">{t.afterLabel}</span>
-                    <TimeBar segments={t.after} total={75} active={active} setActive={setActive} tone="var(--ni-teal)" />
+                    <TimeBar segments={t.after} active={active} setActive={setActive} tone="var(--ni-teal)" />
                 </div>
             </div>
-            <div className="ni-m1-quote" aria-live="polite">
-                <span className="ni-m1-quote-mark" aria-hidden="true">“</span>
-                <p>{current.quote}</p>
-            </div>
-
             <button className="ni-m1-proto-toggle" aria-expanded={open} onClick={() => setOpen(o => !o)}>
                 <span className="ni-m1-proto-chevron" data-open={open} aria-hidden="true">▸</span>
                 {t.protocolToggle}
@@ -130,7 +118,6 @@ export default function M01_AnalystMorning() {
 }
 
 injectStyles('ni-m1', `
-.ni-m1-hint { display: block; margin-bottom: 14px; }
 .ni-m1-split { display: flex; flex-direction: column; gap: 16px; }
 .ni-m1-collabel { font-family: var(--ni-font-data); font-size: 11px; letter-spacing: 0.1em; display: block; margin-bottom: 8px; }
 .ni-m1-collabel--before { color: var(--ni-amber); }
@@ -140,11 +127,8 @@ injectStyles('ni-m1', `
 .ni-m1-seg::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--ni-seg); }
 .ni-m1-seg:hover, .ni-m1-seg.is-on { background: color-mix(in srgb, var(--ni-seg) 26%, var(--ni-bg-2)); border-color: var(--ni-seg); }
 .ni-m1-seg-min { font-family: var(--ni-font-data); font-size: 13px; color: var(--ni-text-1); }
-.ni-m1-seg-label { font-size: 11px; color: var(--ni-text-2); line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ni-m1-seg-label { font-size: 11px; color: var(--ni-text-2); line-height: 1.25; overflow-wrap: anywhere; }
 .ni-m1-col--after .ni-m1-bar { max-width: 27%; min-width: 160px; }
-.ni-m1-quote { display: flex; gap: 12px; margin-top: 18px; padding: 16px 18px; background: var(--ni-bg-2); border: 1px solid var(--ni-line-1); border-radius: var(--ni-r-md); }
-.ni-m1-quote-mark { font-family: var(--ni-font-display); font-size: 34px; line-height: 0.7; color: var(--ni-teal); }
-.ni-m1-quote p { margin: 0; font-family: var(--ni-font-display); font-size: 17px; font-style: italic; line-height: 1.45; color: var(--ni-text-1); }
 .ni-m1-proto-toggle { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; font-family: var(--ni-font-data); font-size: 12px; letter-spacing: 0.06em; color: var(--ni-teal); }
 .ni-m1-proto-chevron { display: inline-block; transition: transform 160ms var(--ni-ease); }
 .ni-m1-proto-chevron[data-open="true"] { transform: rotate(90deg); }

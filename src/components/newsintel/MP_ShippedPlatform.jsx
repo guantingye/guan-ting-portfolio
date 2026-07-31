@@ -6,18 +6,18 @@ const MOD = MODULES.find(m => m.key === 'MP');
 
 const COPY = {
     en: {
-        title: 'The shipped platform: three surfaces',
-        lead: 'The briefings do not stop at a database — they surface on a product. This is the Strategy Intelligence Platform I built: a home, an insights feed, and a startup directory. Rebuilt here as DOM; open any surface to see the real one.',
+        title: 'Shipped product | Three core surfaces',
+        lead: 'Information only becomes intelligence a team can use when it enters a product surface that is readable and searchable. I organized the pipeline output into a Strategy Intelligence Platform: a product home page, daily intelligence at /insights, and a deep-tech company directory at /startups. All three surfaces are rebuilt with real DOM and components, so they can be operated and inspected rather than viewed as static screenshots.',
         tabs: { home: 'Home', insights: 'Insights', startups: 'Startups' },
-        open: 'Open',
+        open: 'Open interactive prototype',
         home: {
             brand: 'Strategy Intelligence Platform',
-            tag: 'Global tech signal, structured for strategy.',
+            tag: 'Turn global technology signals into intelligence for research and decision-making.',
             cards: [
-                { k: 'Insights', d: 'Daily briefings straight from the AI news pipeline.' },
-                { k: 'Startups', d: 'The deep-tech directory, filterable by sector.' },
+                { k: 'Insights', d: 'A daily synthesis of global technology and industry signals, retaining categories, summaries, and source links.' },
+                { k: 'Startups', d: 'A deep-tech company and startup directory, searchable by sector, region, and company criteria.' },
             ],
-            stats: [['6', 'sources'], ['5', 'sectors'], ['daily', 'refresh']],
+            stats: [['6', 'information sources'], ['5', 'industry domains'], ['daily', 'automatic refresh']],
         },
         insights: {
             label: 'Insights · weekly briefings',
@@ -38,21 +38,21 @@ const COPY = {
                 { sector: 'Cleantech', stage: 'Series A', loc: 'Taichung' },
             ],
         },
-        soWhat: 'The system ends in a product a stranger can open, not a repo they take on trust.',
+        soWhat: 'Explore the home page, daily intelligence, and company directory',
     },
     zh: {
-        title: '已上線平台：三個介面',
-        lead: '簡報不會停在資料庫——它們會出現在一個產品上。這是我做的 Strategy Intelligence Platform：一個首頁、一條 insights 動態、一個新創目錄。這裡用 DOM 重建；點任一介面即可看實機。',
+        title: '已上線產品｜三個核心介面',
+        lead: '資料只有進入可閱讀、可搜尋的產品介面，才真正成為團隊可以使用的情報。我將資料管線的輸出整理成一套 Strategy Intelligence Platform，包含產品首頁、每日情報 /insights，以及深科技公司目錄 /startups。三個介面皆以實際 DOM 與元件重建，可直接操作與檢視，不是靜態截圖。',
         tabs: { home: 'Home', insights: 'Insights', startups: 'Startups' },
-        open: '開啟',
+        open: '開啟互動原型',
         home: {
             brand: 'Strategy Intelligence Platform',
-            tag: '把全球科技訊號，整理成策略看得懂的樣子。',
+            tag: '把全球科技訊號，整理成能被研究與決策使用的情報。',
             cards: [
-                { k: 'Insights', d: '直接來自 AI 新聞管線的每日簡報。' },
-                { k: 'Startups', d: '深科技新創目錄，可依產業篩選。' },
+                { k: 'Insights', d: '每日整理全球科技與產業訊號，保留分類、摘要與來源連結。' },
+                { k: 'Startups', d: '深科技企業與新創目錄，可依產業、地區與公司條件查找。' },
             ],
-            stats: [['6', '來源'], ['5', '產業'], ['每日', '更新']],
+            stats: [['6 個', '資訊來源'], ['5 個', '產業領域'], ['每日', '自動更新']],
         },
         insights: {
             label: 'Insights · 每週簡報',
@@ -73,7 +73,7 @@ const COPY = {
                 { sector: '潔淨科技', stage: 'A 輪', loc: '台中' },
             ],
         },
-        soWhat: '系統的終點是一個陌生人能打開的產品，而不是一份要人憑信任接受的程式庫。',
+        soWhat: '查看首頁、每日情報與企業目錄',
     },
 };
 

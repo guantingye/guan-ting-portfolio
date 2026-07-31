@@ -5,7 +5,7 @@ const STRINGS = {
     en: {
         eyebrow: 'STATE MODEL',
         title: 'HMI State Matrix Explorer',
-        intent: 'This module shows how the same machine state should change across different operating contexts. A warning on a desk screen, a three-meter glance view, a gloved touch surface, and a night-shift interface should not all look the same.',
+        intent: 'The same system state should not use an identical interface across different distances, lighting conditions, and operating contexts. This module crosses normal, advisory, warning, critical, degraded, offline, and handoff states with desk monitoring, a three-meter glance view, gloved operation, and low-glare night shifts, showing how information density, type scale, color, and interaction adapt to the context.',
         gridLabel: 'Interface states across operating contexts',
         states: 'States',
         contexts: 'Contexts',
@@ -22,11 +22,11 @@ const STRINGS = {
         notes: [
             {
                 tag: 'Design decision / 設計判斷',
-                text: 'Red is reserved for the critical state only. Other states use amber, teal, or gold so red still means “stop and act now.”',
+                text: 'Red is reserved for critical states that require immediate action. Other levels use amber, blue, teal, or gold so red is not diluted through overuse.',
             },
             {
-                tag: 'Trade-off / 取捨',
-                text: 'Designing every state across every context takes more effort, but the matrix makes that cost visible and reviewable before the interface reaches production.',
+                tag: 'Trade-off / 設計取捨',
+                text: 'Creating dedicated versions for different states and operating contexts adds design, implementation, and maintenance cost. The matrix makes those differences, specifications, and trade-offs reviewable one by one instead of leaving them for ad hoc decisions during development.',
             },
         ],
         content: {
@@ -71,7 +71,7 @@ const STRINGS = {
                 name: 'Desk',
                 dist: '40 cm',
                 motion: 'standard 240 ms',
-                note: 'This is the baseline view for a seated operator working at a control desk. It keeps enough detail for normal monitoring without overloading the card.',
+                note: 'This is the baseline version for nearby operation at a workstation. Its information density supports routine monitoring while retaining clear visual hierarchy, so the card does not become overloaded.',
             },
             glance: {
                 name: 'Glance · 3 m',
@@ -96,7 +96,7 @@ const STRINGS = {
     zh: {
         eyebrow: '狀態模型',
         title: 'HMI 狀態矩陣瀏覽器',
-        intent: '這個模組展示同一個機器狀態，到了不同操作情境下應該如何改變。桌面監控、三公尺外的一眼辨識、戴手套操作、夜班低眩光介面，不應該只是使用同一張卡片。',
+        intent: '同一個系統狀態，在不同距離、光線與操作條件下，不應套用完全相同的介面。這個模組將桌面監控、三公尺外快速辨識、戴手套操作與夜班低眩光四種情境，交叉比對正常、注意、警告、危急、降級、離線與交接七類狀態，呈現資訊密度、字級、色彩與操作方式如何隨情境調整。',
         gridLabel: '不同情境下的介面狀態',
         states: '狀態',
         contexts: '操作情境',
@@ -113,11 +113,11 @@ const STRINGS = {
         notes: [
             {
                 tag: 'Design decision / 設計判斷',
-                text: '整個頁面只把紅色留給真正需要立刻處理的危急狀態。其他層級改用琥珀、青綠或金色，讓紅色不被稀釋。',
+                text: '整套介面只將紅色保留給需要立即處置的危急狀態；其餘層級改用琥珀、藍、青綠或金色，避免紅色因過度使用而失去警示力。',
             },
             {
-                tag: 'Trade-off / 取捨',
-                text: '為每一種狀態和每一種情境都設計版本很花成本，但矩陣的價值就在這裡：它讓這些成本、取捨與設計理由都能被看見、被討論。',
+                tag: 'Trade-off / 設計取捨',
+                text: '為不同狀態與操作情境建立專屬版本，會增加設計、實作與維護成本；但矩陣能讓這些差異、規格與取捨被逐項檢查，而不是留到開發階段再臨時判斷。',
             },
         ],
         content: {
@@ -162,7 +162,7 @@ const STRINGS = {
                 name: '桌面監控',
                 dist: '40 cm',
                 motion: '標準 240 ms',
-                note: '這是坐在工作站前操作時的基準版本。它保留足夠資訊，適合日常監控，但不讓卡片變得過度擁擠。',
+                note: '這是工作站近距離操作的基準版本。資訊密度足以支援日常監控，同時保留清楚的主次層級，避免單張狀態卡承載過多內容。',
             },
             glance: {
                 name: '一眼辨識 · 3 m',

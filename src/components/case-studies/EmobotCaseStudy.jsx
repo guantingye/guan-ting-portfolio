@@ -1207,12 +1207,7 @@ export default function EmobotCaseStudy({ lang }) {
       React.createElement('div', { className: 'emobot-section-head' },
         React.createElement('div', null,
           React.createElement('div', { className: 'emobot-section-kicker' }, PA ? '08 / 公開紀錄' : '08 / Public record'),
-          React.createElement('h3', { className: 'emobot-section-title' }, PA ? '這個提案最後成為一份可以被公開查證的紀錄。' : 'The proposal ended as a record anyone can verify.')
-        ),
-        React.createElement('p', { className: 'emobot-section-copy' },
-          PA
-            ? '這裡收錄頒獎典禮實照、官方獎狀正本，以及三篇公開報導——不是自述的成果，而是能逐條點開查證的公開紀錄。'
-            : 'The ceremony photo, the certificate itself, and three published reports — not a claim, but a record you can click through and verify.'
+          React.createElement('h3', { className: 'emobot-section-title' }, PA ? '從專案發想走向實際落地的未來。' : 'From project conception toward a future in real-world practice.')
         )
       ),
       React.createElement('div', { className: 'emobot-record-stage' },
@@ -1237,9 +1232,7 @@ export default function EmobotCaseStudy({ lang }) {
             React.createElement('div', { className: 'emobot-exhibit-zoom' }, React.createElement(Icon, { name: 'maximize' }))
           ),
           React.createElement('figcaption', null,
-            React.createElement('div', { className: 'emobot-exhibit-tag' }, PA ? ex.zhTag : ex.tag),
-            React.createElement('h4', null, PA ? ex.zhTitle : ex.title),
-            React.createElement('p', null, PA ? ex.zhBody : ex.body)
+            React.createElement('div', { className: 'emobot-exhibit-tag' }, PA ? ex.zhTag : ex.tag)
           )
         ))
       ),

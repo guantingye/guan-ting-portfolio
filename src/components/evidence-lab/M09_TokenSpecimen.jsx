@@ -10,9 +10,9 @@ const RAMP = ['normal', 'advisory', 'warning', 'critical', 'offline'];
 const STRINGS = {
     en: {
         eyebrow: 'DESIGN SYSTEM',
-        title: 'HMI Design Token Specimen',
-        intent: 'This module shows the system layer behind the whole HMI lab: status colors, glance-friendly type, touch target sizes, density modes, and motion rules. The point is to make the interface feel consistent because the rules are visible, not hidden in scattered CSS.',
-        tabs: ['Status color rules', 'Glance type', 'Targets & density', 'Motion rhythm'],
+        title: 'HMI Visual & Interaction Specifications',
+        intent: 'This module organizes the shared design specifications behind the UX/HMI lab: status colors, type scale for distance reading, touch target sizes, information density, and interaction timing. The point is not to display a token list, but to give every interface choice a clear purpose that design and engineering can inspect together and maintain consistently across modules.',
+        tabs: ['Status colors', 'Distance-reading type scale', 'Targets & density', 'Interaction timing'],
         colHex: 'Hex',
         colSample: 'Sample',
         colDay: 'Day contrast',
@@ -61,19 +61,19 @@ const STRINGS = {
         notes: [
             {
                 tag: 'Decision / 設計判斷',
-                text: 'Contrast ratios are printed beside the color swatches. Accessibility should be something the team can check, not something the interface simply claims.',
+                text: 'Contrast ratios sit directly beside the color specifications, so accessibility is not merely a promise in a design description but an acceptance criterion that design, engineering, and QA can inspect together.',
             },
             {
-                tag: 'Trade-off / 取捨',
-                text: 'The system uses two density modes instead of a continuous slider. Discrete modes are easier to QA, document, and keep consistent across modules.',
+                tag: 'Trade-off / 設計取捨',
+                text: 'The system uses a small number of defined density modes rather than letting users make arbitrary adjustments with a continuous slider. Discrete specifications sacrifice some freedom, but are easier to test, document, and maintain across modules while reducing the risk of uncontrolled layout combinations.',
             },
         ],
     },
     zh: {
         eyebrow: '設計系統',
-        title: 'HMI 設計規格切片',
-        intent: '這個模組整理整個 HMI Lab 背後的系統層：狀態色、一眼閱讀字級、操作目標尺寸、密度模式與動態規則。重點不是把 token 列出來，而是讓介面之所以一致的原因可以被看見、被檢查、被交付。',
-        tabs: ['狀態色規則', '一眼閱讀字級', '操作尺寸與密度', '動態節奏'],
+        title: 'HMI 視覺與互動規格',
+        intent: '這個模組整理 UX/HMI 實驗室背後共用的設計規格，包括狀態色彩、遠距閱讀字級、操作目標尺寸、資訊密度與動態時序。重點不是展示一份 token 清單，而是讓每項介面選擇都有明確用途、可被設計與工程共同檢查，並能在不同模組中維持一致。',
+        tabs: ['狀態色彩', '遠距閱讀字級', '操作尺寸與密度', '互動時序'],
         colHex: '色碼',
         colSample: '範例',
         colDay: '日間對比',
@@ -122,11 +122,11 @@ const STRINGS = {
         notes: [
             {
                 tag: 'Decision / 設計判斷',
-                text: '我把對比數字直接放在色票旁邊。無障礙不應該只是一句「有考慮可及性」，而是團隊能檢查、能驗證的規格。',
+                text: '對比度直接與色彩規格並列，讓可及性不只是設計說明中的一句承諾，而是設計、工程與 QA 都能共同檢查的驗收條件。',
             },
             {
-                tag: 'Trade-off / 取捨',
-                text: '這裡使用兩種密度模式，而不是一條連續滑桿。離散模式比較容易 QA、文件化，也比較能在不同模組中維持一致。',
+                tag: 'Trade-off / 設計取捨',
+                text: '系統採用少數明確的密度模式，而不是讓使用者以連續滑桿任意調整。離散規格犧牲部分自由度，但更容易被測試、文件化與跨模組維護，也能降低版面組合失控的風險。',
             },
         ],
     },
