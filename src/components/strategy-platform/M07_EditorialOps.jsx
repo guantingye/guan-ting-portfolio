@@ -36,7 +36,7 @@ const CARDS = [
 
 const COL_META = {
     backlog:   { en: 'BACKLOG', zh: '待辦', tone: 'var(--isp-text-3)' },
-    drafted:   { en: 'AGENT-DRAFTED', zh: 'AGENT 已草擬', tone: 'var(--isp-amber)' },
+    drafted:   { en: 'AGENT-DRAFTED', zh: 'AI 已草擬', tone: 'var(--isp-amber)' },
     review:    { en: 'HUMAN-REVIEW', zh: '人工審核', tone: 'var(--isp-sky)' },
     factcheck: { en: 'FACT-CHECK', zh: '事實查核', tone: 'var(--isp-iris)' },
     published: { en: 'PUBLISHED', zh: '已發佈', tone: 'var(--isp-teal)' },
@@ -45,20 +45,20 @@ const COL_META = {
 
 const COPY = {
     en: {
-        title: 'Editorial ops for AI-drafted content',
-        lead: "M06 drafts a note. This is what manages it — the part of an AI-writing system that senior teams actually build and juniors skip: a state machine, a diff between agent and human, provenance per card, and a freshness queue that reopens a row when the world changes under it. Click a card for its detail; the Figure AI card has a real agent-vs-reviewer diff.",
-        stateFlow: 'BACKLOG → AGENT-DRAFTED → HUMAN-REVIEW → FACT-CHECK → PUBLISHED → (signal changes) → STALE → back to BACKLOG',
+        title: 'AI draft review workspace',
+        lead: 'Module 06 produces the draft; this module manages it. The workspace divides an AI content item’s lifecycle into six states—backlog, agent-drafted, human review, fact check, published, and stale—while retaining human edit diffs, source traceability, and freshness reminders. This is the layer AI content systems most often overlook, yet it determines whether they can be maintained over time. Select any card to see its current status, related sources, and human reviewer edits. For example, the Figure AI card retains a complete record of the draft and its human revisions.',
+        stateFlow: 'BACKLOG → AGENT-DRAFTED → HUMAN-REVIEW → FACT-CHECK → PUBLISHED → STALE → BACK TO BACKLOG',
         diffBefore: 'Agent draft', diffAfter: 'Reviewer revision',
-        staleQueue: n => `${n} row${n === 1 ? '' : 's'} in the freshness queue — flagged for rewrite`,
-        soWhat: 'AI content generation is the easy 80%. The state machine that keeps it trustworthy at row 201 and row 2,000 is the other 80%.',
+        staleQueue: n => `${n} content ${n === 1 ? 'item has' : 'items have'} exceeded the update threshold and await renewed fact-checking and revision.`,
+        soWhat: 'AI-generated drafts are only the starting point. A content system that truly scales must let every draft be reviewed, traced, published, and returned to backlog when it becomes stale.',
     },
     zh: {
-        title: 'AI 草稿的文案管理工作台',
-        lead: 'M06 負責寫草稿。這個模組負責管它——一套 AI 寫作系統裡，資深團隊真正會做、junior 常常跳過的部分：一個狀態機、agent 與人工的 diff、每張卡的溯源，以及一個在世界變動時會重新打開這一列的鮮度佇列。點一張卡看細節；Figure AI 那張卡有真實的 agent vs 審稿人 diff。',
-        stateFlow: 'BACKLOG → AGENT-DRAFTED → HUMAN-REVIEW → FACT-CHECK → PUBLISHED → （訊號變動）→ STALE → 回到 BACKLOG',
+        title: 'AI 草稿審查工作台',
+        lead: 'Module 06 負責產生草稿，這個模組則負責讓草稿被管理。工作台將 AI 內容的生命週期拆成待辦、已草擬、人工審核、事實查核、已發布與已過期六種狀態，並保留人工修改差異、來源追溯與鮮度提醒。這是 AI 內容系統最容易被忽略，卻決定它能否長期維護的一層。點選任一卡片，可查看草稿目前的狀態、相關來源，以及人類審稿人之間的修改差異。例如 Figure AI 卡片保留完整的草稿與人工修訂紀錄。',
+        stateFlow: 'BACKLOG → AGENT-DRAFTED → HUMAN-REVIEW → FACT-CHECK → PUBLISHED → STALE → 回到 BACKLOG',
         diffBefore: 'Agent 草稿', diffAfter: '審稿人修訂',
-        staleQueue: n => `鮮度佇列中有 ${n} 列——已標記待重寫`,
-        soWhat: 'AI 生成內容是簡單的那 80%。讓它在第 201 列、第 2,000 列都還能被信任的狀態機，才是另外那 80%。',
+        staleQueue: n => `${n} 筆內容已超過更新門檻，等待重新查核與改寫。`,
+        soWhat: 'AI 生成草稿只是起點。真正可規模化的內容系統，必須讓每一筆草稿都能被審查、追溯、發布，也能在失效時回到待辦。',
     },
 };
 

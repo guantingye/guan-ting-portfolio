@@ -5,28 +5,15 @@ import { MODULES } from './data/strategyPlatformContent.js';
 const MOD = MODULES.find(m => m.key === 'M12');
 
 const STACK = [
-    { label: 'Frontend', val: 'React, client-side routing, bilingual EN/繁中 shell' },
-    { label: 'Data layer', val: '201-row structured company database, ten-field schema (M02)' },
-    { label: 'Writing method', val: 'Analyst-authored six-section notes, dated per curation batch (M03)' },
-    { label: 'Deployment', val: 'Vercel, static-first delivery' },
-    { label: 'Sibling system', val: 'The daily briefing pipeline in project 04 (AI News Intelligence) feeds a related — not identical — surface; see that case for the crawler/LLM pipeline itself' },
-    { label: 'AI layer', val: 'Agent skill system, editorial ops, and grounded RAG (M06–M08) — designed, not yet wired to the live product' },
+    { label: 'Frontend', en: 'React, client-side routing, and a Traditional Chinese / English bilingual interface.', zh: 'React、client-side routing，以及繁中／英文雙語介面。' },
+    { label: 'Data layer', en: '201 structured company records using a ten-field schema (Module 02).', zh: '201 筆結構化公司紀錄，採用十欄位 schema（Module 02）。' },
+    { label: 'Writing method', en: 'Analyst-authored six-section research notes, dated for each curation batch (Module 03).', zh: '由分析師撰寫六段式研究註記，並依每次策展批次標記日期（Module 03）。' },
+    { label: 'Deployment', en: 'Deployed on Vercel with static-first delivery.', zh: 'Vercel 部署，採 static-first delivery。' },
+    { label: 'Sibling system', en: 'Project 04, “AI News Intelligence,” runs the daily strategic-briefing pipeline. The two share part of their output context but are not the same system; crawler and LLM pipeline details are documented in that case.', zh: 'Project 04「AI News Intelligence」負責每日策略簡報管線。兩者共享部分輸出脈絡，但並非同一套系統；爬蟲與 LLM 管線細節收錄於該案例。' },
+    { label: 'AI layer', en: 'The agent skill system, editorial workflow, and grounded RAG (Modules 06–08) are designed but not yet connected to the live product.', zh: 'Agent skill system、editorial workflow 與 grounded RAG（Module 06–08）已完成設計，目前尚未接入線上產品。' },
 ];
 
 const FLOW = ['Public sources', 'Analyst research', 'Six-section note', 'Curated row', 'Insights brief / Startup directory'];
-
-const LIMITS = {
-    en: [
-        'The AI strategist, editorial ops board, and RAG layer are concept designs (M06–M08) — real /startups search today is keyword + sector filter, not semantic retrieval.',
-        'The database is a curated 201, refreshed in batches, not a continuously crawled index — freshness is a dated snapshot, not a live feed.',
-        'Analyst verdicts are opinionated by design; they are a starting point for a reader\'s own judgment, not a substitute for it.',
-    ],
-    zh: [
-        'AI 策略師、文案管理看板與 RAG 層是概念設計（M06–M08）——今天真實的 /startups 搜尋是關鍵字加產業篩選，不是語意檢索。',
-        '資料庫是策展出的 201 筆，以批次更新，不是持續爬取的索引——新鮮度是一張標註日期的快照，不是即時 feed。',
-        '分析師判斷刻意帶有觀點；它是讀者自己判斷的起點，而不是替代品。',
-    ],
-};
 
 const ROADMAP = {
     en: ['Wire the RAG design (M08) to a real vector index over the 201 rows', 'Ship the editorial-ops board (M07) as the actual curation tool, not a demo', 'Expand past 201 companies once the agent pipeline (M06) is load-bearing enough to trust'],
@@ -35,22 +22,18 @@ const ROADMAP = {
 
 const COPY = {
     en: {
-        title: 'Architecture & honest limits',
-        lead: "The stack behind the three shipped routes, how this project relates to the AI News Intelligence pipeline (project 04), and — because a portfolio that only lists wins is not trustworthy — exactly which parts of the AI story above are live today versus designed.",
+        title: 'System architecture & practical boundaries',
+        lead: 'This section explains the technical structure behind the three shipped routes, how it relates to Project 04, “AI News Intelligence,” and which capabilities have been deployed versus which remain in the design stage.',
         stackTitle: 'Stack',
         flowTitle: 'Data flow',
-        limitsTitle: 'Honest limits',
         roadmapTitle: 'What I would build next',
-        soWhat: "The AI layer in this case is a design proposal, stated as one. That is not a hedge — a plan this specific is worth more than a vague claim that something 'uses AI.'",
     },
     zh: {
-        title: '架構與誠實限制',
-        lead: '三個已上線路徑背後的技術棧、這個專案與 AI News Intelligence 管線（專案 04）的關係，以及——因為一個只列出成功的作品集並不可信——上面的 AI 敘事裡，哪些今天已經上線、哪些是設計提案，精確說明。',
+        title: '系統架構與實際邊界',
+        lead: '這一節說明三條已上線路徑背後的技術結構、它與 Project 04「AI News Intelligence」的分工，以及哪些功能已經部署、哪些仍停留在設計階段。',
         stackTitle: '技術棧',
         flowTitle: '資料流',
-        limitsTitle: '誠實限制',
         roadmapTitle: '接下來會做什麼',
-        soWhat: '這個案例裡的 AI 層是一個被明確標示的設計提案。這不是保留一手——一份這麼具體的規劃，比一句含糊的「使用了 AI」更有價值。',
     },
 };
 
@@ -59,13 +42,13 @@ export default function M12_ArchitectureLimits() {
     const t = COPY[lang] ?? COPY.en;
 
     return (
-        <ModuleFrame mod={MOD} title={t.title} lead={t.lead} soWhat={t.soWhat}>
+        <ModuleFrame mod={MOD} title={t.title} lead={t.lead}>
             <span className="isp-caption isp-m12-title">{t.stackTitle}</span>
             <div className="isp-m12-stack">
                 {STACK.map(s => (
                     <div className="isp-m12-stack-item" key={s.label}>
                         <span>{s.label}</span>
-                        <p>{s.val}</p>
+                        <p>{s[lang] ?? s.en}</p>
                     </div>
                 ))}
             </div>
@@ -81,12 +64,6 @@ export default function M12_ArchitectureLimits() {
             </div>
 
             <div className="isp-m12-cols">
-                <div>
-                    <span className="isp-caption isp-m12-title isp-m12-title-2">{t.limitsTitle}</span>
-                    <ul className="isp-m12-list isp-m12-limits">
-                        {(LIMITS[lang] ?? LIMITS.en).map((l, i) => <li key={i}>{l}</li>)}
-                    </ul>
-                </div>
                 <div>
                     <span className="isp-caption isp-m12-title isp-m12-title-2">{t.roadmapTitle}</span>
                     <ul className="isp-m12-list isp-m12-roadmap">
@@ -111,10 +88,8 @@ injectStyles('isp-m12-style', `
 .isp-m12-flow-node { font-family: var(--isp-font-data); font-size: 11.5px; padding: 7px 12px; background: var(--isp-bg-2); border: 1px solid var(--isp-line-2); border-radius: 999px; color: var(--isp-text-1); }
 .isp-m12-flow-arrow { color: var(--isp-line-2); }
 
-.isp-m12-cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.isp-m12-cols { display: grid; grid-template-columns: 1fr; }
 .isp-m12-list { margin: 0; padding-left: 18px; display: grid; gap: 9px; }
 .isp-m12-list li { font-size: 13px; line-height: 1.58; color: var(--isp-text-2); }
-.isp-m12-limits li::marker { color: var(--isp-amber); }
 .isp-m12-roadmap li::marker { color: var(--isp-teal); }
-@media (max-width: 720px) { .isp-m12-cols { grid-template-columns: 1fr; } }
 `);

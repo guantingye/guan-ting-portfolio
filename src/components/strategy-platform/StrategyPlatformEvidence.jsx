@@ -3,7 +3,7 @@ import {
     injectStyles, useI18n, usePrefersReducedMotion, useInView, Reveal, ActDivider, WireTicker, IspProvider,
 } from './shared/ispKit.jsx';
 import {
-    ACTS, LENSES, LENS_COUNTS, MODULES, SHELL, LIVE_URL, ROUTES,
+    ACTS, LENSES, LENS_COUNTS, MODULES, SHELL,
 } from './data/strategyPlatformContent.js';
 
 const COMPONENTS = {
@@ -23,31 +23,20 @@ const COMPONENTS = {
 
 const TICKER = {
     en: [
-        { time: 'CURATE', text: 'A candidate is deduped against 201 rows and placed in the sector taxonomy' },
-        { time: 'WRITE', text: 'Six analyst sections drafted — moat, model, funding, risks, verdict' },
-        { time: 'AGENT', text: 'Concept: the skill pipeline drafts the same six sections at scale' },
-        { time: 'REVIEW', text: 'Concept: editorial ops moves the row through review to publish' },
-        { time: 'QUERY', text: 'Concept: a grounded RAG layer answers questions, citing the row' },
+        { time: 'SOURCE', text: 'Collect public signals while retaining their sources and citation locations' },
+        { time: 'CURATE', text: 'Deduplicate candidate companies, then complete entity alignment and industry classification' },
+        { time: 'ANALYZE', text: 'Use a fixed framework to assess business model, moat, funding signals, and risk' },
+        { time: 'WRITE', text: 'Turn evidence into analyst judgments that can be inspected and updated' },
+        { time: 'QUERY', text: 'Retrieve, cite, and extend follow-up questions from the same body of data' },
+        { time: 'SHIP', text: 'Deliver company records, strategic briefs, and query results through the interface' },
     ],
     zh: [
-        { time: 'CURATE', text: '候選公司與 201 列去重比對，並定位到產業分類法' },
-        { time: 'WRITE', text: '草擬六段分析師欄位——護城河、商模、資金、風險、判斷' },
-        { time: 'AGENT', text: '概念：技能 pipeline 在規模化下草擬同樣的六段' },
-        { time: 'REVIEW', text: '概念：文案管理把這一列推進審核直到發佈' },
-        { time: 'QUERY', text: '概念：依據式 RAG 層回答問題並引用該列' },
-    ],
-};
-
-const DEMO = {
-    en: [
-        { route: 'home', tab: '/ · Home', look: 'The globe hub-switcher — where a reader picks a geography before anything else.' },
-        { route: 'insights', tab: '/insights', look: 'The real briefs, e.g. the power-constraint thesis traced end to end in M04.' },
-        { route: 'startups', tab: '/startups', look: 'The real 201-row database. Expand any row — that six-section shape is what M05–M08 are built on.' },
-    ],
-    zh: [
-        { route: 'home', tab: '/ · Home', look: '地球儀 hub 切換器——讀者在任何事發生之前，先選一個地理區域。' },
-        { route: 'insights', tab: '/insights', look: '真實的簡報，例如在 M04 從頭追到尾的電力限制論點。' },
-        { route: 'startups', tab: '/startups', look: '真實的 201 列資料庫。展開任一列——那個六段結構正是 M05–M08 建立的基礎。' },
+        { time: 'SOURCE', text: '蒐集公開訊號，保留來源與引用位置' },
+        { time: 'CURATE', text: '去重候選公司，完成實體對齊與產業分類' },
+        { time: 'ANALYZE', text: '依固定框架整理商業模式、護城河、資金訊號與風險' },
+        { time: 'WRITE', text: '將證據轉化為可被檢查與更新的分析師判斷' },
+        { time: 'QUERY', text: '從同一批資料中檢索、引用並延伸追問' },
+        { time: 'SHIP', text: '透過介面交付公司檔案、策略簡報與查詢結果' },
     ],
 };
 
@@ -182,23 +171,6 @@ export default function StrategyPlatformEvidence() {
                 ))}
             </IspProvider>
 
-            <div className="isp isp-demo reveal">
-                <div className="isp-demo-head">
-                    <span className="isp-eyebrow" style={{ color: 'var(--isp-teal)' }}>LIVE DEMO BRIDGE</span>
-                    <h3 className="isp-display">{t.demoTitle}</h3>
-                    <p className="isp-mod-lead">{t.demoLead}</p>
-                </div>
-                <div className="isp-demo-grid">
-                    {(DEMO[lang] ?? DEMO.en).map((d, i) => (
-                        <a key={i} className="isp-demo-card" href={ROUTES[d.route]} target="_blank" rel="noopener noreferrer">
-                            <span className="isp-demo-card-tab">{d.tab}</span>
-                            <span className="isp-demo-card-look">{d.look}</span>
-                            <span className="isp-demo-card-open">OPEN ↗</span>
-                        </a>
-                    ))}
-                </div>
-                <p className="isp-demo-url">{t.demoPrintNote} <span className="isp-mono">{LIVE_URL}</span></p>
-            </div>
         </section>
     );
 }
@@ -257,24 +229,9 @@ injectStyles('isp-layer', `
 .isp-skel svg { width: 100%; height: 30px; animation: isp-skel-pulse 1.6s var(--isp-ease) infinite; }
 @keyframes isp-skel-pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 0.72; } }
 
-/* live demo bridge */
-.isp-demo { margin-top: 30px; padding: 30px; border: 1px solid var(--isp-line-1); border-radius: var(--isp-r-lg); background: linear-gradient(180deg, rgba(53,194,176,0.045), transparent 55%), var(--isp-bg-1); }
-.isp-demo-head .isp-display { margin-top: 8px; }
-.isp-demo-head .isp-mod-lead { margin-top: 12px; }
-.isp-demo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 22px 0 18px; }
-.isp-demo-card { display: flex; flex-direction: column; gap: 10px; padding: 16px; border: 1px solid var(--isp-line-1); border-radius: var(--isp-r-md); background: var(--isp-bg-2); text-decoration: none; transition: border-color 180ms var(--isp-ease), transform 180ms var(--isp-ease); }
-.isp-demo-card:hover { border-color: var(--isp-teal); transform: translateY(-2px); }
-.isp-demo-card-tab { font-family: var(--isp-font-data); font-size: 12px; letter-spacing: 0.04em; color: var(--isp-teal); }
-.isp-demo-card-look { font-size: 13.5px; line-height: 1.55; color: var(--isp-text-2); }
-.isp-demo-card-open { font-family: var(--isp-font-data); font-size: 10px; letter-spacing: 0.12em; color: var(--isp-text-3); margin-top: auto; }
-.isp-demo-url { margin: 0; font-family: var(--isp-font-data); font-size: 12px; color: var(--isp-text-3); }
-.isp-demo-url .isp-mono { color: var(--isp-teal); word-break: break-all; }
-
-@media (max-width: 900px) { .isp-demo-grid { grid-template-columns: 1fr; } }
 @media (max-width: 767px) {
   .isp-hero { padding: 24px 18px 20px; }
   .isp-ledger-wrap { position: static; }
   .isp-ledger { flex-direction: column; align-items: flex-start; }
-  .isp-demo { padding: 22px 16px; }
 }
 `);

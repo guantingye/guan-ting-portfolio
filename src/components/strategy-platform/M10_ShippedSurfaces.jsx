@@ -7,29 +7,29 @@ const ASSET = name => `${import.meta.env.BASE_URL}strategy-platform/${name}.webp
 
 const TABS = [
     { id: 'home', label: { en: 'Home', zh: '首頁' }, src: { en: ASSET('home-globe'), zh: ASSET('home-zh') },
-        decision: { en: 'The globe hub-switch makes "global" legible in one glance — no copy has to work to say it.', zh: '地球儀 hub 切換讓「全球」一眼可感——不需要任何文案來說明它。' } },
+        decision: { en: 'The globe hub first establishes a mental model for exploring across geographies. Without extra explanation, readers can understand that this is an entry point into global industry intelligence.', zh: '地球儀 Hub 先建立跨地理探索的產品心智模型。使用者不需閱讀額外說明，就能理解這是一個從全球產業資訊跳出的入口。' } },
     { id: 'insights', label: { en: 'Insights', zh: 'Insights' }, src: { en: ASSET('insights-brief'), zh: ASSET('insights-brief') },
-        decision: { en: 'A chapter rail on the left keeps five briefs navigable without ever leaving the reading pane.', zh: '左側章節軌讓五篇簡報可導覽，卻不用離開閱讀面板。' } },
+        decision: { en: 'The chapter rail on the left lets readers locate themselves quickly across five briefs while preserving their reading position, without repeatedly leaving the main content pane.', zh: '左側章節軌讓讀者在五篇簡報之間快速定位，同時保留原有閱讀位置，不必反覆離開主要內容面板。' } },
     { id: 'startups', label: { en: 'Startups', zh: 'Startups' }, src: { en: ASSET('startups-table'), zh: ASSET('startups-table') },
-        decision: { en: 'Search plus a sector dropdown over 201 rows — filtering is a first-class control, not an afterthought.', zh: '搜尋加上產業下拉選單，覆蓋 201 列——篩選是一級控制項，不是事後補上的功能。' } },
+        decision: { en: 'Search and industry filters act directly on the live records, making narrowing the scope the first step of browsing rather than an add-on bolted on after data accumulates.', zh: '搜尋與產業篩選直接作用於真實資料紀錄，讓縮小範圍成為瀏覽流程的第一步，而不是資料堆疊後才補上的附屬功能。' } },
     { id: 'detail', label: { en: 'Startups · expanded', zh: 'Startups · 展開' }, src: { en: ASSET('startups-detail'), zh: ASSET('startups-detail') },
-        decision: { en: 'Six panels appear in place, not a modal — the reader never loses the table underneath.', zh: '六個面板原地展開，而不是彈出視窗——讀者不會失去底下的表格。' } },
+        decision: { en: 'The six-part analysis expands in place within the table rather than opening in a modal, so readers can examine one company in depth while retaining its position and surrounding context in the full dataset.', zh: '六段分析在表格原位展開，而非另開彈窗，讓讀者深入閱讀單一公司時，仍能保留它在完整資料集中的位置與前後脈絡。' } },
 ];
 
 const COPY = {
     en: {
-        title: 'Shipped surfaces, side by side',
-        lead: 'Real screenshots, captured 2026-07-10 from the live platform — not mockups. Switch tabs to see the three routes; the Home tab also toggles the bilingual view.',
-        openLive: 'Open the real thing ↗',
+        title: 'Live interface implementation',
+        lead: 'Use the tabs to inspect Home, Insights, Startups, and the expanded-row state. Home also retains the Traditional Chinese / English toggle, so the wireframes, components, and information architecture shown earlier can be compared directly with the shipped product.',
+        openLive: 'View the live site ↗',
         bilingual: 'EN / 中文',
-        soWhat: 'Every screen here is one click away from being checked against the real thing — the strongest kind of design evidence a portfolio can show.',
+        soWhat: 'This is not mockup work made to look real. Every earlier design decision can be checked, one by one, in the shipped product.',
     },
     zh: {
-        title: '已上線介面並列',
-        lead: '真實截圖，2026-07-10 從線上平台擷取——不是 mockup。切換分頁看三條路徑；Home 分頁還能切換雙語畫面。',
-        openLive: '打開真的網站 ↗',
+        title: '已上線介面實作',
+        lead: '透過頁籤可檢視 Home、Insights、Startups 與資料列展開狀態；Home 亦保留繁中／英文切換，讓前面的線框、元件與資訊架構可以直接對照最終產品。',
+        openLive: '檢視實際網站 ↗',
         bilingual: 'EN / 中文',
-        soWhat: '這裡的每個畫面，都只差一次點擊就能對照真實網站——這是作品集能提供的最有力設計證據。',
+        soWhat: '這裡不是把 mockup 做得像真的，而是讓前面的每項設計判斷，都能在已上線產品中被逐一核對。',
     },
 };
 

@@ -7,8 +7,8 @@
 export const ACTS = [
     { id: 'build',    num: 'I',   name: { en: 'Build',    zh: '建庫' }, tag: { en: 'why a self-built database, and what it is made of', zh: '為什麼自建資料庫，以及它由什麼組成' } },
     { id: 'write',    num: 'II',  name: { en: 'Write',    zh: '寫作' }, tag: { en: 'the analyst-grade text that is the product', zh: '構成產品本身的分析師等級文本' } },
-    { id: 'automate', num: 'III', name: { en: 'Automate', zh: '代理' }, tag: { en: 'an AI strategist layer, designed to keep the writing that deep at scale', zh: '一層 AI 策略師，設計來讓寫作深度可規模化' } },
-    { id: 'query',    num: 'IV',  name: { en: 'Query',    zh: '查詢' }, tag: { en: 'a grounded RAG layer over the same 201 records', zh: '架在同一批 201 筆紀錄上的依據式 RAG 層' } },
+    { id: 'automate', num: 'III', name: { en: 'Automate', zh: '代理' }, tag: { en: 'making AI analysis workflows inspectable and maintainable', zh: '讓 AI 分析流程可檢查、可維護' } },
+    { id: 'query',    num: 'IV',  name: { en: 'Query',    zh: '查詢' }, tag: { en: 'making research on hundreds of companies queryable and verifiable', zh: '讓數百公司研究可以被追問與驗證' } },
     { id: 'ship',     num: 'V',   name: { en: 'Design & Ship', zh: '設計與上線' }, tag: { en: 'wireframe to shipped surface', zh: '從線框圖到上線介面' } },
 ];
 
@@ -32,18 +32,18 @@ export const BADGES = {
 
 // Module registry — id, act, lens, badge tier, short title.
 const MODULE_LIST = [
-    { id: 'isp-m01', key: 'M01', act: 'build',    lens: ['data'],           badge: 'reconstructed', title: { en: 'Why build another company database',        zh: '為什麼要再建一個公司資料庫' } },
-    { id: 'isp-m02', key: 'M02', act: 'build',    lens: ['data'],           badge: 'real',           title: { en: 'Schema & sector taxonomy',                   zh: 'Schema 與產業分類法' } },
-    { id: 'isp-m03', key: 'M03', act: 'build',    lens: ['data'],           badge: 'reconstructed', title: { en: 'Curation loop',                              zh: '策展迴圈' } },
-    { id: 'isp-m04', key: 'M04', act: 'write',    lens: ['writing'],        badge: 'real',           title: { en: 'Anatomy of a strategic brief',               zh: '一篇策略簡報的解剖' } },
-    { id: 'isp-m05', key: 'M05', act: 'write',    lens: ['writing'],        badge: 'real',           title: { en: 'Anatomy of an analyst note',                 zh: '一則分析師註記的解剖' } },
-    { id: 'isp-m06', key: 'M06', act: 'automate', lens: ['ai'],             badge: 'concept',        title: { en: 'The AI strategist: a skill-module system',  zh: 'AI 策略師：技能模組系統' } },
-    { id: 'isp-m07', key: 'M07', act: 'automate', lens: ['ai'],             badge: 'concept',        title: { en: 'Editorial ops for AI-drafted content',       zh: 'AI 草稿的文案管理工作台' } },
-    { id: 'isp-m08', key: 'M08', act: 'query',    lens: ['ai'],             badge: 'concept',        title: { en: 'Grounded RAG over the company database',    zh: '架在公司資料庫上的依據式 RAG' } },
-    { id: 'isp-m09', key: 'M09', act: 'ship',     lens: ['design'],         badge: 'reconstructed', title: { en: 'Wireflow: three low-fidelity plates',       zh: '線框：三張低保真圖版' } },
-    { id: 'isp-m10', key: 'M10', act: 'ship',     lens: ['design'],         badge: 'real',           title: { en: 'Shipped surfaces, side by side',             zh: '已上線介面並列' } },
-    { id: 'isp-m11', key: 'M11', act: 'ship',     lens: ['design'],         badge: 'real',           title: { en: 'Component & state system',                  zh: '元件與狀態系統' } },
-    { id: 'isp-m12', key: 'M12', act: 'ship',     lens: ['build'],          badge: 'reconstructed', title: { en: 'Architecture & honest limits',               zh: '架構與誠實限制' } },
+    { id: 'isp-m01', key: 'M01', act: 'build',    lens: ['data'],           badge: 'reconstructed', title: { en: 'Why another company database is still needed',          zh: '為什麼還需要一座公司資料庫' } },
+    { id: 'isp-m02', key: 'M02', act: 'build',    lens: ['data'],           badge: 'real',           title: { en: 'Data model & industry taxonomy',                     zh: '資料模型與產業分類法' } },
+    { id: 'isp-m03', key: 'M03', act: 'build',    lens: ['data'],           badge: 'reconstructed', title: { en: 'Research curation loop',                             zh: '研究策展迴圈' } },
+    { id: 'isp-m04', key: 'M04', act: 'write',    lens: ['writing'],        badge: 'real',           title: { en: 'How a strategic brief takes shape',                  zh: '一篇策略簡報如何形成' } },
+    { id: 'isp-m05', key: 'M05', act: 'write',    lens: ['writing'],        badge: 'real',           title: { en: 'How an analyst note takes shape',                    zh: '一則分析師註記如何形成' } },
+    { id: 'isp-m06', key: 'M06', act: 'automate', lens: ['ai'],             badge: 'concept',        title: { en: 'AI strategy research module',                       zh: 'AI 策略研究模組' } },
+    { id: 'isp-m07', key: 'M07', act: 'automate', lens: ['ai'],             badge: 'concept',        title: { en: 'AI draft review workspace',                          zh: 'AI 草稿審查工作台' } },
+    { id: 'isp-m08', key: 'M08', act: 'query',    lens: ['ai'],             badge: 'concept',        title: { en: 'Grounded RAG over the company database',           zh: '架在公司資料庫上的依據式 RAG' } },
+    { id: 'isp-m09', key: 'M09', act: 'ship',     lens: ['design'],         badge: 'reconstructed', title: { en: 'Interface wireframes: three low-fidelity explorations', zh: '介面線框：三輪低保真探索' } },
+    { id: 'isp-m10', key: 'M10', act: 'ship',     lens: ['design'],         badge: 'real',           title: { en: 'Live interfaces and version comparisons',           zh: '上線介面與版本對照' } },
+    { id: 'isp-m11', key: 'M11', act: 'ship',     lens: ['design'],         badge: 'real',           title: { en: 'Component & state system',                         zh: '元件與狀態系統' } },
+    { id: 'isp-m12', key: 'M12', act: 'ship',     lens: ['build'],          badge: 'reconstructed', title: { en: 'System architecture & known limitations',      zh: '系統架構與已知限制' } },
 ];
 export const MODULES = MODULE_LIST.map((m, i) => ({ ...m, num: String(i + 1).padStart(2, '0') }));
 
@@ -53,36 +53,25 @@ export const LENS_COUNTS = LENSES.reduce((acc, l) => {
 }, {});
 
 export const LIVE_URL = 'https://industry-strategy-platform.vercel.app/';
-export const ROUTES = {
-    home:     'https://industry-strategy-platform.vercel.app/',
-    insights: 'https://industry-strategy-platform.vercel.app/insights',
-    startups: 'https://industry-strategy-platform.vercel.app/startups',
-};
 
 export const SHELL = {
     en: {
         eyebrow: 'Evidence layer · v1 · 2026-07',
-        title: 'From a scraped database to a strategist you can question',
-        lead: "The section above is the short version. This is the long one — the schema, the writing method behind every analyst note, the AI strategist layer I designed to keep that depth scaling, the grounded query layer over the same records, and the interface that ships it. I built the database and the product myself, start to finish.",
+        title: 'From a company database to a strategy intelligence system you can question',
+        lead: 'The section above is a concise summary. This layer explains how the product comes together: the company-data schema, the writing framework behind analyst notes, the AI modules that support research at scale, the retrieval and citation mechanism over the same records, and the product interface that carries it all. I independently completed the data modelling, research workflow, and frontend implementation.',
         indexLabel: 'Module index',
         lensHint: 'Filter by lens',
         clear: 'Clear',
         skipLink: 'Skip to module index',
-        demoTitle: 'See the real database',
-        demoLead: 'Everything above rebuilds the product as DOM from real 2026-07-10 records. Here are the real routes — open them and check the claims against the running platform.',
-        demoPrintNote: 'Plain URL for print / PDF:',
     },
     zh: {
         eyebrow: '證據層 · v1 · 2026-07',
-        title: '從一個爬來的資料庫，到一個可以被提問的策略師',
-        lead: '上面的區塊是短版。這裡是長版——schema、每則分析師註記背後的寫作方法、我設計來讓這種深度規模化的 AI 策略師層、架在同一批紀錄上的依據式查詢層，以及交付這一切的介面。資料庫與產品都是我自己從頭到尾做的。',
+        title: '從公司資料庫，到可追問的策略情報系統',
+        lead: '前段呈現的是成果摘要；這一層則進一步拆解產品如何成立：公司資料的 schema、分析師註記的寫作框架、支援研究規模化的 AI 模組、建立在同一批資料上的檢索與引用機制，以及承接這一切的產品介面。從資料建模、研究流程到前端實作，皆由我獨立完成。',
         indexLabel: '模組索引',
         lensHint: '依鏡頭篩選',
         clear: '清除',
         skipLink: '跳到模組索引',
-        demoTitle: '去看真的資料庫',
-        demoLead: '上面重建的一切，都以 2026-07-10 的真實紀錄做成 DOM。這裡是真正的路徑——打開它們，對照線上平台核對每個主張。',
-        demoPrintNote: '列印 / PDF 用純網址：',
     },
 };
 

@@ -7,43 +7,43 @@ const MOD = MODULES.find(m => m.key === 'M03');
 const STEPS = [
     {
         id: 'discover',
-        en: { name: 'Discover', detail: 'A candidate surfaces from a funding announcement, a launch, or a sector I am already tracking. The bar to enter the pipeline is low — the bar to get published is not.' },
-        zh: { name: '發掘', detail: '候選公司從一則募資公告、一次發表，或一個我已在追蹤的產業裡浮現。進入 pipeline 的門檻低——但進到發佈的門檻不低。' },
+        en: { name: 'Candidate discovery', detail: 'Candidate companies typically come from funding announcements, product launches, industry lists, or new leads that surface in existing research. The threshold for entering the candidate pool is intentionally loose; only after entity confirmation, research writing, and source verification do they enter the official database.' },
+        zh: { name: '候選發掘', detail: '候選公司通常來自募資公告、產品發布、產業名單，或既有研究中出現的新線索。進入候選池的門檻刻意維持寬鬆；只有完成後續的實體確認、研究撰寫與來源查核，才會被正式收錄。' },
     },
     {
         id: 'dedupe',
-        en: { name: 'Dedupe & place', detail: 'Check it against the existing 201 rows and the sector taxonomy. Same-lane companies stay side by side on purpose — a reader comparing five humanoid-robotics bets needs them adjacent, not scattered.' },
-        zh: { name: '去重與定位', detail: '與既有 201 列和產業分類法比對。同賽道的公司刻意並排——一個在比較五個人形機器人賭注的讀者，需要它們相鄰，而不是散落各處。' },
+        en: { name: 'Entity deduplication & placement', detail: 'I first confirm whether the company already exists in the database, resolving Chinese and English names, brand names, parent-subsidiary relationships, and similarly named entities before deciding which industry cluster it belongs to. This prevents the same company from being recorded twice and distinct companies with similar names from being merged incorrectly.' },
+        zh: { name: '實體去重與定位', detail: '我先確認公司是否已存在於資料庫中，處理中英文名稱、品牌名稱、母子公司與名稱相近的實體，再判斷它應歸入哪一個產業叢集。這一步避免同一家公司被重複收錄，也避免不同公司因名稱相似而被錯誤合併。' },
     },
     {
         id: 'draft',
-        en: { name: 'Analyst draft', detail: 'Write the six sections from public filings, funding databases, and reporting. The moat and verdict sections are where the actual work is — anyone can restate a funding round.' },
-        zh: { name: '分析師撰寫', detail: '從公開申報、募資資料庫與報導寫出六段。護城河與判斷段落才是真正的功夫所在——誰都能複述一輪募資金額。' },
+        en: { name: 'Analytical writing', detail: 'Only after entity confirmation does the company enter a fixed six-part analysis structure. The writing covers company positioning, founding team, moat, business model, funding signals, and primary risks. The fixed structure is not meant to make the content formulaic; it ensures every company answers the same research questions.' },
+        zh: { name: '分析撰寫', detail: '公司完成實體確認後，才進入固定的六段分析架構。撰寫內容涵蓋公司定位、創辦團隊、護城河、商業模式、資金訊號與主要風險。固定結構不是為了讓內容變得制式，而是確保每一家公司都回答相同的研究問題。' },
     },
     {
         id: 'check',
-        en: { name: 'Fact & funding check', detail: 'Numbers get a second pass against source documents before publish — funding amounts, dates, and named investors are the fields most likely to be stale or wrong.' },
-        zh: { name: '事實與資金查核', detail: '發佈前，數字要對照原始文件再過一次——募資金額、日期與具名投資人，是最容易過期或出錯的欄位。' },
+        en: { name: 'Fact, funding & source checks', detail: 'After analysis, I return to company websites, funding announcements, investor information, and other public sources to verify key facts, amounts, dates, and company descriptions. Content that cannot be confirmed is removed, downgraded to information pending verification, or explicitly marked as analytical judgment rather than mixed with verified facts.' },
+        zh: { name: '事實、募資與來源查核', detail: '分析完成後，我會回到公司網站、募資公告、投資人資料與其他公開來源，核對關鍵事實、金額、日期與公司描述。無法被確認的內容會被刪除、降級為待查資訊，或明確標示為分析判斷，而不會與已驗證事實混在一起。' },
     },
     {
         id: 'include',
-        en: { name: 'Include & date-stamp', detail: 'The row ships with a curation date, not a "last verified" illusion of freshness — a reader should know exactly how old the judgment is.' },
-        zh: { name: '收錄並標註日期', detail: '這一列上線時附帶策展日期，而不是製造「最後驗證」的新鮮假象——讀者應該清楚知道這個判斷有多舊。' },
+        en: { name: 'Formal inclusion & version marking', detail: 'Only companies that have completed the preceding steps enter the official database. Each record retains its inclusion date, sources, and research judgment, so later updates can identify what changed. Inclusion means the record has met the current version’s quality threshold, not that it will never need correction.' },
+        zh: { name: '正式收錄與版本標記', detail: '只有完成前述步驟的公司才會進入正式資料庫。每筆紀錄都保留收錄日期、來源與研究判斷，後續更新時也能辨識哪些內容已經改變。收錄代表這筆資料已達到目前版本的品質門檻，而不是代表它永遠不需要修正。' },
     },
 ];
 
 const COPY = {
     en: {
-        title: 'Curation loop',
-        lead: 'Crunchbase-style breadth comes from automation. This kind of depth still comes from a person doing five deliberate steps per company — I want to be honest about which parts of that loop are process I actually ran, versus process I am describing from how I work.',
+        title: 'Company data curation loop',
+        lead: 'Large company databases can rapidly expand coverage through automation, but research depth still comes from curating records one by one. This module lays out the five-step process I use for each company and distinguishes work I actually performed from repeatable methods reorganized from established research practice.',
         stepHint: 'Step through it',
-        soWhat: 'Quality did not come from a smarter scraper. It came from refusing to publish a row until it had passed all five steps.',
+        soWhat: 'Data quality depends not just on how much was captured, but on whether every record has completed the same processes of verification, analysis, and inclusion.',
     },
     zh: {
-        title: '策展迴圈',
-        lead: 'Crunchbase 式的廣度來自自動化。這種深度，仍然來自一個人對每家公司走過五個刻意的步驟——我想誠實說明這個迴圈裡，哪些是我真的執行過的流程，哪些是我在描述自己做事的方式。',
+        title: '公司資料的策展迴圈',
+        lead: '大型公司資料庫可以透過自動化快速擴大收錄範圍，但研究深度仍來自逐筆策展。這個模組整理我處理每家公司的五步流程，並清楚區分哪些是實際執行過的工作，哪些是根據既有研究習慣重新整理出的可重複方法。',
         stepHint: '逐步查看',
-        soWhat: '品質不是來自更聰明的爬蟲，而是來自拒絕在一列走完五個步驟之前把它發佈出去。',
+        soWhat: '資料品質不只取決於抓到多少，而取決於每一筆紀錄是否走完同一套查核、分析與收錄流程。',
     },
 };
 

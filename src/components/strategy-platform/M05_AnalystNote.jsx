@@ -5,28 +5,28 @@ import { MODULES, SPECIMEN_COMPANIES } from './data/strategyPlatformContent.js';
 const MOD = MODULES.find(m => m.key === 'M05');
 
 const SECTIONS = [
-    { key: 'founders', en: 'FOUNDERS BACKGROUND', zh: '創辦人背景' },
+    { key: 'founders', en: 'FOUNDING TEAM', zh: '創辦團隊' },
     { key: 'moat', en: 'THE MOAT', zh: '護城河' },
     { key: 'businessModel', en: 'BUSINESS MODEL', zh: '商業模式' },
     { key: 'funding', en: 'FUNDING STATUS', zh: '募資狀態' },
     { key: 'risks', en: 'KEY RISKS', zh: '關鍵風險' },
-    { key: 'verdict', en: 'VERDICT', zh: '判斷' },
+    { key: 'verdict', en: 'RESEARCH JUDGMENT', zh: '研究判斷' },
 ];
 
 const COPY = {
     en: {
         title: 'Anatomy of an analyst note',
-        lead: 'Same six sections, three unrelated sectors — an AI coding agent, a humanoid-robotics company, and a CRISPR therapeutics platform. Switch between them; the "verdict" section is where a directory would stop and this database keeps going.',
+        lead: 'This module presents three companies from different industries through the same six-part analysis structure: an AI coding agent, a humanoid-robotics company, and a CRISPR gene-editing therapeutics platform. Switch companies to compare how a fixed schema accommodates different business models, technical risks, and research judgments — and how a company record moves from being included to becoming analysis that can be read and discussed.',
         switchLabel: 'Switch company',
-        verdictNote: 'This is the section a plain fact sheet never has — a stated, disagreeable opinion.',
-        soWhat: 'The framework generalizes across a coding agent, a robot, and a gene-editing platform — that consistency is what makes 201 rows one product instead of 201 essays.',
+        verdictNote: 'This area presents research judgment formed from publicly available materials. Its content can be challenged, revised, and continually updated; it is not investment advice.',
+        soWhat: 'A consistent research framework lets companies from different industries be compared through the same questions; the real differences belong in the answers, not the format.',
     },
     zh: {
         title: '一則分析師註記的解剖',
-        lead: '同樣的六段結構，三個毫不相關的產業——一個 AI 編碼代理、一家人形機器人公司、一個 CRISPR 療法平台。切換看看；「判斷」這段正是目錄式資料庫會停下、而這個資料庫繼續往前的地方。',
+        lead: '這個模組讓三家來自不同產業的公司以同一套六段分析結構呈現：AI 編碼代理、人形機器人與 CRISPR 基因編輯療法。切換公司後，可以比較固定 schema 如何容納不同的商業模式、技術風險與研究判斷，也看見公司資料如何從「被收錄」進一步成為「可閱讀、可討論的分析」。',
         switchLabel: '切換公司',
-        verdictNote: '這是一張純事實表永遠不會有的段落——一個寫明、可被反駁的意見。',
-        soWhat: '這套框架在編碼代理、機器人與基因編輯平台之間都能通用——正是這種一致性，讓 201 列成為一個產品，而不是 201 篇各自獨立的文章。',
+        verdictNote: '此區呈現分析基於公開資料形成的研究判斷，內容可被質疑、修正與持續更新，不視為投資建議。',
+        soWhat: '一致的研究框架，讓不同產業的公司仍能在同一套問題下被比較；真正的差異留在答案，而不是格式。',
     },
 };
 

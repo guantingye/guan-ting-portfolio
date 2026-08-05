@@ -30,7 +30,7 @@ const SEGMENTS = [
     {
         id: 'takeaways',
         en: {
-            tag: 'KEY TAKEAWAYS', job: 'Three action-shaped sentences a reader can act on without finishing the rest of the brief — this is the part that gets forwarded.',
+            tag: 'KEY TAKEAWAYS', job: 'This section turns the core judgment into three actionable sentences, so readers can understand what to prioritize now without first reading the whole brief. It is usually the first part of the brief to be read and cited.',
             list: [
                 'Treat power procurement as a roadmap dependency: interconnect visibility + PPAs + site readiness become first-order constraints.',
                 'Shift from "maximum compute" to "effective compute": power-aware placement and time-shifting convert scarcity into reliability advantage.',
@@ -38,7 +38,7 @@ const SEGMENTS = [
             ],
         },
         zh: {
-            tag: 'KEY TAKEAWAYS', job: '三句可直接行動的句子，讀者不用讀完全文就能採取行動——這是最常被轉發的部分。',
+            tag: 'KEY TAKEAWAYS', job: '這一段的任務是用三句話把核心判斷轉成可採取的行動，讓讀者不必先讀完整篇簡報，也能掌握現在應優先處理什麼。這通常也是整篇簡報最先被閱讀與引用的區塊。',
             list: [
                 'Treat power procurement as a roadmap dependency: interconnect visibility + PPAs + site readiness become first-order constraints.',
                 'Shift from "maximum compute" to "effective compute": power-aware placement and time-shifting convert scarcity into reliability advantage.',
@@ -84,13 +84,15 @@ const SEGMENTS = [
 const COPY = {
     en: {
         title: 'Anatomy of a strategic brief',
-        lead: 'This is a real /insights brief, "Power is becoming the binding constraint for AI scale-out," taken apart section by section. Click a piece to see the job it is doing for the reader — this is the writing method behind all five briefs, not just this one.',
-        soWhat: 'A good brief is not one long paragraph of insight — it is eight small, load-bearing decisions about what the reader needs first.',
+        lead: 'Using the /insights strategic brief “Power is becoming the binding constraint for AI scale-out” as an example, this module breaks down how industry signals, contextual research, and judgment are organized into actionable conclusions. It is not a single-content showcase, but the writing structure shared by all five strategic briefs.',
+        sectionTask: 'SECTION TASK',
+        soWhat: 'A good strategic brief does more than organize insight: it makes a trade-off for the reader about what matters most now, why it matters, and what to do next.',
     },
     zh: {
         title: '一篇策略簡報的解剖',
-        lead: '這是一篇真實的 /insights 簡報——「Power is becoming the binding constraint for AI scale-out」，逐段拆開。點一段看它在為讀者做什麼工——這是五篇簡報背後共同的寫作方法，不只這一篇。',
-        soWhat: '一篇好的簡報不是一大段有洞見的文字——而是八個關於讀者最先需要什麼的、承重的小決定。',
+        lead: '以下一篇實際發布於 /insights 的策略簡報〈Power is becoming the binding constraint for AI scale-out〉為例，逐段拆解它如何把產業訊號、脈絡研究與判斷整理成可行動的判斷。這不只是單篇內容展示，而是五篇策略簡報共同採用的寫作結構。',
+        sectionTask: '這一段的任務',
+        soWhat: '好的策略簡報不只是整理洞察，而是先替讀者完成一次取捨：現在最重要的是什麼、為什麼，以及下一步該做什麼。',
     },
 };
 
@@ -128,7 +130,7 @@ export default function M04_BriefAnatomy() {
                     })}
                 </div>
                 <div className="isp-m4-annotation" aria-live="polite">
-                    <span className="isp-tag isp-tag--amber">{lang === 'zh' ? '這一段在做什麼' : 'WHAT THIS SECTION DOES'}</span>
+                    <span className="isp-tag isp-tag--amber">{t.sectionTask}</span>
                     <p>{segLang.job}</p>
                 </div>
             </div>

@@ -59,33 +59,41 @@ function PlateStartups() {
 
 const PLATES = [
     { id: 'home', Comp: PlateHome,
-        en: { name: 'Home — globe hub switcher', why: 'A globe, not a hero image, because the product is about breadth across geographies first — clicking a marker is the very first interaction, before any text is read.' },
-        zh: { name: '首頁 — 地球儀 hub 切換器', why: '用地球儀而不是主視覺圖，因為這個產品首先關於跨地理的廣度——點一個 marker 是使用者的第一個互動，早於任何文字被讀到。' } },
+        en: { name: 'Home — globe hub switcher', why: 'The home page uses an interactive global-information hub rather than a conventional media-style hero. Its job is to establish a product mental model of observing across markets and industries, then lead readers to strategy briefs or the company database. What readers see is not a single static image, but three information states that can be switched and re-arranged.' },
+        zh: { name: '首頁 — 地球儀 hub 切換器', why: '首頁使用可互動的全球資訊 Hub，而不是傳統的媒體型主視覺。它的任務是先建立「跨市場、跨產業觀察」的產品心智模型，再把讀者帶向策略簡報或公司資料庫。使用者看到的不是單一張圖片，而是三個能切換且重新編排的資訊狀態。' } },
     { id: 'insights', Comp: PlateInsights,
-        en: { name: 'Insights — chapter list + reader pane', why: 'A two-pane, book-like layout instead of a card grid, because a strategic brief is meant to be read start to finish, not skimmed like a news feed.' },
-        zh: { name: 'Insights — 章節清單 + 閱讀面板', why: '用書籍式雙欄，而不是卡片網格，因為策略簡報本來就該從頭讀到尾，而不是像新聞動態一樣被略讀。' } },
+        en: { name: 'Insights — chapter list + reader pane', why: 'A book-like two-column layout, rather than a card grid, preserves a strategic brief’s argument from beginning to end. It is meant to be read in full, not skimmed like a feed.' },
+        zh: { name: 'Insights — 章節清單 + 閱讀面板', why: '採用書籍式雙欄，而非卡片網格，讓策略簡報維持由前至後的論證脈絡；它需要被完整閱讀，而不是像動態消息一樣被快速略過。' } },
     { id: 'startups', Comp: PlateStartups,
-        en: { name: 'Startups — expandable table', why: 'A dense table, not cards, because the job is fast scanning across 201 rows first, and only expanding the one row worth six paragraphs.' },
-        zh: { name: 'Startups — 可展開表格', why: '用密集表格，而不是卡片，因為工作是先快速掃過 201 列，只展開真正值得讀六段文字的那一列。' } },
+        en: { name: 'Startups — expandable table', why: 'A dense table, rather than a card list, lets users scan all 201 records quickly, then expand only the companies whose six-part analyses warrant a closer read.' },
+        zh: { name: 'Startups — 可展開表格', why: '採用高密度表格，而非卡片列表，讓使用者先快速掃描 201 筆紀錄，再只展開真正值得深入閱讀六段分析的公司。' } },
 ];
 
 const IA_TREE = {
-    en: ['/ (home) — globe, hub brief, two entry CTAs', '/insights — chapter list → single brief reader', '/startups — search + sector filter → expandable analyst row'],
-    zh: ['/（首頁）— 地球儀、hub brief、兩個入口 CTA', '/insights — 章節清單 → 單篇簡報閱讀器', '/startups — 搜尋 + 產業篩選 → 可展開分析師列'],
+    en: [
+        '/ Home — establishes product positioning and provides the two primary reading paths: /insights and /startups.',
+        '/insights — Strategy briefs use a book-like two-column view that leads into a single-brief reading panel, suited to continuous reading and topic tracking.',
+        '/startups — The company database offers industry filtering first, then expands company analyses, supporting horizontal comparison without frequent page changes.',
+    ],
+    zh: [
+        '/ 首頁——建立產品定位，提供 /insights 與 /startups 兩條主要閱讀路徑。',
+        '/insights 策略簡報——以書籍式雙欄呈現，再進入單篇閱讀面板，適合連續閱讀與主題追蹤。',
+        '/startups 公司資料庫——先提供產業篩選，再展開公司分析，支援橫向比較而不必頻繁切頁。',
+    ],
 };
 
 const COPY = {
     en: {
         title: 'Wireflow: three low-fidelity plates',
-        lead: 'The three shipped surfaces, redrawn at wireframe fidelity, with the layout decision stated next to each one — not just what the screen shows, but why that shape and not a more conventional one.',
+        lead: 'Three shipped surfaces, redrawn as low-fidelity wireframes, retain their original information hierarchy, entry points, and layout trade-offs. These wireframes do not reproduce the final visual design; they show that the home, strategy brief, and company directory serve three different reading tasks, each shaped around its own reading behavior.',
         iaTitle: 'Information architecture',
-        soWhat: 'Three screens, three different reading modes — a globe for exploration, a book for a brief, a table for a scan. The layout is the argument for how each surface should be used.',
+        soWhat: 'Three screens, three different reading modes — a globe for exploration, a book for a brief, a table for a scan. The layout itself demonstrates how each surface is meant to be used.',
     },
     zh: {
         title: '線框：三張低保真圖版',
-        lead: '三個已上線介面，重繪成線框保真度，並在每一張旁邊寫明版面決策——不只是螢幕顯示什麼，而是為什麼是這個形狀、而不是更常規的做法。',
+        lead: '將三個已上線介面重新拆回低保真線框，保留它們最初的資訊層級、操作入口與版面取捨。這些線框圖不是為了重現最終視覺，而是說明首頁、策略簡報與公司目錄面對的是三種不同的閱讀任務，分別對應不同的閱讀習慣。',
         iaTitle: '資訊架構',
-        soWhat: '三個螢幕，三種不同的閱讀模式——地球儀給探索、書籍給簡報、表格給掃描。版面本身就是「這個介面該怎麼被使用」的論證。',
+        soWhat: '三個螢幕，三種不同的閱讀模式——地球儀給探索、書籍給簡報、表格給掃描。版面本身就是「這個介面該怎麼被使用」的證明。',
     },
 };
 
